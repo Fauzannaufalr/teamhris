@@ -20,5 +20,14 @@ class DataPosisi extends CI_Controller
         $this->load->view('master/dataposisi',$data);
         $this->load->view('templates/footer');
     }
+    public function hapus($id_posisi)
+    {
+        if ($this->DataPosisi_model->hapus($id_posisi)) {
+            $this->session->set_flashdata('message', 'Data berhasil dihapus');
+        } else {
+            $this->session->set_flashdata('message', 'Data gagal dihapus');
+        }
+        redirect('master/dataposisi');
+    }
 
 }
