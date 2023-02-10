@@ -17,7 +17,9 @@
                         <th>Kualifikasi</th>
                         <th>Tanggal Berakhir</th>
                         <th>foto</th>
+                        <th>contoh</th>
                         <th>Aksi</th>
+
 
                     </tr>
                 </thead>
