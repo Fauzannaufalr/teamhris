@@ -15,7 +15,7 @@
                         <th>Email</th>
                         <th>Status</th>
                         <th>Gaji Pokok</th>
-                         <th>Level</th>
+                        <th>Level</th>
                         <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
@@ -60,13 +60,32 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group"><label>NIK</label><input type="text" name="nik" class="form-control"></div>
-                <div class="form-group"><label>Nama Karyawan</label><input type="text" name="nama_karyawan" class="form-control"></div>
-                <div class="form-group"><label>Foto</label><input type="file" name="foto" class="form-control"></div>
-                <div class="form-group"><label>Gaji Pokok</label><input type="text" name="gajipokok" class="form-control"></div>
-                <div class="form-group"><label>Status</label><input type="text" name="status" class="form-control"></div>
-                <div class="form-group"><label>Level</label><input type="text" name="level" class="form-control"></div>
+                <div class="form-group">
+                    <label>NIK</label><input type="text" name="nik" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Nama Karyawan</label><input type="text" name="nama_karyawan" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Gaji Pokok</label><input type="text" name="gajipokok" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Status</label><input type="text" name="status" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Level</label><input type="text" name="level" class="form-control">
+                </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="button" class="btn btn-primary">Simpan</button>
