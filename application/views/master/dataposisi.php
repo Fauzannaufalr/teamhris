@@ -22,7 +22,7 @@
                             <td><?= $p['nama_posisi']; ?></td>
                             <td>
                                 <a href="" class="badge bg-success">edit</a>
-                                <a href="" class="badge bg-danger">delete</a>
+                                <a href="<?= base_url() ?>master/DataPosisi/hapus/<?= $p['id_posisi']  ?>" class="badge bg-danger">delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

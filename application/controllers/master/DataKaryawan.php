@@ -19,4 +19,13 @@ class DataKaryawan extends CI_Controller
         $this->load->view('master/datakaryawan', $data);
         $this->load->view('templates/footer');
     }
+    public function hapus($id)
+    {
+        if ($this->DataKaryawan_model->hapus($id)) {
+            $this->session->set_flashdata('message', 'Data berhasil dihapus');
+        } else {
+            $this->session->set_flashdata('message', 'Data gagal dihapus');
+        }
+        redirect('master/datakaryawan');
+    }
 }
