@@ -12,6 +12,7 @@
                         <th>NIK</th>
                         <th>Nama Karyawan</th>
                         <th>Posisi</th>
+                        <th>Email</th>
                         <th>Status</th>
                         <th>Gaji Pokok</th>
                          <th>Level</th>
@@ -27,6 +28,7 @@
                             <td><?= $k['nik']; ?></td>
                             <td><?= $k['nama_karyawan']; ?></td>
                             <td><?= $k['id_posisi']; ?></td>
+                            <td><?= $k['email']; ?></td>
                             <td><?= $k['status']; ?></td>
                             <td><?= $k['gajipokok']; ?></td>
                             <td><?= $k['level']; ?></td>
