@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <div class="mt-2"></div>
     <a href="<?= base_url('admin'); ?>" class="link p-3" style="color: #ffffff;">
-        <img src="<?= base_url(); ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3 mr-1" width="43" height="43">
+        <img src="<?= base_url(); ?>dist/img/sahaware.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3 mr-1" width="43" height="43">
         <span class="brand-text font-light" style="font-size: 25px;">HRIS</span>
     </a>
 
@@ -11,7 +11,7 @@
     <div class="sidebar">
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-3">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
