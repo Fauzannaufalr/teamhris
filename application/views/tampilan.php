@@ -1,47 +1,59 @@
-<div class="brand">
-    <div class="backawal">
-        <div class="namaawal"><b>PT. SAHAWARE TEK</b></div>
-    </div>
-    <div class="backakhir">
-        <div class="namaakhir"><b> NOLOGI INDONESIA</b></div>
-    </div>
-</div>
-<div class="row justify-content-center mt-5" style="/* display: flex: ; */ position: relative; top: -1000px;">
-    <div class="col-lg-4">
+<!DOCTYPE html>
+<html lang="en">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg">
-                        <div class="p-3">
-                            <div class="text-left">
-                                <small>Silahkan</small>
-                                <h1 class="h4 text-gray-900 mb-4">Login</h1>
-                            </div>
-                            <form class="user" method="POST" action="">
-                                <div class="form-group">
-                                    <label for="username"><b>Username</b></label>
-                                    <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Masukan username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password"><b>Password</b></label>
-                                    <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Masukan password">
-                                    <div class="text-right">
-                                        <a class="small" href="">Lupa Password?</a>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>form pelamar</title>
+</head>
+
+<body>
+    <img src="<?= base_url()  ?>dist/img/form.jpeg" alt="tampilan" height="690px" width="1510px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- general form elements disabled -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">General Elements</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form>
+                            <div class="row" style="text-align: center;">
+                                <div class="col-sm-6">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                        <label>Text</label>
+                                        <input type="text" class="form-control" placeholder="Enter ...">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-user btn-block">
-                                    Log-in
-                                </button>
-                            </form>
-                            <hr>
-                        </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Text Disabled</label>
+                                        <input type="text" class="form-control" placeholder="Enter ..." disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
+                    <!-- /.card-body -->
                 </div>
             </div>
+
         </div>
+
+
 
     </div>
 
-</div>
+
+    </div>
+
+
+</body>
+
+</html>
