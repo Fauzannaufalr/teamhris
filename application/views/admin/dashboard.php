@@ -63,11 +63,11 @@
             <h3 class="card-title"><?= $title ?></h3>
         </div>
         <div class="card-body">
-                <table id="example2" class="table table-bordered table-striped">
-                    <thead style="background-color: #ff0000;">
+                <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
+                    <thead style="background-color: #ff0000;" >
                         <tr style="color: #ffffff;">
                             <th rowspan="2">Nama Karyawan</th>
-                            <th colspan="7">Nilai</th>
+                            <th colspan="7" >Nilai</th>
                         </tr>
                         <tr style="color: #ffffff;">
                             <th>Januari</th>
@@ -96,7 +96,7 @@
         </div>
              <!-- /.card-header -->
                <div class="card-body">
-             <table id="example2" class="table table-bordered table-striped" style="color: #ffffff;">
+             <table id="example2" class="table table-bordered table-striped" style="color: #ffffff;" style="text-align: center;">
                 <thead style="background-color: #ff0000;">
                     <tr>
                         <th>No</th>
