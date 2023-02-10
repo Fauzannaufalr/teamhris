@@ -11,9 +11,10 @@
                         <th>No</th>
                         <th>NIK</th>
                         <th>Nama Karyawan</th>
-                        <th>Level</th>
+                        <th>Posisi</th>
                         <th>Status</th>
                         <th>Gaji Pokok</th>
+                         <th>Level</th>
                         <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
@@ -25,12 +26,12 @@
                             <th><?= $no++; ?></th>
                             <td><?= $k['nik']; ?></td>
                             <td><?= $k['nama_karyawan']; ?></td>
-                            <td><?= $k['foto']; ?></td>
-                            <td><?= $k['gajipokok']; ?></td>
+                            <td><?= $k['id_posisi']; ?></td>
                             <td><?= $k['status']; ?></td>
+                            <td><?= $k['gajipokok']; ?></td>
                             <td><?= $k['level']; ?></td>
+                            <td><?= $k['foto']; ?></td>
                             <td>
-                                <a href="" class="badge bg-warning">detail</a>
                                 <a href="" class="badge bg-success">edit</a>
                                 <a href="<?= base_url() ?>master/DataKaryawan/hapus/<?= $k['id']  ?>" class="badge bg-danger">delete</a>
                             </td>
