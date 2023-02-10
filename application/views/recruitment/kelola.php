@@ -19,6 +19,7 @@
                         <th>foto</th>
                         <th>Aksi</th>
 
+
                     </tr>
                 </thead>
                 <tbody>
