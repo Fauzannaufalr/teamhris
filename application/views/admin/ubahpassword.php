@@ -1,28 +1,37 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <h2><?= $title; ?></h2>
-
     <div class="row">
         <div class="col-lg-6">
-            <form action="<?= base_url('admin/ubahpassword'); ?>" method="POST">
-                <div class="form-group">
-                    <label for="current_password">Password Lama</label>
-                    <input type="password" class="form-control" id="current_password" name="current_password">
+            <!-- general form elements -->
+            <div class="card">
+                <div class="card-header" style="background-color: #ff0000;">
+                    <h3 class="card-title" style="color: #ffffff;">Password</h3>
                 </div>
-                <div class="form-group">
-                    <label for="new_password1">Password Baru</label>
-                    <input type="password" class="form-control" id="new_password1" name="new_password1">
-                </div>
-                <div class="form-group">
-                    <label for="new_password2">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="new_password2" name="new_password2">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-secondary">Ubah Password</button>
-                </div>
-            </form>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="password1">Password Lama</label>
+                            <input type="password" class="form-control" id="password1" placeholder="Masukan Password Lama">
+                        </div>
+                        <div class="form-group">
+                            <label for="password2">Password Baru</label>
+                            <input type="password" class="form-control" id="password2" placeholder="Masukan Password Baru">
+                        </div>
+                        <div class="form-group">
+                            <label for="konfimasi">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="konfimasi" placeholder="Konfirmasi Password">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-danger" style="background-color: #ff0000;">Simpan</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
         </div>
     </div>
 </div>

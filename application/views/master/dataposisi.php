@@ -3,7 +3,7 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <button type="button" class="btn btn-outline-danger mb-2" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#exampleModal">
                 Tambah Posisi
             </button>
             <table id="example1" class="table table-bordered table-striped">

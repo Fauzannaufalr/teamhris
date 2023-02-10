@@ -2,7 +2,7 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#exampleModal">
                 Tambah Karyawan
             </button>
             <table id="example1" class="table table-bordered table-striped">
