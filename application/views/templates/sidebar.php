@@ -149,7 +149,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                                    <a href="<?= base_url('training/datasoal') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                         <p>Post-Test</p>
                                     </a>
                                 </li>
