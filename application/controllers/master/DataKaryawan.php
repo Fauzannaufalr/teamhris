@@ -19,6 +19,11 @@ class DataKaryawan extends CI_Controller
         $this->load->view('master/datakaryawan', $data);
         $this->load->view('templates/footer');
     }
+    public function addData()
+    {
+      $this->DataKaryawan_model->add_datakaryawan($this->input->post());
+        redirect(base_url().'master/datakaryawan');
+    }
     public function hapus($id)
     {
         if ($this->DataKaryawan_model->hapus($id)) {

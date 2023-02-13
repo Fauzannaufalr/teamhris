@@ -20,6 +20,11 @@ class DataPosisi extends CI_Controller
         $this->load->view('master/dataposisi',$data);
         $this->load->view('templates/footer');
     }
+    public function addData()
+    {
+      $this->DataPosisi_model->add_dataposisi($this->input->post());
+        redirect(base_url().'master/dataposisi');
+    }
     public function hapus($id_posisi)
     {
         if ($this->DataPosisi_model->hapus($id_posisi)) {

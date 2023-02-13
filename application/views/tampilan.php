@@ -1,61 +1,58 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <!---<title> Responsive Registration Form | CodingLab </title>--->
-    <link rel="stylesheet" href="<?= base_url('dist/css/style.css') ?>" />
-    <link rel="stylesheet" href="<?= base_url()  ?> dist/css/adminlte.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>form pelamar</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="title">Masukan Data Anda</div>
-        <div class="content">
-            <form action="#">
-                <div class="user-details">
-                    <div class="input-box">
-                        <span class="details">Nama Posisi</span>
-                        <input type="text" placeholder="Masukan Nama Posisi" required>
+    <img src="<?= base_url()  ?>dist/img/form.jpeg" alt="tampilan" height="690px" width="1510px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- general form elements disabled -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">General Elements</h3>
                     </div>
-                    <div class="input-box">
-                        <span class="details">Alamat Lengkap</span>
-                        <input type="text" placeholder="Masukan Alamat Lengkap" required>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form>
+                            <div class="row" style="text-align: center;">
+                                <div class="col-sm-6">
+                                    <!-- text input -->
+                                    <div class="form-group">
+                                        <label>Text</label>
+                                        <input type="text" class="form-control" placeholder="Enter ...">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Text Disabled</label>
+                                        <input type="text" class="form-control" placeholder="Enter ..." disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
-                    <div class="input-box">
-                        <span class="details">Nama Lengkap</span>
-                        <input type="text" placeholder="Masukan Nama Lengkap" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Deskripsi Diri</span>
-                        <input type="text" placeholder="Masukan Deskripsi Diri" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Pendidikan</span>
-                        <input type="text" placeholder="Pendidikan" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Nomor Telepon</span>
-                        <input type="text" placeholder="Masukan Nomor Telepon" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Upload File CV (PDF)</span>
-                        <input type="text" placeholder="Upload File CV" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="text" placeholder="Masukan Email " required>
-                    </div>
-                    <div class="button" style="display: flex; text-align: right;">
-                        <input type="submit" value="Simpan">
-                        <input type="submit" value="Batal">
-                    </div>
+                    <!-- /.card-body -->
                 </div>
-            </form>
+            </div>
+
         </div>
+
+
+
     </div>
+
+
+    </div>
+
 
 </body>
 
