@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -18,8 +18,7 @@ html,body{
     #d4d4d4 100%
 
   );
-  /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
-}
+ }
 ::selection{
   background: #4158d0;
   color: #fff;
@@ -35,9 +34,9 @@ html,body{
   font-weight: 600;
   text-align: center;
   line-height: 100px;
+  color: black;
   user-select: none;
   border-radius: 15px 15px 0 0;
-  
 }
 .wrapper form{
   padding: 10px 30px 50px 30px;
@@ -115,7 +114,7 @@ form .field input[type="submit"]{
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-  background-color: #ff0000;
+  background: #ff0000;
   transition: all 0.3s ease;
 }
 form .field input[type="submit"]:active{
@@ -134,4 +133,13 @@ form .signup-link a{
 form .pass-link a:hover,
 form .signup-link a:hover{
   text-decoration: underline;
+}
+.pt{
+  font-size: 2rem;
+  font-weight: 700;
+  color: #d4d4d4;
+  
+}
+span{
+  color: #ff4444;
 }

@@ -4,24 +4,26 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!----<title>Login Form Design | CodeLab</title>---->
-    <link rel="stylesheet" href="<?= base_url('dist/css/styleadmin.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url(); ?>dist/css/styleadmin.css" type="text/css">
+    <title>Login</title>
 </head>
 
 <body>
+    <div class="pt" max-widt;>PT. SAHAWARE TEK <span>NOLOGI INDONESIA</span> </div>
     <div class="wrapper">
-        <small>Silahkan</small>
-        <div class="title" style="text-align: left;">Login</div>
+        <div class="title">Login Form</div>
         <form action="#">
             <div class="field">
                 <input type="text" required>
-                <label>username</label>
+                <label>Email Address</label>
             </div>
             <div class="field">
                 <input type="password" required>
                 <label>Password</label>
             </div>
-            <div class="field" style="text-align: right;">
+            <div class="content">
                 <div class="pass-link"><a href="#">Lupa Password?</a></div>
             </div>
             <div class="field">
