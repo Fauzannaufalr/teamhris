@@ -8,7 +8,7 @@ class DataKaryawan_model extends CI_Model
     }
     public function add_datakaryawan($datakaryawan)
     {
-        $data=array('nik'=>$datakaryawan['nik'], 'nama_karyawan'=>$datakaryawan['nama_karyawan'], 'posisi'=>$datakaryawan['posisi'], 'email'=>$datakaryawan['email'],
+        $data=array('nik'=>$datakaryawan['nik'], 'nama'=>$datakaryawan['nama'], 'posisi'=>$datakaryawan['posisi'], 'email'=>$datakaryawan['email'],
         'gajipokok'=>$datakaryawan['gajipokok'], 'status'=>$datakaryawan['status'], 'level'=>$datakaryawan['level'],'foto'=>$datakaryawan['foto']);
         $this->db->insert('data_karyawan', $data);
     }
