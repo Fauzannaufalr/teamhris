@@ -137,9 +137,12 @@ form .signup-link a:hover{
 .pt{
   font-size: 2rem;
   font-weight: 700;
-  color: #d4d4d4;
+  color: #ffff;
+  text-align: center;
+  max-width: 768px
   
 }
 span{
-  color: #ff4444;
+  color:white;
 }
+

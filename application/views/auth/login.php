@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="pt" max-widt;>PT. SAHAWARE TEK <span>NOLOGI INDONESIA</span> </div>
+    <div class="pt">PT. SAHAWARE TEK <span>NOLOGI INDONESIA</span> </div>
     <div class="wrapper">
         <div class="title">Login Form</div>
         <form action="#">
