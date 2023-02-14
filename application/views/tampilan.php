@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="title">Masukan Data Anda</div>
         <div class="content">
