@@ -12,9 +12,9 @@ class DataKaryawan_model extends CI_Model
         'gajipokok'=>$datakaryawan['gajipokok'], 'status'=>$datakaryawan['status'], 'level'=>$datakaryawan['level'],'foto'=>$datakaryawan['foto']);
         $this->db->insert('data_karyawan', $data);
     }
-     public function hapus($id)
+     public function hapus($id_karyawan)
     {
-        $this->db->where('id', $id);
+        $this->db->where('id_karyawan', $id_karyawan);
         $this->db->delete('data_karyawan');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
