@@ -24,9 +24,9 @@ class DataKaryawan extends CI_Controller
       $this->DataKaryawan_model->add_datakaryawan($this->input->post());
         redirect(base_url().'master/datakaryawan');
     }
-    public function hapus($id)
+    public function hapus($id_karyawan)
     {
-        if ($this->DataKaryawan_model->hapus($id)) {
+        if ($this->DataKaryawan_model->hapus($id_karyawan)) {
             $this->session->set_flashdata('message', 'Data berhasil dihapus');
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');

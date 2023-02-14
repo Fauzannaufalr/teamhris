@@ -36,7 +36,7 @@
                             <td><?= $k['foto']; ?></td>
                             <td>
                                 <a href="" class="badge bg-success">edit</a>
-                                <a href="<?= base_url() ?>master/DataKaryawan/hapus/<?= $k['id']  ?>" class="badge bg-danger">delete</a>
+                                <a href="<?= base_url() ?>master/DataKaryawan/hapus/<?= $k['id_karyawan']  ?>" class="badge bg-danger">delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -10,6 +10,7 @@
                 <tr>
                     <th>No</th>
                     <th>NIK</th>
+                    <th>Nama Karyawan</th>
                     <th>Tanggal</th>
                     <th>Total Kerja</th>
                     <th>Done Kerja</th>
@@ -24,6 +25,7 @@
                     <tr>
                         <th><?= $no++; ?></th>
                         <td><?= $pk['nik']; ?></td> 
+                        <td><?= $pk['id_karyawan']; ?></td> 
                         <td><?= $pk['tanggal']; ?></td>
                         <td><?= $pk['total_kerja']; ?></td>
                         <td><?= $pk['done_kerja']; ?></td>

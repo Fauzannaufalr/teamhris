@@ -1,0 +1,16 @@
+<?php
+
+class DataMitra_model extends CI_Model
+{
+    public function getAllDataMitra()
+    {
+        return $this->db->get('data_mitra')->result_array();
+    }
+
+    public function hapus($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('data_mitra');
+        return ($this->db->affected_rows() > 0) ? true : false;
+    }
+}
