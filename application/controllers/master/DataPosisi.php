@@ -20,6 +20,7 @@ class DataPosisi extends CI_Controller
         $this->load->view('master/dataposisi',$data);
         $this->load->view('templates/footer');
     }
+<<<<<<< Updated upstream
     public function tambah()
     {
         $data['title'] = "Data Posisi";
@@ -38,6 +39,9 @@ class DataPosisi extends CI_Controller
             redirect('master/dataposisi');
         }
     }
+=======
+   
+>>>>>>> Stashed changes
     public function hapus($id_posisi)
     {
         if ($this->DataPosisi_model->hapus($id_posisi)) {

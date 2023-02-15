@@ -13,16 +13,41 @@ class DataKaryawan extends CI_Controller
     {
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
         $this->load->view('templates/sidebar');
         $this->load->view('master/datakaryawan', $data);
         $this->load->view('templates/footer');
     }
-    public function addData()
+ 
+  
+    public function tambah()
     {
-      $this->DataKaryawan_model->add_datakaryawan($this->input->post());
-        redirect(base_url().'master/datakaryawan');
+        $data['title'] = "Data Karyawan";
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+
+        $this->form_validation->set_rules('nik', 'NIK', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required');
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('level', 'Level', 'required');
+        $this->form_validation->set_rules('foto', 'Foto', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar');
+            $this->load->view('templates/sidebar');
+            $this->load->view('master/datakaryawan', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->DataKaryawan_model->tambahDataKaryawan();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            redirect('master/datakaryawan');
+        }
     }
     public function hapus($id_karyawan)
     {

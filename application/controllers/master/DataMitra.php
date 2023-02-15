@@ -28,7 +28,7 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('nik', 'NIK', 'required');
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required');
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required');
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
+        $this->form_validation->set_rules('id_posisi', 'Posisi', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required');
         $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required');
