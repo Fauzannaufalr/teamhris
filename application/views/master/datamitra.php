@@ -3,6 +3,13 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
+            <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+
+            <?= $this->session->flashdata('message'); ?>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataMitra"><i class="fas fa-plus"></i>
                 Tambah Mitra
             </button>
@@ -34,7 +41,7 @@
                             <td><?= $m['tanggal_keluar']; ?></td>
                             <td>
                                 <a href="" class="badge bg-success">edit</a>
-                                <a href="<?= base_url() ?>master/DataKaryawan/hapus/<?= $k['id']  ?>" class="badge bg-danger">delete</a>
+                                <a href="<?= base_url() ?>master/DataKaryawan/hapus/<?= $m['id']  ?>" class="badge bg-danger">delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -56,48 +63,42 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST">
+            <form action="<?= base_url('master/datamitra/tambah'); ?>" method="POST">
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="perusahaan">Nama Perusahaan</label>
-                        <input type="text" class="form-control" id="perusahaan" placeholder="Masukan Nama Perusahaan">
+                        <label for="nama_perusahaan">Nama Perusahaan</label>
+                        <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukan Nama Perusahaan">
                     </div>
                     <div class="form-group">
                         <label for="nik">NIK</label>
                         <input type="text" class="form-control" id="nik" placeholder="Masukan NIK">
                     </div>
                     <div class="form-group">
-                        <label for="nama">Nama Karyawan</label>
-                        <input type="text" class="form-control" id="nama" placeholder="Masukan Nama Karyawan">
+                        <label for="nama_karyawan">Nama Karyawan</label>
+                        <input type="text" class="form-control" id="nama_karyawan" placeholder="Masukan Nama Karyawan">
                     </div>
                     <div class="form-group">
                         <label>Posisi</label>
-                        <select class="form-control">
+                        <select class="form-control" id="posisi">
                             <option>-- Pilih Posisi --</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
-                            <option>option 4</option>
-                            <option>option 5</option>
+                            <option value="option 2">option 2</option>
+                            <option value="option 3">option 3</option>
+                            <option value="option 4">option 4</option>
+                            <option value="option 5">option 5</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Tanggal Masuk:</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email">
                     </div>
                     <div class="form-group">
-                        <label>Tanggal Keluar:</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
+                        <label for="tanggal_masuk">Tanggal Masuk</label>
+                        <input type="date" class="form-control" id="tanggal_masuk">
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_keluar">Tanggal Keluar</label>
+                        <input type="date" class="form-control" id="tanggal_keluar">
                     </div>
                 </div>
                 <div class="modal-footer">
