@@ -9,7 +9,11 @@
                 </div>
             <?php endif; ?>
 
-            <?= $this->session->flashdata('message'); ?>
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataMitra"><i class="fas fa-plus"></i>
                 Tambah Mitra
             </button>
@@ -41,7 +45,7 @@
                             <td><?= $m['tanggal_keluar']; ?></td>
                             <td>
                                 <a href="" class="badge bg-success">edit</a>
-                                <a href="<?= base_url() ?>master/DataKaryawan/hapus/<?= $m['id']  ?>" class="badge bg-danger">delete</a>
+                                <a href="<?= base_url() ?>master/datamitra/hapus/<?= $m['id']  ?>" class="badge bg-danger" onclick="heeh bener">delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -68,19 +72,19 @@
 
                     <div class="form-group">
                         <label for="nama_perusahaan">Nama Perusahaan</label>
-                        <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukan Nama Perusahaan">
+                        <input type="text" class="form-control" id="nama_perusahaan" name="perusahaan" placeholder="Masukan Nama Perusahaan">
                     </div>
                     <div class="form-group">
                         <label for="nik">NIK</label>
-                        <input type="text" class="form-control" id="nik" placeholder="Masukan NIK">
+                        <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukan NIK">
                     </div>
                     <div class="form-group">
                         <label for="nama_karyawan">Nama Karyawan</label>
-                        <input type="text" class="form-control" id="nama_karyawan" placeholder="Masukan Nama Karyawan">
+                        <input type="text" class="form-control" id="nama_karyawan" name="nama" placeholder="Masukan Nama Karyawan">
                     </div>
                     <div class="form-group">
                         <label>Posisi</label>
-                        <select class="form-control" id="posisi">
+                        <select class="form-control" id="posisi" name="posisi">
                             <option>-- Pilih Posisi --</option>
                             <option value="option 2">option 2</option>
                             <option value="option 3">option 3</option>
@@ -90,15 +94,15 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="email" name="email">
                     </div>
                     <div class="form-group">
                         <label for="tanggal_masuk">Tanggal Masuk</label>
-                        <input type="date" class="form-control" id="tanggal_masuk">
+                        <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk">
                     </div>
                     <div class="form-group">
                         <label for="tanggal_keluar">Tanggal Keluar</label>
-                        <input type="date" class="form-control" id="tanggal_keluar">
+                        <input type="date" class="form-control" id="tanggal_keluar" name="tanggal_keluar">
                     </div>
                 </div>
                 <div class="modal-footer">

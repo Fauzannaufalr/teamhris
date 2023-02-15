@@ -11,8 +11,8 @@ class DataMitra_model extends CI_Model
     {
         $data = [
             'nik' => $this->input->post('nik'),
-            'nama_perusahaan' => $this->input->post('nama_perusahaan'),
-            'nama_karyawan' => $this->input->post('nama_karyawan'),
+            'nama_perusahaan' => $this->input->post('perusahaan'),
+            'nama_karyawan' => $this->input->post('nama'),
             'posisi' => $this->input->post('posisi'),
             'email' => $this->input->post('email'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),

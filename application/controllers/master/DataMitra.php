@@ -33,7 +33,7 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required');
         $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required');
 
-        if ($this->form_validation->run() == false) {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar');
             $this->load->view('templates/sidebar');
@@ -44,5 +44,15 @@ class DataMitra extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
             redirect('master/datamitra');
         }
+    }
+
+    public function hapus($id_mitra)
+    {
+        if ($this->DataMitra_model->hapus($id_mitra)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data gagal dihapus!</div>');
+        }
+        redirect('master/datamitra');
     }
 }
