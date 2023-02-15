@@ -65,6 +65,13 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('master/SoalPelamar') ?>" class="nav-link" style="background-color: #ffffff;color: black;">
+                                <p>Soal Tes Pelamar</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" style="color: #ffffff;">
@@ -94,7 +101,8 @@
                                 <p>Menilai Diri Sendiri</p>
                             </a>
                         </li>
-                    </ul> <ul class="nav nav-treeview">
+                    </ul>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('Performences/menilaidirisendiri') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Diri Sendiri</p>
