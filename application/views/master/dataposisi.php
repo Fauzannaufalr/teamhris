@@ -3,6 +3,17 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
+        <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i>
                 Tambah Posisi
             </button>
@@ -43,11 +54,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST">
+            <form action="<?= base_url() ?>master/DataPosisi/tambah/" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="posisi">Posisi</label>
-                        <input type="text" class="form-control" id="posisi" placeholder="Masukan Posisi">
+                        <input type="text" class="form-control" name="posisi" id="posisi" placeholder="Masukan Posisi">
                     </div>
                 </div>
                 <div class="modal-footer">

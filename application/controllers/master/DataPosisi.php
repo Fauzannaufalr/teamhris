@@ -20,17 +20,30 @@ class DataPosisi extends CI_Controller
         $this->load->view('master/dataposisi',$data);
         $this->load->view('templates/footer');
     }
-    public function addData()
+    public function tambah()
     {
-      $this->DataPosisi_model->add_dataposisi($this->input->post());
-        redirect(base_url().'master/dataposisi');
+        $data['title'] = "Data Posisi";
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar');
+            $this->load->view('templates/sidebar');
+            $this->load->view('master/dataposisi', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->DataPosisi_model->tambahDataPosisi();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            redirect('master/dataposisi');
+        }
     }
     public function hapus($id_posisi)
     {
         if ($this->DataPosisi_model->hapus($id_posisi)) {
-            $this->session->set_flashdata('message', 'Data berhasil dihapus');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
         } else {
-            $this->session->set_flashdata('message', 'Data gagal dihapus');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data gagal dihapus!</div>');
         }
         redirect('master/dataposisi');
     }
