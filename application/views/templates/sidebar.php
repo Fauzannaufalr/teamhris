@@ -90,28 +90,34 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Menilaia Diri Sendiri</p>
+                            <a href="<?= base_url('Performences/survey_form.php') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                <p>Menilai Diri Sendiri</p>
+                            </a>
+                        </li>
+                    </ul> <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('Performences/menilaidirisendiri') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                <p>Menilai Diri Sendiri</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performences/menilaileader') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Leader</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performences/menilairekan1') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Rekan 1</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performences/menilairekan2') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Rekan 2</p>
                             </a>
                         </li>
