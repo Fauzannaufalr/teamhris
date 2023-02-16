@@ -12,4 +12,11 @@ class SoalKuesioner_model extends CI_Model {
         ];
         $this->db->insert('soal_kuesioner', $data);
     }
+
+    public function hapus($id_kuesioner)
+    {
+        $this->db->where('id_kuesioner', $id_kuesioner);
+        $this->db->delete('soal_kuesioner');
+        return ($this->db->affected_rows() > 0) ? true : false;
+    }
 }

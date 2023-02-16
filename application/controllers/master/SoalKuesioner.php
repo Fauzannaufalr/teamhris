@@ -41,4 +41,13 @@ class SoalKuesioner extends CI_Controller
         }
     }
 
+    public function hapus($id_kuesioner)
+    {
+        if ($this->SoalKuesioner_model->hapus($id_kuesioner)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+        }
+        redirect('master/soalkuesioner');
+    }
 }
