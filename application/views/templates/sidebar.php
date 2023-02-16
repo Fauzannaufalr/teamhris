@@ -308,35 +308,21 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('Recruitment/kelola') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Kelola Pekerjaan</p>
+                                <p>Pekerjaan</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('Recruitment/Datapelamar') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Data Pelamar</p>
+                                <p>Pelamar</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('jadwal') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Jadwal Interview</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('soal') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Soal Test Pelamar</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('lamaran') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Penilaian & Laporan Recruitment</p>
+                                <p>Soal Recruitment</p>
                             </a>
                         </li>
                     </ul>

@@ -13,9 +13,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Pekerjaan</th>
+                        <th>Posisi Pekerjaan</th>
+                        <th>Deskripsi Pekerjaan</th>
                         <th>Kualifikasi</th>
                         <th>Tanggal Berakhir</th>
+                        <th>Status</th>
                         <th>foto</th>
                         <th>Aksi</th>
 
@@ -27,14 +29,15 @@
                     <?php foreach ($kelolapekerjaan as $k) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= $k['nama_pekerjaan']; ?></td>
+                            <td><?= $k['posisi']; ?></td>
+                            <td><?= $k['deskripsi_pekerjaan']; ?></td>
                             <td><?= $k['kualifikasi']; ?></td>
                             <td><?= $k['tanggal_berakhir']; ?></td>
-                            <td><?= $k['img']; ?></td>
+                            <td><?= $k['status']; ?></td>
+                            <td><?= $k['cover']; ?></td>
                             <td>
-                                <a href="" class="badge bg-warning">detail</a>
-                                <a href="" class="badge bg-success">edit</a>
-                                <a href="<?= base_url() ?>recruitment/kelola/hapus/<?= $k['id']  ?>" class="badge bg-danger">delete</a>
+                                <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
+                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
                             </td>
 
 
@@ -64,20 +67,28 @@
                 <!-- Form Tambah Pekerjaan -->
                 <form action="" method="post">
                     <div class="form-group">
-                        <label for="namaPekerjaan">Nama Pekerjaan</label>
+                        <label for="posisi">Posisi Pekerjaan</label>
                         <input type="text" class="form-control" id="namaPekerjaan" placeholder="Masukkan Nama Pekerjaan">
                     </div>
                     <div class="form-group">
-                        <label for="deskripsiPekerjaan">Kualifikasi</label>
-                        <input type="text" class="form-control" id="kualifikasi" placeholder="Masukkan kualifikasi">
+                        <label for="deskripsi_pekerjaan">Deskripsi Pekerjaan</label>
+                        <input type="text" class="form-control" id="deskripsi" placeholder="Masukkan Deskripsi Pekerjaan">
+                    </div>
+                    <div class="form-group">
+                        <label for="kualifikasi">Kualifikasi</label>
+                        <input type="text" class="form-control" id="deskripsi" placeholder="Masukkan kualifikasi">
                     </div>
                     <div class="form-group">
                         <label for="deskripsiPekerjaan">Tanggal Berakhir</label>
                         <input type="date" class="form-control" id="tanggalberakhir">
                     </div>
                     <div class="form-group">
-                        <label for="deskripsiPekerjaan">Foto</label>
-                        <input type="file" class="form-control" id="img">
+                        <label for="status">Status</label>
+                        <input type="text" class="form-control" id="status" placeholder="Masukkan Status">
+                    </div>
+                    <div class="form-group">
+                        <label for="cover">Foto</label>
+                        <input type="file" class="form-control" id="cover">
                     </div>
                     <!-- ... tambahkan input lain sesuai dengan data yang ingin ditambahkan ... -->
                 </form>
