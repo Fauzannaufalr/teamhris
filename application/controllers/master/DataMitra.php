@@ -25,13 +25,27 @@ class DataMitra extends CI_Controller
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required');
-        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required');
-        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required');
-        $this->form_validation->set_rules('id_posisi', 'Posisi', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required');
-        $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required');
+        $this->form_validation->set_rules('nik', 'NIK', 'required', [
+            'required' => 'NIK harus diisi !'
+        ]);
+        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required', [
+            'required' => 'Nama Perusahaan harus diisi !'
+        ]);
+        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
+            'required' => 'Nama Karyawan harus diisi !'
+        ]);
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
+        ]);
+        $this->form_validation->set_rules('email', 'Email', 'required', [
+            'required' => 'Email harus diisi !'
+        ]);
+        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
+            'required' => 'Tanggal masuk harus diisi !'
+        ]);
+        $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
+            'required' => 'Tanggal keluar harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);

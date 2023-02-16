@@ -44,8 +44,8 @@
                             <td><?= $m['tanggal_masuk']; ?></td>
                             <td><?= $m['tanggal_keluar']; ?></td>
                             <td>
-                                <a href="" class="badge bg-success">edit</a>
-                                <a href="<?= base_url() ?>master/datamitra/hapus/<?= $m['id']  ?>" class="badge bg-danger" onclick="heeh bener">delete</a>
+                                <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
+                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -112,4 +112,26 @@
             </form>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Hapus Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin untuk menghapus data ?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
+                <a href="<?= base_url() ?>master/datamitra/hapus/<?= $m['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>

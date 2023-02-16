@@ -17,16 +17,16 @@
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($dataakun as $k) : ?>
+                    <?php foreach ($dataakun as $a) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= $k['username']; ?></td>
-                            <td><?= $k['password']; ?></td>
-                            <td><?= $k['level']; ?></td>
+                            <td><?= $a['username']; ?></td>
+                            <td><?= $a['password']; ?></td>
+                            <td><?= $a['level']; ?></td>
                             <td>
                                 <a href="" class="badge bg-warning">detail</a>
                                 <a href="" class="badge bg-success">edit</a>
-                                <a href="<?= base_url() ?>master/DataAkun/hapus/<?= $k['id']  ?>" class="badge bg-danger">delete</a>
+                                <a href="" class="badge bg-danger" data-toggle="modal" data-target="#modal-sm">delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -72,4 +72,26 @@
             </form>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Hapus Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin untuk menghapus data ?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                <a href="<?= base_url() ?>master/dataakun/hapus/<?= $a['id'] ?>" type="submit" class="btn btn-primary">Ya</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>

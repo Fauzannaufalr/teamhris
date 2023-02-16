@@ -28,8 +28,8 @@
                             <th><?= $no++; ?></th>
                             <td><?= $s['kuesioner']; ?></td>
                             <td>
-                                <a href="" class="badge bg-success">edit</a>
-                                <a href="<?= base_url() ?>master/SoalKuesioner/hapus/<?= $s['id_kuesioner'] ?>" class="badge bg-danger">delete</a>
+                                <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
+                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -59,10 +59,32 @@
                         <input type="text" name="kuesioner" class="form-control" id="kuesioner" placeholder="Masukan Pertanyaan">
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-danger">Simpan</button>
-                </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-danger">Simpan</button>
+                    </div>
             </form>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Hapus Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin untuk menghapus data ?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
+                <a href="<?= base_url() ?>master/soalkuesioner/hapus/<?= $s['id_kuesioner']  ?>" type="submit" class="btn btn-primary">Ya</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>

@@ -20,10 +20,10 @@ class DataKaryawan extends CI_Controller
         $this->load->view('master/datakaryawan', $data);
         $this->load->view('templates/footer');
     }
- 
-  
+
     public function tambah()
     {
+
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
 
@@ -49,6 +49,7 @@ class DataKaryawan extends CI_Controller
             redirect('master/datakaryawan');
         }
     }
+
     public function hapus($id_karyawan)
     {
         if ($this->DataKaryawan_model->hapus($id_karyawan)) {
