@@ -220,14 +220,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                                    <a href="<?= base_url('payroll/datapajak') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                         <p>Data Pajak</p>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                                    <a href="<?= base_url('payroll/pajak') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                         <p>Pajak Karyawan</p>
                                     </a>
                                 </li>
@@ -244,14 +244,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                                    <a href="<?= base_url('payroll/databpjs') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                         <p>Data BPJS</p>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                                    <a href="<?= base_url('payroll/bpjs') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                         <p>BPJS Karyawan</p>
                                     </a>
                                 </li>
@@ -260,14 +260,14 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('payroll/perhitungangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Perhitungan Gaji</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('payroll/mitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Contract Mitra</p>
                             </a>
                         </li>
@@ -282,14 +282,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                                    <a href="<?= base_url('payroll/laporangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                         <p>Laporan Gaji Karyawan</p>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                                    <a href="<?= base_url('payroll/laporanmitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                         <p>Laporan Mitra</p>
                                     </a>
                                 </li>
