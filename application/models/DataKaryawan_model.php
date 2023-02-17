@@ -9,6 +9,7 @@ class DataKaryawan_model extends CI_Model
         $this->db->from('data_karyawan');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.posisi');
         return  $this->db->get()->result_array();
+   
     }
 
     public function tambahDataKaryawan()

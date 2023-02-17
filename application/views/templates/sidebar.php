@@ -83,14 +83,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performences/penilaiankinerja') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performances/penilaiankinerja') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Penilaian Kinerja</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performences/penilaiankinerja') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performences/penilaiankuesioner') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Penilaian Kuesioner</p>
                             </a>
                         </li>

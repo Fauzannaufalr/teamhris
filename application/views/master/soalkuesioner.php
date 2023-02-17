@@ -8,8 +8,11 @@
                     <?= validation_errors(); ?>
                 </div>
             <?php endif; ?>
-
-            <?= $this->session->flashdata('message'); ?>
+            <div class="row">
+            <div class="col-lg-4">
+                <?= $this->session->flashdata('message'); ?>
+            </div>
+            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahSoalKuesioner"><i class="fas fa-plus"></i>
                 Tambah Pertanyaan
             </button>

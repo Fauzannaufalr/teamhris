@@ -31,9 +31,8 @@
                         <td><?= $pk['done_kerja']; ?></td>
                         <td><?= $pk['nilai']; ?></td>
                         <td>
-                            <a href="" class="badge bg-warning">detail</a>
                             <a href="" class="badge bg-success">edit</a>
-                            <a href="<?= base_url() ?>performences/penilaiankinerja/hapus/<?= $pk['id_penilaian_kinerja']  ?>" class="badge bg-danger">delete</a>
+                            <a href="<?= base_url() ?>performances/penilaiankinerja/hapus/<?= $pk['id_penilaian_kinerja']  ?>" class="badge bg-danger">Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
