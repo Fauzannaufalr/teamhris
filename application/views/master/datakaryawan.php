@@ -49,7 +49,7 @@
                             <td><?= $dk['password']; ?></td>
                             <td><?= $dk['foto']; ?></td>
                             <td>
-                                <a href="<?= base_url() ?>master/DataKaryawan/edit/<?= $dk['id_karyawan']  ?>" class="badge bg-warning">edit</a>
+                                <a href="" class="badge bg-warning" data-toggle="modal" data-target="#editDataKaryawan">edit</a>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
                             </td>
                         </tr>
@@ -74,7 +74,6 @@
             </div>
             <form action="<?= base_url('master/datakaryawan/tambah') ?>" method="POST">
                 <div class="modal-body">
-
                     <div class="form-group">
                         <label for="nik">NIK</label>
                         <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukan NIK">
@@ -116,11 +115,21 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
                     </div>
+                    <div class="form-group">
+                        <label for="foto">Foto</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="foto" name="foto"">
+                                <label class=" custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
                     <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-danger">Simpan</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
@@ -129,7 +138,7 @@
 <!-- modal untuk edit data -->
 
 <!-- Modal -->
-<div class="modal fade" id="ubahDataKaryawan<?= $dk['id_karyawan'] ?>" tabindex="-1" aria-labelledby="editDataKaryawanLabel" aria-hidden="true">
+<div class="modal fade" id="editDataKaryawan" tabindex="-1" aria-labelledby="editDataKaryawanLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -151,7 +160,7 @@
                     </div>
                     <div class="form-group">
                         <label>Posisi</label>
-                        <select class="form-control" id="posisi" name="posisi" value="<?= $dk['posisi']; ?>">
+                        <select class="form-control" id="posisi" name="posisi">
                             <option>-- Pilih Posisi --</option>
                             <?php foreach ($dataposisi as $dp) : ?>
                                 <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>

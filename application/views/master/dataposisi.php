@@ -84,7 +84,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                <a href="<?= base_url() ?>master/dataposisi/hapus/<?= $p['id_posisi']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                <a href="<?= base_url() ?>master/dataposisi/hapus/<?= $dp['id_posisi']  ?>" type="submit" class="btn btn-primary">Ya</a>
             </div>
         </div>
         <!-- /.modal-content -->
