@@ -3,18 +3,8 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-            <div class="col-lg-4">
-                <?= $this->session->flashdata('message'); ?>
-            </div>
-            </div>
-            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahSoalKuesioner"><i class="fas fa-plus"></i>
-                Tambah Pertanyaan
+            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataKaryawan"><i class="fas fa-plus"></i>
+                Tambah Karyawan
             </button>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -26,10 +16,10 @@
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($soalkuesioner as $s) : ?>
+                    <?php foreach ($soalkuesioner as $sk) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= $s['kuesioner']; ?></td>
+                            <td><?= $sk['kuesioner']; ?></td>
                             <td>
                                 <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
@@ -45,26 +35,34 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="tambahSoalKuesioner" tabindex="-1" aria-labelledby="tambahSoalKuesionerLabel" aria-hidden="true">
+<div class="modal fade" id="tambahSoalPelamar" tabindex="-1" aria-labelledby="tambahSoalPelamarLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahSoalKuesionerLabel">Tambah Soal Kuesioner</h5>
+                <h5 class="modal-title" id="tambahSoalPelamarLabel">Tambah Soal Tes Recruitment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('master/soalkuesioner/tambah'); ?>" method="POST">
+            <form action="" method="POST">
                 <div class="modal-body">
-
                     <div class="form-group">
-                        <label for="kuesioner">Pertanyaan</label>
-                        <input type="text" name="kuesioner" class="form-control" id="kuesioner" placeholder="Masukan Pertanyaan">
+                        <label>Posisi</label>
+                        <select class="form-control">
+                            <option>-- Pilih Posisi --</option>
+                            <option>Backend</option>
+                            <option>frontend</option>
+                        </select>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                    <div class="form-group">
+                        <label for="email">Link Soal</label>
+                        <input type="text" class="form-control" id="soalpelamar" placeholder="Masukan Soal">
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-danger">Simpan</button>
+                </div>
             </form>
         </div>
     </div>
@@ -84,7 +82,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                <a href="<?= base_url() ?>master/soalkuesioner/hapus/<?= $s['id_kuesioner']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                <a href="<?= base_url() ?>master/soalkuesioner/hapus/<?= $sk['id_kuesioner']  ?>" type="submit" class="btn btn-primary">Ya</a>
             </div>
         </div>
         <!-- /.modal-content -->
