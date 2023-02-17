@@ -27,10 +27,10 @@
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($dataposisi as $p) : ?>
+                    <?php foreach ($dataposisi as $dp) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= $p['nama_posisi']; ?></td>
+                            <td><?= $dp['nama_posisi']; ?></td>
                             <td>
                                 <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>

@@ -33,16 +33,16 @@
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($datamitra as $m) : ?>
+                    <?php foreach ($datamitra as $dm) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= $m['nama_perusahaan']; ?></td>
-                            <td><?= $m['nik']; ?></td>
-                            <td><?= $m['nama_karyawan']; ?></td>
-                            <td><?= $m['posisi']; ?></td>
-                            <td><?= $m['email']; ?></td>
-                            <td><?= $m['tanggal_masuk']; ?></td>
-                            <td><?= $m['tanggal_keluar']; ?></td>
+                            <td><?= $dm['nama_perusahaan']; ?></td>
+                            <td><?= $dm['nik']; ?></td>
+                            <td><?= $dm['nama_karyawan']; ?></td>
+                            <td><?= $dm['posisi']; ?></td>
+                            <td><?= $dm['email']; ?></td>
+                            <td><?= $dm['tanggal_masuk']; ?></td>
+                            <td><?= $dm['tanggal_keluar']; ?></td>
                             <td>
                                 <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
@@ -128,7 +128,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                <a href="<?= base_url() ?>master/datamitra/hapus/<?= $m['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                <a href="<?= base_url() ?>master/datamitra/hapus/<?= $dm['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
             </div>
         </div>
         <!-- /.modal-content -->

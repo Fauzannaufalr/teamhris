@@ -7,7 +7,7 @@ class DataKaryawan_model extends CI_Model
         // return $this->db->get('data_karyawan')->result_array();
         $this->db->select('*');
         $this->db->from('data_karyawan');
-        $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.posisi');
+        $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
         return  $this->db->get()->result_array();
    
     }
@@ -17,13 +17,14 @@ class DataKaryawan_model extends CI_Model
         $data = [
             'nik' => $this->input->post('nik'),
             'nama_karyawan' => $this->input->post('nama'),
-            'posisi' => $this->input->post('posisi'),
+            'id_posisi' => $this->input->post('posisi'),
             'email' => $this->input->post('email'),
             'status' => $this->input->post('status'),
             'gajipokok' => $this->input->post('gajipokok'),
-            'password' => $this->input->post('password'),
             'level' => $this->input->post('level'),
-            'foto' => $this->input->post('foto'),
+            'password' => $this->input->post('password'),
+            'nik_leader' => $this->input->post('nikleader'),
+            'foto' => $this->input->post('foto')
 
         ];
         $this->db->insert('data_karyawan', $data);
