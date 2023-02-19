@@ -119,7 +119,7 @@
                         <label for="foto">Foto</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="foto" name="foto"">
+                                <input type="file" class="custom-file-input" id="foto" name="foto">
                                 <label class=" custom-file-label" for="exampleInputFile">Choose file</label>
                             </div>
                         </div>
@@ -149,6 +149,7 @@
             </div>
             <form action="<?= base_url('master/datakaryawan/edit'); ?>" method="POST">
                 <div class="modal-body">
+                    <?php echo form_open_multipart('master/datakaryawan/edit'); ?>
                     <div class="form-group">
                         <label for="nik">NIK</label>
                         <input type="hidden" class="form-control" id="nik" name="nik" value="<?= $dk['id_karyawan']; ?>">

@@ -21,9 +21,9 @@ class DataKaryawan_model extends CI_Model
             'email' => $this->input->post('email'),
             'status' => $this->input->post('status'),
             'gajipokok' => $this->input->post('gajipokok'),
+            'nik_leader' => $this->input->post('nikleader'),
             'level' => $this->input->post('level'),
             'password' => $this->input->post('password'),
-            'nik_leader' => $this->input->post('nikleader'),
             'foto' => $this->input->post('foto')
 
         ];

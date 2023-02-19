@@ -83,56 +83,50 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performances/penilaiankinerja') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('performances/penilaiankinerja') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Penilaian Kinerja</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performences/penilaiankuesioner') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('performances/penilaiankuesioner') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Penilaian Kuesioner</p>
                             </a>
                         </li>
                     </ul>
+                
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performences/survey_form.php') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performances/menilaidirisendiri') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Diri Sendiri</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performences/menilaidirisendiri') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Menilai Diri Sendiri</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('Performences/menilaileader') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performances/menilaileader') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Leader</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performences/menilairekan1') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performances/menilairekan1') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Rekan 1</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performences/menilairekan2') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performances/menilairekan2') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Rekan 2</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('Performances/akumulasi') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Akumulasi Keseluruhan</p>
                             </a>
                         </li>
