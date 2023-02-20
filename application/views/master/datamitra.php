@@ -39,12 +39,12 @@
                             <td><?= $dm['nama_perusahaan']; ?></td>
                             <td><?= $dm['nik']; ?></td>
                             <td><?= $dm['nama_karyawan']; ?></td>
-                            <td><?= $dm['posisi']; ?></td>
+                            <td><?= $dm['id_posisi']; ?></td>
                             <td><?= $dm['email']; ?></td>
                             <td><?= $dm['tanggal_masuk']; ?></td>
                             <td><?= $dm['tanggal_keluar']; ?></td>
                             <td>
-                                <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
+                                <a href="<?= base_url(); ?>master/datamitra/ubah/<?= $dm['id']; ?>" class="badge" style="background-color: #fbff39; color: black;" data-toggle="modal" data-target="#ubahDataMitra">edit</a>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
                             </td>
                         </tr>
@@ -86,15 +86,14 @@
                         <label>Posisi</label>
                         <select class="form-control" id="posisi" name="posisi">
                             <option>-- Pilih Posisi --</option>
-                            <option value="option 2">option 2</option>
-                            <option value="option 3">option 3</option>
-                            <option value="option 4">option 4</option>
-                            <option value="option 5">option 5</option>
+                            <?php foreach ($dataposisi as $dp) : ?>
+                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
                     </div>
                     <div class="form-group">
                         <label for="tanggal_masuk">Tanggal Masuk</label>
@@ -114,6 +113,8 @@
     </div>
 </div>
 
+
+
 <div class="modal fade" id="modal-sm">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -128,7 +129,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                <a href="<?= base_url() ?>master/datamitra/hapus/<?= $dm['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                <a href="<?= base_url() ?>master/datamitra/hapus/<?= $mitra['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
             </div>
         </div>
         <!-- /.modal-content -->

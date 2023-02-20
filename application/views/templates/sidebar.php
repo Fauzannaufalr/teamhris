@@ -95,7 +95,7 @@
                             </a>
                         </li>
                     </ul>
-                
+
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('Performances/menilaidirisendiri') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
@@ -322,7 +322,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" style="color: #ffffff;">
+                    <a href="<?= base_url('auth/logout'); ?>" class="nav-link" style="color: #ffffff;">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>

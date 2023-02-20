@@ -9,7 +9,6 @@ class DataKaryawan_model extends CI_Model
         $this->db->from('data_karyawan');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
         return  $this->db->get()->result_array();
-   
     }
 
     public function tambahDataKaryawan()
@@ -23,7 +22,7 @@ class DataKaryawan_model extends CI_Model
             'gajipokok' => $this->input->post('gajipokok'),
             'nik_leader' => $this->input->post('nikleader'),
             'level' => $this->input->post('level'),
-            'password' => $this->input->post('password'),
+            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'foto' => $this->input->post('foto')
 
         ];

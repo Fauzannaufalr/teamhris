@@ -28,6 +28,7 @@ class DataKaryawan extends CI_Controller
 
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required');
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required');
@@ -65,11 +66,11 @@ class DataKaryawan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-   
+
     public function hapus($id_karyawan)
     {
         if ($this->DataKaryawan_model->hapus($id_karyawan)) {
-            $this->session->set_flashdata('message', 'Data berhasil dihapus');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
