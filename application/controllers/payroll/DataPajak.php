@@ -12,7 +12,7 @@ class DataPajak extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Pajak";
-        $data['datapajak'] = $this->DataPajak_model->getAllDataPajak();
+        $data['datapajak'] = $this->DataPajak_model->tampilDataPajak();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
         $this->load->view('templates/sidebar');
@@ -22,29 +22,29 @@ class DataPajak extends CI_Controller
 
     public function tambah()
     {
-        $data['title'] = "Data Mitra";
-        $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
+        $data['title'] = "Data Pajak";
+        $data['datapajak'] = $this->DataPajak_model->tampilDataPajak();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required', [
-            'required' => 'NIK harus diisi !'
+        $this->form_validation->set_rules('golongan', 'Golongan', 'required', [
+            'required' => 'Golongan harus diisi !'
         ]);
-        $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required', [
-            'required' => 'Nama Perusahaan harus diisi !'
+        $this->form_validation->set_rules('kode', 'Kode', 'required', [
+            'required' => 'Kode harus diisi !'
         ]);
-        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
-            'required' => 'Nama Karyawan harus diisi !'
+        $this->form_validation->set_rules('tarif', 'Tarif', 'required', [
+            'required' => 'Tarif harus diisi !'
         ]);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar');
             $this->load->view('templates/sidebar');
-            $this->load->view('master/datapajak', $data);
+            $this->load->view('payroll/datapajak', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->DataMitra_model->tambahDataMitra();
+            $this->DataPajak_model->tambahDataPajak();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
-            redirect('master/datamitra');
+            redirect('payroll/datapajak');
         }
     }
 }

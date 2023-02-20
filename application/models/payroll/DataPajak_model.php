@@ -2,29 +2,25 @@
 
 class DataPajak_model extends CI_Model
 {
-    public function getAllDataPajak()
+    public function tampilDataPajak()
     {
         return $this->db->get('payroll___datapajak')->result_array();
     }
 
-    public function tambahDataMitra()
+    public function tambahDataPajak()
     {
         $data = [
-            'nik' => $this->input->post('nik'),
-            'nama_perusahaan' => $this->input->post('perusahaan'),
-            'nama_karyawan' => $this->input->post('nama'),
-            'posisi' => $this->input->post('posisi'),
-            'email' => $this->input->post('email'),
-            'tanggal_masuk' => $this->input->post('tanggal_masuk'),
-            'tanggal_keluar' => $this->input->post('tanggal_keluar')
+            'golongan' => $this->input->post('golongan'),
+            'kode' => $this->input->post('kode'),
+            'tarif' => $this->input->post('tarif')
         ];
-        $this->db->insert('data_mitra', $data);
+        $this->db->insert('payroll___datapajak', $data);
     }
 
     public function hapus($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('data_mitra');
+        $this->db->delete('payroll___datapajak');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
 }

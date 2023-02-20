@@ -1,6 +1,17 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-4">
+            <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataPajak"><i class="fas fa-plus"></i>
                 Tambah Karyawan
             </button>
@@ -19,50 +30,26 @@
                     </tr>
                 </thead>
                 <tbody style="text-align: center;">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td rowspan="4" style="vertical-align: middle;">Tidak Kawin (TK)</td>
-                        <td>TK/0</td>
-                        <td>Rp 25.000</td>
-                        <td>
-                            <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
-                            <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>TK/1</td>
-                        <td>Rp 25.000</td>
-                        <td>
-                            <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
-                            <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>TK/2</td>
-                        <td>Rp 25.000</td>
-                        <td>
-                            <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
-                            <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>TK/3</td>
-                        <td>Rp 25.000</td>
-                        <td>
-                            <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
-                            <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
-                        </td>
-                    </tr>
+                    <?php $no = 1 ?>
+                    <?php foreach ($datapajak as $dp) : ?>
+                        <tr>
+                            <th><?= $no++; ?></th>
+                            <td><?= $dp['golongan']; ?></td>
+                            <td><?= $dp['kode']; ?></td>
+                            <td>Rp <?= $dp['tarif']; ?></td>
+                            <td>
+                                <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
+                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal tambah -->
 <div class="modal fade" id="tambahDataPajak" tabindex="-1" aria-labelledby="tambahDataPajakLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -72,7 +59,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('master/datapajak/tambah'); ?>" method="POST">
+            <form action="<?= base_url('payroll/datapajak/tambah'); ?>" method="POST">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -98,4 +85,27 @@
             </form>
         </div>
     </div>
+</div>
+
+<!-- Modal hapus -->
+<div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Hapus Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin untuk menghapus data ?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
+                <a href="<?= base_url() ?>master/datapajak/hapus/<?= $dp['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
