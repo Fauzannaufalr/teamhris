@@ -76,14 +76,6 @@ class DataKaryawan extends CI_Controller
         }
         redirect('master/datakaryawan');
     }
-<<<<<<< Updated upstream
-    public function profile()
-    {
-        $data['user'] = $this->db->get_where('user', ['email' =>
-        $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/navbar', $data);
-=======
 
     public function ubahpassword()
     {
@@ -124,6 +116,5 @@ class DataKaryawan extends CI_Controller
                 redirect('admin/ubahpassword');
             }
         }
->>>>>>> Stashed changes
     }
 }
