@@ -1,7 +1,8 @@
 <?php
 
-class DataPosisi_model extends CI_Model {
-    public function getAllDataPosisi() 
+class DataPosisi_model extends CI_Model
+{
+    public function getAllDataPosisi()
     {
         return $this->db->get('data_posisi')->result_array();
     }
@@ -11,6 +12,16 @@ class DataPosisi_model extends CI_Model {
             'nama_posisi' => $this->input->post('posisi'),
         ];
         $this->db->insert('data_posisi', $data);
+    }
+
+    public function ubahDataPosisi()
+    {
+        $data = [
+            "nama_posisi" => $this->input->post('posisi', true),
+        ];
+
+        $this->db->where('id_posisi', $this->input->post('id_posisi'));
+        $this->db->update('data_posisi', $data);
     }
 
     public function hapus($id_posisi)

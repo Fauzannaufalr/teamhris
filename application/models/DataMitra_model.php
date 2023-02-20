@@ -10,11 +10,6 @@ class DataMitra_model extends CI_Model
         return  $this->db->get()->result_array();
     }
 
-    public function ambilDataById($id)
-    {
-        return $this->db->get_where('data_mitra', ['id' => $id])->row_array();
-    }
-
     public function tambahDataMitra()
     {
         $data = [
@@ -28,6 +23,7 @@ class DataMitra_model extends CI_Model
         ];
         $this->db->insert('data_mitra', $data);
     }
+
     public function ubahDataMitra()
     {
         $data = [

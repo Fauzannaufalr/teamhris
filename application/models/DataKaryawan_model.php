@@ -13,21 +13,31 @@ class DataKaryawan_model extends CI_Model
 
     public function tambahDataKaryawan()
     {
+        $email = $this->input->post('email');
         $data = [
-            'nik' => $this->input->post('nik'),
-            'nama_karyawan' => $this->input->post('nama'),
-            'id_posisi' => $this->input->post('posisi'),
-            'email' => $this->input->post('email'),
-            'status' => $this->input->post('status'),
-            'gajipokok' => $this->input->post('gajipokok'),
-            'nik_leader' => $this->input->post('nikleader'),
-            'level' => $this->input->post('level'),
+            'nik' => htmlspecialchars($this->input->post('nik')),
+            'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
+            'id_posisi' => htmlspecialchars($this->input->post('posisi')),
+            'email' => htmlspecialchars($email),
+            'status' => htmlspecialchars($this->input->post('status')),
+            'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
+            'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
+            'level' => htmlspecialchars($this->input->post('level')),
             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'foto' => $this->input->post('foto')
 
         ];
+        $token = base64_encode(random_bytes(32));
+        $user_token = [
+            'email' => $email,
+            'token' => $token,
+            'date_created' => time()
+
+        ];
         $this->db->insert('data_karyawan', $data);
+        $this->db->insert('user_token', $user_token);
     }
+
     public function hapus($id_karyawan)
     {
         $this->db->where('id_karyawan', $id_karyawan);

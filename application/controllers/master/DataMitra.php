@@ -62,11 +62,11 @@ class DataMitra extends CI_Controller
         }
     }
 
-    public function ubah($id)
+    public function ubah()
     {
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
-        $data['mitra'] = $this->DataMitra_model->ambilDataById($id);
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required', [
             'required' => 'NIK harus diisi !'
