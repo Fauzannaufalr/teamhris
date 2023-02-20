@@ -3,13 +3,25 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataKaryawan"><i class="fas fa-plus"></i>
+            <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahSoalPelamar"><i class="fas fa-plus"></i>
                 Tambah Karyawan
             </button>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Posisi Pekerjaan</th>
                         <th>Link Soal</th>
                         <th>Aksi</th>
                     </tr>
@@ -19,9 +31,12 @@
                     <?php foreach ($soalpelamar as $Z) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= $Z['soalpelamar']; ?></td>
+                            <td><?= $Z['nama_posisi']; ?></td>
+                            <td><?= $Z['link_soal']; ?></td>
                             <td>
-                                <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
+                                <button type="button" class="badge-badge-primary" data-toggle="modal" data-target="#editmodal"><i class="fas fa-plus" <?= $Z['id']  ?>></i>
+                                    Edit
+                                </button>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
                             </td>
                         </tr>
@@ -34,29 +49,29 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="tambahSoalPelamar" tabindex="-1" aria-labelledby="tambahSoalPelamarLabel" aria-hidden="true">
+<div class="modal fade" id="tambahSoalPelamar" tabindex="-1" aria-labelledby="tambahSoalPelamar" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahSoalPelamarLabel">Tambah Soal Tes Recruitment</h5>
+                <h5 class="modal-title" id="tambahSoalPelamarLabel">Tambah Soal Recruitment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST">
+            <form action="<?= base_url('master/SoalPelamar/tambah'); ?>" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Posisi</label>
-                        <select class="form-control">
+                        <select class="form-control" id="posisi" name="posisi">
                             <option>-- Pilih Posisi --</option>
-                            <option>Backend</option>
-                            <option>frontend</option>
+                            <?php foreach ($dataposisi as $dp) : ?>
+                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="email">Link Soal</label>
-                        <input type="text" class="form-control" id="soalpelamar" placeholder="Masukan Soal">
+                        <label for="link_soal">Link</label>
+                        <input type="text" class="form-control" id="link_soal" name="link_soal">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -67,6 +82,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 <div class="modal fade" id="modal-sm">
     <div class="modal-dialog modal-sm">
@@ -82,10 +101,46 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                <a href="<?= base_url() ?>master/soalpelamar/hapus/<?= $Z['id_soal']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                <a href="<?= base_url() ?>master/soalpelamar/hapus/<?= $Z['id_soal_recruitment']  ?>" type="submit" class="btn btn-primary">Ya</a>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+</div>
+
+
+
+<div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="tambahSoalPelamar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahSoalPelamarLabel">Tambah Soal Recruitment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('master/SoalPelamar/tambah'); ?>" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Posisi</label>
+                        <select class="form-control" id="posisi" name="posisi">
+                            <option>-- Pilih Posisi --</option>
+                            <?php foreach ($dataposisi as $dp) : ?>
+                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="link_soal">Link</label>
+                        <input type="text" class="form-control" id="link_soal" name="link_soal">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-danger">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

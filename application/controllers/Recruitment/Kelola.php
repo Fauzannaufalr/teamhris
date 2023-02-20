@@ -6,7 +6,7 @@ class Kelola extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Kelola_model');
+        $this->load->model('Recruitment/Kelola_model');
     }
 
     public function index()
