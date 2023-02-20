@@ -16,7 +16,7 @@ class PenilaianKinerja extends CI_Controller
         $data['title'] = "PenilaiKinerja";
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->getAllPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawans();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');

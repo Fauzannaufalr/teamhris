@@ -32,7 +32,7 @@
                             <th><?= $no++; ?></th>
                             <td><?= $dp['nama_posisi']; ?></td>
                             <td>
-                                <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
+                                <a href="" class="badge" style="background-color: #fbff39; color: black" data-toggle="modal" data-target="#ubahPosisi<?= $dp ['id_posisi'];?>">edit</a>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
                             </td>
                         </tr>
@@ -69,6 +69,40 @@
         </div>
     </div>
 </div>
+<!-- akhir modal tambah -->
+
+
+<!-- Modal Edit -->
+<?php foreach($dataposisi as $dp) : ?>
+<div class="modal fade" id="ubahPosisi<?= $dp ['id_posisi'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Posisi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url() ?>master/DataPosisi/edit/" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="posisi">Posisi</label>
+                        <input type="hidden" name="id_posisi" value="<?= $dp ['id_posisi'];?>" >
+                        <input type="text" class="form-control" name="posisi" id="posisi" value="<?= $dp ['nama_posisi'];?>" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-danger">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> 
+<?php endforeach; ?>
+<!-- akhir modal aedit -->
+
+
 
 <div class="modal fade" id="modal-sm">
     <div class="modal-dialog modal-sm">

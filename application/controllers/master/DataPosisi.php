@@ -7,6 +7,7 @@ class DataPosisi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('DataPosisi_model');
+       
 
     }
 
@@ -38,6 +39,43 @@ class DataPosisi extends CI_Controller
             redirect('master/dataposisi');
         }
     }
+
+    public function edit()
+    {
+        $data['title'] = "Data Posisi";
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $this->form_validation->set_rules('posisi', 'Nama Posisi', 'required');
+
+            if($this->form_validation->run() == false){
+                $this->session->set_flashdata("message", "<div class='alert alert-danger alert-dismissible fade show'
+                <strong>Gagal</strong>Edit data.
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+                </div>");
+                redirect('master/dataposisi');
+            } else {
+                $id_posisi = $this->input->post('id_posisi');
+                $nama_posisi = $this->input->post('nama_posisi');
+                $data = array(
+                    'id_posisi' => $id_posisi,
+                    'nama_posisi' => $nama_posisi
+                );
+                $this->db->where('id_posisi', $id_posisi);
+                $this->db->update('data_posisi', $data);
+                $this->session->set_flashdata("message", "<div class='alert alert-success alert-dismissible fade show'
+                <strong>Berhasil</strong>Edit data.
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+                </div>");
+                redirect('master/dataposisi');
+            }
+            
+    }
+
+   
+
     public function hapus($id_posisi)
     {
         if ($this->DataPosisi_model->hapus($id_posisi)) {
