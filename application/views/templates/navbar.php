@@ -26,7 +26,7 @@
             </li>
             <li class="nav-item mb-3">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline" style="color: black;">Admin</span>
+                    <span class="mr-2 d-none d-lg-inline" style="color: black;"><?= $user['name'];  ?></span>
                     <img class="img-profile rounded-circle" src="<?= base_url() ?>dist/img/user.jpg" alt="admin" height="40px" width="40px">
                 </a>
                 <!-- Dropdown - User Information -->
