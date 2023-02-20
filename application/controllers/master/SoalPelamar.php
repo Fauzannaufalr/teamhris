@@ -43,13 +43,13 @@ class SoalPelamar extends CI_Controller
         }
     }
 
-    public function hapus($id_soal_pelamar)
+    public function hapus($id)
     {
-        if ($this->SoalPelamar_model->hapus($id_soal_pelamar)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data gagal dihapus!</div>');
-        }
+        // Menghapus data pada tabel 'produk' dengan ID yang sesuai
+        $this->db->where('id', $id);
+        $this->db->delete('recruitment___soal');
+
+        // Redirect ke halaman daftar produk setelah berhasil menghapus data
         redirect('master/soalpelamar');
     }
 

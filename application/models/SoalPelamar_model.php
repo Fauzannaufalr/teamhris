@@ -4,17 +4,9 @@ class SoalPelamar_model extends CI_Model
 {
     public function getAllSoalPelamar()
     {
-<<<<<<< Updated upstream
-        //return $this->db->get('recruitment___soal')->result_array();
-        $this->db->select('*');
-        $this->db->from('data_karyawan');
-        $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
-=======
-        // return $this->db->get('recruitment___soal')->result_array();
         $this->db->select('*');
         $this->db->from('recruitment___soal');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = recruitment___soal.id_posisi');
->>>>>>> Stashed changes
         return  $this->db->get()->result_array();
     }
 
@@ -41,7 +33,7 @@ class SoalPelamar_model extends CI_Model
         return $query->row();
     }
 
-    public function update_soal($id, $posisi, $link_soal)
+    public function update_soal($id, $posisi,  $link_soal)
     {
         $data = array(
             'posisi' => $posisi,
