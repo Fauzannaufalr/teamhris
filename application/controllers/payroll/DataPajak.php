@@ -7,6 +7,7 @@ class DataPajak extends CI_Controller
     {
         parent::__construct();
         $this->load->model('payroll/DataPajak_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
@@ -14,8 +15,8 @@ class DataPajak extends CI_Controller
         $data['title'] = "Data Pajak";
         $data['datapajak'] = $this->DataPajak_model->tampilDataPajak();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('payroll/datapajak', $data);
         $this->load->view('templates/footer');
     }
