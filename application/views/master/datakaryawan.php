@@ -45,8 +45,8 @@
                             <td><?= $dk['level']; ?></td>
                             <td><?= $dk['email']; ?></td>
                             <td>
-                                <a href="" class="badge bg-warning" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</a>
-                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</a>
+                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-target="#ubahDataKaryawan<?= $dk ['id_karyawan'];?>">edit</button>
+                                <button type="button" class="btn btn-danger" style="font-size: 14px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?=$dk['id_karyawan']?>">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

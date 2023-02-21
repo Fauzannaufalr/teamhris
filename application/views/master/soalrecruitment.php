@@ -34,8 +34,8 @@
                             <td><?= $sr['nama_posisi']; ?></td>
                             <td><?= $sr['link_soal']; ?></td>
                             <td>
-                                <a href="" class="badge" style="background-color: #fbff39; color: black;" data-toggle="modal" data-target="#ubahSoalRecruitment<?= $sr['id_soal_recruitment'] ?>">edit</a>
-                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm<?= $sr['id_soal_recruitment'] ?>">hapus</a>
+                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahSoalRecruitment<?= $sr['id_soal_recruitment'] ?>">edit</button>
+                                <button type="button" class="btn btn-danger" style="font-size: 14px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $sr['id_soal_recruitment'] ?>">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
