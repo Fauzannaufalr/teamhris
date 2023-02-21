@@ -4,11 +4,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class PenilaianKinerja extends CI_Controller
 {
     public function __construct()
+   
     {
         parent::__construct();
         $this->load->model('PenilaianKinerja_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
@@ -16,11 +18,12 @@ class PenilaianKinerja extends CI_Controller
         $data['title'] = "PenilaiKinerja";
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->getAllPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawans();
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['user'] = $this->Admin_model->ambilUser();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('performances/penilaiankinerja', $data);
         $this->load->view('templates/footer');
     }
@@ -30,6 +33,7 @@ class PenilaianKinerja extends CI_Controller
 
         $data['title'] = "Penilaian Kinerja";
         $data['PenilaianKinerja'] = $this->PenilaianKinerja_model->getAllPenilaianKinerja();
+        $data['user'] = $this->Admin_model->ambilUser();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required');
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required');
@@ -40,8 +44,8 @@ class PenilaianKinerja extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('performances/penilaiankinerja', $data);
             $this->load->view('templates/footer');
         } else {
@@ -56,10 +60,11 @@ class PenilaianKinerja extends CI_Controller
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Admin_model->ambilUser();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('master/datakaryawan', $data);
         $this->load->view('templates/footer');
     }
