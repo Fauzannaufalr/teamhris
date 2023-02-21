@@ -13,6 +13,16 @@ class SoalKuesioner_model extends CI_Model {
         $this->db->insert('soal_kuesioner', $data);
     }
 
+    public function ubahSoalKuesioner()
+    {
+        $data = [
+            "kuesioner" => $this->input->post('kuesioner', true),
+        ];
+
+        $this->db->where('id_kuesioner', $this->input->post('id_kuesioner'));
+        $this->db->update('soal_kuesioner', $data);
+    }
+
     public function hapus($id_kuesioner)
     {
         $this->db->where('id_kuesioner', $id_kuesioner);
