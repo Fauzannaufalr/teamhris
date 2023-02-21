@@ -46,13 +46,6 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('master/dataakun') ?>" class="nav-link" style="background-color: #ffffff; color: black;">
-                                <p>Data Akun</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
                             <a href="<?= base_url('master/datamitra') ?>" class="nav-link" style="background-color: #ffffff;color: black;">
                                 <p>Data Mitra</p>
                             </a>
