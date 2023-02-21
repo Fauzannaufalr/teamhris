@@ -1,57 +1,64 @@
+<!-- Begin Page Content -->
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-lg-9">
-            <?= form_open_multipart('profile/ubahprofile');  ?>
-            <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" name="email" value="<?= $user['email'];  ?>" readonly>
-
+        <div class="col-lg-6">
+            <!-- general form elements -->
+            <div class="card">
+                <?= $this->session->flashdata('message');  ?>
+                <div class="card-header" style="background-color: #ff0000;">
+                    <h3 class="card-title" style="color: #ffffff;">Ubah Profile</h3>
                 </div>
-                <div class=" form-group row">
-                    <label for="nama" class="col-sm-2 clo-form-label">Nama Lengkap</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" value="<?= $user['name']; ?>">
-                        <? form_error('name', '<small class="text-danget pl-3">', '</small>');  ?>
-
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-2">Gambar</div>
-                    <div class="col-sm-10">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="<?= base_url('dist/img/profile/') . $user['image'];  ?>" class="img-thumbnai " alt="">
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image" name="image">
-                                    <label for="image" class="custom-file-label">Pilih file</label>
-
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="<?= base_url('profile/ubahprofile')  ?>" method="post">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama_karyawan']; ?>">
+                            <?= form_error('nama', '<small class="text-danger pl-3">', '</small>');  ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" value="<?= $user['nama_karyawan']; ?>">
+                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>');  ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $user['nama_karyawan']; ?>">
+                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>');  ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telp">Nomor Telepon</label>
+                            <input type="text" class="form-control" id="no_telp" name="no_telp" value="<?= $user['nama_karyawan']; ?>">
+                            <?= form_error('no_telp', '<small class="text-danger pl-3">', '</small>');  ?>
+                        </div>
+                        <div class="form-group">
+                            <div class="row" style="vertical-align: middle;">
+                                <div class="col-sm-3">
+                                    <img src="<?= base_url('dist/img/profile/') . $user['foto']; ?>" class="img-thumbnail">
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="foto" name="foto">
+                                        <label class="custom-file-label" for="foto">Choose file</label>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-
-
-                </div>
-                <div class="form-group row justify-contet-end">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Ubah</button>
-                        <button class="btn btn-dark" onclick="window.history. go(-1)">Kembali</button>
-
+                    <!-- /.card-body -->
+                    <div class="card-footer" style="text-align: right;">
+                        <button type="submit" class="btn btn-danger" style="background-color: #ff0000;">Simpan</button>
+                        <button type="submit" class="btn" style="background-color: #d4d4d4;">Kembali</button>
                     </div>
-
-                </div>
-
+                </form>
             </div>
-
+            <!-- /.card -->
         </div>
-
     </div>
-
+</div>
+<!-- /.container-fluid -->
 
 </div>
+<!-- End of Main Content -->

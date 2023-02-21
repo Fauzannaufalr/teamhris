@@ -17,7 +17,7 @@
                     <p class="card-text"><?= $user['email'];  ?></p>
                 </div>
                 <div class="btn btn-info ml-3 my-3">
-                    <a href="<?= base_url('profile/ubahprofile');  ?>" class="text text-white"><i class="fas fa-user-edit"></i>Ubah Profile</a>
+                    <a href="<?= base_url('admin/ubahprofile');  ?>" class="text text-white"><i class="fas fa-user-edit"></i>Ubah Profile</a>
 
                 </div>
 

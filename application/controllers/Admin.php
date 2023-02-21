@@ -12,20 +12,23 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard";
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
-        $this->load->view('admin/dashboard');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('admin/dashboard', $data);
         $this->load->view('templates/footer');
     }
 
     public function profile()
     {
-        $data['title'] = "Profile";
+        $data['title'] = 'Profile';
+        $data['user'] = $this->Admin_model->ambilUser();
+
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
-        $this->load->view('admin/profile');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('admin/profile', $data);
         $this->load->view('templates/footer');
     }
 
@@ -43,9 +46,9 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
-            $this->load->view('admin/ubahpassword');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('admin/ubahpassword', $data);
             $this->load->view('templates/footer');
         } else {
             $password_lama = $this->input->post('password_lama');
@@ -65,6 +68,28 @@ class Admin extends CI_Controller
                     redirect('admin/ubahpassword');
                 }
             }
+        }
+    }
+
+    public function ubahProfile()
+    {
+        $data['title'] = 'Ubah Profile';
+        $data['User'] = $this->Admin_model->ambilUser();
+
+        $this->form_validation->set_rules('name', 'Nama Lengkap', 'required|trim', [
+            'required' => 'Nama Tidak Boleh Kosong'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('admin/ubahprofile', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->Admin_model->ubahProfile($data);
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil Berhasil Diubah</div>');
+            redirect('admin/profile');
         }
     }
 }

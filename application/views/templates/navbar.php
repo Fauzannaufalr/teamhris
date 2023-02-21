@@ -26,12 +26,12 @@
             </li>
             <li class="nav-item mb-3">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline" style="color: black;">fredy</span>
-                    <img class="img-profile rounded-circle" src="<?= base_url() ?>dist/img/user.jpg" alt="admin" height="40px" width="40px">
+                    <span class="mr-2 d-none d-lg-inline" style="color: black;"><?= $user['nama_karyawan']; ?></span>
+                    <img class="img-profile rounded-circle" src="<?= base_url('dist/img/profile/') . $user['foto']; ?>" alt="admin" height="40px" width="40px">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="<?= base_url('profile'); ?>">
+                    <a class="dropdown-item" href="<?= base_url('admin/profile'); ?>">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
                     </a>

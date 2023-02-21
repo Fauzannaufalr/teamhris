@@ -15,7 +15,7 @@ class Profile extends CI_Controller
         $data['user'] = $this->ModelUser->ambilUser();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
+        $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('admin/profile', $data);
         $this->load->view('templates/footer');
@@ -30,7 +30,7 @@ class Profile extends CI_Controller
         ]);
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
+            $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar');
             $this->load->view('admin/ubahprofile', $data);
             $this->load->view('templates/footer');

@@ -7,6 +7,7 @@ class Bpjs extends CI_Controller
     {
         parent::__construct();
         $this->load->model('payroll/Pajak_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
