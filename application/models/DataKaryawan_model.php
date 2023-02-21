@@ -39,8 +39,19 @@ class DataKaryawan_model extends CI_Model
     }
     public function ubahDataKaryawan()
     {
+        $email = $this->input->post('email');
         $data = [
-            "nama_karyawan" => $this->input->post('posisi', true),
+            'nik' => htmlspecialchars($this->input->post('nik')),
+            'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
+            'id_posisi' => htmlspecialchars($this->input->post('posisi')),
+            'email' => htmlspecialchars($email),
+            'status' => htmlspecialchars($this->input->post('status')),
+            'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
+            'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
+            'level' => htmlspecialchars($this->input->post('level')),
+            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            'foto' => $this->input->post('foto')
+
         ];
 
         $this->db->where('id_karyawan', $this->input->post('id_karyawan'));

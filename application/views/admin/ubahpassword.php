@@ -5,13 +5,13 @@
         <div class="col-lg-6">
             <!-- general form elements -->
             <div class="card">
+                <?= $this->session->flashdata('message');  ?>
                 <div class="card-header" style="background-color: #ff0000;">
                     <h3 class="card-title" style="color: #ffffff;">Password</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <?= $this->session->flashdata('message');  ?>
-                <form action="<?= base_url('master/DataKaryawan/ubahpassword')  ?>" method="post">
+                <form action="<?= base_url('admin/ubahpassword')  ?>" method="post">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="password_lama">Password Lama</label>
