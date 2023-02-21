@@ -45,8 +45,8 @@
                             <td><?= $dk['level']; ?></td>
                             <td><?= $dk['email']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-target="#ubahDataKaryawan<?= $dk ['id_karyawan'];?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 14px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?=$dk['id_karyawan']?>">hapus</button>
+                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk ['id_karyawan'];?>">edit</button>
+                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?=$dk['id_karyawan']?>">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -57,8 +57,81 @@
     </div>
 </div>
 
+<!-- modal untuk tambah data -->
+<div class="modal fade" id="tambahDataKaryawan" tabindex="-1" aria-labelledby="tambahDataKaryawanLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahDataKaryawanLabel">Tambah Data Karyawan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('master/datakaryawan/tambah') ?>" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nik">NIK</label>
+                        <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukan NIK">
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama Karyawan</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Karyawan">
+                    </div>
+                    <div class="form-group">
+                        <label>Posisi</label>
+                        <select class="form-control" name="posisi">
+                            <option>-- Pilih Posisi --</option>
+                            <?php foreach ($dataposisi as $dp) : ?>
+                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <input type="text" class="form-control" id="status" name="status" placeholder="Masukan Status">
+                    </div>
+                    <div class="form-group">
+                        <label for="gaji">Gaji Pokok</label>
+                        <input type="text" class="form-control" id="gaji" name="gajipokok" placeholder="Masukan Gaji Pokok">
+                    </div>
+                    <div class="form-group">
+                        <label for="nikleader">NIK Leader</label>
+                        <input type="text" class="form-control" id="nikleader" name="nikleader" placeholder="Masukan Level">
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Level</label>
+                        <input type="text" class="form-control" id="level" name="level" placeholder="Masukan Level">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="telepon">Telepon</label>
+                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Masukan Nomor Telepon">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
+                    </div>
 
-<!-- Modal -->
+                    <!-- modal footer  -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-danger">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Akhir tambah Modal -->
+
+<!-- Modal edit data -->
 <?php foreach ($datakaryawan as $dk) : ?>
     <div class="modal fade" id="ubahDataKaryawan<?= $dk['id_karyawan']; ?>" tabindex="-1" aria-labelledby="ubahDataKaryawanLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -133,79 +206,7 @@
         </div>
     </div>
 <?php endforeach; ?>
-<!-- modal untuk edit data -->
-<div class="modal fade" id="tambahDataKaryawan" tabindex="-1" aria-labelledby="tambahDataKaryawanLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambahDataKaryawanLabel">Tambah Data Karyawan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('master/datakaryawan/tambah') ?>" method="POST">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="nik">NIK</label>
-                        <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukan NIK">
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">Nama Karyawan</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Karyawan">
-                    </div>
-                    <div class="form-group">
-                        <label>Posisi</label>
-                        <select class="form-control" name="posisi">
-                            <option>-- Pilih Posisi --</option>
-                            <?php foreach ($dataposisi as $dp) : ?>
-                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <input type="text" class="form-control" id="status" name="status" placeholder="Masukan Status">
-                    </div>
-                    <div class="form-group">
-                        <label for="gaji">Gaji Pokok</label>
-                        <input type="text" class="form-control" id="gaji" name="gajipokok" placeholder="Masukan Gaji Pokok">
-                    </div>
-                    <div class="form-group">
-                        <label for="nikleader">NIK Leader</label>
-                        <input type="text" class="form-control" id="nikleader" name="nikleader" placeholder="Masukan Level">
-                    </div>
-                    <div class="form-group">
-                        <label for="level">Level</label>
-                        <input type="text" class="form-control" id="level" name="level" placeholder="Masukan Level">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat">
-                    </div>
-                    <div class="form-group">
-                        <label for="telepon">Telepon</label>
-                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Masukan Nomor Telepon">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
-                    </div>
 
-                    <!-- modal footer  -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Akhir Modal -->
 
 <!-- Modal Hapus -->
 <?php foreach ($datakaryawan as $dk) : ?>
