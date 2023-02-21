@@ -11,8 +11,9 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="<?= base_url('profile/ubahprofile')  ?>" method="post">
+                <form action="<?= base_url('admin/ubahprofile')  ?>" method="post">
                     <div class="card-body">
+                        <input type="hidden" name="id_karyawan" value="<?= $user['id_karyawan']; ?>">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama_karyawan']; ?>">
@@ -20,17 +21,17 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" value="<?= $user['nama_karyawan']; ?>">
+                            <input type="text" class="form-control" id="email" name="email" value="<?= $user['email']; ?>">
                             <?= form_error('email', '<small class="text-danger pl-3">', '</small>');  ?>
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $user['nama_karyawan']; ?>">
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $user['alamat']; ?>">
                             <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>');  ?>
                         </div>
                         <div class="form-group">
-                            <label for="no_telp">Nomor Telepon</label>
-                            <input type="text" class="form-control" id="no_telp" name="no_telp" value="<?= $user['nama_karyawan']; ?>">
+                            <label for="telepon">Nomor Telepon</label>
+                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $user['telepon']; ?>">
                             <?= form_error('no_telp', '<small class="text-danger pl-3">', '</small>');  ?>
                         </div>
                         <div class="form-group">

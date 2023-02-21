@@ -52,7 +52,7 @@ class DataKaryawan_model extends CI_Model
             'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
             'level' => htmlspecialchars($this->input->post('level')),
             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'foto' => $this->input->post('foto')
+            'foto' => 'default.jpg'
 
         ];
 

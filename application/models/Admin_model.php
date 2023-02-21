@@ -18,8 +18,12 @@ class Admin_model extends CI_Model
 
     public function ubahProfile($data)
     {
-        $nama = $this->input->post('name', true);
-        $email = $this->input->post('email', true);
+        $data = [
+            'nama_karyawan' => $this->input->post('nama'),
+            'email' => $this->input->post('email'),
+            'alamat' => $this->input->post('alamat'),
+            'telepon' => $this->input->post('telepon')
+        ];
 
         ///jika gambar di upload
         $upload_image = $_FILES['image']['name'];
@@ -35,18 +39,17 @@ class Admin_model extends CI_Model
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('image')) {
-                $gambar_lama = $data['user']['image'];
+                $gambar_lama = $data['user']['foto'];
                 if ($gambar_lama != 'default.jpg') {
                     unlink(FCPATH . 'dist/img/profile/' . $gambar_lama);
                 }
                 $gambar_baru = $this->upload->data('file_name');
-                $this->db->set('iamge', $gambar_baru);
+                $this->db->set('foto', $gambar_baru);
             } else {
             }
         }
 
-        $this->db->set('name', $nama);
-        $this->db->where('email', $email);
-        $this->db->update('user');
+        $this->db->where('id_karyawan', $this->input->post('id_karyawan'));
+        $this->db->update('data_karyawan', $data);
     }
 }

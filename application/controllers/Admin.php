@@ -74,10 +74,22 @@ class Admin extends CI_Controller
     public function ubahProfile()
     {
         $data['title'] = 'Ubah Profile';
-        $data['User'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('name', 'Nama Lengkap', 'required|trim', [
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
             'required' => 'Nama Tidak Boleh Kosong'
+        ]);
+        $this->form_validation->set_rules('email', 'Email', 'required|trim', [
+            'required' => 'Email Tidak Boleh Kosong'
+        ]);
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
+            'required' => 'Alamat Tidak Boleh Kosong'
+        ]);
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required|trim', [
+            'required' => 'Telepon Tidak Boleh Kosong'
+        ]);
+        $this->form_validation->set_rules('foto', 'Foto Lengkap', 'required|trim', [
+            'required' => 'Foto Tidak Boleh Kosong'
         ]);
 
         if ($this->form_validation->run() == false) {

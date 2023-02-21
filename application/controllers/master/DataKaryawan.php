@@ -41,7 +41,6 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('level', 'Level', 'required');
-        $this->form_validation->set_rules('foto', 'Foto', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -71,7 +70,6 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         $this->form_validation->set_rules('level', 'Level', 'required');
-        $this->form_validation->set_rules('foto', 'Foto', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
