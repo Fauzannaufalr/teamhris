@@ -7,15 +7,17 @@ class DataPosisi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('DataPosisi_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
     {
         $data['title'] = "Data Posisi";
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('master/dataposisi', $data);
         $this->load->view('templates/footer');
     }
@@ -23,12 +25,13 @@ class DataPosisi extends CI_Controller
     {
         $data['title'] = "Data Posisi";
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->form_validation->set_rules('posisi', 'Posisi', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar' . $data);
             $this->load->view('master/dataposisi', $data);
             $this->load->view('templates/footer');
         } else {
@@ -42,12 +45,13 @@ class DataPosisi extends CI_Controller
     {
         $data['title'] = "Data Posisi";
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->form_validation->set_rules('posisi', 'Nama Posisi', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('master/dataposisi', $data);
             $this->load->view('templates/footer');
         } else {

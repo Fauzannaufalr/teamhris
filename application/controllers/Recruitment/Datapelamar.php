@@ -7,15 +7,17 @@ class DataPelamar extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Datapelamar_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
     {
         $data['title'] = "Data Pemalar";
         $data['datapelamar'] = $this->Datapelamar_model->getAllDatapelamar();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('recruitment/datapelamar', $data);
         $this->load->view('templates/footer');
     }

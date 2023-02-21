@@ -7,17 +7,18 @@ class SoalKuesioner extends CI_Controller
     {
         parent::__construct();
         $this->load->model('SoalKuesioner_model');
-
+        $this->load->model('Admin_model');
     }
 
     public function index()
     {
         $data['title'] = "Soal Kuesioner";
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        $this->load->view('templates/header',$data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
-        $this->load->view('master/soalkuesioner',$data);
+        $data['user'] = $this->Admin_model->ambilUser();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('master/soalkuesioner', $data);
         $this->load->view('templates/footer');
     }
 
@@ -25,13 +26,14 @@ class SoalKuesioner extends CI_Controller
     {
         $data['title'] = "Soal Kuesioner";
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
+        $data['user'] = $this->Admin_model->ambilUser();
 
         $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('master/soalkuesioner', $data);
             $this->load->view('templates/footer');
         } else {
@@ -45,12 +47,14 @@ class SoalKuesioner extends CI_Controller
     {
         $data['title'] = "Pertanyaan ";
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required');
+
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('master/soalkuesioner', $data);
             $this->load->view('templates/footer');
         } else {

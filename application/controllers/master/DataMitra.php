@@ -8,6 +8,7 @@ class DataMitra extends CI_Controller
         parent::__construct();
         $this->load->model('DataMitra_model');
         $this->load->model('DataPosisi_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
@@ -15,9 +16,10 @@ class DataMitra extends CI_Controller
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('master/datamitra', $data);
         $this->load->view('templates/footer');
     }
@@ -26,6 +28,7 @@ class DataMitra extends CI_Controller
     {
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
+        $data['user'] = $this->Admin_model->ambilUser();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required', [
             'required' => 'NIK harus diisi !'
@@ -51,8 +54,8 @@ class DataMitra extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('master/datamitra', $data);
             $this->load->view('templates/footer');
         } else {
@@ -67,6 +70,7 @@ class DataMitra extends CI_Controller
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Admin_model->ambilUser();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required', [
             'required' => 'NIK harus diisi !'
@@ -92,8 +96,8 @@ class DataMitra extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('master/datamitra', $data);
             $this->load->view('templates/footer');
         } else {

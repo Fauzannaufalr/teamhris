@@ -7,15 +7,17 @@ class DataSoal extends CI_Controller
     {
         parent::__construct();
         $this->load->model('soal_posttest_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
     {
         $data['title'] = "Data Soal";
         $data['post_test'] = $this->soal_posttest_model->getAllSoal();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar');
-        $this->load->view('templates/sidebar');
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('training/post_test', $data);
         $this->load->view('templates/footer');
     }
