@@ -15,10 +15,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title"><?= $user['name'];  ?></h5>
-                        <p class="card-text"><?= $user['nik'];  ?></p>
                         <p class="card-text"><?= $user['email'];  ?></p>
-                        <p class="card-text"><?= $user['posisi']  ?></p>
-
                     </div>
                     <div class="btn btn-info ml-3 my-3">
                         <a href="<?= base_url('profile/ubahprofile');  ?>" class="text text-white"><i class="fas fa-user-edit"></i>Ubah Profile</a>
