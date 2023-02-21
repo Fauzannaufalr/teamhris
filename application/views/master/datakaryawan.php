@@ -28,8 +28,6 @@
                         <th>NIK Leader</th>
                         <th>Level</th>
                         <th>Email</th>
-                        <th>Password</th>
-                        <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -46,11 +44,9 @@
                             <td><?= $dk['nik_leader']; ?></td>
                             <td><?= $dk['level']; ?></td>
                             <td><?= $dk['email']; ?></td>
-                            <td><?= $dk['password']; ?></td>
-                            <td><?= $dk['foto']; ?></td>
                             <td>
-                                <a href="" class="badge bg-warning" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk ['id_karyawan'];?>">edit</a>
-                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm<?=$dk['id_karyawan']?>">hapus</a>
+                                <a href="" class="badge bg-warning" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</a>
+                                <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -63,79 +59,79 @@
 
 
 <!-- Modal -->
-<?php foreach($datakaryawan as $dk) : ?>
-<div class="modal fade" id="ubahDataKaryawan<?= $dk ['id_karyawan'];?>" tabindex="-1" aria-labelledby="ubahDataKaryawanLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ubahDataKaryawanLabel">Ubah Data Karyawan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('master/datakaryawan/ubah') ?>" method="POST">
-                <div class="modal-body">
-                <input type="hidden" name="id_karyawan" value="<?= $dk ['id_karyawan'];?>" >
-                    <div class="form-group">
-                        <label for="nik">NIK</label>
-                        <input type="text" class="form-control" id="nik" name="nik" value="<?= $dk ['nik'];?>" >
+<?php foreach ($datakaryawan as $dk) : ?>
+    <div class="modal fade" id="ubahDataKaryawan<?= $dk['id_karyawan']; ?>" tabindex="-1" aria-labelledby="ubahDataKaryawanLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ubahDataKaryawanLabel">Ubah Data Karyawan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('master/datakaryawan/ubah') ?>" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="id_karyawan" value="<?= $dk['id_karyawan']; ?>">
+                        <div class="form-group">
+                            <label for="nik">NIK</label>
+                            <input type="text" class="form-control" id="nik" name="nik" value="<?= $dk['nik']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Nama Karyawan</label>
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $dk['nama_karyawan']; ?>"">
                     </div>
-                    <div class="form-group">
-                        <label for="nama">Nama Karyawan</label>
-                        <input type="text" class="form-control" id="nama" name="nama"value="<?= $dk ['nama_karyawan'];?>"">
-                    </div>
-                    <div class="form-group">
-                        <label>Posisi</label>
-                        <select class="form-control" name="posisi">
-                            <option>-- Pilih Posisi --</option>
-                            <?php foreach ($dataposisi as $dp) : ?>
-                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <input type="text" class="form-control" id="status" name="status" value="<?= $dk ['status'];?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="gaji">Gaji Pokok</label>
-                        <input type="text" class="form-control" id="gaji" name="gajipokok" value="<?= $dk ['gajipokok'];?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="nikleader">NIK Leader</label>
-                        <input type="text" class="form-control" id="nikleader" name="nikleader" value="<?= $dk ['nik_leader'];?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="level">Level</label>
-                        <input type="text" class="form-control" id="level" name="level" value="<?= $dk ['level'];?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" value="<?= $dk ['email'];?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" value="<?= $dk ['password'];?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="foto">Foto</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="foto" name="foto" value="<?= $dk ['foto'];?>">
-                                <label class=" custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
+                    <div class=" form-group">
+                            <label>Posisi</label>
+                            <select class="form-control" name="posisi">
+                                <option>-- Pilih Posisi --</option>
+                                <?php foreach ($dataposisi as $dp) : ?>
+                                    <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <input type="text" class="form-control" id="status" name="status" value="<?= $dk['status']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="gaji">Gaji Pokok</label>
+                            <input type="text" class="form-control" id="gaji" name="gajipokok" value="<?= $dk['gajipokok']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="nikleader">NIK Leader</label>
+                            <input type="text" class="form-control" id="nikleader" name="nikleader" value="<?= $dk['nik_leader']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="level">Level</label>
+                            <input type="text" class="form-control" id="level" name="level" value="<?= $dk['level']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" value="<?= $dk['email']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $dk['alamat']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="telepon">Telepon</label>
+                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $dk['telepon']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" value="<?= $dk['password']; ?>">
+                        </div>
+
+                        <!-- modal footer  -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-danger">Simpan</button>
                         </div>
                     </div>
-                    <!-- modal footer  -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 <?php endforeach; ?>
 <!-- modal untuk edit data -->
 <div class="modal fade" id="tambahDataKaryawan" tabindex="-1" aria-labelledby="tambahDataKaryawanLabel" aria-hidden="true">
@@ -187,18 +183,18 @@
                         <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
                     </div>
                     <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="telepon">Telepon</label>
+                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Masukan Nomor Telepon">
+                    </div>
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
                     </div>
-                    <div class="form-group">
-                        <label for="foto">Foto</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="foto" name="foto">
-                                <label class=" custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -212,27 +208,27 @@
 <!-- Akhir Modal -->
 
 <!-- Modal Hapus -->
-<?php foreach ($datakaryawan as $dk ) : ?>
-<div class="modal fade" id="modal-sm<?=$dk['id_karyawan']; ?>" tabindek="-1" role+dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Hapus Data</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<?php foreach ($datakaryawan as $dk) : ?>
+    <div class="modal fade" id="modal-sm<?= $dk['id_karyawan']; ?>" tabindek="-1" role+dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Data</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah anda yakin untuk menghapus data ?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
+                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>Apakah anda yakin untuk menghapus data ?</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan']  ?>" type="submit" class="btn btn-primary">Ya</a>
-            </div>
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
 <?php endforeach; ?>
 <!-- akhir modal hapus --

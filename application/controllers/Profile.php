@@ -23,7 +23,7 @@ class Profile extends CI_Controller
     public function ubahprofile()
     {
         $data['title'] = 'Ubah Profile';
-        $data['User'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['User'] = $this->ModelUser->ambilUser();
 
         $this->form_validation->set_rules('name', 'Nama Lengkap', 'required|trim', [
             'required' => 'Nama Tidak Boleh Kosong'
