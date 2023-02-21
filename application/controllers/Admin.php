@@ -39,7 +39,7 @@ class Admin extends CI_Controller
             'matches' => 'Password tidak cocok!',
             'min_length' => 'Password terlalu pendek!'
         ]);
-        $this->form_validation->set_rules('new_password2', 'Konfirmasi Password', 'required|trim|matches[new_password1]');
+        $this->form_validation->set_rules('password_baru2', 'Konfirmasi Password', 'required|trim|matches[password_baru1]');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

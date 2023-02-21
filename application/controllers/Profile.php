@@ -12,7 +12,7 @@ class Profile extends CI_Controller
     public function index()
     {
         $data['title'] = 'Profile Saya';
-        $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->ModelUser->ambilUser();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
