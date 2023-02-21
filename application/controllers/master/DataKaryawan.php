@@ -53,17 +53,23 @@ class DataKaryawan extends CI_Controller
         }
     }
 
-    public function edit()
+    public function ubah()
     {
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-
+        
+    if ($this->form_validation->run() == false){
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
         $this->load->view('templates/sidebar');
         $this->load->view('master/datakaryawan', $data);
         $this->load->view('templates/footer');
+    } else {
+        $this->DataKaryawan_model->ubahDataKaryawan();
+        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert"> Data berhasil diedit!</div>');
+        redirect('master/datakaryawan');
+    }
     }
 
 
