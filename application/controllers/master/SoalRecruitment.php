@@ -50,7 +50,10 @@ class SoalRecruitment extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
 
         $this->form_validation->set_rules('link_soal', 'Link Soal', 'required', [
-            'required' => 'NIK harus diisi !'
+            'required' => 'Link Soal harus diisi !'
+        ]);
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
         ]);
 
         if ($this->form_validation->run() == FALSE) {
@@ -74,5 +77,4 @@ class SoalRecruitment extends CI_Controller
         // Redirect ke halaman daftar produk setelah berhasil menghapus data
         redirect('master/soalrecruitment');
     }
-
 }

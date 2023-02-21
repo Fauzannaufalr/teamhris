@@ -73,16 +73,16 @@
                         <input type="text" class="form-control" id="link_soal" name="link_soal" placeholder="Masukan Link Soal">
                     </div>
 
-                <!-- footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-danger">Simpan</button>
-                </div>
+                    <!-- footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-danger">Simpan</button>
+                    </div>
             </form>
         </div>
     </div>
 </div>
-</div>             
+</div>
 <!-- Akhir Modal Tambah -->
 
 
@@ -98,21 +98,21 @@
                     </button>
                 </div>
                 <form action="<?= base_url('master/soalrecruitment/ubah'); ?>" method="POST">
-                      
-                        <div class="form-group">
-                            <label for="posisi">Posisi</label>
-                            <select class="form-control" id="posisi" name="posisi">
-                                <option>-- Pilih Posisi --</option>
-                                <?php foreach ($dataposisi as $dp) : ?>
-                                    <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="link_soal">Link Soal</label>
-                            <input type="text" class="form-control" id="link_soal" name="link_soal" value="<?= $sr['link_soal']; ?>">
-                        </div>
-            
+                    <input type="hidden" name="id_soal_recruitment" value="<?= $sr['id_soal_recruitment']; ?>">
+                    <div class="form-group">
+                        <label for="posisi">Posisi</label>
+                        <select class="form-control" id="posisi" name="posisi">
+                            <option>-- Pilih Posisi --</option>
+                            <?php foreach ($dataposisi as $dp) : ?>
+                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="link_soal">Link Soal</label>
+                        <input type="text" class="form-control" id="link_soal" name="link_soal" value="<?= $sr['link_soal']; ?>">
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-danger">Simpan</button>
@@ -121,8 +121,8 @@
             </div>
         </div>
     </div>
- </div>
-   <?php endforeach; ?>
+    </div>
+<?php endforeach; ?>
 <!-- Akhir Modal edit -->
 
 <!-- Modal hapus -->
@@ -150,10 +150,3 @@
     </div>
 <?php endforeach; ?>
 <!-- Akhir Modal Hapus -->
-
-
-
-
-
-
-
