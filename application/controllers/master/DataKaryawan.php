@@ -13,6 +13,7 @@ class DataKaryawan extends CI_Controller
 
     public function index()
     {
+        // printr($_SESSION);
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();

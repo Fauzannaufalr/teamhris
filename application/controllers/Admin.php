@@ -11,6 +11,8 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        $periode = isset($_GET["periode"]) ? $_GET["periode"] : 0;
+        $tahun = isset($_GET["tahun"]) ? $_GET["tahun"] : 0;
         $data['title'] = "Dashboard";
         $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);

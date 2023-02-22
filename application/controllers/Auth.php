@@ -40,15 +40,12 @@ class Auth extends CI_Controller
         if ($user) {
             // cek password
             if (password_verify($password, $user['password'])) {
-                $data = [
-                    'nik' => $user['nik'],
-                    'email' => $user['email']
-                ];
-                $this->session->set_userdata($data);
+                unset($user['password']);
+                $this->session->set_userdata($user); // ini disession agar data nya terambil global
                 redirect('admin');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> Salah Password! </div>');
-                redirect('auth');
+                redirect('auth'); 
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> User tidak terdaftar!</div>');

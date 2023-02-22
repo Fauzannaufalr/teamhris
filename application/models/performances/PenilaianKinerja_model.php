@@ -8,12 +8,6 @@ class PenilaianKinerja_model extends CI_Model
         $this->db->from('performances___penilaian_kinerja');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = performances___penilaian_kinerja.id_posisi');
         return  $this->db->get()->result_array();
-
-        $this->db->select('*');
-        $this->db->from('performances___penilaian_kinerja');
-        $this->db->join('data_karyawan', 'data_karyawan.id_karyawan = performances___penilaian_kinerja.id_karyawan');
-        return  $this->db->get()->result_array();
-   
     }
     public function tambahPenilaianKinerja()
     {
