@@ -41,7 +41,7 @@
                                 <div class="col-sm-9">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="foto" name="foto">
-                                        <label class="custom-file-label" for="foto">Choose file</label>
+                                        <label class=" custom-file-label" for="foto">Choose file</label>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                     <!-- /.card-body -->
                     <div class="card-footer" style="text-align: right;">
                         <button type="submit" class="btn btn-danger" style="background-color: #ff0000;">Simpan</button>
-                        <button type="button" class="btn" style="background-color: #d4d4d4;">Kembali</button>
+                        <a href="<?= base_url('admin/profile'); ?>" class="btn" style="background-color: #d4d4d4;">Kembali</a>
                     </div>
                 </form>
             </div>

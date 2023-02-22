@@ -15,14 +15,13 @@
                 <div class="card-body">
                     <h5 class="card-title"><?= $user['nama_karyawan'];  ?></h5>
                     <p class="card-text"><?= $user['email'];  ?></p>
-                    <div class="mt-lg-5">
-                        <button href="<?= base_url('admin/ubahprofile');  ?>" class="btn btn-info"><i class="fas fa-user-edit"></i>Ubah Profile</button>
-                    </div>
+                    <a class="btn" style="background-color: #ff0000; color: white;" href="<?= base_url('admin/ubahprofile'); ?>">Ubah Profile</a>
                 </div>
             </div>
-
         </div>
 
     </div>
+
+</div>
 
 </div>

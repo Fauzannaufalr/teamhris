@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label>Posisi</label>
                         <select class="form-control" name="posisi">
-                            <option disabled>-- Pilih Posisi --</option>
+                            <option value="">-- Pilih Posisi --</option>
                             <?php foreach ($dataposisi as $dp) : ?>
                                 <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                             <?php endforeach; ?>
@@ -101,10 +101,11 @@
                     <div class="form-group">
                         <label for="level">Level</label>
                         <select class="form-control" name="level">
-                            <option disabled>-- Pilih Level --</option>
-                            <option>hc</option>
-                            <option>leader</option>
-                            <option>biasa</option>
+                            <option value="">-- Pilih Level --</option>
+                            <option value="hc">hc</option>
+                            <option value="leader">leader</option>
+                            <option value="biasa">biasa</option>
+                            <option value="ceo">ceo</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -161,7 +162,7 @@
                     <div class=" form-group">
                             <label>Posisi</label>
                             <select class="form-control" name="posisi">
-                                <option>-- Pilih Posisi --</option>
+                                <option value="">-- Pilih Posisi --</option>
                                 <?php foreach ($dataposisi as $dp) : ?>
                                     <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                                 <?php endforeach; ?>
@@ -181,7 +182,13 @@
                         </div>
                         <div class="form-group">
                             <label for="level">Level</label>
-                            <input type="text" class="form-control" id="level" name="level" value="<?= $dk['level']; ?>">
+                            <select class="form-control" name="level">
+                                <option disabled>-- Pilih Level --</option>
+                                <option value="hc">hc</option>
+                                <option value="leader">leader</option>
+                                <option value="biasa">biasa</option>
+                                <option value="ceo">ceo</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -194,10 +201,6 @@
                         <div class="form-group">
                             <label for="telepon">Telepon</label>
                             <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $dk['telepon']; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="<?= $dk['password']; ?>">
                         </div>
 
                         <!-- modal footer  -->

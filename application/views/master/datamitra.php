@@ -85,7 +85,7 @@
                     <div class="form-group">
                         <label>Posisi</label>
                         <select class="form-control" id="posisi" name="posisi">
-                            <option>-- Pilih Posisi --</option>
+                            <option value="">-- Pilih Posisi --</option>
                             <?php foreach ($dataposisi as $dp) : ?>
                                 <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                             <?php endforeach; ?>
@@ -142,7 +142,7 @@
                         <div class="form-group">
                             <label for="posisi">Posisi</label>
                             <select class="form-control" id="posisi" name="posisi">
-                                <option>-- Pilih Posisi --</option>
+                                <option value="">-- Pilih Posisi --</option>
                                 <?php foreach ($dataposisi as $dp) : ?>
                                     <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                                 <?php endforeach; ?>

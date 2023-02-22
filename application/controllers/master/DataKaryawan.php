@@ -52,7 +52,7 @@ class DataKaryawan extends CI_Controller
             'required' => 'Status harus diisi !'
         ]);
         $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required', [
-            'required' => 'Gajipokok harus diisi !'
+            'required' => 'Gaji Pokok harus diisi !'
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required', [
             'required' => 'Password harus diisi !'
@@ -98,16 +98,13 @@ class DataKaryawan extends CI_Controller
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',
-            'valid_email' => 'Yang Anda Masukan Bukan Email !'
+            'valid_email' => 'Yang anda masukan bukan email !'
         ]);
         $this->form_validation->set_rules('status', 'Status', 'required', [
             'required' => 'Status harus diisi !'
         ]);
         $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required', [
-            'required' => 'Gajipokok harus diisi !'
-        ]);
-        $this->form_validation->set_rules('password', 'Password', 'required', [
-            'required' => 'Password harus diisi !'
+            'required' => 'Gaji Pokok harus diisi !'
         ]);
         $this->form_validation->set_rules('level', 'Level', 'required', [
             'required' => 'Level harus diisi !'

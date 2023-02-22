@@ -51,8 +51,8 @@ class DataKaryawan_model extends CI_Model
             'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
             'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
             'level' => htmlspecialchars($this->input->post('level')),
-            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'foto' => 'default.jpg'
+            'alamat' => htmlspecialchars($this->input->post('alamat')),
+            'telepon' => htmlspecialchars($this->input->post('telepon'))
 
         ];
 
