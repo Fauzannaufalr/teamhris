@@ -14,6 +14,7 @@ class DataPajak extends CI_Controller
     {
         $data['title'] = "Data Pajak";
         $data['datapajak'] = $this->DataPajak_model->tampilDataPajak();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -25,6 +26,7 @@ class DataPajak extends CI_Controller
     {
         $data['title'] = "Data Pajak";
         $data['datapajak'] = $this->DataPajak_model->tampilDataPajak();
+        $data['user'] = $this->Admin_model->ambilUser();
 
         $this->form_validation->set_rules('golongan', 'Golongan', 'required', [
             'required' => 'Golongan harus diisi !'
@@ -38,8 +40,8 @@ class DataPajak extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('templates/sidebar');
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('payroll/datapajak', $data);
             $this->load->view('templates/footer');
         } else {

@@ -13,6 +13,7 @@ class Bpjs extends CI_Controller
     public function index()
     {
         $data['title'] = "BPJS Karyawan";
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

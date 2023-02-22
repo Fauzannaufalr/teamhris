@@ -12,7 +12,8 @@ class LaporanMitra extends CI_Controller
 
     public function index()
     {
-        $data['title'] = "Laporan Gaji Karyawan";
+        $data['title'] = "Laporan Mitra";
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

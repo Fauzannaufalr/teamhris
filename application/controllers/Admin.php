@@ -78,21 +78,10 @@ class Admin extends CI_Controller
         $data['title'] = 'Ubah Profile';
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
-            'required' => 'Nama Tidak Boleh Kosong'
-        ]);
-        $this->form_validation->set_rules('email', 'Email', 'required|trim', [
-            'required' => 'Email Tidak Boleh Kosong'
-        ]);
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
-            'required' => 'Alamat Tidak Boleh Kosong'
-        ]);
-        $this->form_validation->set_rules('telepon', 'Telepon', 'required|trim', [
-            'required' => 'Telepon Tidak Boleh Kosong'
-        ]);
-        $this->form_validation->set_rules('foto', 'Foto Lengkap', 'required|trim', [
-            'required' => 'Foto Tidak Boleh Kosong'
-        ]);
+        $this->form_validation->set_rules('nama', 'Full name', 'required|trim');
+        $this->form_validation->set_rules('email', 'Full name', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Full name', 'required|trim');
+        $this->form_validation->set_rules('telepon', 'Full name', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -102,7 +91,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->Admin_model->ubahProfile($data);
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil Berhasil Diubah</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Profile anda berhasil diubah!</div>');
             redirect('admin/profile');
         }
     }

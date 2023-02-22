@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8">
-            <?= $this->session->flashdata('pesan'); ?>
+            <?= $this->session->flashdata('message'); ?>
         </div>
     </div>
     <div class="card mb-3 col-lg-8" style="max-width: 540px;">
@@ -15,12 +15,10 @@
                 <div class="card-body">
                     <h5 class="card-title"><?= $user['nama_karyawan'];  ?></h5>
                     <p class="card-text"><?= $user['email'];  ?></p>
+                    <div class="mt-lg-5">
+                        <button href="<?= base_url('admin/ubahprofile');  ?>" class="btn btn-info"><i class="fas fa-user-edit"></i>Ubah Profile</button>
+                    </div>
                 </div>
-                <div class="btn btn-info ml-3 my-3">
-                    <a href="<?= base_url('admin/ubahprofile');  ?>" class="text text-white"><i class="fas fa-user-edit"></i>Ubah Profile</a>
-
-                </div>
-
             </div>
 
         </div>

@@ -14,6 +14,7 @@ class Pajak extends CI_Controller
     {
         $data['title'] = "Pajak Karyawan";
         $data['pajakkaryawan'] = $this->Pajak_model->getAllDataPajakKaryawan();
+        $data['user'] = $this->Admin_model->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

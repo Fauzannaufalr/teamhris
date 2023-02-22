@@ -59,6 +59,11 @@
 <script src="<?= base_url() ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
 <script>
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+
     $(function() {
         $("#example1").DataTable({
             "responsive": true,

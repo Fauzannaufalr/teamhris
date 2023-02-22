@@ -13,7 +13,6 @@
                 <!-- form start -->
                 <form action="<?= base_url('admin/ubahprofile')  ?>" method="post">
                     <div class="card-body">
-                        <input type="hidden" name="id_karyawan" value="<?= $user['id_karyawan']; ?>">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama_karyawan']; ?>">
@@ -51,7 +50,7 @@
                     <!-- /.card-body -->
                     <div class="card-footer" style="text-align: right;">
                         <button type="submit" class="btn btn-danger" style="background-color: #ff0000;">Simpan</button>
-                        <button type="submit" class="btn" style="background-color: #d4d4d4;">Kembali</button>
+                        <button type="button" class="btn" style="background-color: #d4d4d4;">Kembali</button>
                     </div>
                 </form>
             </div>
