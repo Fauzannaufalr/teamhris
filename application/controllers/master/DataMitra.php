@@ -30,8 +30,9 @@ class DataMitra extends CI_Controller
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required', [
-            'required' => 'NIK harus diisi !'
+        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
+            'required' => 'NIK harus diisi !',
+            'is_unique' => 'NIK Sudah Terdaftar !'
         ]);
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required', [
             'required' => 'Nama Perusahaan harus diisi !'
@@ -42,8 +43,9 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
         ]);
-        $this->form_validation->set_rules('email', 'Email', 'required', [
-            'required' => 'Email harus diisi !'
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
+            'required' => 'Email harus diisi !',
+            'valid_email' => 'Yang Anda Masukan Bukan Email !'
         ]);
         $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
             'required' => 'Tanggal masuk harus diisi !'
@@ -72,8 +74,9 @@ class DataMitra extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required', [
-            'required' => 'NIK harus diisi !'
+        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
+            'required' => 'NIK harus diisi !',
+            'is_unique' => 'NIK Sudah Terdaftar !'
         ]);
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required', [
             'required' => 'Nama Perusahaan harus diisi !'
@@ -84,8 +87,9 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
         ]);
-        $this->form_validation->set_rules('email', 'Email', 'required', [
-            'required' => 'Email harus diisi !'
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
+            'required' => 'Email harus diisi !',
+            'valid_email' => 'Yang Anda Masukan Bukan Email !'
         ]);
         $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
             'required' => 'Tanggal masuk harus diisi !'

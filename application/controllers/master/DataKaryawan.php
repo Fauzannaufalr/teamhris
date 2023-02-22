@@ -34,14 +34,38 @@ class DataKaryawan extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required');
-        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required');
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('status', 'Status', 'required');
-        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('level', 'Level', 'required');
+        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
+            'required' => 'NIK harus diisi !',
+            'is_unique' => 'NIK Sudah Terdaftar !'
+        ]);
+        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
+            'required' => 'Nama harus diisi !'
+        ]);
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
+        ]);
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
+            'required' => 'Email harus diisi !',
+            'valid_email' => 'Yang Anda Masukan Bukan Email !'
+        ]);
+        $this->form_validation->set_rules('status', 'Status', 'required', [
+            'required' => 'Status harus diisi !'
+        ]);
+        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required', [
+            'required' => 'Gajipokok harus diisi !'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required', [
+            'required' => 'Password harus diisi !'
+        ]);
+        $this->form_validation->set_rules('level', 'Level', 'required', [
+            'required' => 'Level harus diisi !'
+        ]);
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required', [
+            'required' => 'Alamat harus diisi !'
+        ]);
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required', [
+            'required' => 'Telepon harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -63,14 +87,37 @@ class DataKaryawan extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required');
-        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required');
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('status', 'Status', 'required');
-        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('level', 'Level', 'required');
+        $this->form_validation->set_rules('nik', 'NIK', 'required', [
+            'required' => 'NIK harus diisi !'
+        ]);
+        $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
+            'required' => 'Nama harus diisi !'
+        ]);
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
+        ]);
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
+            'required' => 'Email harus diisi !',
+            'valid_email' => 'Yang Anda Masukan Bukan Email !'
+        ]);
+        $this->form_validation->set_rules('status', 'Status', 'required', [
+            'required' => 'Status harus diisi !'
+        ]);
+        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required', [
+            'required' => 'Gajipokok harus diisi !'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required', [
+            'required' => 'Password harus diisi !'
+        ]);
+        $this->form_validation->set_rules('level', 'Level', 'required', [
+            'required' => 'Level harus diisi !'
+        ]);
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required', [
+            'required' => 'Alamat harus diisi !'
+        ]);
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required', [
+            'required' => 'Telepon harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
