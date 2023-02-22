@@ -8,7 +8,6 @@ class PenilaianKinerja extends CI_Controller
     {
         parent::__construct();
         $this->load->model('PenilaianKinerja_model');
-        $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Admin_model');
     }
@@ -17,8 +16,7 @@ class PenilaianKinerja extends CI_Controller
     {
         $data['title'] = "PenilaiKinerja";
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->getAllPenilaianKinerja();
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi()
         $data['user'] = $this->Admin_model->ambilUser();
 
         $this->load->view('templates/header', $data);

@@ -9,7 +9,7 @@ class PenilaianKuesioner extends CI_Controller
         $this->load->model('PenilaianKinerja_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
-         $this->load->model('Admin_model');
+        $this->load->model('Admin_model');
     }
 
     public function index()
