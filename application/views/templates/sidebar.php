@@ -20,6 +20,8 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <?php  if($this->session->userdata('level') !== 'leader')
+                           if($this->session->userdata('level') !== 'biasa'){ ?>
                 <li class="nav-item">
                     <a href="" class="nav-link" style="color: #ffffff;">
                         <i class="nav-icon fas fa-database"></i>
@@ -65,6 +67,7 @@
                         </li>
                     </ul>
                 </li>
+              <?php }?>
         <?php              
             if($this->session->userdata('level') === 'leader' || $this->session->userdata('level') === 'biasa'){ 
                 $this->load->view('templates/sidebar_menilai'); // yang ingin di tampilkan pada sidebar leader dan menilai karyawans biasa

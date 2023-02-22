@@ -60,6 +60,7 @@
                             </a>
                         </li>
                     </ul>
+                     <?php  if($this->session->userdata('level') !== 'leader'){ ?>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="<?= base_url('Performances/akumulasi') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
@@ -68,6 +69,8 @@
                         </li>
                     </ul>
                 </li>
+                    <?php } ?>
+
                 <?php  if($this->session->userdata('level') !== 'leader'){ ?>
                 <li class="nav-item">
                     <a href="#" class="nav-link" style="color: #ffffff;">
