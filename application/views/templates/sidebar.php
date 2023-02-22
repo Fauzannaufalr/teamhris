@@ -20,6 +20,51 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" style="color: #ffffff;">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>
+                            Master Data
+                            <i class="right fas fa-angle-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('master/datakaryawan') ?>" class="nav-link" style="background-color: #ffffff; color: black;">
+                                <p>Data Karyawan</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('master/dataposisi') ?>" class="nav-link" style="background-color: #ffffff; color: black;">
+                                <p>Data Posisi</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('master/datamitra') ?>" class="nav-link" style="background-color: #ffffff;color: black;">
+                                <p>Data Mitra</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('master/soalkuesioner') ?>" class="nav-link" style="background-color: #ffffff;color: black;">
+                                <p>Soal Kuesioner</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('master/soalrecruitment') ?>" class="nav-link" style="background-color: #ffffff;color: black;">
+                                <p>Soal Tes Pelamar</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
         <?php              
             if($this->session->userdata('level') === 'leader' || $this->session->userdata('level') === 'biasa'){ 
                 $this->load->view('templates/sidebar_menilai'); // yang ingin di tampilkan pada sidebar leader dan menilai karyawans biasa

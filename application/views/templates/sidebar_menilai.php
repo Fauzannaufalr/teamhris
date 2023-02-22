@@ -68,6 +68,7 @@
                         </li>
                     </ul>
                 </li>
+                <?php  if($this->session->userdata('level') !== 'leader'){ ?>
                 <li class="nav-item">
                     <a href="#" class="nav-link" style="color: #ffffff;">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -132,3 +133,4 @@
                         </li>
                     </ul>
                 </li>
+                <?php }?>

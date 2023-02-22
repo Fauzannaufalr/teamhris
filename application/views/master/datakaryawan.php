@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label>Posisi</label>
                         <select class="form-control" name="posisi">
-                            <option>-- Pilih Posisi --</option>
+                            <option disabled>-- Pilih Posisi --</option>
                             <?php foreach ($dataposisi as $dp) : ?>
                                 <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                             <?php endforeach; ?>
@@ -100,7 +100,12 @@
                     </div>
                     <div class="form-group">
                         <label for="level">Level</label>
-                        <input type="text" class="form-control" id="level" name="level" placeholder="Masukan Level">
+                        <select class="form-control" name="level">
+                            <option disabled>-- Pilih Level --</option>
+                            <option>hc</option>
+                            <option>leader</option>
+                            <option>biasa</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
