@@ -44,7 +44,6 @@
                             <td><?= $dk['nik_leader']; ?></td>
                             <td><?= $dk['level']; ?></td>
                             <td><?= $dk['email']; ?></td>
-                            <td><?= $dk['foto']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</button>
                                 <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</button>

@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title" style="margin-bottom: 3px;"><?= $user['nama_karyawan'];  ?></h5>
+                    <h5 class="card-title" style="margin-bottom: 3px; color: black;"><b></b> <?= $user['nama_karyawan'];  ?></h5>
                     <p class="card-text"style="margin-bottom: 3px;"><?= $user['email'];  ?></p>
                     <p class="card-text"style="margin-bottom: 3px;"><?= $user['alamat'];  ?></p>
                     <p class="card-text"style="margin-bottom: 3px;"></p><?= $user['telepon'];  ?></p>
