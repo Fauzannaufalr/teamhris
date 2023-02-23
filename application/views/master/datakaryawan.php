@@ -124,7 +124,7 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
                     </div>
-                
+
 
                     <!-- modal footer  -->
                     <div class="modal-footer">
@@ -232,8 +232,8 @@
                     <p>Apakah anda yakin untuk menghapus data ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
+                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan']  ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

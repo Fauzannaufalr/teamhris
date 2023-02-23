@@ -8,6 +8,9 @@ class Bpjs extends CI_Controller
         parent::__construct();
         $this->load->model('Performances/Akumulasi_model');
         $this->load->model('Admin_model');
+        if (!$this->session->userdata('nik')) {
+            redirect('auth');
+        }
     }
 
     public function index()

@@ -10,6 +10,9 @@ class PenilaianKuesioner extends CI_Controller
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Admin_model');
+        if (!$this->session->userdata('nik')) {
+            redirect('auth');
+        }
     }
 
     public function index()
@@ -68,7 +71,7 @@ class PenilaianKuesioner extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-   
+
     public function hapus($id_karyawan)
     {
         if ($this->DataKaryawan_model->hapus($id_karyawan)) {

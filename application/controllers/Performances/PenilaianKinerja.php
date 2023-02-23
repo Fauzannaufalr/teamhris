@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class PenilaianKinerja extends CI_Controller
 {
     public function __construct()
-   
+
     {
         parent::__construct();
         $this->load->model('PenilaianKinerja_model');
@@ -16,7 +16,7 @@ class PenilaianKinerja extends CI_Controller
     {
         $data['title'] = "PenilaiKinerja";
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->getAllPenilaianKinerja();
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi()
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 
         $this->load->view('templates/header', $data);
@@ -67,7 +67,7 @@ class PenilaianKinerja extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-   
+
     public function hapus($id_karyawan)
     {
         if ($this->DataKaryawan_model->hapus($id_karyawan)) {

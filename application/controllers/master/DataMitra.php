@@ -9,6 +9,10 @@ class DataMitra extends CI_Controller
         $this->load->model('DataMitra_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Admin_model');
+
+        if (!$this->session->userdata('nik')) {
+            redirect('auth');
+        }
     }
 
     public function index()

@@ -8,6 +8,9 @@ class DataSoalpre extends CI_Controller
         parent::__construct();
         $this->load->model('soal_prettest_model');
         $this->load->model('Admin_model');
+        if (!$this->session->userdata('nik')) {
+            redirect('auth');
+        }
     }
 
     public function index()
