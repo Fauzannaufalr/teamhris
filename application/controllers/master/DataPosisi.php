@@ -26,7 +26,9 @@ class DataPosisi extends CI_Controller
         $data['title'] = "Data Posisi";
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -46,7 +48,9 @@ class DataPosisi extends CI_Controller
         $data['title'] = "Data Posisi";
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
-        $this->form_validation->set_rules('posisi', 'Nama Posisi', 'required');
+        $this->form_validation->set_rules('posisi', 'Nama Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

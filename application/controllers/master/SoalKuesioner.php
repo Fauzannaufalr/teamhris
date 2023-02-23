@@ -28,7 +28,9 @@ class SoalKuesioner extends CI_Controller
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required');
+        $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required', [
+            'required' => 'Kuesioner harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -48,7 +50,9 @@ class SoalKuesioner extends CI_Controller
         $data['title'] = "Pertanyaan ";
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
         $data['user'] = $this->Admin_model->ambilUser();
-        $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required');
+        $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required', [
+            'required' => 'Kuesioner harus diisi !'
+        ]);
 
 
         if ($this->form_validation->run() == false) {

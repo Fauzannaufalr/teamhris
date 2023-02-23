@@ -30,8 +30,12 @@ class SoalRecruitment extends CI_Controller
         $data['soalrecruitment'] = $this->SoalRecruitment_model->getAllSoalRecruitment();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required');
-        $this->form_validation->set_rules('link_soal', 'Link Soal', 'required');
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
+        ]);
+        $this->form_validation->set_rules('link_soal', 'Link Soal', 'required', [
+            'required' => 'Link soal harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);

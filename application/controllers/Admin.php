@@ -42,12 +42,17 @@ class Admin extends CI_Controller
         $data['title'] = "Ubah Password";
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('password_lama', 'Password lama', 'required|trim');
+        $this->form_validation->set_rules('password_lama', 'Password lama', 'required|trim', [
+            'required' => 'Password lama harus diisi'
+        ]);
         $this->form_validation->set_rules('password_baru1', 'Password Baru', 'required|trim|min_length[3]|matches[password_baru2]', [
+            'required' => 'Password lama harus diisi',
             'matches' => 'Password tidak cocok!',
             'min_length' => 'Password terlalu pendek!'
         ]);
-        $this->form_validation->set_rules('password_baru2', 'Konfirmasi Password', 'required|trim|matches[password_baru1]');
+        $this->form_validation->set_rules('password_baru2', 'Konfirmasi Password', 'required|trim|matches[password_baru1]', [
+            'required' => 'Password lama harus diisi'
+        ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

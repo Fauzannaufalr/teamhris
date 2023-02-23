@@ -29,16 +29,17 @@ class DataKaryawan_model extends CI_Model
             'foto' => 'default.jpg'
 
         ];
-        // $token = base64_encode(random_bytes(32));
-        // $user_token = [
-        //     'email' => $email,
-        //     'token' => $token,
-        //     'date_created' => time()
+        $token = base64_encode(random_bytes(32));
+        $user_token = [
+            'email' => $email,
+            'token' => $token,
+            'date_created' => time()
 
-        // ];
+        ];
         $this->db->insert('data_karyawan', $data);
-        // $this->db->insert('user_token', $user_token);
+        $this->db->insert('user_token', $user_token);
     }
+
     public function ubahDataKaryawan()
     {
         $email = $this->input->post('email');

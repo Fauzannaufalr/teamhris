@@ -30,7 +30,7 @@ class DataMitra extends CI_Controller
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
+        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_mitra.nik]', [
             'required' => 'NIK harus diisi !',
             'is_unique' => 'NIK Sudah Terdaftar !'
         ]);
@@ -74,7 +74,7 @@ class DataMitra extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
+        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_mitra.nik]', [
             'required' => 'NIK harus diisi !',
             'is_unique' => 'NIK Sudah Terdaftar !'
         ]);

@@ -9,7 +9,7 @@
         </div>
     <?php endif; ?>
     <?= $this->session->flashdata('message'); ?>
-    <form action="<?= base_url('auth'); ?>" method="post">
+    <form action="<?= base_url('auth/lupapassword'); ?>" method="post">
         <div class="field">
             <input type="text" name="email" placeholder="Masukan email anda">
             <label>Email</label>
