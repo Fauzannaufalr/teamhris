@@ -4,7 +4,7 @@
 
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>50</h3>
+                    <h3><?= $bariskaryawan; ?></h3>
                     <p>Jumlah Karyawan</p>
                 </div>
                 <div class="icon">
@@ -17,7 +17,7 @@
 
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>53</h3>
+                    <h3><?= $barisposisi; ?></h3>
                     <p>Jumlah Posisi</p>
                 </div>
                 <div class="icon">
@@ -31,13 +31,13 @@
 
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>44</h3>
-                    <p>Jumlah Akun</p>
+                    <h3><?= $barismitra; ?></h3>
+                    <p>Jumlah Mitra</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-lock"></i>
                 </div>
-                <a href="#" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -62,37 +62,37 @@
             <h3 class="card-title">Periode 1</h3>
         </div>
         <div class="card-body">
-                <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
-                    <thead style="background-color: #ff0000;" >
-                        <tr style="color: #ffffff;">
-                            <th rowspan="2">Nama Karyawan</th>
-                            <th colspan="7" >Nilai</th>
-                        </tr>
-                        <tr style="color: #ffffff;">
-                            <th>Januari</th>
-                            <th>Februari</th>
-                            <th>Maret</th>
-                            <th>April</th>
-                            <th>Mei</th>
-                            <th>Juni</th>
-                            <th>Total</th>
-                        </tr>
-                        <tr style="color: #ffffff;">
-                            <th>Karyawan A</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
+            <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
+                <thead style="background-color: #ff0000;">
+                    <tr style="color: #ffffff;">
+                        <th rowspan="2">Nama Karyawan</th>
+                        <th colspan="7">Nilai</th>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <th>Januari</th>
+                        <th>Februari</th>
+                        <th>Maret</th>
+                        <th>April</th>
+                        <th>Mei</th>
+                        <th>Juni</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <th>Karyawan A</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
 
-            </div>
-            <!-- /.card-body -->
         </div>
+        <!-- /.card-body -->
+    </div>
 
-      
+
 </div>

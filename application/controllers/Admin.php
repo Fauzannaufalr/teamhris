@@ -15,6 +15,9 @@ class Admin extends CI_Controller
         $tahun = isset($_GET["tahun"]) ? $_GET["tahun"] : 0;
         $data['title'] = "Dashboard";
         $data['user'] = $this->Admin_model->ambilUser();
+        $data['bariskaryawan'] = $this->db->get('data_karyawan')->num_rows();
+        $data['barisposisi'] = $this->db->get('data_posisi')->num_rows();
+        $data['barismitra'] = $this->db->get('data_mitra')->num_rows();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
