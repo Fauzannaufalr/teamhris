@@ -22,6 +22,7 @@ class Admin_model extends CI_Model
         $email = $this->input->post('email');
         $alamat = $this->input->post('alamat');
         $telepon = $this->input->post('telepon');
+        $image = $this->input->post('foto');
 
         // cek jika ada gambar yang akan diuploud
         $upload_gambar = $_FILES['foto']['name'];
@@ -50,6 +51,7 @@ class Admin_model extends CI_Model
         $this->db->set('email', $email);
         $this->db->set('alamat', $alamat);
         $this->db->set('telepon', $telepon);
+        $this->db->set('foto', $image);
         $this->db->where('nik', $this->session->userdata('nik'));
         $this->db->update('data_karyawan');
     }
