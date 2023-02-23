@@ -124,6 +124,7 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
                     </div>
+                
 
                     <!-- modal footer  -->
                     <div class="modal-footer">
