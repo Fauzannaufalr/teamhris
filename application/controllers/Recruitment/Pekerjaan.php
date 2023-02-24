@@ -6,7 +6,7 @@ class Pekerjaan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Pekerjaan_model');
+        $this->load->model('Recruitment/Pekerjaan_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Admin_model');
 
@@ -26,7 +26,7 @@ class Pekerjaan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('master/pekerjaan', $data);
+        $this->load->view('recruitment/pekerjaan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -41,13 +41,13 @@ class Pekerjaan extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required', [
             'required' => 'Nama harus diisi !'
         ]);
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required', [
+        $this->form_validation->set_rules('deskripsi_pekerjaan', 'Deskripsi', 'required', [
             'required' => 'Deskripsi harus diisi !'
         ]);
         $this->form_validation->set_rules('kualifikasi', 'Kualifikasi', 'required', [
             'required' => 'Kualifikasi harus diisi !'
         ]);
-        $this->form_validation->set_rules('tanggalberakhir', 'Tanggal Berakhir', 'required', [
+        $this->form_validation->set_rules('tanggal_berakhir', 'Tanggal Berakhir', 'required', [
             'required' => 'Tanggal Berakhir harus diisi !'
         ]);
 
@@ -55,12 +55,12 @@ class Pekerjaan extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('master/pekerjaan', $data);
+            $this->load->view('recruitment/pekerjaan', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->DataKaryawan_model->tambahPekerjaan();
+            $this->Pekerjaan_model->tambahPekerjaan();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
-            redirect('master/pekerjaan');
+            redirect('recruitment/pekerjaan');
         }
     }
 
@@ -74,13 +74,13 @@ class Pekerjaan extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required', [
             'required' => 'Nama harus diisi !'
         ]);
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required', [
+        $this->form_validation->set_rules('deskripsi_pekerjaan', 'Deskripsi', 'required', [
             'required' => 'Deskripsi harus diisi !'
         ]);
         $this->form_validation->set_rules('kualifikasi', 'Kualifikasi', 'required', [
             'required' => 'Kualifikasi harus diisi !'
         ]);
-        $this->form_validation->set_rules('tanggalberakhir', 'Tanggal Berakhir', 'required', [
+        $this->form_validation->set_rules('tanggal_berakhir', 'Tanggal Berakhir', 'required', [
             'required' => 'Tanggal Berakhir harus diisi !'
         ]);
 
@@ -88,12 +88,12 @@ class Pekerjaan extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('master/pekerjaan', $data);
+            $this->load->view('recruitment/pekerjaan', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->DataKaryawan_model->ubahPekerjaan();
+            $this->Pekerjaan_model->ubahPekerjaan();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diedit!</div>');
-            redirect('master/pekerjaan');
+            redirect('recruitment/pekerjaan');
         }
     }
 
@@ -105,6 +105,6 @@ class Pekerjaan extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('master/pekerjaan');
+        redirect('recruitment/pekerjaan');
     }
 }

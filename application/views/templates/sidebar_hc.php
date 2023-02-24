@@ -103,7 +103,7 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('Recruitment/kelola') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('Recruitment/pekerjaan') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Pekerjaan</p>
                               </a>
                           </li>

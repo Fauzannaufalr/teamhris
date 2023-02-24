@@ -13,7 +13,7 @@ class Pekerjaan_model extends CI_Model
 
     public function tambahPekerjaan()
     {
-        $email = $this->input->post('email');
+
         $data = [
             'id_posisi' => htmlspecialchars($this->input->post('posisi')),
             'deskripsi_pekerjaan' => htmlspecialchars($this->input->post('deskripsi_pekerjaan')),
@@ -22,20 +22,12 @@ class Pekerjaan_model extends CI_Model
             'foto' => 'default.jpg'
 
         ];
-        $token = base64_encode(random_bytes(32));
-        $user_token = [
-            'email' => $email,
-            'token' => $token,
-            'date_created' => time()
 
-        ];
         $this->db->insert('recruitment___pekerjaan', $data);
-        $this->db->insert('user_token', $user_token);
     }
 
     public function ubahPekerjaan()
     {
-        $email = $this->input->post('email');
         $data = [
             'id_posisi' => htmlspecialchars($this->input->post('posisi')),
             'deskripsi_pekerjaan' => htmlspecialchars($this->input->post('deskripsi_pekerjaan')),
@@ -45,7 +37,7 @@ class Pekerjaan_model extends CI_Model
         ];
 
         $this->db->where('id_pekerjaan', $this->input->post('id_pekerjaan'));
-        $this->db->update('recruitmnet___pekerjaan', $data);
+        $this->db->update('recruitment___pekerjaan', $data);
     }
 
     public function hapus($id_pekerjaan)
