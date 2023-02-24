@@ -17,7 +17,6 @@
                         <th>Deskripsi Pekerjaan</th>
                         <th>Kualifikasi</th>
                         <th>Tanggal Berakhir</th>
-                        <th>Status</th>
                         <th>foto</th>
                         <th>Aksi</th>
 
@@ -33,8 +32,7 @@
                             <td><?= $k['deskripsi_pekerjaan']; ?></td>
                             <td><?= $k['kualifikasi']; ?></td>
                             <td><?= $k['tanggal_berakhir']; ?></td>
-                            <td><?= $k['status']; ?></td>
-                            <td><?= $k['cover']; ?></td>
+                            <td><?= $k['foto']; ?></td>
                             <td>
                                 <a href="" class="badge" style="background-color: #fbff39; color: black;">edit</a>
                                 <a href="" class="badge" style="background-color: #ff0000; color: black" data-toggle="modal" data-target="#modal-sm">hapus</a>
