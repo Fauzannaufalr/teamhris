@@ -54,4 +54,42 @@ class DataPajak extends CI_Controller
             redirect('payroll/datapajak');
         }
     }
+    public function ubah()
+    {
+        $data['title'] = "Data Pajak";
+        $data['datapajak'] = $this->DataPajak_model->tampilDataPajak();
+        $data['user'] = $this->Admin_model->ambilUser();
+
+        $this->form_validation->set_rules('golongan', 'Golongan', 'required', [
+            'required' => 'Golongan harus diisi !'
+        ]);
+        $this->form_validation->set_rules('kode', 'Kode', 'required', [
+            'required' => 'Kode harus diisi !'
+        ]);
+        $this->form_validation->set_rules('tarif', 'Tarif', 'required', [
+            'required' => 'Tarif harus diisi !'
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('payroll/datapajak', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->DataPajak_model->ubahDataPajak();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diubah!</div>');
+            redirect('payroll/datapajak');
+        }
+    }
+
+    public function hapus($id)
+    {
+        if ($this->DataPajak_model->hapus($id)) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+        } else {
+            $this->session->set_flashdata('message', 'Data gagal dihapus');
+        }
+        redirect('payroll/datapajak');
+    }
 }

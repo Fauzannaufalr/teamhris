@@ -10,11 +10,24 @@ class DataPajak_model extends CI_Model
     public function tambahDataPajak()
     {
         $data = [
-            'golongan' => $this->input->post('golongan'),
-            'kode' => $this->input->post('kode'),
-            'tarif' => $this->input->post('tarif')
+            'golongan' => htmlspecialchars($this->input->post('golongan')),
+            'kode' => htmlspecialchars($this->input->post('kode')),
+            'tarif' => htmlspecialchars($this->input->post('tarif'))
         ];
         $this->db->insert('payroll___datapajak', $data);
+    }
+
+    public function ubahDataPajak()
+    {
+        $data = [
+            'golongan' => htmlspecialchars($this->input->post('golongan')),
+            'kode' => htmlspecialchars($this->input->post('kode')),
+            'tarif' => htmlspecialchars($this->input->post('tarif'))
+
+        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('payroll___datapajak', $data);
     }
 
     public function hapus($id)

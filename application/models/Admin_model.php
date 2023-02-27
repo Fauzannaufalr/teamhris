@@ -22,13 +22,12 @@ class Admin_model extends CI_Model
         $email = $this->input->post('email');
         $alamat = $this->input->post('alamat');
         $telepon = $this->input->post('telepon');
-        $image = $this->input->post('foto');
 
         // cek jika ada gambar yang akan diuploud
         $upload_gambar = $_FILES['foto']['name'];
         if ($upload_gambar) {
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']     = '4000';
+            $config['max_size']     = '4024';
             $config['upload_path'] = './dist/img/profile';
 
             $this->load->library('upload', $config);
@@ -51,7 +50,6 @@ class Admin_model extends CI_Model
         $this->db->set('email', $email);
         $this->db->set('alamat', $alamat);
         $this->db->set('telepon', $telepon);
-        $this->db->set('foto', $image);
         $this->db->where('nik', $this->session->userdata('nik'));
         $this->db->update('data_karyawan');
     }
