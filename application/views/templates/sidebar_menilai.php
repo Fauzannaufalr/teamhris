@@ -29,17 +29,18 @@
                     <?php } ?>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performances/menilaidirisendiri') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('performances/menilaidirisendiri') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Diri Sendiri</p>
                             </a>
                         </li>
                     </ul>
                 <?php if($this->session->userdata('level') !== 'hc')
-                      if($this->session->userdata('level') !== 'leader'){ ?>
+                      if($this->session->userdata('level') !== 'leader')
+                      if($this->session->userdata('level') !== 'ceo'){ ?>
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performances/menilaileader') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('performances/menilaileader') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Leader</p>
                             </a>
                         </li>
@@ -48,14 +49,14 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performances/menilairekan1') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('performances/menilairekan1') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Rekan 1</p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performances/menilairekan2') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('performances/menilairekan2') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Menilai Rekan 2</p>
                             </a>
                         </li>
@@ -63,7 +64,7 @@
                      <?php  if($this->session->userdata('level') !== 'leader'){ ?>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('Performances/akumulasi') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                            <a href="<?= base_url('performances/akumulasi') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                 <p>Akumulasi Keseluruhan</p>
                             </a>
                         </li>

@@ -40,7 +40,7 @@
                             <td><?= $dk['nama_karyawan']; ?></td>
                             <td><?= $dk['nama_posisi']; ?></td>
                             <td><?= $dk['status']; ?></td>
-                            <td><?= $dk['gajipokok']; ?></td>
+                            <td>Rp<?= number_format($dk['gajipokok'], 0, ',', '.'); ?></td>
                             <td><?= $dk['nik_leader']; ?></td>
                             <td><?= $dk['level']; ?></td>
                             <td><?= $dk['email']; ?></td>

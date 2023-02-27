@@ -1,12 +1,40 @@
-<tr>
-               <td>Pilih Dosen</td>
-                  <td> 
-                    <select name="dosen" class="form-control">
-                      <option disabled="" selected="">--Pilih Penilaian--</option>
-                                            <option value="3">Steve Jobs</option>
-                                          </select>
-                  </td>
-                </tr>
+<div class="container-fluid">
+
+    <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body">
+            <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            </div>
+
+            <div class=" form-group mr-auto">
+                            <label>Pilih Penilaian</label>
+                            <select class="form-control" name="nik_nama" id="nik_nama">
+                                <option >-- Pilih Karyawan --</option>
+                                <?php foreach ($datakaryawan as $dk) : ?>
+                                    <option value="<?= $dk['id_karyawan']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+         
+               <div class=" form-group">
+                           
+                           <label>Menilai</label>
+                           <select class="form-control" name="nik_nama" id="nik_nama">
+                               <option >-- Pilih Karyawan --</option>
+                               <?php foreach ($datakaryawan as $dk) : ?>
+                                   <option value="<?= $dk['id_karyawan']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
+                               <?php endforeach; ?>
+                           </select>
+                       </div>
+         
 
 <form method="POST">
           <div class="table-responsive">
@@ -19,16 +47,14 @@
               </thead>
               <tbody>
 
-                                <tr>
+             <tr>
                   <td>Methode pembelajaran bervariasi ?</td>
                   <td>
-                    <select name="data1" class="form-control">
+                    <select name="soal_kuesioner" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
-                      <option value="10">Sangat Baik</option>
-                      <option value="9">Baik</option>
-                      <option value="8">Cukup</option>
-                      <option value="7">Kurang Baik</option>
-                      <option value="6">Sangat Kurang Baik</option>
+                      <?php foreach ($soalkuesioner as $sk) : ?>
+                                    <option value="<?= $sk['id_kuesioner']; ?>"></option>
+                       <?php endforeach; ?>
                     </select>
                   </td>
                 </tr>
@@ -71,7 +97,7 @@
                     </select>
                   </td>
                 </tr>
-                                <tr>
+                 <tr>
                   <td>Pengetahuan dan kecakapan karyawan dalam menjalankan tugas</td>
                   <td>
                     <select name="data5" class="form-control">
@@ -136,7 +162,7 @@
                     </select>
                   </td>
                 </tr>
-                                <tr>
+                <tr>
                   <td>Jasa yang diberikan karyawan sudah tercapai</td>
                   <td>
                     <select name="data10" class="form-control">
@@ -149,13 +175,7 @@
                     </select>
                   </td>
                 </tr>
-                
-                <tr>
-                  <td>Pilih Dosen</td>
-                  <td> 
-                    <input type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
-                  </td>
-                </tr>
+              
               </tbody>
 
             </table>
@@ -163,3 +183,4 @@
             <button name="simpan" type="submit" class="btn btn-info">Simpan Penilaian</button>
           </div>
         </form>
+ </div>

@@ -2,24 +2,55 @@
 
 class PenilaianKinerja_model extends CI_Model
 {
-    public function getAllPenilaianKinerja()
+    public function tampilPenilaianKinerja()
     {
-        $this->db->select('*');
+        $this->db->select('data_karyawan.*, 
+            performances___penilaian_kinerja.id_penilaian_kinerja,
+            performances___penilaian_kinerja.nik,
+            performances___penilaian_kinerja.nilai,
+            performances___penilaian_kinerja.tanggal,
+            performances___penilaian_kinerja.total_kerja,
+            performances___penilaian_kinerja.done_kerja,
+            (SELECT 
+                data_posisi.nama_posisi 
+                    FROM data_posisi
+                        WHERE data_posisi.id_posisi = data_karyawan.id_posisi) AS nama_posisi
+        ');
         $this->db->from('performances___penilaian_kinerja');
-        $this->db->join('data_posisi', 'data_posisi.id_posisi = performances___penilaian_kinerja.id_posisi');
+        $this->db->join('data_karyawan', 'data_karyawan.nik = performances___penilaian_kinerja.nik');
         return  $this->db->get()->result_array();
     }
+   
     public function tambahPenilaianKinerja()
     {
+        $total_kerja = $this->input->post('total_kerja');
+        $done_kerja =  $this->input->post('done_kerja');
+        $nilai = ($total_kerja + $done_kerja) / 2;
         $data = [
-            'nik' => $this->input->post('nik'),
-            'id_posisi' => $this->input->post('posisi'),
-            'tanggal' => $this->input->post('tanggal'),
-            'total_kerja' => $this->input->post('total_kerja'),
-            'done_kerja' => $this->input->post('done_kerja'),
+            "nik"           => $this->input->post("nik_nama"),
+            'tanggal'       => date("Y-m-d"),
+            'total_kerja'   => $total_kerja,
+            'done_kerja'    => $done_kerja,
+            "nilai"         => $nilai
         ];
         $this->db->insert('performances___penilaian_kinerja', $data);
     }
+    public function ubahPenilaianKinerja()
+    {
+        $total_kerja = $this->input->post('total_kerja');
+        $done_kerja =  $this->input->post('done_kerja');
+        $nilai = ($total_kerja + $done_kerja) / 2;
+        $data = [
+            "nik"           => $this->input->post("nik_nama"),
+            'tanggal'       => date("Y-m-d"),
+            'total_kerja'   => $total_kerja,
+            'done_kerja'    => $done_kerja,
+            "nilai"         => $nilai
+        ];
+        $this->db->where('id_penilaian_kinerja', $this->input->post('id_penilaian_kinerja'));
+        $this->db->update('performances___penilaian_kinerja', $data);
+    }
+
     public function hapus($id_penilaian_kinerja)
     {
         $this->db->where('id_penilaian_kinerja', $id_penilaian_kinerja);

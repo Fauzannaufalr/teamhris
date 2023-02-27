@@ -1,8 +1,8 @@
 <?php
 
-class MenilaiRekan2_model extends CI_Model
+class MenilaiRekan1_model extends CI_Model
 {
-    public function tampilMenilaiRekan2()
+    public function tampilMenilaiRekan1()
     {
         $this->db->select('data_karyawan.*, 
             performances___penilaian_kuesioner.id_penilaian_kuesioner ,

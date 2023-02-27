@@ -1,16 +1,16 @@
 <?php
 
-class MenilaiRekan2_model extends CI_Model
+class MenilaiDiriSendiri_model extends CI_Model
 {
-    public function tampilMenilaiRekan2()
+    public function tampilMenilaiDiriSendiri()
     {
         $this->db->select('data_karyawan.*, 
-            performances___penilaian_kuesioner.id_penilaian_kuesioner ,
-            performances___penilaian_kuesioner.nik_penilai,
-            performances___penilaian_kuesioner.menilai,
-            performances___penilaian_kuesioner.tanggal,
-            performances___penilaian_kuesioner.total_nilai,
-            performances___penilaian_kuesioner.total_soal,
+            performances___penilaian_kinerja.id_penilaian_kuesioner ,
+            performances___penilaian_kinerja.nik_penilai,
+            performances___penilaian_kinerja.menilai,
+            performances___penilaian_kinerja.tanggal,
+            performances___penilaian_kinerja.total_nilai,
+            performances___penilaian_kinerja.total_soal,
             (SELECT 
                 data_posisi.nama_posisi 
                     FROM data_posisi
