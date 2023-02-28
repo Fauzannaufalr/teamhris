@@ -18,20 +18,22 @@
         <h2>Lowongan Pekerjaan</h2>
     </div>
     <!-- Begin Page Content -->
-    <?php foreach ($pekerjaan as $pk) : ?>
-        <div class="card" style="width: 18rem;">
-
-            <h5><?= $pk['nama_posisi']; ?></h5>
-
-            <img src="<?= base_url('dist/img/profile/') . $pk['foto']; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-
-
-                <a href="#" class="btn btn-primary">Info Lengkap</a>
-                <a href="#" class="btn btn-primary">Daftar Sekarang</a>
+    <div class="row">
+        <?php foreach ($pekerjaan as $pk) : ?>
+            <div class="card" style="width: 18rem; margin-left: 5px; margin-right: 5px;">
+                <center>
+                    <h1><?= $pk['nama_posisi']; ?></h1>
+                </center>
+                <img src="<?= base_url('dist/img/profile/') . $pk['foto']; ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="row">
+                        <a href="#" class="btn btn-primary">Info Lengkap</a>
+                        <a href="#" class="btn btn-primary" style="margin-left: 2px;">Daftar Sekarang</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
 </body>
 
 </html>
