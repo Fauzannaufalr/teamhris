@@ -74,22 +74,15 @@
                 } ?>
 
 
-<<<<<<< Updated upstream
                 <?php if ($this->session->userdata('level') === 'hc') {
                     $this->load->view('templates/sidebar_menilai'); // yang ingin di tampilkan pada sidebar hc
                     $this->load->view('templates/sidebar_hc');
                 } ?>
-=======
-            <?php if($this->session->userdata('level') === 'hc'){ 
-                $this->load->view('templates/sidebar_menilai'); // yang ingin di tampilkan pada sidebar hc
-                $this->load->view('templates/sidebar_hc');
-             } ?>
 
-            <?php if($this->session->userdata('level') === 'ceo'){ 
-                $this->load->view('templates/sidebar_menilai'); // yang ingin di tampilkan pada sidebar hc
-                $this->load->view('templates/sidebar_ceo');
-             } ?>
->>>>>>> Stashed changes
+                <?php if ($this->session->userdata('level') === 'ceo') {
+                    $this->load->view('templates/sidebar_menilai'); // yang ingin di tampilkan pada sidebar hc
+                    $this->load->view('templates/sidebar_ceo');
+                } ?>
                 <li class="nav-item">
                     <a href="<?= base_url('auth/logout'); ?>" class="nav-link" style="color: #ffffff;">
                         <i class="nav-icon fas fa-sign-out-alt"></i>

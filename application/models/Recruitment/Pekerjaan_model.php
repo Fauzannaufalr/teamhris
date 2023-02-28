@@ -2,6 +2,10 @@
 
 class Pekerjaan_model extends CI_Model
 {
+    public function ambilUser()
+    {
+        return $this->db->get_where('recruitment___pekerjaan', ['id_posisi' => $this->session->userdata('id_posisi')])->row_array();
+    }
     public function getAllPekerjaan()
     {
         // return $this->db->get('data_karyawan')->result_array();

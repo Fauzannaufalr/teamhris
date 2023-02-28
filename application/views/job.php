@@ -17,7 +17,18 @@
         <button type="button" class="btn btn-danger" style="background-color: #ff0000;">LOGIN ADMIN</button>
         <h2>Lowongan Pekerjaan</h2>
     </div>
+    <!-- Begin Page Content -->
+    <h1 style="text-align: center;">Backend</h1>
+    <div class="card" style="width: 18rem;">
 
+        <img src="<?= base_url('dist/img/profile/1.jpg'); ?>" class="card-img-top" alt="...">
+        <div class="card-body">
+
+
+            <a href="#" class="btn btn-primary">Info Lengkap</a>
+            <a href="#" class="btn btn-primary">Daftar Sekarang</a>
+        </div>
+    </div>
 </body>
 
 </html>
