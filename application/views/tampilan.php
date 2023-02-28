@@ -1,64 +1,37 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <!---<title> Responsive Registration Form | CodingLab </title>--->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= base_url('dist/css/styletampilan.css') ?>" />
-    <link rel="stylesheet" href="<?= base_url()  ?> dist/css/adminlte.min.css">
-    <title>form pelamar</title>
+    <link rel="stylesheet" href="<?= base_url('dist/css/stylejob.css') ?>" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Document</title>
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="title">Masukan Data Anda</div>
-        <div class="content">
-            <form action="#">
-                <div class="user-details">
-                    <div class="input-box">
-                        <span class="details">Nama Posisi</span>
-                        <input type="text" placeholder="Masukan Nama Posisi" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Alamat Lengkap</span>
-                        <input type="text" placeholder="Masukan Alamat Lengkap" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Nama Lengkap</span>
-                        <input type="text" placeholder="Masukan Nama Lengkap" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Deskripsi Diri</span>
-                        <input type="text" placeholder="Masukan Deskripsi Diri" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Pendidikan</span>
-                        <input type="text" placeholder="Pendidikan" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Nomor Telepon</span>
-                        <input type="text" placeholder="Masukan Nomor Telepon" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Upload File CV (PDF)</span>
-                        <input type="text" placeholder="Upload File CV" required>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Email</span>
-                        <input type="text" placeholder="Masukan Email " required>
-                    </div>
-                    <div class="button" style="display: flex; text-align: right;">
-                        <input type="submit" value="Simpan">
-                        <input type="submit" value="Batal">
-                    </div>
-                </div>
-        </div>
+    <div class="gambar-teks">
+        <img src="<?php echo base_url('dist/img/job1.jpeg'); ?>" alt="Gambar Latar Belakang">
+        <h1>PT. SAHAWARE TEKNOLOGI INDONESIA</h1>
+        <button type="button" class="btn btn-danger" style="background-color: #ff0000;">LOGIN ADMIN</button>
+        <h2>Lowongan Pekerjaan</h2>
     </div>
+    <!-- Begin Page Content -->
+    <?php foreach ($pekerjaan as $pk) : ?>
+        <div class="card" style="width: 18rem;">
+
+            <h5><?= $pk['nama_posisi']; ?></h5>
+
+            <img src="<?= base_url('dist/img/profile/') . $pk['foto']; ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+
+
+                <a href="#" class="btn btn-primary">Info Lengkap</a>
+                <a href="#" class="btn btn-primary">Daftar Sekarang</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </body>
 
 </html>
