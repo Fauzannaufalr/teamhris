@@ -19,7 +19,7 @@ class Pekerjaan extends CI_Controller
     {
         // printr($_SESSION);
         $data['title'] = "Pekerjaan";
-        $data['pekerjaan'] = $this->Pekerjaan_model->getAllPekerjaan();
+        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 
@@ -34,7 +34,7 @@ class Pekerjaan extends CI_Controller
     {
 
         $data['title'] = "Pekerjaan";
-        $data['pekerjaan'] = $this->Pekerjaan_model->getAllPekerjaan();
+        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 
@@ -67,7 +67,7 @@ class Pekerjaan extends CI_Controller
     public function ubah()
     {
         $data['title'] = "Pekerjaan";
-        $data['pekerjaan'] = $this->Pekerjaan_model->getAllPekerjaan();
+        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Admin_model->ambilUser();
 

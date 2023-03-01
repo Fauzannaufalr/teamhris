@@ -50,4 +50,12 @@ class Pekerjaan_model extends CI_Model
         $this->db->delete('recruitment___pekerjaan');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
+    public function update_cv($filename)
+    {
+        $id = $this->session->userdata('id_pekerjaan');
+
+        $this->db->set('cv', $filename);
+        $this->db->where('id_pekerjaan', $id);
+        $this->db->update('recruitment___pekerjaan');
+    }
 }
