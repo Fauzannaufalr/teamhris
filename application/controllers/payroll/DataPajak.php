@@ -54,6 +54,7 @@ class DataPajak extends CI_Controller
             redirect('payroll/datapajak');
         }
     }
+
     public function ubah()
     {
         $data['title'] = "Data Pajak";

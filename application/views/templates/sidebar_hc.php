@@ -56,7 +56,7 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('payroll/perhitungangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('payroll/perhitungan') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Perhitungan Gaji</p>
                               </a>
                           </li>
