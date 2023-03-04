@@ -7,7 +7,7 @@ class SoalKuesioner extends CI_Controller
     {
         parent::__construct();
         $this->load->model('SoalKuesioner_model');
-        $this->load->model('Admin_model');
+        $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -17,7 +17,7 @@ class SoalKuesioner extends CI_Controller
     {
         $data['title'] = "Soal Kuesioner";
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -29,7 +29,7 @@ class SoalKuesioner extends CI_Controller
     {
         $data['title'] = "Soal Kuesioner";
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required', [
             'required' => 'Kuesioner harus diisi !'
@@ -52,7 +52,7 @@ class SoalKuesioner extends CI_Controller
     {
         $data['title'] = "Pertanyaan ";
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $this->form_validation->set_rules('kuesioner', 'Pertanyaan', 'required', [
             'required' => 'Kuesioner harus diisi !'
         ]);

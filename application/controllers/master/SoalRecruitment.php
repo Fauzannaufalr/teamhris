@@ -8,7 +8,7 @@ class SoalRecruitment extends CI_Controller
         parent::__construct();
         $this->load->model('SoalRecruitment_model');
         $this->load->model('DataPosisi_model');
-        $this->load->model('Admin_model');
+        $this->load->model('Hris_model');
 
         if (!$this->session->userdata('nik')) {
             redirect('auth');
@@ -20,7 +20,7 @@ class SoalRecruitment extends CI_Controller
         $data['title'] = "Soal Tes Pelamar";
         $data['soalrecruitment'] = $this->SoalRecruitment_model->getAllSoalRecruitment();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -32,7 +32,7 @@ class SoalRecruitment extends CI_Controller
     {
         $data['title'] = "Soal Tes Pelamar";
         $data['soalrecruitment'] = $this->SoalRecruitment_model->getAllSoalRecruitment();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
@@ -59,7 +59,7 @@ class SoalRecruitment extends CI_Controller
         $data['title'] = "Soal Recruitment";
         $data['soalrecruitment'] = $this->SoalRecruitment_model->getAllSoalRecruitment();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('link_soal', 'Link Soal', 'required', [
             'required' => 'Link Soal harus diisi !'

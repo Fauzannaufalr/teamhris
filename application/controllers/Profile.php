@@ -17,7 +17,7 @@ class Profile extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar');
-        $this->load->view('admin/profile', $data);
+        $this->load->view('hris/profile', $data);
         $this->load->view('templates/footer');
     }
     public function ubahprofile()
@@ -32,7 +32,7 @@ class Profile extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar');
-            $this->load->view('admin/ubahprofile', $data);
+            $this->load->view('hris/ubahprofile', $data);
             $this->load->view('templates/footer');
         } else {
             $nama = $this->input->post('name', true);
@@ -57,7 +57,7 @@ class Profile extends CI_Controller
                         unlink(FCPATH . 'dist/img/profile/' . $gambar_lama);
                     }
                     $gambar_baru = $this->upload->data('file_name');
-                    $this->db->set('iamge', $gambar_baru);
+                    $this->db->set('image', $gambar_baru);
                 } else {
                 }
             }

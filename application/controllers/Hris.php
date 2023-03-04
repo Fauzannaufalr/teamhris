@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class Hris extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_model');
+        $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -17,33 +17,33 @@ class Admin extends CI_Controller
         $periode = isset($_GET["periode"]) ? $_GET["periode"] : 0;
         $tahun = isset($_GET["tahun"]) ? $_GET["tahun"] : 0;
         $data['title'] = "Dashboard";
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $data['bariskaryawan'] = $this->db->get('data_karyawan')->num_rows();
         $data['barisposisi'] = $this->db->get('data_posisi')->num_rows();
         $data['barismitra'] = $this->db->get('data_mitra')->num_rows();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('admin/dashboard', $data);
+        $this->load->view('hris/dashboard', $data);
         $this->load->view('templates/footer');
     }
 
     public function profile()
     {
         $data['title'] = 'Profile';
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('admin/profile', $data);
+        $this->load->view('hris/profile', $data);
         $this->load->view('templates/footer');
     }
 
     public function ubahPassword()
     {
         $data['title'] = "Ubah Password";
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('password_lama', 'Password lama', 'required|trim', [
             'required' => 'Password lama harus diisi'
@@ -61,7 +61,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('admin/ubahpassword', $data);
+            $this->load->view('hris/ubahpassword', $data);
             $this->load->view('templates/footer');
         } else {
             $password_lama = $this->input->post('password_lama');
@@ -69,16 +69,16 @@ class Admin extends CI_Controller
 
             if (!password_verify($password_lama, $data['user']['password'])) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password lama salah!</div>');
-                redirect('admin/ubahpassword');
+                redirect('hris/ubahpassword');
             } else {
                 if ($password_lama == $password_baru) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Password baru tidak boleh dengan password lama!</div>');
-                    redirect('admin/ubahpassword');
+                    redirect('hris/ubahpassword');
                 } else {
                     // jika password sudah ok
-                    $this->Admin_model->ubahPassword($password_baru);
+                    $this->Hris_model->ubahPassword($password_baru);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Password berhasil diubah!</div>');
-                    redirect('admin/ubahpassword');
+                    redirect('hris/ubahpassword');
                 }
             }
         }
@@ -87,7 +87,7 @@ class Admin extends CI_Controller
     public function ubahProfile()
     {
         $data['title'] = 'Ubah Profile';
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('nama', 'Full name', 'required|trim');
         $this->form_validation->set_rules('email', 'Full name', 'required|trim');
@@ -98,12 +98,12 @@ class Admin extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('admin/ubahprofile', $data);
+            $this->load->view('hris/ubahprofile', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->Admin_model->ubahProfile($data);
+            $this->Hris_model->ubahProfile($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Profile anda berhasil diubah!</div>');
-            redirect('admin/profile');
+            redirect('hris/profile');
         }
     }
 }

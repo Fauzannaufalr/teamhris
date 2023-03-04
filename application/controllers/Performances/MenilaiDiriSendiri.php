@@ -9,7 +9,8 @@ class MenilaiDiriSendiri extends CI_Controller
         $this->load->model('performances/MenilaiDiriSendiri_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
-        $this->load->model('Admin_model');
+        $this->load->model('SoalKuesioner_model');
+        $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -18,8 +19,9 @@ class MenilaiDiriSendiri extends CI_Controller
     public function index()
     {
         $data['title'] = "Menilai Diri Sendiri";
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         // 1.combobox pilih penilai
         // printr($this->session->userdata('nama_karyawan'));

@@ -9,7 +9,8 @@ class MenilaiRekan1 extends CI_Controller
         $this->load->model('performances/MenilaiRekan1_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
-        $this->load->model('Admin_model');
+        $this->load->model('SoalKuesioner_model');
+        $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -18,11 +19,10 @@ class MenilaiRekan1 extends CI_Controller
     public function index()
     {
         $data['title'] = "Menilai Rekan1";
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        // 1.combobox pilih penilai
-        // printr($this->session->userdata('nama_karyawan'));
+        $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
 
         // 2.menilai 
         // menampilkan data karyawan yang nik nya bukan dari login
@@ -51,10 +51,37 @@ class MenilaiRekan1 extends CI_Controller
         //         ]
         //     ]
         // ];
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('performances/menilairekan1', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function simpan()
+    {
+        // ambil data dari form
+        $pertanyaan1 = $this->input->post('pertanyaan1');
+        $jawaban1 = $this->input->post('jawaban1');
+        $pertanyaan2 = $this->input->post('pertanyaan2');
+        $jawaban2 = $this->input->post('jawaban2');
+        $pertanyaan3 = $this->input->post('pertanyaan3');
+        $jawaban3 = $this->input->post('jawaban3');
+        $pertanyaan4 = $this->input->post('pertanyaan4');
+        $jawaban4 = $this->input->post('jawaban4');
+        $pertanyaan5 = $this->input->post('pertanyaan5');
+        $jawaban5 = $this->input->post('jawaban5');
+        $pertanyaan6 = $this->input->post('pertanyaan6');
+        $jawaban6 = $this->input->post('jawaban6');
+        $pertanyaan7 = $this->input->post('pertanyaan7');
+        $jawaban7 = $this->input->post('jawaban7');
+        $pertanyaan8 = $this->input->post('pertanyaan8');
+        $jawaban8 = $this->input->post('jawaban8');
+        $pertanyaan9 = $this->input->post('pertanyaan9');
+        $jawaban9 = $this->input->post('jawaban9');
+        $pertanyaan10 = $this->input->post('pertanyaan10');
+        $jawaban9 = $this->input->post('jawaban10');
+
     }
 }

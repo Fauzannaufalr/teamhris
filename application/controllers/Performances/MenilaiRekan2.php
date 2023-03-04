@@ -9,7 +9,8 @@ class MenilaiRekan2 extends CI_Controller
         $this->load->model('performances/MenilaiRekan2_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
-        $this->load->model('Admin_model');
+        $this->load->model('SoalKuesioner_model');
+        $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -18,9 +19,10 @@ class MenilaiRekan2 extends CI_Controller
     public function index()
     {
         $data['title'] = "Menilai Rekan2";
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
         // 1.combobox pilih penilai
         // printr($this->session->userdata('nama_karyawan'));
 

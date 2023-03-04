@@ -1,6 +1,6 @@
 <?php
 
-class Admin_model extends CI_Model
+class Hris_model extends CI_Model
 {
     public function ambilUser()
     {
@@ -27,7 +27,7 @@ class Admin_model extends CI_Model
         $upload_gambar = $_FILES['foto']['name'];
         if ($upload_gambar) {
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']     = '4024';
+            $config['max_size'] = '4024';
             $config['upload_path'] = './dist/img/profile';
 
             $this->load->library('upload', $config);
@@ -42,7 +42,7 @@ class Admin_model extends CI_Model
                 $this->db->set('foto', $gambar_baru);
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-                redirect('admin/ubahprofile');
+                redirect('hris/ubahprofile');
             }
         }
 

@@ -8,7 +8,7 @@ class DataKaryawan extends CI_Controller
         parent::__construct();
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
-        $this->load->model('Admin_model');
+        $this->load->model('Hris_model');
 
         if (!$this->session->userdata('nik')) {
             redirect('auth');
@@ -21,7 +21,7 @@ class DataKaryawan extends CI_Controller
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -36,7 +36,7 @@ class DataKaryawan extends CI_Controller
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
             'required' => 'NIK harus diisi !',
@@ -89,7 +89,7 @@ class DataKaryawan extends CI_Controller
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('nik', 'NIK', 'required', [
             'required' => 'NIK harus diisi !'

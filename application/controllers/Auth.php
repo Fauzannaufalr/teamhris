@@ -13,7 +13,7 @@ class Auth extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('nik')) {
-            redirect('admin');
+            redirect('hris');
         }
         $this->form_validation->set_rules('username', 'Username', 'required|trim', [
             'required' => 'Username harus diisi!'
@@ -45,7 +45,7 @@ class Auth extends CI_Controller
             if (password_verify($password, $user['password'])) {
                 unset($user['password']);
                 $this->session->set_userdata($user); // ini disession agar data nya terambil global
-                redirect('admin');
+                redirect('hris'); // lokasi setelah melakukan akticitas login
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> Salah Password! </div>');
                 redirect('auth');

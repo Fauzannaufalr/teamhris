@@ -9,7 +9,7 @@ class PenilaianKinerja extends CI_Controller
         $this->load->model('performances/PenilaianKinerja_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
-        $this->load->model('Admin_model');
+        $this->load->model('Hris_model');
 
         if (!$this->session->userdata('nik')) {
             redirect('auth');
@@ -23,7 +23,7 @@ class PenilaianKinerja extends CI_Controller
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         // printr($data);
         $this->load->view('templates/header', $data);
@@ -32,6 +32,18 @@ class PenilaianKinerja extends CI_Controller
         $this->load->view('performances/penilaiankinerja', $data);
         $this->load->view('templates/footer');
     }
+
+    public function import()
+    {
+        $this->load->view('performances/pernilaiankinerja');
+    }
+
+
+    public function upload()
+    {
+        include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
+    }
+
     public function tambah()
     {
 
@@ -39,19 +51,20 @@ class PenilaianKinerja extends CI_Controller
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
             'required' => 'NIK harus diisi !',
         ]);
-       
+
         $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
             'required' => 'Total Kerja harus diisi !'
         ]);
         $this->form_validation->set_rules('done_kerja', 'Done Kerja', 'required', [
             'required' => 'Done Kerja harus diisi !'
         ]);
-      
+
+
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -72,19 +85,19 @@ class PenilaianKinerja extends CI_Controller
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
             'required' => 'NIK harus diisi !',
         ]);
-       
+
         $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
             'required' => 'Total Kerja harus diisi !'
         ]);
         $this->form_validation->set_rules('done_kerja', 'Done Kerja', 'required', [
             'required' => 'Done Kerja harus diisi !'
         ]);
-      
+
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -98,8 +111,8 @@ class PenilaianKinerja extends CI_Controller
             redirect('performances/penilaiankinerja');
         }
     }
-   
-  
+
+
     public function hapus($id)
     {
         if ($this->PenilaianKinerja_model->hapus($id)) {
@@ -110,9 +123,11 @@ class PenilaianKinerja extends CI_Controller
         redirect('performances/penilaiankinerja');
     }
 
-    public function ajax_category(){
+    public function ajax_category()
+    {
         $nik = $_GET["nik"];
-        if(!$nik) return json_encode([]);
+        if (!$nik)
+            return json_encode([]);
         $category = $this->db->query("SELECT
             data_posisi.nama_posisi
             FROM data_karyawan 
