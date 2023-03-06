@@ -6,6 +6,11 @@ class Pekerjaan_model extends CI_Model
     {
         return $this->db->get_where('recruitment___pekerjaan', ['id_posisi' => $this->session->userdata('id_posisi')])->row_array();
     }
+
+    public function ambilUserById($id)
+    {
+        return $this->db->get_where('recruitment___pekerjaan', ['id_pekerjaan' => $id])->row_array();
+    }
     public function tampilPekerjaan()
     {
         // return $this->db->get('data_karyawan')->result_array();
