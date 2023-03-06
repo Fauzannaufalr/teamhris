@@ -47,7 +47,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($user); // ini disession agar data nya terambil global
                 redirect('hris'); // lokasi setelah melakukan akticitas login
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> Salah Password! </div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;">  Password Anda Salah! </div>');
                 redirect('auth');
             }
         } else {

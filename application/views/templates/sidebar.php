@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #ff0000;">
     <!-- Brand Logo -->
     <div class="mt-2"></div>
-    <a href="<?= base_url('admin'); ?>" class="link p-3" style="color: #ffffff;">
+    <a href="<?= base_url('hris'); ?>" class="link p-3" style="color: #ffffff;">
         <img src="<?= base_url(); ?>dist/img/sahaware.jpg" alt="Sahaware Logo"
             class="brand-image img-circle elevation-3 mr-1" width="43" height="43">
         <span class="brand-text font-light" style="font-size:25px;">HRIS</span>

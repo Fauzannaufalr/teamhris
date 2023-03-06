@@ -55,7 +55,6 @@
                     <tr style="color: #ffffff;">
                         <th>No</th>
                         <th>Karyawan</th>
-                        <th>Bulan</th>
                         <th>Kinerja</th>
                         <th>Kuesioner</th>
                         <th>Total</th>

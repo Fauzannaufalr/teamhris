@@ -3,7 +3,9 @@
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer" style="text-align: center;">
-    <strong>Copyright &copy; PT. Sahaware Teknologi Indonesia <?= date('Y'); ?></strong>
+    <strong>Copyright &copy; PT. Sahaware Teknologi Indonesia
+        <?= date('Y'); ?>
+    </strong>
 </footer>
 
 <!-- Control Sidebar -->
@@ -61,12 +63,12 @@
 <script src="<?= base_url() ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
 <script>
-    $('.custom-file-input').on('change', function() {
+    $('.custom-file-input').on('change', function () {
         let fileName = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 
-    $(function() {
+    $(function () {
         $("#example1").DataTable({
             "responsive": true,
             "lengthChange": false,

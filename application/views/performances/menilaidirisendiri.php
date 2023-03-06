@@ -14,6 +14,8 @@
         </div>
       </div>
 
+      <!-- mengapa dikasih logika session, karena untk menilai diri sendiri, scr otomatis dia yang menilai
+           berdaskarkan dari nik karyawan -->
       <?php if ($this->session->userdata('level') !== 'ceo')
         if ($this->session->userdata('level') !== 'hc')
           if ($this->session->userdata('level') !== 'leader')
