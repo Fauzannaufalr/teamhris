@@ -8,7 +8,7 @@ class Pelamar extends CI_Controller
         parent::__construct();
         $this->load->model('Recruitment/Pelamar_model');
         $this->load->model('DataPosisi_model');
-        $this->load->model('Admin_model');
+        $this->load->model('Hris_model');
         $this->load->helper(array('url', 'download'));
 
         if (!$this->session->userdata('nik')) {
@@ -22,7 +22,7 @@ class Pelamar extends CI_Controller
         $data['title'] = "Data Pelamar";
         $data['pelamar'] = $this->Pelamar_model->getAllPelamar();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
 
         $this->load->view('templates/header', $data);
@@ -38,7 +38,7 @@ class Pelamar extends CI_Controller
         $data['title'] = "Data Pelamar";
         $data['pelamar'] = $this->Pekerjaan_model->getAllPelamar();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
@@ -69,7 +69,7 @@ class Pelamar extends CI_Controller
         $data['title'] = "Data Pelamar";
         $data['pelamar'] = $this->Pekerjaan_model->getAllPelamar();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [

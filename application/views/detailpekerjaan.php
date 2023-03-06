@@ -11,29 +11,24 @@
 </head>
 
 <body>
-    <div class="gambar-teks">
-        <img src="<?php echo base_url('dist/img/job1.jpeg'); ?>" alt="Gambar Latar Belakang">
-        <h1>PT. SAHAWARE TEKNOLOGI INDONESIA</h1>
-        <button type="button" class="btn btn-danger" style="background-color: #ff0000;">LOGIN ADMIN</button>
-
-    </div>
-    <br>
     <!-- Begin Page Content -->
-    <div class="container" style="margin: auto; max-width: fit-content; padding: 10px;">
-        <div class="row">
-            <div style="width: 20rem; margin-left: 5px; margin-right: 5px;">
+    <div class="row">
+        <?php foreach ($posisi as $dp) : ?>
+            <?php if ($dp['id_posisi'] == $pekerjaan['id_posisi']) : ?>
                 <center>
-                    <?php foreach ($posisi as $dp) : ?>
-                        <?php if ($dp['id_posisi'] == $pekerjaan['id_posisi']) : ?>
-                            <h3><?= $dp['nama_posisi']; ?></h3>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                    <h3></h3>
                 </center>
+                <h3>Deskripsi Pekerjaan</h3>
+                <p> </p>
+                <h3>kualifikasi</h3>
                 <p> <?= $pekerjaan['kualifikasi']  ?> </p>
+                <p> <?= $pekerjaan['deskripsi_pekerjaan']  ?> </p>
+            <?php endif; ?>
+        <?php endforeach; ?>
 
-            </div>
-        </div>
     </div>
+    </div>
+
 
 
 

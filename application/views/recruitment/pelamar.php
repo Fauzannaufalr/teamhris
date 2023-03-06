@@ -13,6 +13,19 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
+            <div class="dropdown">
+                <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    Status Pelamar
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Pelamar</a>
+                    <a class="dropdown-item" href="#">Proses Interview</a>
+                    <a class="dropdown-item" href="#">Pengerjaan Soal</a>
+                    <a class="dropdown-item" href="#">Pelamar Diterima</a>
+                    <a class="dropdown-item" href="#">Pelamar Ditolak</a>
+                </div>
+            </div>
+            <br>
             <table id="" class="table table-bordered table-striped">
                 <thead>
                     <tr>
