@@ -6,8 +6,8 @@ class DataBpjs extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('payroll/DataBpjs_model');
-        $this->load->model('Admin_model');
+        $this->load->model('payroll/DataBpjs_model', 'DataBpjs');
+        $this->load->model('Hris_model', 'Hris');
 
         if (!$this->session->userdata('nik')) {
             redirect('auth');
@@ -17,8 +17,8 @@ class DataBpjs extends CI_Controller
     public function index()
     {
         $data['title'] = "Data BPJS";
-        $data['databpjs'] = $this->DataBpjs_model->tampilDataBpjs();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['databpjs'] = $this->DataBpjs->tampilDataBpjs();
+        $data['user'] = $this->Hris->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -29,8 +29,8 @@ class DataBpjs extends CI_Controller
     public function tambah()
     {
         $data['title'] = "Data BPJS";
-        $data['databpjs'] = $this->DataBpjs_model->tampilDataBpjs();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['databpjs'] = $this->DataBpjs->tampilDataBpjs();
+        $data['user'] = $this->Hris->ambilUser();
 
         $this->form_validation->set_rules('kelas', 'kelas', 'required', [
             'required' => 'kelas harus diisi !'
@@ -46,7 +46,7 @@ class DataBpjs extends CI_Controller
             $this->load->view('payroll/databpjs', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->DataBpjs_model->tambahDataBpjs();
+            $this->DataBpjs->tambahDataBpjs();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
             redirect('payroll/databpjs');
         }
@@ -55,8 +55,8 @@ class DataBpjs extends CI_Controller
     public function ubah()
     {
         $data['title'] = "Data BPJS";
-        $data['databpjs'] = $this->DataBpjs_model->tampilDataBpjs();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['databpjs'] = $this->DataBpjs->tampilDataBpjs();
+        $data['user'] = $this->Hris->ambilUser();
 
         $this->form_validation->set_rules('kelas', 'kelas', 'required', [
             'required' => 'kelas harus diisi !'
@@ -72,7 +72,7 @@ class DataBpjs extends CI_Controller
             $this->load->view('payroll/databpjs', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->DataBpjs_model->ubahDataBpjs();
+            $this->DataBpjs->ubahDataBpjs();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
             redirect('payroll/databpjs');
         }
@@ -80,7 +80,7 @@ class DataBpjs extends CI_Controller
 
     public function hapus($id)
     {
-        if ($this->DataBpjs_model->hapus($id)) {
+        if ($this->DataBpjs->hapus($id)) {
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');

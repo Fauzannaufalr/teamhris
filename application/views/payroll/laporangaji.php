@@ -36,7 +36,7 @@
                             <option>2030</option>
                         </select>
                     </div>
-                    <button class="btn btn-outline-success ml-auto" href="#"><i class="fas fa-archive"></i> Generate Data</button>
+                    <a class="btn btn-outline-success ml-auto" href="<?= base_url('payroll/laporangaji/generate'); ?>"><i class="fas fa-archive"></i> Generate Data</a>
                 </div>
             </div>
             <!-- /.card-body -->
@@ -79,44 +79,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 1 ?>
-                    <?php foreach ($datakaryawan as $dk) : ?>
-                        <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $dk['nik']; ?></td>
-                            <td style="width: 150px;"><?= $dk['nama_karyawan']; ?></td>
-                            <td><?= $dk['nama_posisi']; ?></td>
-                            <td style="width: 150px;">Rp <?= number_format($dk['gajipokok'], 0, ',', '.'); ?></td>
-                            <td>
-                                <?php foreach ($perhitungan as $pg) : ?>
-                                    <?php if ($pg['id_datakaryawan'] == $dk['id_karyawan']) : ?>
-                                        Rp <?= number_format($pg['tunjangan'], 0, ',', '.'); ?>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </td>
-                            <td>
-                                <?php foreach ($perhitungan as $pg) : ?>
-                                    <?php if ($pg['id_datakaryawan'] == $dk['id_karyawan']) : ?>
-                                        Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </td>
-                            <td style="width: 100px;">
-                                <?php foreach ($perhitungan as $pg) : ?>
-                                    <?php if ($pg['id_datakaryawan'] == $dk['id_karyawan']) : ?>
-                                        Rp <?= number_format($pg['bonus'], 0, ',', '.'); ?>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align: center;">
-                                <button class="badge" style="background-color: #fbff39;" href="#"><i class="fas fa-check-circle"></i> Status Bayar</button>
-                                <button class="badge badge-success" href="#"><i class="fas fa-paper-plane"></i> Kirim Slip Gaji</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td style="width: 150px;"></td>
+                        <td></td>
+                        <td style="width: 150px;"></td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td style="width: 100px;">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: center;">
+                            <button class="badge" style="background-color: #fbff39;" href="#"><i class="fas fa-check-circle"></i> Status Bayar</button>
+                            <button class="badge badge-success" href="#"><i class="fas fa-paper-plane"></i> Kirim Slip Gaji</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

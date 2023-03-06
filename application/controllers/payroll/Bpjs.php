@@ -7,7 +7,7 @@ class Bpjs extends CI_Controller
     {
         parent::__construct();
         $this->load->model('payroll/Bpjs_model', 'Bpjs');
-        $this->load->model('Admin_model', 'Admin');
+        $this->load->model('Hris_model', 'Hris');
         $this->load->model('DataKaryawan_model', 'Datakaryawan');
         $this->load->model('payroll/DataBpjs_model', 'Databpjs');
 
@@ -22,7 +22,7 @@ class Bpjs extends CI_Controller
         $data['bpjskaryawan'] = $this->Bpjs->tampilBpjsKaryawan();
         $data['datakaryawan'] = $this->Datakaryawan->getAllDataKaryawan();
         $data['databpjs'] = $this->Databpjs->tampilDataBpjs();
-        $data['user'] = $this->Admin->ambilUser();
+        $data['user'] = $this->Hris->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -36,7 +36,7 @@ class Bpjs extends CI_Controller
         $data['bpjskaryawan'] = $this->Bpjs->tampilBpjsKaryawan();
         $data['datakaryawan'] = $this->Datakaryawan->getAllDataKaryawan();
         $data['databpjs'] = $this->Databpjs->tampilDataBpjs();
-        $data['user'] = $this->Admin->ambilUser();
+        $data['user'] = $this->Hris->ambilUser();
 
         $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
             'required' => 'NIK & Nama Karyawan harus diisi !'
@@ -68,7 +68,7 @@ class Bpjs extends CI_Controller
         $data['bpjskaryawan'] = $this->Bpjs->tampilBpjsKaryawan();
         $data['datakaryawan'] = $this->Datakaryawan->getAllDataKaryawan();
         $data['databpjs'] = $this->Databpjs->tampilDataBpjs();
-        $data['user'] = $this->Admin->ambilUser();
+        $data['user'] = $this->Hris->ambilUser();
 
         $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
             'required' => 'NIK & Nama Karyawan harus diisi !'

@@ -6,8 +6,8 @@ class LaporanMitra extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('payroll/Pajak_model');
-        $this->load->model('Admin_model');
+        $this->load->model('payroll/Pajak_model', 'Pajak');
+        $this->load->model('Hris_model', 'Hris');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -16,7 +16,7 @@ class LaporanMitra extends CI_Controller
     public function index()
     {
         $data['title'] = "Laporan Mitra";
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

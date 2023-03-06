@@ -7,6 +7,7 @@ class Hris extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Hris_model');
+        $this->load->model('DataPosisi_model', 'DataPosisi');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -31,6 +32,7 @@ class Hris extends CI_Controller
     public function profile()
     {
         $data['title'] = 'Profile';
+        $data['dataposisi'] = $this->DataPosisi->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
         $this->load->view('templates/header', $data);

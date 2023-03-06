@@ -7,7 +7,7 @@ class Perhitungan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('payroll/Perhitungan_model', 'Perhitungan');
-        $this->load->model('Admin_model', 'Admin');
+        $this->load->model('Hris_model', 'Hris');
         $this->load->model('DataKaryawan_model', 'Datakaryawan');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
@@ -19,7 +19,7 @@ class Perhitungan extends CI_Controller
         $data['title'] = "Perhitungan Gaji Karyawan";
         $data['perhitungan'] = $this->Perhitungan->tampilPerhitungan();
         $data['datakaryawan'] = $this->Datakaryawan->getAllDataKaryawan();
-        $data['user'] = $this->Admin->ambilUser();
+        $data['user'] = $this->Hris->ambilUser();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -33,7 +33,7 @@ class Perhitungan extends CI_Controller
         $data['title'] = "Perhitungan Gaji Karyawan";
         $data['perhitungan'] = $this->Perhitungan->tampilPerhitungan();
         $data['datakaryawan'] = $this->Datakaryawan->getAllDataKaryawan();
-        $data['user'] = $this->Admin->ambilUser();
+        $data['user'] = $this->Hris->ambilUser();
 
         $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
             'required' => 'NIK & Nama Karyawan harus diisi !'
@@ -68,7 +68,7 @@ class Perhitungan extends CI_Controller
         $data['title'] = "Perhitungan Gaji Karyawan";
         $data['perhitungan'] = $this->Perhitungan->tampilPerhitungan();
         $data['datakaryawan'] = $this->Datakaryawan->getAllDataKaryawan();
-        $data['user'] = $this->Admin->ambilUser();
+        $data['user'] = $this->Hris->ambilUser();
 
         $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
             'required' => 'NIK & Nama Karyawan harus diisi !'
