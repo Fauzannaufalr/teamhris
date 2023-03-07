@@ -18,13 +18,13 @@ class MenilaiRekan2 extends CI_Controller
 
     public function index()
     {
+        $nik = $this->session->userdata("nik"); // berdasarkan nik.
         $data['title'] = "Menilai Rekan2";
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik); // nik menampilkan data karyawan yang nik nya bukan dari login
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        // 1.combobox pilih penilai
-        // printr($this->session->userdata('nama_karyawan'));
 
         // 2.menilai 
         // menampilkan data karyawan yang nik nya bukan dari login

@@ -20,7 +20,23 @@ class PenilaianKinerja extends CI_Controller
     {
         // printr($_SESSION);
         $data['title'] = "Penilaian Kinerja";
-        $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . $tahun;
+        }
+
+        $data['penilaiankinerja'] = $this->db->query("SELECT performances___penilaian_kinerja.*,
+        data_karyawan.nama_karyawan, data_karyawan.id_posisi
+        FROM performances___penilaian_kinerja
+        INNER JOIN data_karyawan ON performances___penilaian_kinerja.nik=data_karyawan.nik
+        WHERE performances___penilaian_kinerja.tgl='$bulantahun'
+        ORDER BY data_karyawan.nama_karyawan ASC")->result_array();
+
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
@@ -33,16 +49,7 @@ class PenilaianKinerja extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function import()
-    {
-        $this->load->view('performances/pernilaiankinerja');
-    }
 
-
-    public function upload()
-    {
-        include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
-    }
 
     public function tambah()
     {
@@ -135,4 +142,5 @@ class PenilaianKinerja extends CI_Controller
                     WHERE data_karyawan.nik = '$nik'");
         print_r(json_encode($category->row()));
     }
+
 }

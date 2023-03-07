@@ -70,6 +70,7 @@
                         <th>NIK</th>
                         <th>Nama Karyawan</th>
                         <th>Nilai</th>
+                        <th>Kategorisasi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>

@@ -27,17 +27,16 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2">
+                    <div class="col-md-2 ml-5">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
-                            <option value="">2017</option>
-                            <option value="">2018</option>
-                            <option value="">2019</option>
-                            <option value="">2020</option>
-                            <option value="">2021</option>
-                            <option value="">2022</option>
+                            <?php $tahun = date('Y');
+                            for ($i = 2020; $i < $tahun + 3; $i++) { ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php } ?>
                         </select>
                     </div>
+
                     <button type="submit" class="btn btn-info mb-2 ml-3"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
@@ -46,6 +45,25 @@
 
             </div>
         </form>
+    </div>
+    <?php
+    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+        $bulan = $_GET['bulan'];
+        $tahun = $_GET['tahun'];
+        $bulantahun = $bulan . $tahun;
+    } else {
+        $bulan = date('m');
+        $tahun = date('Y');
+        $bulantahun = $bulan . $tahun;
+
+    }
+
+    ?>
+    <div class="alert alert-info">
+        Menampilkan penilaian kinerja Bulan:<span class="fofnt-weight-bold">
+            <?php echo $bulan ?>
+        </span> Tahun:<span class="fofnt-weight-bold">
+            <?php echo $tahun ?>
     </div>
     <div class="card">
         <div class="card-body">
@@ -74,63 +92,69 @@
                 </div>
             </div>
 
+            <?php
 
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>NIK</th>
-                        <th>Nama Karyawan</th>
-                        <th>Tanggal</th>
-                        <th>Total Kerja</th>
-                        <th>Done Kerja</th>
-                        <th>Nilai</th>
-                        <th>Kategorisasi</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1 ?>
-                    <?php foreach ($penilaiankinerja as $pk): ?>
+            $jml_data = count($penilaiankinerja);
+            if ($jml_data > 0) { ?>
+
+
+
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead style="text-align: center;">
                         <tr>
-                            <th>
-                                <?= $no++; ?>
-                            </th>
-                            <td>
-                                <?= $pk['nik']; ?>
-                            </td>
-                            <td>
-                                <?= $pk['nama_karyawan']; ?>
-                            </td>
-
-                            <td>
-                                <?= $pk['tanggal']; ?>
-                            </td>
-                            <td>
-                                <?= $pk['total_kerja']; ?>
-                            </td>
-                            <td>
-                                <?= $pk['done_kerja']; ?>
-                            </td>
-                            <td>
-                                <?= $pk['nilai']; ?>
-                            </td>
-                            <td>
-                                <?= $pk['kategorisasi']; ?>
-                            </td>
-
-                            <td>
-                                <button type="button" class="btn btn-default"
-                                    style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal"
-                                    data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>">edit</button>
-                                <button type="button" class="btn btn-danger"
-                                    style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal"
-                                    data-target="#modal-sm<?= $pk['id_penilaian_kinerja'] ?>">hapus</button>
-                            </td>
+                            <th>No</th>
+                            <th>NIK</th>
+                            <th>Nama Karyawan</th>
+                            <th>Total Kerja</th>
+                            <th>Done Kerja</th>
+                            <th>Nilai</th>
+                            <th>Kategorisasi</th>
+                            <th>Aksi</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1 ?>
+                        <?php foreach ($penilaiankinerja as $pk): ?>
+                            <tr style="text-align: center;">
+                                <th>
+                                    <?= $no++; ?>
+                                </th>
+                                <td>
+                                    <?= $pk['nik']; ?>
+                                </td>
+                                <td>
+                                    <?= $pk['nama_karyawan']; ?>
+                                </td>
+
+                                <td>
+                                    <?= $pk['total_kerja']; ?>
+                                </td>
+                                <td>
+                                    <?= $pk['done_kerja']; ?>
+                                </td>
+                                <td>
+                                    <?= $pk['nilai']; ?>
+                                </td>
+                                <td>
+                                    <?= $pk['kategorisasi']; ?>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-default"
+                                        style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal"
+                                        data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>">edit</button>
+                                    <button type="button" class="btn btn-danger"
+                                        style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal"
+                                        data-target="#modal-sm<?= $pk['id_penilaian_kinerja'] ?>">hapus</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                    Data masih kosong, silahkan mengisi terlebih dahulu penilaian!</span>
+            <?php } ?>
         </div>
     </div>
     <!-- /.card-body -->

@@ -18,12 +18,13 @@ class MenilaiRekan1 extends CI_Controller
 
     public function index()
     {
+        $nik = $this->session->userdata("nik");
         $data['title'] = "Menilai Rekan1";
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-
+        // printr($da   ta);
         // 2.menilai 
         // menampilkan data karyawan yang nik nya bukan dari login
 
@@ -59,29 +60,31 @@ class MenilaiRekan1 extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function simpan()
+    public function tambah()
     {
-        // ambil data dari form
-        $pertanyaan1 = $this->input->post('pertanyaan1');
-        $jawaban1 = $this->input->post('jawaban1');
-        $pertanyaan2 = $this->input->post('pertanyaan2');
-        $jawaban2 = $this->input->post('jawaban2');
-        $pertanyaan3 = $this->input->post('pertanyaan3');
-        $jawaban3 = $this->input->post('jawaban3');
-        $pertanyaan4 = $this->input->post('pertanyaan4');
-        $jawaban4 = $this->input->post('jawaban4');
-        $pertanyaan5 = $this->input->post('pertanyaan5');
-        $jawaban5 = $this->input->post('jawaban5');
-        $pertanyaan6 = $this->input->post('pertanyaan6');
-        $jawaban6 = $this->input->post('jawaban6');
-        $pertanyaan7 = $this->input->post('pertanyaan7');
-        $jawaban7 = $this->input->post('jawaban7');
-        $pertanyaan8 = $this->input->post('pertanyaan8');
-        $jawaban8 = $this->input->post('jawaban8');
-        $pertanyaan9 = $this->input->post('pertanyaan9');
-        $jawaban9 = $this->input->post('jawaban9');
-        $pertanyaan10 = $this->input->post('pertanyaan10');
-        $jawaban9 = $this->input->post('jawaban10');
+        $nilai = $this->input->post("nilai");
+        $total_nilai = array_sum($nilai);
+        $total_soal = count($nilai);
+        $data = [
+            // masukin table dari penilaian kuesioner
 
+        ];
+        // insert penilaian kuesioner
+        $this->db->insert("penilaian_kuesioner", $data);
+        $id_penilaian_kuesioner = $this->db->insert_id();
+
+        // insert detail penilaian kuesioner
+        foreach ($nilai as $id_kuesioner => $val):
+            $data = [
+                "ïd_kuesioner" => $id_kuesioner,
+                "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
+                "nilai" => $val,
+            ];
+            $this->db->insert("kuesionerr__detail", $data);
+        endforeach;
+        printr($_POST);
+        // printr($total);
     }
+
+
 }

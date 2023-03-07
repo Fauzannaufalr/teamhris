@@ -32,7 +32,7 @@
       </div>
 
 
-      <form method="POST">
+      <form method="POST" action="/teamhris/performances/menilairekan1/tambah">
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
             <thead style="background-color: #ff0000; color: white;">
@@ -53,7 +53,7 @@
                     <?= $sk['kuesioner'] ?>
                   </td>
                   <td>
-                    <select name="data2" class="form-control">
+                    <select name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
                       <option value="10">Sangat Baik</option>
                       <option value="9">Baik</option>

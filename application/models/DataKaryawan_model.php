@@ -8,7 +8,16 @@ class DataKaryawan_model extends CI_Model
         $this->db->select('*');
         $this->db->from('data_karyawan');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
-        return  $this->db->get()->result_array();
+        return $this->db->get()->result_array();
+    }
+    public function getDataKaryawanExcept($nik)
+    {
+        // return $this->db->get('data_karyawan')->result_array();
+        $this->db->select('*');
+        $this->db->from('data_karyawan');
+        $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
+        $this->db->where("data_karyawan.nik !=", $nik);
+        return $this->db->get()->result_array();
     }
 
     public function tambahDataKaryawan()

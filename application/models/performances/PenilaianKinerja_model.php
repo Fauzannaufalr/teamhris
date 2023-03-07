@@ -8,7 +8,7 @@ class PenilaianKinerja_model extends CI_Model
             performances___penilaian_kinerja.id_penilaian_kinerja,
             performances___penilaian_kinerja.nik,
             performances___penilaian_kinerja.nilai,
-            performances___penilaian_kinerja.tanggal,
+            performances___penilaian_kinerja.tgl,
             performances___penilaian_kinerja.total_kerja,
             performances___penilaian_kinerja.done_kerja,
             performances___penilaian_kinerja.kategorisasi,
@@ -29,7 +29,7 @@ class PenilaianKinerja_model extends CI_Model
         $nilai = ($total_kerja + $done_kerja) / 2;
         $data = [
             "nik" => $this->input->post("nik_nama"),
-            'tanggal' => date("Y-m-d"),
+            'tgl' => date("mY"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
             "nilai" => $nilai,
@@ -44,7 +44,7 @@ class PenilaianKinerja_model extends CI_Model
         $nilai = ($total_kerja + $done_kerja) / 2;
         $data = [
             "nik" => $this->input->post("nik_nama"),
-            'tanggal' => date("Y-m-d"),
+            'tgl' => date("mY"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
             "nilai" => $nilai
