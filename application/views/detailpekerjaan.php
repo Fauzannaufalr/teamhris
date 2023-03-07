@@ -16,7 +16,7 @@
         <?php foreach ($posisi as $dp) : ?>
             <?php if ($dp['id_posisi'] == $pekerjaan['id_posisi']) : ?>
                 <center>
-                    <h3></h3>
+                    <h3><?= $dp['nama_posisi']; ?></h3>
                 </center>
                 <h3>Deskripsi Pekerjaan</h3>
                 <p> </p>
