@@ -33,9 +33,9 @@
                             <a href="<?= base_url() ?>detailpekerjaan/detail/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4" ; class="btn btn-">
                                 Info Lengkap
                             </a>
-                            <button type="button" style="margin-left:50px; background-color: #ff0000" ; class="btn btn-primary" data-toggle="modal" data-target="#modal-upload-cv">
+                            <a type="button" style="margin-left:50px; background-color: #ff0000" ; class="btn btn-primary" data-toggle="modal" data-target="#modal-upload-cv<?= $pk['id_pekerjaan'] ?>">
                                 Upload CV
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -46,35 +46,37 @@
 
 
 
-
-    <div class="modal fade" id="modal-upload-cv" tabindex="-1" role="dialog" aria-labelledby="modal-upload-cv-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-upload-cv-label">Upload CV</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <?php foreach ($pekerjaan as $pk) : ?>
+        <div class="modal fade" id="modal-upload-cv<?= $pk['id_pekerjaan'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-upload-cv-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-upload-cv-label">Upload CV</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" enctype="multipart/form-data" action="<?= base_url('tampilan/upload_cv') ?>">
+                        <div class="modal-body">
+                            <input type="hidden" class="form-control" id="id_posisi" name="id_posisi" value="<?= $pk['id_posisi'] ?>">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="cv">Pilih file CV</label>
+                                <input type="file" class="form-control-file" id="cv" name="cv">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
                 </div>
-                <form method="post" enctype="multipart/form-data" action="<?= base_url('tampilan/upload_cv') ?>">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="cv">Pilih file CV</label>
-                            <input type="file" class="form-control-file" id="cv" name="cv">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
+    <?php endforeach ?>
 
 
 

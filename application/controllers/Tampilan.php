@@ -9,11 +9,6 @@ class Tampilan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('recruitment/Pekerjaan_model');
-
-
-        if ($this->session->userdata('nik')) {
-            redirect('dashboard');
-        }
     }
     public function index()
     {
@@ -21,6 +16,7 @@ class Tampilan extends CI_Controller
         $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
         $this->load->view('tampilan', $data);
     }
+
     public function upload_cv()
     {
         // Load library untuk upload file
@@ -36,8 +32,13 @@ class Tampilan extends CI_Controller
         // Lakukan upload file
         if ($this->upload->do_upload('cv')) {
             // Jika upload berhasil, simpan nama file ke database
-            $filename = $this->upload->data('file_name');
-            $this->Profil_model->update_cv($filename);
+            $filename = $this->upload->data();
+            $data = [
+                'file_cv' => $filename['file_name'],
+                'email' => $this->input->post('email'),
+                'status' => 'pelamar',
+                'id_pekerjaan' => $this->input->post('id_posisi')
+            ];
 
             // Tampilkan pesan berhasil
             $this->session->set_flashdata('success', 'CV berhasil diupload.');
@@ -47,6 +48,7 @@ class Tampilan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
+        $this->db->insert('recruitment___pelamar', $data);
         redirect('tampilan');
     }
     public function tambah()
