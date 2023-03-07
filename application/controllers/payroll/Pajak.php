@@ -37,8 +37,9 @@ class Pajak extends CI_Controller
         $data['datapajak'] = $this->DataPajak->tampilDataPajak();
         $data['user'] = $this->Hris->ambilUser();
 
-        $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
-            'required' => 'NIK & Nama Karyawan harus diisi !'
+        $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required|is_unique[payroll___pajak.id_datakaryawan]', [
+            'required' => 'NIK & Nama Karyawan harus diisi !',
+            'is_unique' => 'NIK & Nama Sudah Terdaftar !'
         ]);
         $this->form_validation->set_rules('golongan_kode', 'Golongan', 'required', [
             'required' => 'Golongan & Kode harus diisi !'

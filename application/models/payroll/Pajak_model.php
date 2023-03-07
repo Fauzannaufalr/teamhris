@@ -4,10 +4,11 @@ class Pajak_model extends CI_Model
 {
     public function tampilPajakKaryawan()
     {
-        $this->db->select('*,payroll___pajak.id as id_pajak');
-        $this->db->from('payroll___pajak');
-        $this->db->join('data_karyawan', 'data_karyawan.id_karyawan = payroll___pajak.id_datakaryawan');
-        $this->db->join('payroll___datapajak', 'payroll___datapajak.id = payroll___pajak.id_datapajak');
+        $this->db->select('*, pp.id as id_pajak');
+        $this->db->from('payroll___pajak pp');
+        $this->db->join('data_karyawan dk', 'dk.id_karyawan = pp.id_datakaryawan');
+        $this->db->join('payroll___datapajak pd', 'pd.id = pp.id_datapajak');
+        $this->db->order_by('pp.id_datakaryawan', 'asc');
         return  $this->db->get()->result_array();
     }
 

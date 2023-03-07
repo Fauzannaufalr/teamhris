@@ -69,39 +69,66 @@
                         <th>Nama Karyawan</th>
                         <th>Posisi</th>
                         <th>Gaji Pokok</th>
+                        <th>BPJS Kesehatan</th>
+                        <th>Pajak</th>
                         <th>Tunjangan</th>
                         <th>Potongan</th>
                         <th>Bonus</th>
-                        <th>BPJS Kesehatan</th>
-                        <th>Pajak</th>
                         <th>Total</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th></th>
-                        <td></td>
-                        <td style="width: 150px;"></td>
-                        <td></td>
-                        <td style="width: 150px;"></td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td style="width: 100px;">
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td style="text-align: center;">
-                            <button class="badge" style="background-color: #fbff39;" href="#"><i class="fas fa-check-circle"></i> Status Bayar</button>
-                            <button class="badge badge-success" href="#"><i class="fas fa-paper-plane"></i> Kirim Slip Gaji</button>
-                        </td>
-                    </tr>
+                    <?php $no = 1 ?>
+                    <?php foreach ($laporan as $lg) : ?>
+                        <tr>
+                            <th><?= $no++; ?></th>
+                            <td><?= $lg['nik']; ?></td>
+                            <td><?= $lg['nama_karyawan']; ?></td>
+                            <td><?= $lg['nama_posisi']; ?></td>
+                            <td>Rp <?= number_format($lg['gajipokok'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($lg['bpjs'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($lg['pajak'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($lg['tunjangan'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($lg['potongan'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($lg['bonus'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($lg['total'], 0, ',', '.'); ?></td>
+                            <td><?= $lg['status']; ?></td>
+                            <td style="text-align: center;">
+                                <button class="badge" style="background-color: #fbff39;" href="" data-toggle="modal" data-target="#modal-sm<?= $lg['id']; ?>"><i class="fas fa-check-circle"></i> Status Bayar</button>
+                                <button class="badge badge-success"><i class="fas fa-paper-plane"></i> Kirim Slip Gaji</button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
     </div>
 </div>
+
+<!-- Modal status -->
+<?php foreach ($laporan as $lg) : ?>
+    <div class="modal fade" id="modal-sm<?= $lg['id']; ?>">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Data</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah anda yakin untuk menghapus data ?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
+                    <a href="<?= base_url() ?>payroll/databpjs/hapus/<?= $lg['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>

@@ -7,6 +7,7 @@ class Perhitungan_model extends CI_Model
         $this->db->select('dk.nik,dk.nama_karyawan,dk.id_karyawan,pp.*,pp.id as id_perhitungan');
         $this->db->from('payroll___perhitungan pp');
         $this->db->join('data_karyawan dk', 'dk.id_karyawan = pp.id_datakaryawan');
+        $this->db->order_by('pp.id_datakaryawan', 'asc');
         return  $this->db->get()->result_array();
     }
 

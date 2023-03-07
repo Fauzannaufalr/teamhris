@@ -8,7 +8,7 @@ class Bpjs_model extends CI_Model
         $this->db->from('payroll___bpjs pb');
         $this->db->join('data_karyawan dk', 'dk.id_karyawan = pb.id_datakaryawan');
         $this->db->join('payroll___databpjs pd', 'pd.id = pb.id_databpjs');
-        $this->db->order_by('pb.id', 'asc');
+        $this->db->order_by('pb.id_datakaryawan', 'asc');
         return  $this->db->get()->result_array();
     }
 

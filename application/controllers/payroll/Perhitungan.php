@@ -35,8 +35,9 @@ class Perhitungan extends CI_Controller
         $data['datakaryawan'] = $this->Datakaryawan->getAllDataKaryawan();
         $data['user'] = $this->Hris->ambilUser();
 
-        $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
-            'required' => 'NIK & Nama Karyawan harus diisi !'
+        $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required|is_unique[payroll___perhitungan.id_datakaryawan]', [
+            'required' => 'NIK & Nama Karyawan harus diisi !',
+            'is_unique' => 'NIK & Nama Sudah Terdaftar !'
         ]);
         $this->form_validation->set_rules('tunjangan', 'tunjangan', 'required|numeric', [
             'required' => 'Tunjangan harus diisi !',

@@ -38,8 +38,9 @@ class Bpjs extends CI_Controller
         $data['databpjs'] = $this->Databpjs->tampilDataBpjs();
         $data['user'] = $this->Hris->ambilUser();
 
-        $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
-            'required' => 'NIK & Nama Karyawan harus diisi !'
+        $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required|is_unique[payroll___bpjs.id_datakaryawan]', [
+            'required' => 'NIK & Nama Karyawan harus diisi !',
+            'is_unique' => 'NIK & Nama Sudah Terdaftar !'
         ]);
         $this->form_validation->set_rules('kelas_nilai', 'kelas_nilai', 'required', [
             'required' => 'Golongan & Kode harus diisi !'
