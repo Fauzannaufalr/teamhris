@@ -53,7 +53,7 @@
                             <td><?= $ds['status']; ?></td>
                             <td><?= $ds['nilai']; ?></td>
                             <td>
-                                <button class="badge badge-success" href="#"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
+                                <button class="badge badge-success" href="#" data-toggle="modal" data-target="#sendGoogleMeetLinkModal"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                                 <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar'] ?>">hapus</button>
                             </td>
                         </tr>
@@ -89,3 +89,36 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+
+
+
+<!-- Send Google Meet Link Modal -->
+<div class="modal fade" id="sendGoogleMeetLinkModal" tabindex="-1" role="dialog" aria-labelledby="sendGoogleMeetLinkModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sendGoogleMeetLinkModalLabel">Jadwalkan Interview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="sendGoogleMeetLinkForm" method="post" action="<?= base_url('send_google_meet_link'); ?>">
+                    <div class="form-group">
+                        <label for="recipientEmail">Recipient Email</label>
+                        <input type="email" class="form-control" id="recipientEmail" name="recipientEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="googleMeetLink">Google Meet Link</label>
+                        <input type="text" class="form-control" id="googleMeetLink" name="googleMeetLink" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
