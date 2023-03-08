@@ -4,26 +4,32 @@
 
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3><?= $bariskaryawan; ?></h3>
+                    <h3>
+                        <?= $bariskaryawan; ?>
+                    </h3>
                     <p>Jumlah Karyawan</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <div class="col-lg-3 col-6">
 
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3><?= $barisposisi; ?></h3>
+                    <h3>
+                        <?= $barisposisi; ?>
+                    </h3>
                     <p>Jumlah Posisi</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
-                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -31,13 +37,16 @@
 
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3><?= $barismitra; ?></h3>
+                    <h3>
+                        <?= $barismitra; ?>
+                    </h3>
                     <p>Jumlah Mitra</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-lock"></i>
                 </div>
-                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

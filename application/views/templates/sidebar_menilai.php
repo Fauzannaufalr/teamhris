@@ -37,19 +37,16 @@
             </a>
         </li>
     </ul>
-    <?php if ($this->session->userdata('level') !== 'hc')
-        if ($this->session->userdata('level') !== 'leader')
-            if ($this->session->userdata('level') !== 'ceo') { ?>
 
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="<?= base_url('performances/menilaileader') ?>" class="nav-link "
-                            style="background-color: #ffffff; color: black;">
-                            <p>Menilai Leader</p>
-                        </a>
-                    </li>
-                </ul>
-            <?php } ?>
+
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="<?= base_url('performances/menilaileader') ?>" class="nav-link "
+                style="background-color: #ffffff; color: black;">
+                <p>Menilai Leader</p>
+            </a>
+        </li>
+    </ul>
 
     <ul class="nav nav-treeview">
         <li class="nav-item">
@@ -89,28 +86,30 @@
             </p>
         </a>
         <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('training/soal') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Kelola Data Soal</p>
-                            </a>
-                        </li>
-                    </ul><ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
-                                <p>Kelola Peserta Ujian</p>
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('training/hasil_ujian')?>" class="nav-link " style="background-color: #ffffff; color: black;">
+            <li class="nav-item">
+                <a href="<?= base_url('training/soal') ?>" class="nav-link "
+                    style="background-color: #ffffff; color: black;">
+                    <p>Kelola Data Soal</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="#" class="nav-link " style="background-color: #ffffff; color: black;">
+                    <p>Kelola Peserta Ujian</p>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="<?= base_url('training/hasil_ujian') ?>" class="nav-link "
+                    style="background-color: #ffffff; color: black;">
                     <p>Hasil Ujian</p>
                 </a>
-             </li>
-         </ul>
-       
-        
+            </li>
+        </ul>
+
+
     </li>
 <?php } ?>
-                    

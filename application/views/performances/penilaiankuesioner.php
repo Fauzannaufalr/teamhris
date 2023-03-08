@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #ff0000;">
+        <div class="card-header" style="color: white; background-color: #cc0000;">
             <h4> Filter Data Penilaian Kinerja</h4>
         </div>
 
@@ -52,7 +52,7 @@
 
             <!-- validation crud -->
             <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-default" role="alert" style="background-color: #800000;">
                     <?= validation_errors(); ?>
                 </div>
             <?php endif; ?>

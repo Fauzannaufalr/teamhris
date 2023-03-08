@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #ff0000;">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #cc0000;">
     <!-- Brand Logo -->
     <div class="mt-2"></div>
     <a href="<?= base_url('hris'); ?>" class="link p-3" style="color: #ffffff;">

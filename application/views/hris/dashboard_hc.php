@@ -70,7 +70,7 @@
         <div class="card-body">
 
             <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
-                <thead style="background-color: #ff0000;">
+                <thead style="background-color: #cc0000;">
                     <tr style="color: #ffffff;">
                         <th rowspan="2" style="vertical-align: middle;">Nama Karyawan</th>
                         <th colspan="7">Nilai</th>

@@ -26,7 +26,7 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
-        $nilai = ($total_kerja + $done_kerja) / 2;
+        $nilai = $total_kerja / $done_kerja * (100);
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),
@@ -41,7 +41,7 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
-        $nilai = ($total_kerja + $done_kerja) / 2;
+        $nilai = $total_kerja / $done_kerja * (100);
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),

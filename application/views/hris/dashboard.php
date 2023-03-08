@@ -11,15 +11,9 @@ if ($this->session->userdata('level') === 'hc') {
   $this->load->view('hris/dashboard_hc');
 
 } ?>
-<!-- level karyawan -->
+<!-- level karyawan dan leader -->
 <?php
-if ($this->session->userdata('level') === 'biasa') {
-  $this->load->view('hris/dashboard_karyawan');
+if ($this->session->userdata('level') === 'leader' || $this->session->userdata('level') === 'biasa')
+  $this->load->view('hris/dashboard_karyawan'); {
 
-} ?>
-
-<?php
-
-if ($this->session->userdata('level') === 'leader') {
-  $this->load->view('hris/dashboard_leader');
 } ?>

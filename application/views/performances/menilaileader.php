@@ -37,7 +37,7 @@
       <form method="POST">
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
-            <thead style="background-color: #ff0000; color: white;">
+            <thead style="background-color: #cc0000; color: white;">
               <tr style="text-align: center;">
                 <th>No</th>
                 <th>Pertanyaan</th>

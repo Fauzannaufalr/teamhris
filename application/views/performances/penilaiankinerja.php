@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #ff0000;">
+        <div class="card-header" style="color: white; background-color: #cc0000;">
             <h4> Filter Data Penilaian Kinerja</h4>
         </div>
 
@@ -59,7 +59,7 @@
     }
 
     ?>
-    <div class="alert alert-info">
+    <div class="alert alert-default" style="background-color: #cc0000; color: white;">
         Menampilkan penilaian kinerja Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="fofnt-weight-bold">
@@ -140,15 +140,15 @@
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-default"
-                                        style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal"
+                                    <button type="button" class="btn btn-secondary" style="font-size: 14px; color: white;"
+                                        data-toggle="modal"
                                         data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>">edit</button>
-                                    <button type="button" class="btn btn-danger"
-                                        style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal"
+
+                                    <button type="button" class="btn btn-warning" style="font-size: 12px; color: white;"
+                                        data-toggle="modal"
                                         data-target="#modal-sm<?= $pk['id_penilaian_kinerja'] ?>">hapus</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </td>
                     </tbody>
                 </table>
             <?php } else { ?>
@@ -268,11 +268,6 @@
                         <div class="form-group">
                             <label>Posisi</label>
                             <input type="text" readonly id="id_posisi" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="tanggal">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                value="<?= $pk['tanggal']; ?>">
                         </div>
 
 
