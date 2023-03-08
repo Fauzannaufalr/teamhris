@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2 ml-5">
+                    <div class="col-md-2 ml-2">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
                             <?php $tahun = date('Y');
@@ -59,7 +59,11 @@
     }
 
     ?>
+<<<<<<< Updated upstream
     <div class="alert alert-default" style="background-color: #cc0000; color: white;">
+=======
+    <div class="alert alert" style="background-color: #ff0000; color: white;">
+>>>>>>> Stashed changes
         Menampilkan penilaian kinerja Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="fofnt-weight-bold">
@@ -269,7 +273,10 @@
                             <label>Posisi</label>
                             <input type="text" readonly id="id_posisi" class="form-control" />
                         </div>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
                         <div class="form-group">
                             <label for="total_kerja">Total Kerja</label>
@@ -324,8 +331,6 @@
 </div>
 </div>
 </div>
-
-
 <!-- ak.hir modal hapus -->
 <script>
     const nik_nama = document.getElementById("nik_nama");

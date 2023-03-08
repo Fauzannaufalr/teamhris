@@ -1,8 +1,13 @@
 <div class="container-fluid">
 
     <div class="card">
+<<<<<<< Updated upstream
         <div class="card-header" style="color: white; background-color: #cc0000;">
             <h4> Filter Data Penilaian Kinerja</h4>
+=======
+        <div class="card-header" style="color: white; background-color: #ff0000;">
+            <h4> Filter Data Penilaian Kuesioner</h4>
+>>>>>>> Stashed changes
         </div>
 
         <form class="form-horizontal">
@@ -27,17 +32,16 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2">
+                    <div class="col-md-2 ml-5">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
-                            <option value="">2017</option>
-                            <option value="">2018</option>
-                            <option value="">2019</option>
-                            <option value="">2020</option>
-                            <option value="">2021</option>
-                            <option value="">2022</option>
+                            <?php $tahun = date('Y');
+                            for ($i = 2020; $i < $tahun + 3; $i++) { ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php } ?>
                         </select>
                     </div>
+
                     <button type="submit" class="btn btn-info mb-2 ml-3"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
@@ -46,6 +50,25 @@
 
             </div>
         </form>
+    </div>
+    <?php
+    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+        $bulan = $_GET['bulan'];
+        $tahun = $_GET['tahun'];
+        $bulantahun = $bulan . $tahun;
+    } else {
+        $bulan = date('m');
+        $tahun = date('Y');
+        $bulantahun = $bulan . $tahun;
+
+    }
+
+    ?>
+    <div class="alert alert" style="background-color: #ff0000; color: white;">
+        Menampilkan penilaian kuesioner Bulan:<span class="fofnt-weight-bold">
+            <?php echo $bulan ?>
+        </span> Tahun:<span class="fofnt-weight-bold">
+            <?php echo $tahun ?>
     </div>
     <div class="card">
         <div class="card-body">
@@ -62,88 +85,70 @@
                 </div>
             </div>
 
-            <!-- table -->
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>NIK</th>
-                        <th>Nama Karyawan</th>
-                        <th>Nilai</th>
-                        <th>Kategorisasi</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1 ?>
-                    <?php foreach ($penilaiankuesioner as $pr): ?>
+            <!-- perulangan -->
+            <?php
+
+            $jml_data = count($penilaiankuesioner);
+            if ($jml_data > 0) { ?>
+
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead style="text-align: center;">
                         <tr>
-                            <th>
-                                <?= $no++; ?>
-                            </th>
-                            <td>
-                                <?= $pr['nik']; ?>
-                            </td>
-                            <td>
-                                <?= $pr['nama_karyawan']; ?>
-                            </td>
-                            <td style="text-align: center;">
-                                <?php
-                                if ($row['nilai'] > 74 - 94 && $row['nilai'] <= 10) {
-                                    echo "SB";
-                                } elseif ($row['nilai'] > 63 - 73 && $row['nilai'] <= 9) {
-                                    echo "B";
-                                } elseif ($row['nilai'] > 42 - 62 && $row['nilai'] <= 8) {
-                                    echo "C";
-                                } elseif ($row['nilai'] > 21 - 41 && $row['nilai'] <= 7) {
-                                    echo "K";
-                                } elseif ($row['nilai'] > 0 - 20 && $row['nilai'] <= 6) {
-                                    echo "SK";
-                                } else {
-                                    echo "N/A";
-                                }
-                                ?>
-
-                            </td>
-
-                            <button type="button" class="btn btn-danger"
-                                style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal"
-                                data-target="#modal-sm<?= $pk['id_penilaian_kuesioner'] ?>">hapus</button>
-                            </td>
+                            <th>No</th>
+                            <th>NIK</th>
+                            <th>Nama Karyawan</th>
+                            <th>Nilai</th>
+                            <th>Kategorisasi</th>
+                            <th>Aksi</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1 ?>
+                        <?php foreach ($penilaiankuesioner as $pr): ?>
+                            <tr style="text-align: center;">
+                                <th>
+                                    <?= $no++; ?>
+                                </th>
+                                <td>
+                                    <?= $pr['nik']; ?>
+                                </td>
+                                <td>
+                                    <?= $pr['nama_karyawan']; ?>
+                                </td>
+
+                                <td>
+                                    <?= $pr['kategorisasi']; ?>
+                                </td>
+
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                    Data masih kosong, silahkan pilih bulan dan tahun terlebih dahulu!</span>
+            <?php } ?>
         </div>
     </div>
     <!-- /.card-body -->
 </div>
 
-
-
-<!-- Modal Hapus -->
-<?php foreach ($penilaiankuesioner as $pr): ?>
-    <div class="modal fade" id="modal-sm<?= $pk['id_penilaian_kuesioner']; ?>" tabindek="-1" role+dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Hapus Data</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah anda yakin untuk menghapus data ?</p>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>performances/penilaiankuesioner/hapus/<?= $pr['id_penilaian_kuesioner'] ?>"
-                        type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-<?php endforeach; ?>
 </div>
+<!-- ak.hir modal hapus -->
+<script>
+    const nik_nama = document.getElementById("nik_nama");
+    const id_posisi = document.getElementById("id_posisi");
+    nik_nama.onchange = function (e) {
+        const nik = e.target.value;
+        fetch(`/teamhris/performances/penilaiankinerja/ajax_category?nik=${nik}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(response => response.json())
+            .then(response => {
+                id_posisi.value = response?.nama_posisi || ""
+            })
+    }
+</script>

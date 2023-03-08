@@ -14,13 +14,13 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group form-group col-md-4">
         <label>Penilai</label>
         <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
         <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
       </div>
 
-      <div class=" form-group">
+      <div class=" form-group col-md-4">
 
         <label>Menilai</label>
         <select class="form-control" name="nik_nama" id="nik_nama">

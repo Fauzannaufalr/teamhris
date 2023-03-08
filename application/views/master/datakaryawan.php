@@ -3,7 +3,7 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <?php if (validation_errors()) : ?>
+            <?php if (validation_errors()): ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>
                 </div>
@@ -13,7 +13,8 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
-            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataKaryawan"><i class="fas fa-plus"></i>
+            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal"
+                data-target="#tambahDataKaryawan"><i class="fas fa-plus"></i>
                 Tambah Karyawan
             </button>
             <table id="example1" class="table table-bordered table-striped">
@@ -33,20 +34,42 @@
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($datakaryawan as $dk) : ?>
+                    <?php foreach ($datakaryawan as $dk): ?>
                         <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $dk['nik']; ?></td>
-                            <td><?= $dk['nama_karyawan']; ?></td>
-                            <td><?= $dk['nama_posisi']; ?></td>
-                            <td><?= $dk['status']; ?></td>
-                            <td>Rp<?= number_format($dk['gajipokok'], 0, ',', '.'); ?></td>
-                            <td><?= $dk['nik_leader']; ?></td>
-                            <td><?= $dk['level']; ?></td>
-                            <td><?= $dk['email']; ?></td>
+                            <th>
+                                <?= $no++; ?>
+                            </th>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</button>
+                                <?= $dk['nik']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['nama_karyawan']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['nama_posisi']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['status']; ?>
+                            </td>
+                            <td>Rp
+                                <?= number_format($dk['gajipokok'], 0, ',', '.'); ?>
+                            </td>
+                            <td>
+                                <?= $dk['nik_leader']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['level']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['email']; ?>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default"
+                                    style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal"
+                                    data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</button>
+                                <button type="button" class="btn btn-danger"
+                                    style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal"
+                                    data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -58,7 +81,8 @@
 </div>
 
 <!-- modal untuk tambah data -->
-<div class="modal fade" id="tambahDataKaryawan" tabindex="-1" aria-labelledby="tambahDataKaryawanLabel" aria-hidden="true">
+<div class="modal fade" id="tambahDataKaryawan" tabindex="-1" aria-labelledby="tambahDataKaryawanLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -75,13 +99,14 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama Karyawan</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Karyawan">
+                        <input type="text" class="form-control" id="nama" name="nama"
+                            placeholder="Masukan Nama Karyawan">
                     </div>
                     <div class="form-group">
                         <label>Posisi</label>
                         <select class="form-control" name="posisi">
                             <option value="">-- Pilih Posisi --</option>
-                            <?php foreach ($dataposisi as $dp) : ?>
+                            <?php foreach ($dataposisi as $dp): ?>
                                 <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -92,11 +117,13 @@
                     </div>
                     <div class="form-group">
                         <label for="gaji">Gaji Pokok</label>
-                        <input type="text" class="form-control" id="gaji" name="gajipokok" placeholder="Masukan Gaji Pokok">
+                        <input type="text" class="form-control" id="gaji" name="gajipokok"
+                            placeholder="Masukan Gaji Pokok">
                     </div>
                     <div class="form-group">
                         <label for="nikleader">NIK Leader</label>
-                        <input type="text" class="form-control" id="nikleader" name="nikleader" placeholder="Masukan Level">
+                        <input type="text" class="form-control" id="nikleader" name="nikleader"
+                            placeholder="Masukan Level">
                     </div>
                     <div class="form-group">
                         <label for="level">Level</label>
@@ -118,11 +145,13 @@
                     </div>
                     <div class="form-group">
                         <label for="telepon">Telepon</label>
-                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Masukan Nomor Telepon">
+                        <input type="text" class="form-control" id="telepon" name="telepon"
+                            placeholder="Masukan Nomor Telepon">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Masukan password">
                     </div>
 
 
@@ -139,8 +168,9 @@
 <!-- Akhir tambah Modal -->
 
 <!-- Modal edit data -->
-<?php foreach ($datakaryawan as $dk) : ?>
-    <div class="modal fade" id="ubahDataKaryawan<?= $dk['id_karyawan']; ?>" tabindex="-1" aria-labelledby="ubahDataKaryawanLabel" aria-hidden="true">
+<?php foreach ($datakaryawan as $dk): ?>
+    <div class="modal fade" id="ubahDataKaryawan<?= $dk['id_karyawan']; ?>" tabindex="-1"
+        aria-labelledby="ubahDataKaryawanLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -158,13 +188,14 @@
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Karyawan</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $dk['nama_karyawan']; ?>"">
+                            <input type="text" class="form-control" id="nama" name="nama"
+                                value="<?= $dk['nama_karyawan']; ?>"">
                     </div>
                     <div class=" form-group">
                             <label>Posisi</label>
                             <select class="form-control" name="posisi">
                                 <option value="">-- Pilih Posisi --</option>
-                                <?php foreach ($dataposisi as $dp) : ?>
+                                <?php foreach ($dataposisi as $dp): ?>
                                     <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -175,11 +206,13 @@
                         </div>
                         <div class="form-group">
                             <label for="gaji">Gaji Pokok</label>
-                            <input type="text" class="form-control" id="gaji" name="gajipokok" value="<?= $dk['gajipokok']; ?>">
+                            <input type="text" class="form-control" id="gaji" name="gajipokok"
+                                value="<?= $dk['gajipokok']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="nikleader">NIK Leader</label>
-                            <input type="text" class="form-control" id="nikleader" name="nikleader" value="<?= $dk['nik_leader']; ?>">
+                            <input type="text" class="form-control" id="nikleader" name="nikleader"
+                                value="<?= $dk['nik_leader']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="level">Level</label>
@@ -201,7 +234,8 @@
                         </div>
                         <div class="form-group">
                             <label for="telepon">Telepon</label>
-                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $dk['telepon']; ?>">
+                            <input type="text" class="form-control" id="telepon" name="telepon"
+                                value="<?= $dk['telepon']; ?>">
                         </div>
 
                         <!-- modal footer  -->
@@ -218,7 +252,7 @@
 
 
 <!-- Modal Hapus -->
-<?php foreach ($datakaryawan as $dk) : ?>
+<?php foreach ($datakaryawan as $dk): ?>
     <div class="modal fade" id="modal-sm<?= $dk['id_karyawan']; ?>" tabindek="-1" role+dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -233,7 +267,8 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan']  ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan'] ?>" type="submit"
+                        class="btn" style="background-color: #ff0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

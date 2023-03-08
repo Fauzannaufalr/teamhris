@@ -37,6 +37,8 @@ class PenilaianKinerja extends CI_Controller
         WHERE performances___penilaian_kinerja.tgl='$bulantahun'
         ORDER BY data_karyawan.nama_karyawan ASC")->result_array();
 
+
+
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();

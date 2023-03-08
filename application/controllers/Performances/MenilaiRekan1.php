@@ -63,12 +63,20 @@ class MenilaiRekan1 extends CI_Controller
     public function tambah()
     {
         $nilai = $this->input->post("nilai");
-        $total_nilai = array_sum($nilai);
+        $nik_penilai = count($nik_penilai);
+        $menilai = array_sum($menilai);
         $total_soal = count($nilai);
+        $tanggal = count($tanggal);
         $data = [
+            "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
+            "nik_penilai" => $nik_penilai,
+            "menilai" => $nik_penilai,
+            "tanggal" => $tanggal,
+            "total_nilai" => $total_nilai,
+            "total_soal" => $total_soal,
             // masukin table dari penilaian kuesioner
-
         ];
+
         // insert penilaian kuesioner
         $this->db->insert("penilaian_kuesioner", $data);
         $id_penilaian_kuesioner = $this->db->insert_id();
@@ -77,10 +85,11 @@ class MenilaiRekan1 extends CI_Controller
         foreach ($nilai as $id_kuesioner => $val):
             $data = [
                 "ïd_kuesioner" => $id_kuesioner,
+                "ïd_detail_penilaian" => $id_detail_penilaian,
                 "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
                 "nilai" => $val,
             ];
-            $this->db->insert("kuesionerr__detail", $data);
+            $this->db->insert("performances___detail_penilaian_kuesioner", $data);
         endforeach;
         printr($_POST);
         // printr($total);
