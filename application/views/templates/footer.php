@@ -48,6 +48,10 @@
 <script src="<?= base_url() ?>dist/js/adminlte.js"></script>
 <!-- Select2 -->
 <script src="<?= base_url() ?>plugins/select2/js/select2.full.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?= base_url() ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?= base_url() ?>plugins/toastr/toastr.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="<?= base_url() ?>plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -63,12 +67,12 @@
 <script src="<?= base_url() ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
 <script>
-    $('.custom-file-input').on('change', function () {
+    $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
         $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 
-    $(function () {
+    $(function() {
         $("#example1").DataTable({
             "responsive": true,
             "lengthChange": false,

@@ -37,6 +37,7 @@
                         </select>
                     </div>
                     <a class="btn btn-outline-success ml-auto" href="<?= base_url('payroll/laporangaji/generate'); ?>"><i class="fas fa-archive"></i> Generate Data</a>
+                    <a class="btn btn-outline-success ml-2" href="<?= base_url('payroll/laporangaji/cetaklaporan'); ?>"><i class="fas fa-print"></i> Cetak Laporan</a>
                 </div>
             </div>
             <!-- /.card-body -->
@@ -97,7 +98,7 @@
                             <td><?= $lg['status']; ?></td>
                             <td style="text-align: center;">
                                 <button class="badge" style="background-color: #fbff39;" href="" data-toggle="modal" data-target="#modal-sm<?= $lg['id']; ?>"><i class="fas fa-check-circle"></i> Status Bayar</button>
-                                <button class="badge badge-success"><i class="fas fa-paper-plane"></i> Kirim Slip Gaji</button>
+                                <button class="badge badge-success" data-toggle="modal" data-target="#kirimSlipModal<?= $lg['id']; ?>"><i class="fas fa-paper-plane"></i> Kirim Slip Gaji</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -114,17 +115,17 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Hapus Data</h4>
+                    <h4 class="modal-title">Ubah Status Bayar</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah anda yakin untuk menghapus data ?</p>
+                    <p>Apakah anda yakin untuk ubah status bayar?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                    <a href="<?= base_url() ?>payroll/databpjs/hapus/<?= $lg['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                    <a href="<?= base_url() ?>payroll/laporangaji/status/<?= $lg['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -132,3 +133,51 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+<?php foreach ($laporan as $lg) : ?>
+    <!-- Modal kirim slip -->
+    <div class="modal fade" id="kirimSlipModal<?= $lg['id']; ?>" tabindex="-1" aria-labelledby="kirimSlipModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="kirimSlipModalLabel">Kirim Slip Gaji</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('payroll/laporangaji/kirimslip') ?>" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="email" id="email" value="<?= $lg['email']; ?>">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="slipgaji" name="slipgaji">
+                            <label class=" custom-file-label" for="slipgaji">Pilih Slip Gaji <b><?= $lg['nama_karyawan']; ?></b></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-danger">Kirim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- akhir modal tambah -->
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+    });
+</script>

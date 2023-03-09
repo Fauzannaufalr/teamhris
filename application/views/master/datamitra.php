@@ -44,8 +44,8 @@
                             <td><?= $dm['tanggal_masuk']; ?></td>
                             <td><?= $dm['tanggal_keluar']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahDataMitra<?= $dm['id'] ?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $dm['id'] ?>">hapus</button>
+                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #ffcc00;" data-toggle="modal" data-target="#ubahDataMitra<?= $dm['id'] ?>">edit</button>
+                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dm['id'] ?>">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
