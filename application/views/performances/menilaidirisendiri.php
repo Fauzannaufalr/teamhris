@@ -26,8 +26,8 @@
                 <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
               </div>
             <?php } ?>
-      <div class=" form-group">
 
+      <div class="form-group col-md-4">
         <label>Menilai</label>
         <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
         <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
@@ -38,7 +38,7 @@
     <form method="POST">
       <div class="table-responsive">
         <table id="" class="table table-bordered table-striped">
-          <thead style="background-color: #ff0000; color: white;">
+          <thead style="background-color: #cc0000; color: white;">
             <tr style="text-align: center;">
               <th>No</ths>
               <th>Pertanyaan</th>
@@ -79,3 +79,4 @@
       </div>
     </form>
   </div>
+</div>

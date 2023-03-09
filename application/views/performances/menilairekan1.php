@@ -14,16 +14,16 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group col-md-4">
         <label>Penilai</label>
         <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
         <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
       </div>
 
-      <div class=" form-group">
+      <div class=" form-group col-md-4">
 
         <label>Menilai</label>
-        <select class="form-control" name="nik_nama" id="nik_nama">
+        <select class=" form-control" name="nik_nama" id="nik_nama">
           <option>-- Pilih Karyawan --</option>
           <?php foreach ($datakaryawan as $dk): ?>
             <option value="<?= $dk['id_karyawan']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
@@ -35,7 +35,7 @@
       <form method="POST" action="/teamhris/performances/menilairekan1/tambah">
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
-            <thead style="background-color: #ff0000; color: white;">
+            <thead style="background-color:  #cc0000; color: white;">
               <tr style="text-align: center;">
                 <th style="text-align: center;">No</th>
                 <th>Pertanyaan</th>

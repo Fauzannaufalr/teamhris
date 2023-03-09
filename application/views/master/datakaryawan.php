@@ -35,18 +35,36 @@
                     <?php $no = 1 ?>
                     <?php foreach ($datakaryawan as $dk) : ?>
                         <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $dk['nik']; ?></td>
-                            <td><?= $dk['nama_karyawan']; ?></td>
-                            <td><?= $dk['nama_posisi']; ?></td>
-                            <td><?= $dk['status']; ?></td>
-                            <td>Rp<?= number_format($dk['gajipokok'], 0, ',', '.'); ?></td>
-                            <td><?= $dk['nik_leader']; ?></td>
-                            <td><?= $dk['level']; ?></td>
-                            <td><?= $dk['email']; ?></td>
+                            <th>
+                                <?= $no++; ?>
+                            </th>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #ffcc00;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</button>
+                                <?= $dk['nik']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['nama_karyawan']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['nama_posisi']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['status']; ?>
+                            </td>
+                            <td>Rp
+                                <?= number_format($dk['gajipokok'], 0, ',', '.'); ?>
+                            </td>
+                            <td>
+                                <?= $dk['nik_leader']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['level']; ?>
+                            </td>
+                            <td>
+                                <?= $dk['email']; ?>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</button>
+                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -233,7 +251,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan']  ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

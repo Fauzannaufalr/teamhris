@@ -26,14 +26,31 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
+<<<<<<< Updated upstream
+        $nilai = $total_kerja / $done_kerja * (100);
+=======
         $nilai = ($total_kerja + $done_kerja) / 2;
+
+        if ($nilai >= 80 && $nilai <= 100) {
+            $kategorisasi = "SB";
+        } else if ($nilai >= 60 && $nilai <= 79) {
+            $kategorisasi = "B";
+        } else if ($nilai >= 40 && $nilai <= 69) {
+            $kategorisasi = "C";
+        } else if ($nilai >= 20 && $nilai <= 39) {
+            $kategorisasi = "K";
+        } else if ($nilai >= 0 && $nilai <= 19) {
+            $kategorisasi = "SK";
+        }
+        echo "Kategorisasi: " . $kategorisasi;
+>>>>>>> Stashed changes
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
             "nilai" => $nilai,
-
+            "kategorisasi" => $kategorisasi,
         ];
         $this->db->insert('performances___penilaian_kinerja', $data);
     }
@@ -41,7 +58,12 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
+<<<<<<< Updated upstream
+        $nilai = $total_kerja / $done_kerja * (100);
+=======
         $nilai = ($total_kerja + $done_kerja) / 2;
+
+>>>>>>> Stashed changes
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),
