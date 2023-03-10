@@ -13,11 +13,12 @@ class DataMitra_model extends CI_Model
     public function tambahDataMitra()
     {
         $data = [
-            'nik' => $this->input->post('nik'),
             'nama_perusahaan' => $this->input->post('perusahaan'),
             'nama_karyawan' => $this->input->post('nama'),
             'id_posisi' => $this->input->post('posisi'),
             'email' => $this->input->post('email'),
+            'telepon' => $this->input->post('telepon'),
+            'alamat' => $this->input->post('alamat'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),
             'tanggal_keluar' => $this->input->post('tanggal_keluar')
         ];
@@ -27,11 +28,12 @@ class DataMitra_model extends CI_Model
     public function ubahDataMitra()
     {
         $data = [
-            'nik' => $this->input->post('nik'),
             'nama_perusahaan' => $this->input->post('perusahaan'),
             'nama_karyawan' => $this->input->post('nama'),
             'id_posisi' => $this->input->post('posisi'),
             'email' => $this->input->post('email'),
+            'telepon' => $this->input->post('telepon'),
+            'alamat' => $this->input->post('alamat'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),
             'tanggal_keluar' => $this->input->post('tanggal_keluar')
         ];

@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header" style="background-color: #ff0000;">
+        <div class="card-header" style="background-color: #cc0000;">
             <h3 class="card-title" style="color: white;">Filter Data</h3>
         </div>
         <form class="form-horizontal">
@@ -121,7 +121,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah anda yakin untuk ubah status bayar?</p>
+                    <p>Apakah anda yakin untuk ubah status bayar <b><?= $lg['nama_karyawan']; ?></b>?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>

@@ -32,12 +32,9 @@ class DataMitra extends CI_Controller
     {
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_mitra.nik]', [
-            'required' => 'NIK harus diisi !',
-            'is_unique' => 'NIK Sudah Terdaftar !'
-        ]);
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required', [
             'required' => 'Nama Perusahaan harus diisi !'
         ]);
@@ -56,6 +53,13 @@ class DataMitra extends CI_Controller
         ]);
         $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
             'required' => 'Tanggal keluar harus diisi !'
+        ]);
+        $this->form_validation->set_rules('alamat', 'alamat', 'required', [
+            'required' => 'Alamat harus diisi !'
+        ]);
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
+            'required' => 'Telepon harus diisi !',
+            'numeric' => 'Telepon harus diisi dengan angka !'
         ]);
 
         if ($this->form_validation->run() == FALSE) {
@@ -78,10 +82,6 @@ class DataMitra extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_mitra.nik]', [
-            'required' => 'NIK harus diisi !',
-            'is_unique' => 'NIK Sudah Terdaftar !'
-        ]);
         $this->form_validation->set_rules('perusahaan', 'Nama Perusahaan', 'required', [
             'required' => 'Nama Perusahaan harus diisi !'
         ]);
@@ -100,6 +100,13 @@ class DataMitra extends CI_Controller
         ]);
         $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
             'required' => 'Tanggal keluar harus diisi !'
+        ]);
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
+            'required' => 'Telepon harus diisi !',
+            'numeric' => 'Telepon harus diisi dengan angka !'
+        ]);
+        $this->form_validation->set_rules('alamat', 'alamat', 'required', [
+            'required' => 'Alamat harus diisi !'
         ]);
 
         if ($this->form_validation->run() == FALSE) {

@@ -28,7 +28,7 @@ class DataKaryawan_model extends CI_Model
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
             'id_posisi' => htmlspecialchars($this->input->post('posisi')),
             'email' => htmlspecialchars($email),
-            'status' => htmlspecialchars($this->input->post('status')),
+            'status' => 'Aktif',
             'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
             'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
             'level' => htmlspecialchars($this->input->post('level')),

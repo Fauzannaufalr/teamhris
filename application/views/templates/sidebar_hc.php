@@ -63,33 +63,9 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('payroll/mitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                  <p>Contract Mitra</p>
+                              <a href="<?= base_url('payroll/laporangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                  <p>Laporan Gaji Karyawan</p>
                               </a>
-                          </li>
-                      </ul>
-                      <ul class="nav nav-treeview nav-sidebar nav-child-indent">
-                          <li class="nav-item">
-                              <a href="#" class="nav-link" style="background-color: #ffffff; color: black;">
-                                  <p>
-                                      Laporan
-                                      <i class="right fas fa-angle-right"></i>
-                                  </p>
-                              </a>
-                              <ul class="nav nav-treeview">
-                                  <li class="nav-item">
-                                      <a href="<?= base_url('payroll/laporangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                          <p>Laporan Gaji Karyawan</p>
-                                      </a>
-                                  </li>
-                              </ul>
-                              <ul class="nav nav-treeview">
-                                  <li class="nav-item">
-                                      <a href="<?= base_url('payroll/laporanmitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                          <p>Laporan Mitra</p>
-                                      </a>
-                                  </li>
-                              </ul>
                           </li>
                       </ul>
                   </li>
@@ -119,6 +95,29 @@
                           <li class="nav-item">
                               <a href="<?= base_url('Recruitment/hasiltes') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Hasil Tes</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link" style="color: #ffffff;">
+                          <i class="nav-icon fas fa-handshake"></i>
+                          <p>
+                              Mitra
+                              <i class="right fas fa-angle-right"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="<?= base_url('master/datamitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                  <p>Data Mitra</p>
+                              </a>
+                          </li>
+                      </ul>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="<?= base_url('Recruitment/pelamar') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                  <p>Laporan Mitra</p>
                               </a>
                           </li>
                       </ul>

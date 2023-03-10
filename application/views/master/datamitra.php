@@ -22,10 +22,11 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Perusahaan</th>
-                        <th>NIK</th>
                         <th>Nama Karyawan</th>
                         <th>Posisi</th>
                         <th>Email</th>
+                        <th>Telepon</th>
+                        <th>Alamat</th>
                         <th>Tanggal Masuk</th>
                         <th>Tanggal Keluar</th>
                         <th>Aksi</th>
@@ -37,10 +38,11 @@
                         <tr>
                             <th><?= $no++; ?></th>
                             <td><?= $dm['nama_perusahaan']; ?></td>
-                            <td><?= $dm['nik']; ?></td>
                             <td><?= $dm['nama_karyawan']; ?></td>
                             <td><?= $dm['nama_posisi']; ?></td>
                             <td><?= $dm['email']; ?></td>
+                            <td><?= $dm['telepon']; ?></td>
+                            <td><?= $dm['alamat']; ?></td>
                             <td><?= $dm['tanggal_masuk']; ?></td>
                             <td><?= $dm['tanggal_keluar']; ?></td>
                             <td>
@@ -75,10 +77,6 @@
                         <input type="text" class="form-control" id="nama_perusahaan" name="perusahaan" placeholder="Masukan Nama Perusahaan">
                     </div>
                     <div class="form-group">
-                        <label for="nik">NIK</label>
-                        <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukan NIK">
-                    </div>
-                    <div class="form-group">
                         <label for="nama_karyawan">Nama Karyawan</label>
                         <input type="text" class="form-control" id="nama_karyawan" name="nama" placeholder="Masukan Nama Karyawan">
                     </div>
@@ -94,6 +92,14 @@
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="telepon">Telepon</label>
+                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Masukan telepon">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan alamat">
                     </div>
                     <div class="form-group">
                         <label for="tanggal_masuk">Tanggal Masuk</label>
@@ -132,10 +138,6 @@
                             <input type="text" class="form-control" id="nama_perusahaan" name="perusahaan" value="<?= $dm['nama_perusahaan']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input type="text" class="form-control" id="nik" name="nik" value="<?= $dm['nik']; ?>">
-                        </div>
-                        <div class="form-group">
                             <label for="nama_karyawan">Nama Karyawan</label>
                             <input type="text" class="form-control" id="nama_karyawan" name="nama" value="<?= $dm['nama_karyawan']; ?>">
                         </div>
@@ -144,13 +146,25 @@
                             <select class="form-control" id="posisi" name="posisi">
                                 <option value="">-- Pilih Posisi --</option>
                                 <?php foreach ($dataposisi as $dp) : ?>
-                                    <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                                    <?php if ($dp['id_posisi'] == $dm['id_posisi']) : ?>
+                                        <option value="<?= $dp['id_posisi']; ?>" selected><?= $dp['nama_posisi'] ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi'] ?></option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control" id="email" name="email" value="<?= $dm['email']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="telepon">Telepon</label>
+                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $dm['telepon']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $dm['alamat']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="tanggal_masuk">Tanggal Masuk</label>

@@ -17,7 +17,6 @@ class DataKaryawan extends CI_Controller
 
     public function index()
     {
-        // printr($_SESSION);
         $data['title'] = "Data Karyawan";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
@@ -52,11 +51,9 @@ class DataKaryawan extends CI_Controller
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
         ]);
-        $this->form_validation->set_rules('status', 'Status', 'required', [
-            'required' => 'Status harus diisi !'
-        ]);
-        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required', [
-            'required' => 'Gaji Pokok harus diisi !'
+        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required|numeric', [
+            'required' => 'Gaji Pokok harus diisi !',
+            'numeric' => 'Gaji Pokok harus diisi dengan angka !'
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required', [
             'required' => 'Password harus diisi !'
@@ -67,8 +64,9 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required', [
             'required' => 'Alamat harus diisi !'
         ]);
-        $this->form_validation->set_rules('telepon', 'Telepon', 'required', [
-            'required' => 'Telepon harus diisi !'
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
+            'required' => 'Telepon harus diisi !',
+            'numeric' => 'Telepon harus diisi dengan angka !'
         ]);
 
         if ($this->form_validation->run() == FALSE) {
@@ -91,8 +89,9 @@ class DataKaryawan extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required', [
-            'required' => 'NIK harus diisi !'
+        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
+            'required' => 'NIK harus diisi !',
+            'is_unique' => 'NIK Sudah Terdaftar !'
         ]);
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
             'required' => 'Nama harus diisi !'
@@ -107,8 +106,9 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('status', 'Status', 'required', [
             'required' => 'Status harus diisi !'
         ]);
-        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required', [
-            'required' => 'Gaji Pokok harus diisi !'
+        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'required|numeric', [
+            'required' => 'Gaji Pokok harus diisi !',
+            'numeric' => 'Gaji Pokok harus diisi dengan angka !'
         ]);
         $this->form_validation->set_rules('level', 'Level', 'required', [
             'required' => 'Level harus diisi !'
@@ -116,8 +116,9 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required', [
             'required' => 'Alamat harus diisi !'
         ]);
-        $this->form_validation->set_rules('telepon', 'Telepon', 'required', [
-            'required' => 'Telepon harus diisi !'
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
+            'required' => 'Telepon harus diisi !',
+            'numeric' => 'Telepon harus diisi dengan angka !'
         ]);
 
         if ($this->form_validation->run() == false) {

@@ -80,7 +80,7 @@ class LaporanGaji extends CI_Controller
             $this->email->attach($file_data['full_path']);
             if ($this->email->send()) {
                 if (delete_files($file_data['file_path'])) {
-                    $this->session->set_flashdata('message', 'Slip gaji berhasil dikirim!');
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Slip gaji berhasil dikirim!</div>');
                     redirect('payroll/laporangaji');
                 }
             } else {
@@ -90,7 +90,7 @@ class LaporanGaji extends CI_Controller
                 }
             }
         } else {
-            $this->session->set_flashdata('message', 'There is an error in attach file');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
             redirect('payroll/laporangaji');
         }
     }

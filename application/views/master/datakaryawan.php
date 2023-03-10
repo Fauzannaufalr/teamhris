@@ -3,11 +3,15 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
+            <div class="row">
+                <div class="col-lg-4">
+                    <?php if (validation_errors()) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= validation_errors(); ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
+            </div>
             <div class="row">
                 <div class="col-lg-4">
                     <?= $this->session->flashdata('message'); ?>
@@ -23,11 +27,10 @@
                         <th>NIK</th>
                         <th>Nama Karyawan</th>
                         <th>Posisi</th>
-                        <th>Status</th>
                         <th>Gaji Pokok</th>
-                        <th>NIK Leader</th>
                         <th>Level</th>
                         <th>Email</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -35,33 +38,14 @@
                     <?php $no = 1 ?>
                     <?php foreach ($datakaryawan as $dk) : ?>
                         <tr>
-                            <th>
-                                <?= $no++; ?>
-                            </th>
-                            <td>
-                                <?= $dk['nik']; ?>
-                            </td>
-                            <td>
-                                <?= $dk['nama_karyawan']; ?>
-                            </td>
-                            <td>
-                                <?= $dk['nama_posisi']; ?>
-                            </td>
-                            <td>
-                                <?= $dk['status']; ?>
-                            </td>
-                            <td>Rp
-                                <?= number_format($dk['gajipokok'], 0, ',', '.'); ?>
-                            </td>
-                            <td>
-                                <?= $dk['nik_leader']; ?>
-                            </td>
-                            <td>
-                                <?= $dk['level']; ?>
-                            </td>
-                            <td>
-                                <?= $dk['email']; ?>
-                            </td>
+                            <th><?= $no++; ?></th>
+                            <td><?= $dk['nik']; ?></td>
+                            <td><?= $dk['nama_karyawan']; ?></td>
+                            <td><?= $dk['nama_posisi']; ?></td>
+                            <td>Rp<?= number_format($dk['gajipokok'], 0, ',', '.'); ?></td>
+                            <td><?= $dk['level']; ?></td>
+                            <td><?= $dk['email']; ?></td>
+                            <td><?= $dk['status']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</button>
                                 <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</button>
@@ -103,10 +87,6 @@
                                 <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
                             <?php endforeach; ?>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <input type="text" class="form-control" id="status" name="status" placeholder="Masukan Status">
                     </div>
                     <div class="form-group">
                         <label for="gaji">Gaji Pokok</label>
@@ -183,13 +163,20 @@
                             <select class="form-control" name="posisi">
                                 <option value="">-- Pilih Posisi --</option>
                                 <?php foreach ($dataposisi as $dp) : ?>
-                                    <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                                    <?php if ($dp['id_posisi'] == $dk['id_posisi']) : ?>
+                                        <option value="<?= $dp['id_posisi']; ?>" selected><?= $dp['nama_posisi'] ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi'] ?></option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" value="<?= $dk['status']; ?>">
+                            <select class="form-control" name="status">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="gaji">Gaji Pokok</label>
