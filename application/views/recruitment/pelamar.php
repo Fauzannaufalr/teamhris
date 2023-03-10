@@ -53,8 +53,7 @@
                             <td><?= $ds['status']; ?></td>
                             <td><?= $ds['nilai']; ?></td>
                             <td>
-                                <button class="badge badge-success" href="#" data-toggle="modal" data-target="#sendGoogleMeetLinkModal"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar'] ?>">hapus</button>
+                                <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -92,33 +91,58 @@
 
 
 
-
-<!-- Send Google Meet Link Modal -->
-<div class="modal fade" id="sendGoogleMeetLinkModal" tabindex="-1" role="dialog" aria-labelledby="sendGoogleMeetLinkModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="sendGoogleMeetLinkModalLabel">Jadwalkan Interview</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="sendGoogleMeetLinkForm" method="post" action="<?= base_url('send_google_meet_link'); ?>">
-                    <div class="form-group">
-                        <label for="recipientEmail">Recipient Email</label>
-                        <input type="email" class="form-control" id="recipientEmail" name="recipientEmail" required>
+<?php foreach ($pelamar as $ds) : ?>
+    <!-- Modal kirim slip -->
+    <div class="modal fade" id="interviewModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="interviewModalLabel">Jadwalkan Interview</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('recruitment/pelamar/interview') ?>" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal Interview</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        </div>
+                        <div class="form-group">
+                            <label for="gmeet">Link Google Meet</label>
+                            <input type="text" class="form-control" id="gmeet" name="gmeet">
+                        </div>
+                        <div class="form-group">
+                            <label for="bertemu">Bertemu dengan</label>
+                            <input type="text" class="form-control" id="bertemu" name="bertemu">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="googleMeetLink">Google Meet Link</label>
-                        <input type="text" class="form-control" id="googleMeetLink" name="googleMeetLink" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-danger">Kirim</button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
+<!-- akhir modal tambah -->
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('.swalDefaultSuccess').click(function() {
+            Toast.fire({
+                icon: 'success',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+    });
+</script>

@@ -115,4 +115,11 @@
                               </a>
                           </li>
                       </ul>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="<?= base_url('Recruitment/hasiltes') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                  <p>Hasil Tes</p>
+                              </a>
+                          </li>
+                      </ul>
                   </li>

@@ -13,14 +13,14 @@ body {
   place-items: center;
   background: linear-gradient(
     to right,
-    #ff0000 0%,
-    #ff0000 50%,
+    #cc0000 0%,
+    #cc0000 50%,
     #d4d4d4 50%,
     #d4d4d4 100%
   );
 }
 ::selection {
-  background: #4158d0;
+  background: #cc0000;
   color: #fff;
 }
 .wrapper {
