@@ -36,8 +36,23 @@
                             <option>2030</option>
                         </select>
                     </div>
+                    <?php
+                    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+                        $bulan = $_GET['bulan'];
+                        $tahun = $_GET['tahun'];
+                        $bulantahun = $tahun . $bulan;
+                    } else {
+                        $bulan = date('m', strtotime('+1 month'));
+                        $tahun = date('Y');
+                        $bulantahun = $tahun . $bulan;
+                    }
+                    ?>
                     <a class="btn btn-outline-success ml-auto" href="<?= base_url('payroll/laporangaji/generate'); ?>"><i class="fas fa-archive"></i> Generate Data</a>
-                    <a class="btn btn-outline-success ml-2" href="<?= base_url('payroll/laporangaji/cetaklaporan'); ?>"><i class="fas fa-print"></i> Cetak Laporan</a>
+                    <?php if (count($laporan) > 0) { ?>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('payroll/laporangaji/cetakgaji?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Laporan</a>
+                    <?php } else { ?>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Laporan</button>
+                    <?php } ?>
                 </div>
             </div>
             <!-- /.card-body -->
@@ -163,6 +178,27 @@
     </div>
 <?php endforeach; ?>
 <!-- akhir modal tambah -->
+
+<!-- Modal cetak gaji -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Data gaji masih kosong, silahkan input absensi terlebih dahulu pada bulan dan tahun yang Anda pilih.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Akhir modal cetak gaji -->
 
 <script>
     $(function() {

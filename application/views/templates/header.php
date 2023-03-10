@@ -41,5 +41,3 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>dist/css/style.css">
 </head>
-
-<body class="hold-transition sidebar-mini layout-fixed">

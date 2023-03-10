@@ -123,4 +123,21 @@ class LaporanGaji extends CI_Controller
 
         $this->_kirimEmail();
     }
+
+    public function cetakGaji()
+    {
+        $data['title'] = "Laporan Gaji Karyawan";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $tahun . $bulan;
+        } else {
+            $bulan = date('m', strtotime('+1 month'));
+            $tahun = date('Y');
+            $bulantahun = $tahun . $bulan;
+        }
+        $data['cetak_gaji'] = $this->LaporanGaji->cetakGaji($bulantahun);
+        $this->load->view('templates/header', $data);
+        $this->load->view('payroll/cetakgaji', $data);
+    }
 }
