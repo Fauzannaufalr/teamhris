@@ -13,20 +13,7 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                    Status Pelamar
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Pelamar</a>
-                    <a class="dropdown-item" href="#">Proses Interview</a>
-                    <a class="dropdown-item" href="#">Pengerjaan Soal</a>
-                    <a class="dropdown-item" href="#">Pelamar Diterima</a>
-                    <a class="dropdown-item" href="#">Pelamar Ditolak</a>
-                </div>
-            </div>
-            <br>
-            <table id="" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -34,7 +21,6 @@
                         <th>Email</th>
                         <th>File CV</th>
                         <th>Status</th>
-                        <th>Nilai</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -49,11 +35,18 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                             <td><?= $ds['email']; ?></td>
-                            <td><?= $ds['file_cv']; ?></td>
+                            <td><a href="<?php echo base_url('recruitment/pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
                             <td><?= $ds['status']; ?></td>
-                            <td><?= $ds['nilai']; ?></td>
                             <td>
-                                <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
+                                <?php if ($ds['status'] == 'pelamar') : ?>
+                                    <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
+                                <?php elseif ($ds['status'] == 'Proses Interview') : ?>
+                                    <button class="badge badge-primary" data-toggle="modal" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Lihat Jadwal</button>
+                                    <button class="badge badge-warning" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
+                                <?php else : ?>
+                                    <button>kirim</button>
+                                <?php endif; ?>
+                                <button class="badge badge-danger" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar']; ?>">Hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -65,6 +58,8 @@
 </div>
 
 
+
+<!-- Modal Hapus -->
 <?php foreach ($pelamar as $ds) : ?>
     <div class="modal fade" id="modal-sm<?= $ds['id_pelamar']; ?>" tabindek="-1" role+dialog">
         <div class="modal-dialog modal-sm">
@@ -80,7 +75,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>recruitment/pelamar/hapus/<?= $ds['id_pelamar']  ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>recruitment/pelamar/hapus/<?= $ds['id_pelamar'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -88,21 +83,63 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+<!-- akhir modal hapus --
+
+
 
 
 
 <?php foreach ($pelamar as $ds) : ?>
     <!-- Modal kirim slip -->
-    <div class="modal fade" id="interviewModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
+<div class="modal fade" id="interviewModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="interviewModalLabel">Jadwalkan Interview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('recruitment/pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Interview</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                    </div>
+                    <div class="form-group">
+                        <label for="gmeet">Link Google Meet</label>
+                        <input type="text" class="form-control" id="gmeet" name="gmeet">
+                    </div>
+                    <div class="form-group">
+                        <label for="bertemu">Bertemu dengan</label>
+                        <input type="text" class="form-control" id="bertemu" name="bertemu">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-danger">Kirim</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
+
+<?php foreach ($pelamar as $ds) : ?>
+    <!-- Modal kirim slip -->
+    <div class="modal fade" id="jadwalModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="jadwalModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="interviewModalLabel">Jadwalkan Interview</h5>
+                    <h5 class="modal-title" id="jadwalModalLabel">Jadwalkan Interview</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/pelamar/interview') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('recruitment/pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <div class="form-group">
@@ -121,28 +158,49 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-danger">Kirim</button>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
 <?php endforeach; ?>
-<!-- akhir modal tambah -->
 
-<script>
-    $(function() {
-        var Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
 
-        $('.swalDefaultSuccess').click(function() {
-            Toast.fire({
-                icon: 'success',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
-        });
-    });
-</script>
+<?php foreach ($pelamar as $ds) : ?>
+    <!-- Modal kirim slip -->
+    <div class="modal fade" id="soalModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="soalModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="soalModalLabel">Kirim Soal Tes </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('recruitment/pelamar/soal/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal Interview</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        </div>
+                        <div class="form-group">
+                            <label for="gmeet">Link Google Meet</label>
+                            <input type="text" class="form-control" id="gmeet" name="gmeet">
+                        </div>
+                        <div class="form-group">
+                            <label for="bertemu">Bertemu dengan</label>
+                            <input type="text" class="form-control" id="bertemu" name="bertemu">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-danger">Kirim</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>

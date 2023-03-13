@@ -20,4 +20,19 @@ class Pelamar_model extends CI_Model
         $this->db->delete('recruitment___pelamar');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
+
+    public function download($file)
+    {
+        $query = $this->db->get_where('recruitment___pelamar', array('file_cv' => $file));
+        return $query->row_array();
+    }
+    public function statuspelamar($id)
+    {
+        $data = [
+            'status' => 'Proses Interview'
+        ];
+
+        $this->db->where('id_pelamar', $id);
+        $this->db->update('recruitment___pelamar', $data);
+    }
 }
