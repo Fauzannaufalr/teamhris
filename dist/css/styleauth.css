@@ -115,7 +115,7 @@ form .field input[type="submit"] {
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-  background: #ff0000;
+  background: #cc0000;
   transition: all 0.3s ease;
 }
 form .field input[type="submit"]:active {

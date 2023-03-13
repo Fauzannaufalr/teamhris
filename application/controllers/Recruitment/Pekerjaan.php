@@ -36,7 +36,7 @@ class Pekerjaan extends CI_Controller
         $data['title'] = "Pekerjaan";
         $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Admin_model->ambilUser();
+        $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required', [
             'required' => 'Nama harus diisi !'

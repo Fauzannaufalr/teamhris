@@ -9,7 +9,8 @@ class Pelamar extends CI_Controller
         $this->load->model('Recruitment/Pelamar_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
-        $this->load->helper(array('url', 'download'));
+        $this->load->helper('url', 'download');
+
 
         if (!$this->session->userdata('nik')) {
             redirect('auth');
@@ -86,7 +87,7 @@ class Pelamar extends CI_Controller
         }
     }
 
-    public function interview()
+    public function interview($id)
     {
         $this->form_validation->set_rules('gmeet', 'Gmeet', 'required', [
             'required' => 'Link Gmeet harus diisi !',
@@ -107,8 +108,23 @@ class Pelamar extends CI_Controller
         } else {
             $email = $this->input->post('email');
             $this->_kirimEmail();
+            $this->Pelamar_model->statuspelamar($id);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
             redirect('recruitment/pelamar');
         }
+    }
+
+    public function download_file($filename)
+    {
+        // Menentukan path file yang akan didownload
+        $file_path = './dist/cv/' . $filename;
+        if (!file_exists($file_path)) {
+            redirect('recruitment/pelamar');
+        };
+        header('Content-Type: application/octet-stream');
+        header('Content-Length: ' . filesize($file_path));
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+        readfile($file_path);
     }
 }
