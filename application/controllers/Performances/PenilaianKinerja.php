@@ -56,16 +56,16 @@ class PenilaianKinerja extends CI_Controller
     public function tambah()
     {
 
-        $data['title'] = "Data Karyawan";
+        $data['title'] = "Penilaian Kinerja";
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
+        $this->form_validation->set_rules('nik_nama', 'NIK', 'required|is_unique[performances___penilaian_kinerja.nik]', [
             'required' => 'NIK harus diisi !',
+            'is_unique' => 'NIK Sudah Terdaftar !'
         ]);
-
         $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
             'required' => 'Total Kerja harus diisi !'
         ]);
@@ -90,14 +90,14 @@ class PenilaianKinerja extends CI_Controller
     public function ubah()
     {
 
-        $data['title'] = "Data Karyawan";
+        $data['title'] = "Penilaian Kinerja";
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
 
         $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
-            'required' => 'NIK harus diisi !',
+            'required' => 'Total Kerja harus diisi !'
         ]);
 
         $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
@@ -116,7 +116,7 @@ class PenilaianKinerja extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->PenilaianKinerja_model->ubahPenilaianKinerja();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diUbah!</div>');
             redirect('performances/penilaiankinerja');
         }
     }

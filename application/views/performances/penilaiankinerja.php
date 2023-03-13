@@ -37,10 +37,12 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-info mb-2 ml-3"><i class="fas fa-eye"> Tampilkan
+                    <button type="submit" class="btn btn-secondary mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
+                    <a href="" class="btn btn-primary mb-2 ml-3"><i class="fas fa-plus">
+                        </i>Cetak Penilaian Kinerja</a>
                 </div>
 
             </div>
@@ -59,11 +61,7 @@
     }
 
     ?>
-<<<<<<< Updated upstream
-    <div class="alert alert-default" style="background-color: #cc0000; color: white;">
-=======
-    <div class="alert alert" style="background-color: #ff0000; color: white;">
->>>>>>> Stashed changes
+    <div class="alert alert" style="background-color: #cc0000; color: white;">
         Menampilkan penilaian kinerja Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="fofnt-weight-bold">
@@ -151,8 +149,8 @@
                                     <button type="button" class="btn btn-warning" style="font-size: 12px; color: white;"
                                         data-toggle="modal"
                                         data-target="#modal-sm<?= $pk['id_penilaian_kinerja'] ?>">hapus</button>
-                                <?php endforeach; ?>
-                            </td>
+                                </td>
+                            <?php endforeach; ?>
                     </tbody>
                 </table>
             <?php } else { ?>
@@ -174,7 +172,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="<?php echo base_url() ?>index.php/siswa/upload" enctype="multipart/form-data">
+            <form method="POST" action="<?php echo base_url() ?>performances/PenilaianKinerja/upload"
+                enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class=" form-group">
                         <label for="foto">Pilih File</label>
@@ -273,10 +272,6 @@
                             <label>Posisi</label>
                             <input type="text" readonly id="id_posisi" class="form-control" />
                         </div>
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
                         <div class="form-group">
                             <label for="total_kerja">Total Kerja</label>

@@ -35,7 +35,7 @@
     </div>
 
 
-    <form method="POST">
+    <form method="POST" action="<?php echo base_url('MenillaiDiriSendiri/simpan_jawaban'); ?>">
       <div class="table-responsive">
         <table id="" class="table table-bordered table-striped">
           <thead style="background-color: #cc0000; color: white;">
@@ -59,7 +59,7 @@
                 </td>
 
                 <td>
-                  <select name="data2" class="form-control">
+                  <select name="" class="form-control">
                     <option disabled="" selected="">--Berikan Penilaian--</option>
                     <option value="10">Sangat Baik</option>
                     <option value="9">Baik</option>

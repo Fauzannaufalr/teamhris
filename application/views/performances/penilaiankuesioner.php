@@ -1,13 +1,8 @@
 <div class="container-fluid">
 
     <div class="card">
-<<<<<<< Updated upstream
         <div class="card-header" style="color: white; background-color: #cc0000;">
             <h4> Filter Data Penilaian Kinerja</h4>
-=======
-        <div class="card-header" style="color: white; background-color: #ff0000;">
-            <h4> Filter Data Penilaian Kuesioner</h4>
->>>>>>> Stashed changes
         </div>
 
         <form class="form-horizontal">
@@ -64,7 +59,7 @@
     }
 
     ?>
-    <div class="alert alert" style="background-color: #ff0000; color: white;">
+    <div class="alert alert" style="background-color: #cc0000; color: white;">
         Menampilkan penilaian kuesioner Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="fofnt-weight-bold">
@@ -119,7 +114,11 @@
                                 <td>
                                     <?= $pr['kategorisasi']; ?>
                                 </td>
-
+                                <td>
+                                    <button type="button" class="btn btn-secondary" style="font-size: 14px; color: white;"
+                                        data-toggle="modal"
+                                        data-target="#detailPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>">detail</button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

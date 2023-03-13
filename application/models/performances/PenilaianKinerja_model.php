@@ -26,19 +26,28 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
+<<<<<<< Updated upstream
         $nilai = $total_kerja / $done_kerja * (100);
+=======
+        $nilai = ($total_kerja / $done_kerja) * 100;
+
+>>>>>>> Stashed changes
         if ($nilai >= 80 && $nilai <= 100) {
-            $kategorisasi = "SB";
+            $kategorisasi = "Sangat Baik";
         } else if ($nilai >= 60 && $nilai <= 79) {
-            $kategorisasi = "B";
+            $kategorisasi = "Baik";
         } else if ($nilai >= 40 && $nilai <= 69) {
-            $kategorisasi = "C";
+            $kategorisasi = "Cukup";
         } else if ($nilai >= 20 && $nilai <= 39) {
-            $kategorisasi = "K";
+            $kategorisasi = "Kurang";
         } else if ($nilai >= 0 && $nilai <= 19) {
-            $kategorisasi = "SK";
+            $kategorisasi = "Sangat Kurang";
         }
         echo "Kategorisasi: " . $kategorisasi;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),
@@ -53,13 +62,30 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
+<<<<<<< Updated upstream
         $nilai = $total_kerja / $done_kerja * (100);
+=======
+        $nilai = ($total_kerja / $done_kerja) * 100;
+        if ($nilai >= 80 && $nilai <= 100) {
+            $kategorisasi = "Sangat Baik";
+        } else if ($nilai >= 60 && $nilai <= 79) {
+            $kategorisasi = "Baik";
+        } else if ($nilai >= 40 && $nilai <= 69) {
+            $kategorisasi = "Cukup";
+        } else if ($nilai >= 20 && $nilai <= 39) {
+            $kategorisasi = "Kurang";
+        } else if ($nilai >= 0 && $nilai <= 19) {
+            $kategorisasi = "Sangat Kurang";
+        }
+        echo "Kategorisasi: " . $kategorisasi;
+>>>>>>> Stashed changes
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
-            "nilai" => $nilai
+            "nilai" => $nilai,
+            "kategorisasi" => $kategorisasi,
         ];
         $this->db->where('id_penilaian_kinerja', $this->input->post('id_penilaian_kinerja'));
         $this->db->update('performances___penilaian_kinerja', $data);
