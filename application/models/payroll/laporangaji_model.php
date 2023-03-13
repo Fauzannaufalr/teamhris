@@ -11,6 +11,11 @@ class LaporanGaji_model extends CI_Model
         return  $this->db->get()->result_array();
     }
 
+    public function ambilKaryawanById($id)
+    {
+        return $this->db->get_where('payroll___laporangaji', ['id' => $id])->row_array();
+    }
+
     public function generate()
     {
         $date = date("Y") . date("m", strtotime('+1 month'));
@@ -18,7 +23,7 @@ class LaporanGaji_model extends CI_Model
         $this->db->delete('payroll___laporangaji');
         $this->db->affected_rows();
 
-        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, pb.total as bpjs, pp.id_datapajak as pajak, pg.tunjangan, pg.potongan, pg.bonus');
+        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, pb.total as bpjs, pp.id_datapajak as pajak, pg.t_kinerja, pg.t_fungsional, pg.t_jabatan, pg.potongan, pg.bonus');
         $this->db->from('data_karyawan dk ');
         $this->db->join('payroll___bpjs pb', 'pb.id_datakaryawan = dk.id_karyawan', 'left');
         $this->db->join('payroll___pajak pp', 'pp.id_datakaryawan = dk.id_karyawan', 'left');
@@ -35,10 +40,12 @@ class LaporanGaji_model extends CI_Model
                 'gajipokok' => $ng['gajipokok'],
                 'bpjs' => $ng['bpjs'],
                 'pajak' => $ng['pajak'],
-                'tunjangan' => $ng['tunjangan'],
+                't_kinerja' => $ng['t_kinerja'],
+                't_fungsional' => $ng['t_fungsional'],
+                't_jabatan' => $ng['t_jabatan'],
                 'potongan' => $ng['potongan'],
                 'bonus' => $ng['bonus'],
-                'total' => $ng['gajipokok'] + $ng['bpjs'] - $ng['pajak'] + $ng['tunjangan'] - $ng['potongan'] + $ng['bonus'],
+                'total' => $ng['gajipokok'] + $ng['bpjs'] - $ng['pajak'] + $ng['t_kinerja'] + $ng['t_fungsional'] + $ng['t_jabatan'] - $ng['potongan'] + $ng['bonus'],
                 'status' => 'Belum dibayar'
             ];
             $this->db->insert('payroll___laporangaji', $data);

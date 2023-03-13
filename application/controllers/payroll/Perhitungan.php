@@ -39,12 +39,16 @@ class Perhitungan extends CI_Controller
             'required' => 'NIK & Nama Karyawan harus diisi !',
             'is_unique' => 'NIK & Nama Sudah Terdaftar !'
         ]);
-        $this->form_validation->set_rules('tunjangan', 'tunjangan', 'required|numeric', [
-            'required' => 'Tunjangan harus diisi !',
-            'numeric' => 'Potongan harus angka'
+        $this->form_validation->set_rules('t_kinerja', 'tunjangan', 'numeric', [
+            'numeric' => 'Tunjangan harus angka'
         ]);
-        $this->form_validation->set_rules('potongan', 'potongan', 'required|numeric', [
-            'required' => 'Potongan harus diisi !',
+        $this->form_validation->set_rules('t_fungsional', 'tunjangan', 'numeric', [
+            'numeric' => 'Tunjangan harus angka'
+        ]);
+        $this->form_validation->set_rules('t_jabatan', 'tunjangan', 'numeric', [
+            'numeric' => 'Tunjangan harus angka'
+        ]);
+        $this->form_validation->set_rules('potongan', 'potongan', 'numeric', [
             'numeric' => 'Potongan harus angka'
         ]);
         $this->form_validation->set_rules('bonus', 'bonus', 'numeric', [
@@ -74,9 +78,14 @@ class Perhitungan extends CI_Controller
         $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
             'required' => 'NIK & Nama Karyawan harus diisi !'
         ]);
-        $this->form_validation->set_rules('tunjangan', 'tunjangan', 'required|numeric', [
-            'required' => 'Tunjangan harus diisi !',
-            'numeric' => 'Potongan harus angka'
+        $this->form_validation->set_rules('t_kinerja', 'tunjangan', 'numeric', [
+            'numeric' => 'Tunjangan harus angka'
+        ]);
+        $this->form_validation->set_rules('t_fungsional', 'tunjangan', 'numeric', [
+            'numeric' => 'Tunjangan harus angka'
+        ]);
+        $this->form_validation->set_rules('t_jabatan', 'tunjangan', 'numeric', [
+            'numeric' => 'Tunjangan harus angka'
         ]);
         $this->form_validation->set_rules('potongan', 'potongan', 'required|numeric', [
             'required' => 'Potongan harus diisi !',

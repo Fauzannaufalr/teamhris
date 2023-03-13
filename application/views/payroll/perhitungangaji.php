@@ -27,7 +27,9 @@
                         <th>No</th>
                         <th>NIK</th>
                         <th>Nama Karyawan</th>
-                        <th>Tunjangan</th>
+                        <th>Tj. Kinerja</th>
+                        <th>Tj. Fungsional</th>
+                        <th>Tj. Jabatan</th>
                         <th>Potongan</th>
                         <th>Bonus</th>
                         <th>Aksi</th>
@@ -40,7 +42,9 @@
                             <th><?= $no++; ?></th>
                             <td><?= $pg['nik']; ?></td>
                             <td><?= $pg['nama_karyawan']; ?></td>
-                            <td>Rp <?= number_format($pg['tunjangan'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($pg['t_kinerja'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($pg['t_fungsional'], 0, ',', '.'); ?></td>
+                            <td>Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?></td>
                             <td>Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?></td>
                             <td>Rp <?= number_format($pg['bonus'], 0, ',', '.'); ?></td>
                             <td style="text-align: center;">
@@ -78,8 +82,16 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="tunjangan">Tunjangan</label>
-                        <input type="text" class="form-control" id="tunjangan" name="tunjangan" placeholder="Masukan tunjangan">
+                        <label for="t_kinerja">Tunjangan Kinerja</label>
+                        <input type="text" class="form-control" id="t_kinerja" name="t_kinerja" placeholder="Masukan tunjangan kinerja">
+                    </div>
+                    <div class="form-group">
+                        <label for="t_fungsional">Tunjangan Fungsional</label>
+                        <input type="text" class="form-control" id="t_fungsional" name="t_fungsional" placeholder="Masukan tunjangan fungsional">
+                    </div>
+                    <div class="form-group">
+                        <label for="t_jabatan">Tunjangan Jabatan</label>
+                        <input type="text" class="form-control" id="t_jabatan" name="t_jabatan" placeholder="Masukan tunjangan jabatan">
                     </div>
                     <div class="form-group">
                         <label for="potongan">Potongan</label>
@@ -127,8 +139,16 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="tunjangan">Tunjangan</label>
-                            <input type="text" class="form-control" id="tunjangan" name="tunjangan" value="<?= $pg['tunjangan']; ?>">
+                            <label for="t_kinerja">Tunjangan Kinerja</label>
+                            <input type="text" class="form-control" id="t_kinerja" name="t_kinerja" value="<?= $pg['t_kinerja']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="t_fungsional">Tunjangan Fungsional</label>
+                            <input type="text" class="form-control" id="t_fungsional" name="t_fungsional" value="<?= $pg['t_fungsional']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="t_jabatan">Tunjangan Jabatan</label>
+                            <input type="text" class="form-control" id="t_jabatan" name="t_jabatan" value="<?= $pg['t_jabatan']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="potongan">Potongan</label>

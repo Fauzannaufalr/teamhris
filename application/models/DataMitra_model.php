@@ -6,7 +6,6 @@ class DataMitra_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('data_mitra');
-        $this->db->join('data_posisi', 'data_posisi.id_posisi = data_mitra.id_posisi');
         return  $this->db->get()->result_array();
     }
 
@@ -15,10 +14,13 @@ class DataMitra_model extends CI_Model
         $data = [
             'nama_perusahaan' => $this->input->post('perusahaan'),
             'nama_karyawan' => $this->input->post('nama'),
-            'id_posisi' => $this->input->post('posisi'),
+            'keahlian' => $this->input->post('keahlian'),
+            'tools' => $this->input->post('tools'),
             'email' => $this->input->post('email'),
             'telepon' => $this->input->post('telepon'),
             'alamat' => $this->input->post('alamat'),
+            'rate_total' => $this->input->post('rate_total'),
+            'dokumen_kerjasama' => $this->input->post('dokumen_kerjasama'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),
             'tanggal_keluar' => $this->input->post('tanggal_keluar')
         ];
@@ -30,10 +32,13 @@ class DataMitra_model extends CI_Model
         $data = [
             'nama_perusahaan' => $this->input->post('perusahaan'),
             'nama_karyawan' => $this->input->post('nama'),
-            'id_posisi' => $this->input->post('posisi'),
+            'keahlian' => $this->input->post('keahlian'),
+            'tools' => $this->input->post('tools'),
             'email' => $this->input->post('email'),
             'telepon' => $this->input->post('telepon'),
             'alamat' => $this->input->post('alamat'),
+            'rate_total' => $this->input->post('rate_total'),
+            'dokumen_kerjasama' => $this->input->post('dokumen_kerjasama'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),
             'tanggal_keluar' => $this->input->post('tanggal_keluar')
         ];

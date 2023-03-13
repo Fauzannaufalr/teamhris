@@ -23,10 +23,13 @@
                         <th>No</th>
                         <th>Nama Perusahaan</th>
                         <th>Nama Karyawan</th>
-                        <th>Posisi</th>
+                        <th>Keahlian</th>
+                        <th>Tools</th>
                         <th>Email</th>
                         <th>Telepon</th>
                         <th>Alamat</th>
+                        <th>Rate Total</th>
+                        <th>Dokumen Kerja Sama</th>
                         <th>Tanggal Masuk</th>
                         <th>Tanggal Keluar</th>
                         <th>Aksi</th>
@@ -39,10 +42,13 @@
                             <th><?= $no++; ?></th>
                             <td><?= $dm['nama_perusahaan']; ?></td>
                             <td><?= $dm['nama_karyawan']; ?></td>
-                            <td><?= $dm['nama_posisi']; ?></td>
+                            <td><?= $dm['keahlian']; ?></td>
+                            <td><?= $dm['tools']; ?></td>
                             <td><?= $dm['email']; ?></td>
                             <td><?= $dm['telepon']; ?></td>
                             <td><?= $dm['alamat']; ?></td>
+                            <td>Rp <?= number_format($dm['rate_total'], 0, ',', '.'); ?></td>
+                            <td><?= $dm['dokumen_kerjasama']; ?></td>
                             <td><?= $dm['tanggal_masuk']; ?></td>
                             <td><?= $dm['tanggal_keluar']; ?></td>
                             <td>
@@ -81,17 +87,16 @@
                         <input type="text" class="form-control" id="nama_karyawan" name="nama" placeholder="Masukan Nama Karyawan">
                     </div>
                     <div class="form-group">
-                        <label>Posisi</label>
-                        <select class="form-control" id="posisi" name="posisi">
-                            <option value="">-- Pilih Posisi --</option>
-                            <?php foreach ($dataposisi as $dp) : ?>
-                                <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <label for="keahlian">Keahlian</label>
+                        <input type="text" class="form-control" id="keahlian" name="keahlian" placeholder="Masukan keahlian">
+                    </div>
+                    <div class="form-group">
+                        <label for="tools">Tools</label>
+                        <input type="text" class="form-control" id="tools" name="tools" placeholder="Masukan tools">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukan email">
                     </div>
                     <div class="form-group">
                         <label for="telepon">Telepon</label>
@@ -100,6 +105,14 @@
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="rate_total">Rate total</label>
+                        <input type="text" class="form-control" id="rate_total" name="rate_total" placeholder="Masukan rate total">
+                    </div>
+                    <div class="form-group">
+                        <label for="dokumen_kerjasama">Dokumen Kerja sama</label>
+                        <input type="text" class="form-control" id="dokumen_kerjasama" name="dokumen_kerjasama" placeholder="Masukan link dokumen">
                     </div>
                     <div class="form-group">
                         <label for="tanggal_masuk">Tanggal Masuk</label>
@@ -142,17 +155,12 @@
                             <input type="text" class="form-control" id="nama_karyawan" name="nama" value="<?= $dm['nama_karyawan']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="posisi">Posisi</label>
-                            <select class="form-control" id="posisi" name="posisi">
-                                <option value="">-- Pilih Posisi --</option>
-                                <?php foreach ($dataposisi as $dp) : ?>
-                                    <?php if ($dp['id_posisi'] == $dm['id_posisi']) : ?>
-                                        <option value="<?= $dp['id_posisi']; ?>" selected><?= $dp['nama_posisi'] ?></option>
-                                    <?php else : ?>
-                                        <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi'] ?></option>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </select>
+                            <label for="keahlian">Keahlian</label>
+                            <input type="text" class="form-control" id="keahlian" name="keahlian" value="<?= $dm['keahlian']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="tools">Tools</label>
+                            <input type="text" class="form-control" id="tools" name="tools" value="<?= $dm['tools']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -165,6 +173,14 @@
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
                             <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $dm['alamat']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="rate_total">Rate total</label>
+                            <input type="text" class="form-control" id="rate_total" name="rate_total" value="<?= $dm['rate_total']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="dokumen_kerjasama">Dokumen Kerja sama</label>
+                            <input type="text" class="form-control" id="dokumen_kerjasama" name="dokumen_kerjasama" value="<?= $dm['dokumen_kerjasama']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="tanggal_masuk">Tanggal Masuk</label>

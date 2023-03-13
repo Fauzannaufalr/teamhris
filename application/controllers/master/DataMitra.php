@@ -41,18 +41,15 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
             'required' => 'Nama Karyawan harus diisi !'
         ]);
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
-            'required' => 'Posisi harus diisi !'
+        $this->form_validation->set_rules('keahlian', 'Posisi', 'required', [
+            'required' => 'Keahlian harus diisi !'
+        ]);
+        $this->form_validation->set_rules('tools', 'Posisi', 'required', [
+            'required' => 'tools harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
-        ]);
-        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
-            'required' => 'Tanggal masuk harus diisi !'
-        ]);
-        $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
-            'required' => 'Tanggal keluar harus diisi !'
         ]);
         $this->form_validation->set_rules('alamat', 'alamat', 'required', [
             'required' => 'Alamat harus diisi !'
@@ -60,6 +57,15 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
             'required' => 'Telepon harus diisi !',
             'numeric' => 'Telepon harus diisi dengan angka !'
+        ]);
+        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
+            'required' => 'Tanggal masuk harus diisi !'
+        ]);
+        $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
+            'required' => 'Tanggal keluar harus diisi !'
+        ]);
+        $this->form_validation->set_rules('rate_total', 'tanggal_keluar', 'required', [
+            'required' => 'Rate total harus diisi !'
         ]);
 
         if ($this->form_validation->run() == FALSE) {
@@ -88,12 +94,22 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
             'required' => 'Nama Karyawan harus diisi !'
         ]);
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
-            'required' => 'Posisi harus diisi !'
+        $this->form_validation->set_rules('keahlian', 'Posisi', 'required', [
+            'required' => 'Keahlian harus diisi !'
+        ]);
+        $this->form_validation->set_rules('tools', 'Posisi', 'required', [
+            'required' => 'tools harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
+        ]);
+        $this->form_validation->set_rules('alamat', 'alamat', 'required', [
+            'required' => 'Alamat harus diisi !'
+        ]);
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
+            'required' => 'Telepon harus diisi !',
+            'numeric' => 'Telepon harus diisi dengan angka !'
         ]);
         $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
             'required' => 'Tanggal masuk harus diisi !'
@@ -101,12 +117,8 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
             'required' => 'Tanggal keluar harus diisi !'
         ]);
-        $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
-            'required' => 'Telepon harus diisi !',
-            'numeric' => 'Telepon harus diisi dengan angka !'
-        ]);
-        $this->form_validation->set_rules('alamat', 'alamat', 'required', [
-            'required' => 'Alamat harus diisi !'
+        $this->form_validation->set_rules('rate_total', 'tanggal_keluar', 'required', [
+            'required' => 'Rate total harus diisi !'
         ]);
 
         if ($this->form_validation->run() == FALSE) {

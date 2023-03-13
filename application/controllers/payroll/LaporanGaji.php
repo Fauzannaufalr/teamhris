@@ -6,6 +6,7 @@ class LaporanGaji extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('dompdf_gen');
         $this->load->model('payroll/laporangaji_model', 'LaporanGaji');
         $this->load->model('payroll/perhitungan_model', 'Perhitungan');
         $this->load->model('DataKaryawan_model', 'DataKaryawan');
@@ -17,7 +18,7 @@ class LaporanGaji extends CI_Controller
 
     public function index()
     {
-        $data['title'] = "Laporan Gaji Karyawan";
+        $data['title'] = "Pengajuan Gaji Karyawan";
         $data['laporan'] = $this->LaporanGaji->tampilLaporan();
         $data['datakaryawan'] = $this->DataKaryawan->getAllDataKaryawan();
         $data['perhitungan'] = $this->Perhitungan->tampilPerhitungan();
@@ -31,7 +32,7 @@ class LaporanGaji extends CI_Controller
 
     public function generate()
     {
-        $data['title'] = "Laporan Gaji Karyawan";
+        $data['title'] = "Pengajuan Gaji Karyawan";
         $data['generate'] = $this->LaporanGaji->generate();
         $data['laporan'] = $this->LaporanGaji->tampilLaporan();
         $data['user'] = $this->Hris->ambilUser();
@@ -110,7 +111,7 @@ class LaporanGaji extends CI_Controller
 
     public function kirimSlip()
     {
-        $data['title'] = "Laporan Gaji Karyawan";
+        $data['title'] = "Pengajuan Gaji Karyawan";
         $data['laporan'] = $this->LaporanGaji->tampilLaporan();
         $data['datakaryawan'] = $this->DataKaryawan->getAllDataKaryawan();
         $data['perhitungan'] = $this->Perhitungan->tampilPerhitungan();
@@ -126,7 +127,7 @@ class LaporanGaji extends CI_Controller
 
     public function cetakGaji()
     {
-        $data['title'] = "Laporan Gaji Karyawan";
+        $data['title'] = "Pengajuan Gaji Karyawan";
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];
@@ -139,5 +140,20 @@ class LaporanGaji extends CI_Controller
         $data['cetak_gaji'] = $this->LaporanGaji->cetakGaji($bulantahun);
         $this->load->view('templates/header', $data);
         $this->load->view('payroll/cetakgaji', $data);
+    }
+
+    public function cetak_slip($id)
+    {
+        $data['slipgaji'] = $this->LaporanGaji->ambilKaryawanById($id);
+        $this->load->view('payroll/cetakslip', $data);
+
+        $paper_size = 'A4';
+        $orientation = 'potrait';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream('slip_gaji.pdf', array('Attachment' => 0));
     }
 }

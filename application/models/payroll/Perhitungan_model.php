@@ -15,7 +15,9 @@ class Perhitungan_model extends CI_Model
     {
         $data = [
             'id_datakaryawan' => $this->input->post('nik_nama'),
-            'tunjangan' => $this->input->post('tunjangan'),
+            't_kinerja' => $this->input->post('t_kinerja'),
+            't_fungsional' => $this->input->post('t_fungsional'),
+            't_jabatan' => $this->input->post('t_jabatan'),
             'potongan' => $this->input->post('potongan'),
             'bonus' => $this->input->post('bonus')
         ];
@@ -26,7 +28,9 @@ class Perhitungan_model extends CI_Model
     {
         $data = [
             'id_datakaryawan' => $this->input->post('nik_nama'),
-            'tunjangan' => $this->input->post('tunjangan'),
+            't_kinerja' => $this->input->post('t_kinerja'),
+            't_fungsional' => $this->input->post('t_fungsional'),
+            't_jabatan' => $this->input->post('t_jabatan'),
             'potongan' => $this->input->post('potongan'),
             'bonus' => $this->input->post('bonus')
         ];

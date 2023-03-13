@@ -49,7 +49,9 @@
             <th class="text-center">Gaji Pokok</th>
             <th class="text-center">BPJS Kesehatan</th>
             <th class="text-center">Pajak</th>
-            <th class="text-center">Tunjangan</th>
+            <th class="text-center">Tj. Kinerja</th>
+            <th class="text-center">Tj. Fungsional</th>
+            <th class="text-center">Tj. Jabatan</th>
             <th class="text-center">Potongan</th>
             <th class="text-center">Bonus</th>
             <th class="text-center">Total Gaji</th>
@@ -64,7 +66,9 @@
                 <td class="text-center">Rp <?= number_format($g['gajipokok'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['bpjs'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['pajak'], 0, ',', '.'); ?></td>
-                <td class="text-center">Rp <?= number_format($g['tunjangan'], 0, ',', '.'); ?></td>
+                <td class="text-center">Rp <?= number_format($g['t_kinerja'], 0, ',', '.'); ?></td>
+                <td class="text-center">Rp <?= number_format($g['t_fungsional'], 0, ',', '.'); ?></td>
+                <td class="text-center">Rp <?= number_format($g['t_jabatan'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['potongan'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['bonus'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['total'], 0, ',', '.'); ?></td>
