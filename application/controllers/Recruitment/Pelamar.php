@@ -86,6 +86,46 @@ class Pelamar extends CI_Controller
             die;
         }
     }
+    private function _kirimSoal()
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'belajarcoding78@gmail.com',
+            'smtp_pass' => 'jeudcmhfxmcuwllq',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+            'wordwrap'  => TRUE
+        ];
+
+
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+
+        $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+        $this->email->to($this->input->post('email'));
+        $data = [
+            'id_posisi' => $this->input->post('posisi'),
+            'pg' => $this->input->post('pg'),
+            'essay' => $this->input->post('essay'),
+            'upload' => $this->input->post('upload'),
+            'dataposisi' => $this->DataPosisi_model->getAllDataPosisi()
+
+        ];
+        $card = $this->load->view('email_soal', $data, TRUE);
+
+        $this->email->subject('Soal Tes Recruitment');
+        $this->email->message($card);
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
 
     public function interview($id)
     {
@@ -111,6 +151,51 @@ class Pelamar extends CI_Controller
             $this->Pelamar_model->statuspelamar($id);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
             redirect('recruitment/pelamar');
+        }
+    }
+    public function soal($id)
+    {
+        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
+            'required' => 'Posisi harus diisi !'
+        ]);
+        $this->form_validation->set_rules('pg', 'Link Soal PG', 'required', [
+            'required' => 'Link Soal PG harus diisi !',
+        ]);
+
+        $this->form_validation->set_rules('upload', 'Link Upload Jawaban', 'required', [
+            'required' => 'Link Upload Jawaban harus diisi !',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Data Pelamar";
+            $data['pelamar'] = $this->Pelamar_model->getAllPelamar();
+            $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+            $data['user'] = $this->Hris_model->ambilUser();
+
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('recruitment/pelamar', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $email = $this->input->post('email');
+            $this->_kirimSoal();
+            $this->Pelamar_model->statuspelamar($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
+            redirect('recruitment/pelamar');
+        }
+    }
+    public function upload_file()
+    {
+        $config['upload_path'] = './dist/uploads';
+        $config['max_size'] = '4024';
+        $config['allowed_types'] = 'doc|docx|pdf';
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('essay')) {
+            return $this->upload->data();
+        } else {
+            return $this->upload->display_errors();
         }
     }
 

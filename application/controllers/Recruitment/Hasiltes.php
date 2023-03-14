@@ -20,7 +20,7 @@ class Hasiltes extends CI_Controller
     {
         // printr($_SESSION);
         $data['title'] = "Hasil Tes";
-        $data['Hasil Tes'] = $this->Hasiltes_model->getAllHasiltes();
+        $data['hasiltes'] = $this->Hasiltes_model->getAllHasiltes();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 

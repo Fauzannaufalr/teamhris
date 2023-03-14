@@ -42,9 +42,9 @@
                                     <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                                 <?php elseif ($ds['status'] == 'Proses Interview') : ?>
                                     <button class="badge badge-primary" data-toggle="modal" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Lihat Jadwal</button>
-                                    <button class="badge badge-warning" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
-                                <?php else : ?>
-                                    <button>kirim</button>
+                                    <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
+                                <?php elseif ($ds['status'] == 'Proses pengerjaan Soal') : ?>
+                                    <button>pengerjaan soal</button>
                                 <?php endif; ?>
                                 <button class="badge badge-danger" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar']; ?>">Hapus</button>
                             </td>
@@ -89,42 +89,43 @@
 
 
 
-<?php foreach ($pelamar as $ds) : ?>
-    <!-- Modal kirim slip -->
-<div class="modal fade" id="interviewModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="interviewModalLabel">Jadwalkan Interview</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('recruitment/pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
-                    <div class="form-group">
-                        <label for="tanggal">Tanggal Interview</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal">
-                    </div>
-                    <div class="form-group">
-                        <label for="gmeet">Link Google Meet</label>
-                        <input type="text" class="form-control" id="gmeet" name="gmeet">
-                    </div>
-                    <div class="form-group">
-                        <label for="bertemu">Bertemu dengan</label>
-                        <input type="text" class="form-control" id="bertemu" name="bertemu">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-danger">Kirim</button>
 
+<!-- Modal kirim slip -->
+<?php foreach ($pelamar as $ds) : ?>
+    <div class="modal fade" id="interviewModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="interviewModalLabel">Jadwalkan Interview</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
+                <form action="<?= base_url('recruitment/pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <div class="form-group">
+                            <label for="tanggal">Tanggal Interview</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        </div>
+                        <div class="form-group">
+                            <label for="gmeet">Link Google Meet</label>
+                            <input type="text" class="form-control" id="gmeet" name="gmeet">
+                        </div>
+                        <div class="form-group">
+                            <label for="bertemu">Bertemu dengan</label>
+                            <input type="text" class="form-control" id="bertemu" name="bertemu">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn btn-danger">Kirim</button>
+
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 <?php endforeach; ?>
 
 
@@ -134,7 +135,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="jadwalModalLabel">Jadwalkan Interview</h5>
+                    <h5 class="modal-title" id="jadwalModalLabel">Lihat Jadwal Interview</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -182,16 +183,25 @@
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <div class="form-group">
-                            <label for="tanggal">Tanggal Interview</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                            <label>Posisi</label>
+                            <select class="form-control" id="posisi" name="posisi">
+                                <option>-- Pilih Posisi --</option>
+                                <?php foreach ($dataposisi as $dp) : ?>
+                                    <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="gmeet">Link Google Meet</label>
-                            <input type="text" class="form-control" id="gmeet" name="gmeet">
+                            <label for="pg">Link Soal PG</label>
+                            <input type="text" class="form-control" id="pg" name="pg">
                         </div>
                         <div class="form-group">
-                            <label for="bertemu">Bertemu dengan</label>
-                            <input type="text" class="form-control" id="bertemu" name="bertemu">
+                            <label for="essay">Link Soal Essay</label>
+                            <input type="file" class="form-control" id="essay" name="essay">
+                        </div>
+                        <div class="form-group">
+                            <label for="upload">Link Upload Jawaban</label>
+                            <input type="text" class="form-control" id="upload" name="upload">
                         </div>
                     </div>
                     <div class="modal-footer">
