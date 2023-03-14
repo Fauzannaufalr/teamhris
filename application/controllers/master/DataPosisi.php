@@ -55,6 +55,9 @@ class DataPosisi extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Nama Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
         ]);
+        $this->form_validation->set_rules('kode', 'Kode', 'required', [
+            'required' => 'Kode harus diisi !'
+        ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

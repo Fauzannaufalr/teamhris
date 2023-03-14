@@ -47,6 +47,9 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
         ]);
+        $this->form_validation->set_rules('kelas', 'Kelas', 'required', [
+            'required' => 'Kelas harus diisi !'
+        ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
@@ -98,6 +101,9 @@ class DataKaryawan extends CI_Controller
         ]);
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
+        ]);
+        $this->form_validation->set_rules('kelas', 'kelas', 'required', [
+            'required' => 'kelas harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',

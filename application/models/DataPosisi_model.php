@@ -12,12 +12,19 @@ class DataPosisi_model extends CI_Model
             'nama_posisi' => $this->input->post('posisi'),
         ];
         $this->db->insert('data_posisi', $data);
+        $data = [
+            'kode' => $this->input->post('kode'),
+        ];
+        $this->db->insert('data_posisi', $data);
     }
 
     public function ubahDataPosisi()
     {
         $data = [
             "nama_posisi" => $this->input->post('posisi', true),
+        ];
+        $data = [
+            "kode" => $this->input->post('kode', true),
         ];
 
         $this->db->where('id_posisi', $this->input->post('id_posisi'));

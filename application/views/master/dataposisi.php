@@ -22,6 +22,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Posisi</th>
+                        <th>Kode</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -31,9 +32,10 @@
                         <tr>
                             <th><?= $no++; ?></th>
                             <td><?= $dp['nama_posisi']; ?></td>
+                            <td><?= $dp['kode']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #ffcc00;" data-toggle="modal" data-target="#ubahPosisi<?= $dp['id_posisi']; ?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dp['id_posisi']; ?>">hapus</button>
+                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahPosisi<?= $dp['id_posisi']; ?>">edit</button>
+                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $dp['id_posisi']; ?>">hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -58,6 +60,10 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="posisi">Posisi</label>
+                        <input type="text" class="form-control" name="posisi" id="posisi" placeholder="Masukan Posisi">
+                    </div>
+                    <div class="form-group">
+                        <label for="posisi">Kode</label>
                         <input type="text" class="form-control" name="posisi" id="posisi" placeholder="Masukan Posisi">
                     </div>
                 </div>
@@ -89,6 +95,10 @@
                         <div class="form-group">
                             <label for="posisi">Posisi</label>
                             <input type="text" class="form-control" name="posisi" id="posisi" value="<?= $dp['nama_posisi']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="posisi">Kode</label>
+                            <input type="text" class="form-control" name="kode" id="kode" value="<?= $dp['kode']; ?>">
                         </div>
                     </div>
                     <div class="modal-footer">

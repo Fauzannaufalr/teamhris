@@ -1,4 +1,4 @@
-///ini tambah soal ujian//
+
                 <form action="<?= base_url('soal/insert'); ?>" method="post">
                     <div class="box-body">
 
@@ -6,10 +6,10 @@
 
                             
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Mata Pelajaran</label>
+                                <label class="col-sm-2 control-label">Pilih Posisi</label>
                                 <div class="col-sm-10">
                                     <select class="select2 form-control" name="nama_matapelajaran" required="">
-                                        <option selected="selected" disabled="" value="">- Pilih Materi Training -</option>
+                                        <option selected="selected" disabled="" value="">- Pilih Kategori Posisi -</option>
                                         <?php foreach ($soal as $a) { ?>
                                             <option value="<?= $a->id_posisi ?>"><?= $a->kode_posisi; ?> | <?= $a->nama_posisi; ?></option>
                                         <?php } ?>
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-10">
-                     <a href="<?=base_url('soal_ujian')?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span> Kembali</a>
+                                    <a href="<?=base_url('soal_ujian')?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span> Kembali</a>
                                     <button type="submit" class="btn btn-primary btn-flat" title="Tambah Data Soal Ujian"><span class="fa fa-save"></span> Simpan</button>
                                 </div>
                             </div>

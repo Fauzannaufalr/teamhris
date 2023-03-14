@@ -1,22 +1,12 @@
 <?php
-class Soal_model extends CI_Model {
-    public function __construct() {
-        parent::__construct();
+defined('BASEPATH') or exit('no direct script access allowed');
+
+class Soal_model extends CI_Model
+{
+
+    public function get_joinsoal($id)
+    {
+        $query = 'SELECT * FROM tb_soal join data_posisi ON tb_soal.id_posisi=data_posisi.id_posisi WHERE tb_soal.id_soal_ujian="' . $id . '"';
+        return $this->db->query($query);
     }
-    
-    public function get_soal() {
-        // mengambil data soal dari database
-        $query = $this->db->get('tb_soal');
-        return $query->result();
-    }
-    
-    public function insert_jawaban($data) {
-        // menyimpan data jawaban ke database
-        $this->db->insert('tb_jawaban', $data);
-        return true;
-    }
-    public function insert_data($data, $table)
-	{
-		$this->db->insert($table, $data);
-	}
 }

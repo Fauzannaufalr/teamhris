@@ -8,6 +8,7 @@ class DataKaryawan_model extends CI_Model
         $this->db->select('*');
         $this->db->from('data_karyawan');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
+        $this->db->join('tb_kelas', 'tb_kelas.id_kelas = data_karyawan.id_kelas');
         return $this->db->get()->result_array();
     }
     public function getDataKaryawanExcept($nik)
@@ -16,6 +17,7 @@ class DataKaryawan_model extends CI_Model
         $this->db->select('*');
         $this->db->from('data_karyawan');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
+        $this->db->join('tb_kelas', 'tb_kelas.id_kelas = data_karyawan.id_kelas');
         $this->db->where("data_karyawan.nik !=", $nik);
         return $this->db->get()->result_array();
     }
@@ -27,6 +29,7 @@ class DataKaryawan_model extends CI_Model
             'nik' => htmlspecialchars($this->input->post('nik')),
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
             'id_posisi' => htmlspecialchars($this->input->post('posisi')),
+            'id_kelas' => htmlspecialchars($this->input->post('kelas')),
             'email' => htmlspecialchars($email),
             'status' => 'Aktif',
             'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
@@ -56,6 +59,7 @@ class DataKaryawan_model extends CI_Model
             'nik' => htmlspecialchars($this->input->post('nik')),
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
             'id_posisi' => htmlspecialchars($this->input->post('posisi')),
+            'id_kelas' => htmlspecialchars($this->input->post('kelas')),
             'email' => htmlspecialchars($email),
             'status' => htmlspecialchars($this->input->post('status')),
             'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
