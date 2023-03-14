@@ -14,7 +14,7 @@ class Soal extends CI_Controller
     {
         // menampilkan halaman soal
         $data['title'] = 'Tambah Soal';
-        $data['soal'] = $this->m_data->get_data('data_posisi');
+        $data['soal'] = $this->m_data->get_data('data_posisi')->result_array();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['DataPosisi'] = $this->DataPosisi_model->getAllDataPosisi();
 

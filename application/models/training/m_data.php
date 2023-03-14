@@ -107,7 +107,7 @@ class m_data extends CI_Model
 		$this->db->update('tb_peserta', $data);
 	}
 
-	public function get_peserta($id_siswa)
+	public function get_peserta($id_karyawan)
 	{
 		$this->db->select('*');
 		$this->db->from('tb_peserta');
