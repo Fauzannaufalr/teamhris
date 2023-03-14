@@ -24,14 +24,11 @@ class PenilaianKinerja_model extends CI_Model
 
     public function tambahPenilaianKinerja()
     {
-        $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
-<<<<<<< Updated upstream
-        $nilai = $total_kerja / $done_kerja * (100);
-=======
-        $nilai = ($total_kerja / $done_kerja) * 100;
+        $total_kerja = $this->input->post('total_kerja');
+        $nilai = ($done_kerja / $total_kerja) * "100%";
 
->>>>>>> Stashed changes
+
         if ($nilai >= 80 && $nilai <= 100) {
             $kategorisasi = "Sangat Baik";
         } else if ($nilai >= 60 && $nilai <= 79) {
@@ -44,10 +41,6 @@ class PenilaianKinerja_model extends CI_Model
             $kategorisasi = "Sangat Kurang";
         }
         echo "Kategorisasi: " . $kategorisasi;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),
@@ -62,9 +55,6 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
-<<<<<<< Updated upstream
-        $nilai = $total_kerja / $done_kerja * (100);
-=======
         $nilai = ($total_kerja / $done_kerja) * 100;
         if ($nilai >= 80 && $nilai <= 100) {
             $kategorisasi = "Sangat Baik";
@@ -78,7 +68,6 @@ class PenilaianKinerja_model extends CI_Model
             $kategorisasi = "Sangat Kurang";
         }
         echo "Kategorisasi: " . $kategorisasi;
->>>>>>> Stashed changes
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tgl' => date("mY"),

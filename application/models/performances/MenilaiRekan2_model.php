@@ -2,7 +2,7 @@
 
 class MenilaiDiriSendiri_model extends CI_Model
 {
-    public function tampilMenilaiDiriSendiri()
+    public function tampilMenilaiRekan2Sendiri()
     {
         $this->db->select('data_karyawan.*, 
             performances___penilaian_kinerja.id_penilaian_kuesioner ,
@@ -25,22 +25,22 @@ class MenilaiDiriSendiri_model extends CI_Model
     {
         // Memeriksa apakah metode HTTP yang digunakan adalah POST
         if ($this->input->method() != 'post') {
-            redirect('performances/menilairekan1');
+            redirect('performances/menilairekan2');
         }
 
         // Mendapatkan data dari formulir jawaban kuesioner
         $data = array(
             'id_penilaian_kuesioner' => $this->input->post('id_penilaian_kuesioner'),
-            'nik_user_by' => $this->input->post('nik_user_by'),
-            'nik_user_to' => $this->input->post('nik_user_to'),
+            'nik_penilai' => $this->input->post('nik_penilai'),
+            'menilai' => $this->input->post('menilai'),
             'tanggal_dibuat' => $this->input->post('tanggal_dibuat'),
             'total_nilai' => $this->input->post('total_nilai'),
             'total_soal' => $this->input->post('total_soal')
         );
 
         // Memasukkan data jawaban kuesioner ke dalam database
-        $this->load->model('MenilaiDiriSendiri_model');
-        $result = $this->MenilaiDiriSendiri_model->insert($data);
+        $this->load->model('MenilaiRekan2_model');
+        $result = $this->MenilaiRekan2_model->insert($data);
 
         // Menampilkan pesan berhasil atau gagal
         if ($result) {
@@ -49,7 +49,7 @@ class MenilaiDiriSendiri_model extends CI_Model
             $this->session->set_flashdata('error_message', 'Jawaban kuesioner gagal disimpan');
         }
 
-        redirect('performances/menilairekan1');
+        redirect('performances/menilairekan2');
     }
 // public function nilaiSiswa($id_kelas, $nis)
 // {

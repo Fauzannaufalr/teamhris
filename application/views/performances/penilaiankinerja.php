@@ -37,12 +37,15 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-secondary mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
+                    <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
-                    <a href="" class="btn btn-primary mb-2 ml-3"><i class="fas fa-plus">
-                        </i>Cetak Penilaian Kinerja</a>
+                    <?php if (count($penilaiankinerja) > 0) { ?>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('payroll/laporangaji/cetakpenilaiankinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Hasil NIlai</a>
+                    <?php } else { ?>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Hasil NIlai</button>
+                    <?php } ?>
                 </div>
 
             </div>
@@ -62,9 +65,9 @@
 
     ?>
     <div class="alert alert" style="background-color: #cc0000; color: white;">
-        Menampilkan penilaian kinerja Bulan:<span class="fofnt-weight-bold">
+        Menampilkan penilaian kinerja Bulan:<span class="font-weight-bold">
             <?php echo $bulan ?>
-        </span> Tahun:<span class="fofnt-weight-bold">
+        </span> Tahun:<span class="font-weight-bold">
             <?php echo $tahun ?>
     </div>
     <div class="card">
@@ -102,7 +105,7 @@
 
 
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;">
+                    <thead style="text-align: center;  background-color:#cc0000; color: white;">
                         <tr>
                             <th>No</th>
                             <th>NIK</th>
@@ -117,7 +120,7 @@
                     <tbody>
                         <?php $no = 1 ?>
                         <?php foreach ($penilaiankinerja as $pk): ?>
-                            <tr style="text-align: center;">
+                            <tr style=" text-align: center;">
                                 <th>
                                     <?= $no++; ?>
                                 </th>

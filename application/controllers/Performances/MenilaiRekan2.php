@@ -26,37 +26,37 @@ class MenilaiRekan2 extends CI_Controller
         $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik); // nik menampilkan data karyawan yang nik nya bukan dari login
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
 
-        // 2.menilai 
-        // menampilkan data karyawan yang nik nya bukan dari login
 
-        // 3.simpan kuesioner (diri sendiri, rekan1 , rekan 2)
-        // dimasukan ke tabel 'performances___penilaian_kuesioner' & 'performances___detail_penilaian_kuesioner	' (pake perulangan)
-        // * <input type='text'name='nilai_kue[]' />
-        // $_POST['nilai_kue']
-        // [
-        //     'nilai_kue' => [
-        //         0 => 5,
-        //         1 => 3,
-        //         2 => 2,
-        //     ]
-        // ]
-        // $teamhris = [
-        //     "application" => [
-        //         "cache" => [
-        //             0 => "ïndex.html"
-        //         ],
-        //         "config" => [
-        //             0 => "autoload.php",
-        //             1 => "config.php",
-        //             2 => "constant.php",
-        //             // ,..
-        //         ]
-        //     ]
-        // ];
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('performances/menilairekan2', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function kirim()
+    {
+        // Ambil data dari form menilai rekan2 
+        $nik_penilai = $this->input->post('nik_penilai');
+        $menilai = $this->input->post('menilai');
+        $tanggal_dibuat = $this->input->post('tanggal_dibuat');
+        $total_soal = $this->input->post('total_soal');
+        $total_nilai = $this->input->post('total_nilai');
+
+
+        // Simpan data ke database penilaian kusioner
+        $this->load->model('MenilaiRekan2_model');
+        $data = array(
+            'nik_penilai' => $nik_penilai,
+            'menilai' => $menilai,
+            'tanggal_dibuat' => $tanggal_dibuat,
+            'total_soal' => $total_soal,
+            'total_nilai' => $total_nilai,
+        );
+        $this->MenilaiRekan2_model->simpan_data($data);
+
+        // Tampilkan pesan sukses atau redirect ke halaman lain
+        $this->session->set_flashdata('success', 'Terima kasih atas partisipasi Anda.');
+        redirect('performances/menilairekan2');
     }
 }

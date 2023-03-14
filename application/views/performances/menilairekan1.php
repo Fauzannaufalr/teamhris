@@ -8,12 +8,12 @@
           <?= validation_errors(); ?>
         </div>
       <?php endif; ?>
-      <div class="row">
-        <div class="col-lg-4">
-          <?= $this->session->flashdata('message'); ?>
-        </div>
-      </div>
 
+      <?php if ($this->session->flashdata('success')): ?>
+        <div style="color: green;">
+          <?php echo $this->session->flashdata('success'); ?>
+        </div>
+      <?php endif; ?>
       <div class="form-group col-md-4">
         <label>Penilai</label>
         <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
@@ -32,7 +32,7 @@
       </div>
 
 
-      <form method="POST" action="/teamhris/performances/menilairekan1/tambah">
+      <form method="POST" action="<?php base_url('performances/MenilaiRekan1/Hasil') ?>">
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
             <thead style="background-color:  #cc0000; color: white;">
@@ -55,11 +55,11 @@
                   <td>
                     <select name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
-                      <option value="10">Sangat Baik</option>
-                      <option value="9">Baik</option>
-                      <option value="8">Cukup</option>
-                      <option value="7">Kurang Baik</option>
-                      <option value="6">Sangat Kurang Baik</option>
+                      <option value="5" name="jawaban1">Sangat Baik</option>
+                      <option value="4" name="jawaban2">Baik</option>
+                      <option value="3" name="jawaban3">Cukup</option>
+                      <option value="2" name="jawaban4">Kurang Baik</option>
+                      <option value="1" name="jawaban5">Sangat Kurang Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -70,7 +70,7 @@
           </table>
           <input type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
           <br>
-          <button name="simpan" type="submit" class="btn btn-info">Simpan Penilaian</button>
+          <button name="simpan" value="kirim" type="submit" class="btn btn-info">Simpan Penilaian</button>
         </div>
       </form>
     </div>

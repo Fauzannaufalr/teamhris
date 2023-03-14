@@ -60,17 +60,19 @@ class MenilaiRekan1 extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambah()
+    public function simpan()
     {
         $nilai = $this->input->post("nilai");
+        $id_penilaian_keusioner = count($id_penilaian_keusioner);
         $nik_penilai = count($nik_penilai);
-        $menilai = array_sum($menilai);
+        $nik_menilai = array_sum($nik_menilai);
         $total_soal = count($nilai);
+        $total_nilai = count($nilai);
         $tanggal = count($tanggal);
         $data = [
             "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
             "nik_penilai" => $nik_penilai,
-            "menilai" => $nik_penilai,
+            "nik_menilai" => $nik_menilai,
             "tanggal" => $tanggal,
             "total_nilai" => $total_nilai,
             "total_soal" => $total_soal,
@@ -78,7 +80,7 @@ class MenilaiRekan1 extends CI_Controller
         ];
 
         // insert penilaian kuesioner
-        $this->db->insert("penilaian_kuesioner", $data);
+        $this->db->insert("performances___penilaian_kuesioner", $data);
         $id_penilaian_kuesioner = $this->db->insert_id();
 
         // insert detail penilaian kuesioner
@@ -87,6 +89,8 @@ class MenilaiRekan1 extends CI_Controller
                 "ïd_kuesioner" => $id_kuesioner,
                 "ïd_detail_penilaian" => $id_detail_penilaian,
                 "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
+                "nik_penilai" => $nik_penilai,
+                "nik_menilai" => $nik_menilai,
                 "nilai" => $val,
             ];
             $this->db->insert("performances___detail_penilaian_kuesioner", $data);

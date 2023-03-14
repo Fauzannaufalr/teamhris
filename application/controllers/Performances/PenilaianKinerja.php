@@ -131,7 +131,22 @@ class PenilaianKinerja extends CI_Controller
         }
         redirect('performances/penilaiankinerja');
     }
-
+    public function cetakpenilaiankinerja()
+    {
+        $data['title'] = "Laporan Penilaian Kinerja";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $tahun . $bulan;
+        } else {
+            $bulan = date('m', strtotime('+1 month'));
+            $tahun = date('Y');
+            $bulantahun = $tahun . $bulan;
+        }
+        $data['penilaiankinerja'] = $this->PenilaianKinerja_model->cetakpenilaiankinerja($bulantahun);
+        $this->load->view('templates/header', $data);
+        $this->load->view('performances/penilaiankinerja', $data);
+    }
     public function ajax_category()
     {
         $nik = $_GET["nik"];

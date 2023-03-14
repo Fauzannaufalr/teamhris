@@ -14,69 +14,68 @@
         </div>
       </div>
 
-      <!-- mengapa dikasih logika session, karena untk menilai diri sendiri, scr otomatis dia yang menilai
-           berdaskarkan dari nik karyawan -->
-      <?php if ($this->session->userdata('level') !== 'ceo')
-        if ($this->session->userdata('level') !== 'hc')
-          if ($this->session->userdata('level') !== 'leader')
-            if ($this->session->userdata('level') !== 'biasa') { ?>
-              <div class="form-group">
-                <label>Penilai</label>
-                <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
-                <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
-              </div>
-            <?php } ?>
 
-      <div class="form-group col-md-4">
+      <div class="form-group form-group col-md-4">
         <label>Menilai</label>
         <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
         <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
       </div>
-    </div>
+
+      <?php if ($this->session->userdata('level') !== 'ceo')
+        if ($this->session->userdata('level') !== 'hc')
+          if ($this->session->userdata('level') !== 'leader')
+            if ($this->session->userdata('level') !== 'biasa') { ?>
+              <div class=" form-group form-group col-md-4">
+                <label>Penilai</label>
+                <select class="form-control" name="nik_nama" id="nik_nama">
+                  <option>-- Pilih Karyawan --</option>
+                  <?php foreach ($datakaryawan as $dk): ?>
+                    <option value="<?= $dk['id_karyawan']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+            <?php } ?>
 
 
-    <form method="POST" action="<?php echo base_url('MenillaiDiriSendiri/simpan_jawaban'); ?>">
-      <div class="table-responsive">
-        <table id="" class="table table-bordered table-striped">
-          <thead style="background-color: #cc0000; color: white;">
-            <tr style="text-align: center;">
-              <th>No</ths>
-              <th>Pertanyaan</th>
-              <th>Jawaban</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php $no = 1; ?>
-            <?php foreach ($soalkuesioner as $sk): ?>
-              <tr>
-                <td style="text-align: center;">
-                  <?= $no++ ?>
-                </td>
-                <td>
-
-                  <?= $sk['kuesioner'] ?>
-
-                </td>
-
-                <td>
-                  <select name="" class="form-control">
-                    <option disabled="" selected="">--Berikan Penilaian--</option>
-                    <option value="10">Sangat Baik</option>
-                    <option value="9">Baik</option>
-                    <option value="8">Cukup</option>
-                    <option value="7">Kurang Baik</option>
-                    <option value="6">Sangat Kurang Baik</option>
-                  </select>
-                </td>
+      <form method="POST">
+        <div class="table-responsive">
+          <table id="" class="table table-bordered table-striped">
+            <thead style="background-color: #cc0000; color: white;">
+              <tr style="text-align: center;">
+                <th>No</th>
+                <th>Pertanyaan</th>
+                <th>Jawaban</th>
               </tr>
+            </thead>
+            <tbody>
+              <?php $no = 1; ?>
+              <?php foreach ($soalkuesioner as $sk): ?>
+                <tr>
+                  <td style="text-align: center;">
+                    <?= $no++ ?>
+                  </td>
+                  <td>
+                    <?= $sk['kuesioner'] ?>
+                  </td>
+                  <td>
+                    <select name="data2" class="form-control">
+                      <option disabled="" selected="">--Berikan Penilaian--</option>
+                      <option value="10">Sangat Baik</option>
+                      <option value="9">Baik</option>
+                      <option value="8">Cukup</option>
+                      <option value="7">Kurang Baik</option>
+                      <option value="6">Sangat Kurang Baik</option>
+                    </select>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+              <tr>
+            </tbody>
 
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-        <input type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
-        <br>
-        <button name="simpan" type="submit" class="btn btn-info">Simpan Penilaian</button>
-      </div>
-    </form>
-  </div>
-</div>
+          </table>
+          <input type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
+          <br>
+          <button name="simpan" type="submit" class="btn btn-info">Simpan Penilaian</button>
+        </div>
+      </form>
+    </div>

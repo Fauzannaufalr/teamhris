@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #ff0000;">
+        <div class="card-header" style="color: white; background-color: #cc0000;">
             <h4> Filter Data Akumulasi Penilaian</h4>
         </div>
 
@@ -38,10 +38,12 @@
                             <option value="">2022</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-info mb-2 ml-3"><i class="fas fa-eye"> Tampilkan
+                    <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
+                    <button type="button" class="btn btn-outline-success mb-2 ml-2"><i class="fas fa-print"></i> Cetak
+                        Laporan</button>
                 </div>
 
             </div>
@@ -64,7 +66,7 @@
 
 
             <table id="example1" class="table table-bordered table-striped">
-                <thead style="background-color: #ff0000; text-align: center ;">
+                <thead style="background-color: #cc0000; text-align: center ;">
                     <tr style="color: #ffffff;">
                         <th>No</th>
                         <th>Nama Karyawan</th>
