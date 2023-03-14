@@ -92,18 +92,14 @@ class DataKaryawan extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
-            'required' => 'NIK harus diisi !',
-            'is_unique' => 'NIK Sudah Terdaftar !'
+        $this->form_validation->set_rules('nik', 'NIK', 'required', [
+            'required' => 'NIK harus diisi !'
         ]);
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
             'required' => 'Nama harus diisi !'
         ]);
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
-        ]);
-        $this->form_validation->set_rules('kelas', 'kelas', 'required', [
-            'required' => 'kelas harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',

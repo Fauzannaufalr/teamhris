@@ -14,7 +14,7 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
-            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i>
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i>
                 Tambah Posisi
             </button>
             <table id="example1" class="table table-bordered table-striped">

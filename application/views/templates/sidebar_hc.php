@@ -63,7 +63,7 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('payroll/laporangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('payroll/pengajuangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Pengajuan Gaji Karyawan</p>
                               </a>
                           </li>
@@ -116,8 +116,8 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('payroll/laporanmitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                                  <p>Laporan Mitra</p>
+                              <a href="<?= base_url('payroll/pengajuanratemitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                  <p>Pengajuan Rate Mitra</p>
                               </a>
                           </li>
                       </ul>

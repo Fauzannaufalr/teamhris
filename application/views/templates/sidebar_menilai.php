@@ -65,61 +65,15 @@
             </a>
         </li>
     </ul>
-<<<<<<< Updated upstream
 
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('performances/akumulasi') ?>" class="nav-link "
-                style="background-color: #ffffff; color: black;">
+            <a href="<?= base_url('performances/akumulasi') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                 <p>Akumulasi Penilaian</p>
             </a>
         </li>
     </ul>
 </li>
-=======
-    <?php if ($this->session->userdata('level') !== 'leader') { ?>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="<?= base_url('performances/akumulasi') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                    <p>Akumulasi Penilaian</p>
-                </a>
-            </li>
-        </ul>
-</li>
-<?php } ?>
-
-<?php if ($this->session->userdata('level') !== 'leader') { ?>
-    <li class="nav-item">
-        <a href="#" class="nav-link" style="color: #ffffff;">
-            <i class="nav-icon fas fa-chalkboard-teacher"></i>
-            <p>
-                Training
-                <i class="right fas fa-angle-right"></i>
-            </p>
-        </a>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="<?= base_url('training/soal_ujian') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                    <p>Kelola Data Soal</p>
-                </a>
-            </li>
-        </ul>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="<?= base_url('training/peserta') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                    <p>Kelola Peserta Ujian</p>
-                </a>
-            </li>
-        </ul>
-
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="<?= base_url('training/hasil_ujian') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
-                    <p>Hasil Ujian</p>
-                </a>
-            </li>
-        </ul>
->>>>>>> Stashed changes
 
 
 
@@ -133,8 +87,7 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('training/soal') ?>" class="nav-link "
-                style="background-color: #ffffff; color: black;">
+            <a href="<?= base_url('training/soal') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                 <p>Kelola Data Soal</p>
             </a>
         </li>
@@ -149,8 +102,7 @@
 
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('training/hasil_ujian') ?>" class="nav-link "
-                style="background-color: #ffffff; color: black;">
+            <a href="<?= base_url('training/hasil_ujian') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                 <p>Hasil Ujian</p>
             </a>
         </li>

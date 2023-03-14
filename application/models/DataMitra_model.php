@@ -6,6 +6,7 @@ class DataMitra_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('data_mitra');
+        $this->db->order_by('data_mitra.nama_perusahaan', 'asc');
         return  $this->db->get()->result_array();
     }
 
@@ -22,7 +23,8 @@ class DataMitra_model extends CI_Model
             'rate_total' => $this->input->post('rate_total'),
             'dokumen_kerjasama' => $this->input->post('dokumen_kerjasama'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),
-            'tanggal_keluar' => $this->input->post('tanggal_keluar')
+            'tanggal_keluar' => $this->input->post('tanggal_keluar'),
+            'status' => 'Aktif'
         ];
         $this->db->insert('data_mitra', $data);
     }
@@ -40,7 +42,8 @@ class DataMitra_model extends CI_Model
             'rate_total' => $this->input->post('rate_total'),
             'dokumen_kerjasama' => $this->input->post('dokumen_kerjasama'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),
-            'tanggal_keluar' => $this->input->post('tanggal_keluar')
+            'tanggal_keluar' => $this->input->post('tanggal_keluar'),
+            'status' => $this->input->post('status')
         ];
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('data_mitra', $data);

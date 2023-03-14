@@ -32,6 +32,7 @@
                         <th>Dokumen Kerja Sama</th>
                         <th>Tanggal Masuk</th>
                         <th>Tanggal Keluar</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -51,6 +52,7 @@
                             <td><?= $dm['dokumen_kerjasama']; ?></td>
                             <td><?= $dm['tanggal_masuk']; ?></td>
                             <td><?= $dm['tanggal_keluar']; ?></td>
+                            <td><?= $dm['status']; ?></td>
                             <td>
                                 <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #ffcc00;" data-toggle="modal" data-target="#ubahDataMitra<?= $dm['id'] ?>">edit</button>
                                 <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dm['id'] ?>">hapus</button>
@@ -189,6 +191,13 @@
                         <div class="form-group">
                             <label for="tanggal_keluar">Tanggal Keluar</label>
                             <input type="date" class="form-control" id="tanggal_keluar" name="tanggal_keluar" value="<?= $dm['tanggal_keluar']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
