@@ -20,6 +20,8 @@
                         <th>Posisi</th>
                         <th>Email</th>
                         <th>File CV</th>
+                        <th>Nilai PG</th>
+                        <th>Nilai Tes</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -36,15 +38,18 @@
                             <?php endforeach; ?>
                             <td><?= $ds['email']; ?></td>
                             <td><a href="<?php echo base_url('recruitment/pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
+                            <td><?= $ds['pg']  ?></td>
+                            <td><?= $ds['essay']  ?></td>
                             <td><?= $ds['status']; ?></td>
                             <td>
                                 <?php if ($ds['status'] == 'pelamar') : ?>
                                     <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                                 <?php elseif ($ds['status'] == 'Proses Interview') : ?>
-                                    <button class="badge badge-primary" data-toggle="modal" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Lihat Jadwal</button>
+                                    <button class="badge badge-secondary" data-toggle="modal" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Lihat Jadwal</button>
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
-                                <?php elseif ($ds['status'] == 'Proses pengerjaan Soal') : ?>
-                                    <button>pengerjaan soal</button>
+                                <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
+                                    <button class="badge badge-primary" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Beri Nilai</button>
+
                                 <?php endif; ?>
                                 <button class="badge badge-danger" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar']; ?>">Hapus</button>
                             </td>
@@ -169,7 +174,7 @@
 
 
 <?php foreach ($pelamar as $ds) : ?>
-    <!-- Modal kirim slip -->
+    <!-- Modal kirim Soal -->
     <div class="modal fade" id="soalModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="soalModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -208,6 +213,104 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-danger">Kirim</button>
 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+
+
+
+
+
+
+<?php foreach ($pelamar as $ds) : ?>
+    <!-- Modal kirim Nilai -->
+    <div class="modal fade" id="nilaiModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="nilaiModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="soalModalLabel">Beri nilai dan Surat diterima/ ditolak </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('recruitment/pelamar/nilai/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select id="status<?= $ds['id_pelamar']; ?>" name="status<?= $ds['id_pelamar']; ?>" class="form-control" onchange="changeStatus<?= $ds['id_pelamar']; ?>()">
+                                <option value="Tidak Lulus">Tidak Lulus</option>
+                                <option value="Lulus" selected>Lulus</option>
+                            </select>
+                        </div>
+                        <div id="nilai<?= $ds['id_pelamar']; ?>">
+
+                        </div>
+                        <script>
+                            function clear<?= $ds['id_pelamar']; ?>() {
+                                const nilai = document.getElementById('nilai<?= $ds['id_pelamar']; ?>');
+                                nilai.textContent = '';
+                            }
+
+                            function changeStatus<?= $ds['id_pelamar']; ?>() {
+                                var e = document.getElementById('status<?= $ds['id_pelamar']; ?>');
+                                const nilai = document.getElementById('nilai<?= $ds['id_pelamar']; ?>');
+                                console.log(nilai);
+                                if (e.value == 'Tidak Lulus') {
+                                    clear<?= $ds['id_pelamar']; ?>();
+                                    const node = document.createElement('div');
+                                    node.innerHTML = `
+                                    <div class="form-group">
+                                        <label for="nilai">Beri Nilai:</label>
+                                        <input type="text" id="nilai" name="nilai" class="form-control">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="berkas">Upload Berkas:</label>
+                                        <input type="file" id="berkas" name="berkas" class="form-control">
+                                    </div>`;
+
+                                    nilai.appendChild(node);
+                                } else if (e.value == 'Lulus') {
+                                    var e = document.getElementById('status<?= $ds['id_pelamar']; ?>');
+                                    clear<?= $ds['id_pelamar']; ?>();
+                                    const node = document.createElement('div');
+                                    node.innerHTML = `
+                                    <div class="form-group">
+                                        <label for="nilai">Beri Nilai:</label>
+                                        <input type="text" id="nilai" name="nilai" class="form-control">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="berkas">Upload Berkas:</label>
+                                        <input type="file" id="berkas" name="berkas" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="jadwal">Jadwalkan Interview Lanjutan:</label>
+                                        <input type="date" id="jadwal" name="jadwal" class="form-control">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="gmeet">Link Google Meet</label>
+                                        <input type="text" id="gmeet" name="gmeet" class="form-control">
+                                    </div>`;
+                                    nilai.appendChild(node);
+
+                                }
+                            }
+                            // e.addEventListener('change', changeStatus)
+                        </script>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-danger">Kirim</button>
+
+                        </div>
                     </div>
                 </form>
             </div>

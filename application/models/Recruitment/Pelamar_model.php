@@ -29,7 +29,25 @@ class Pelamar_model extends CI_Model
     public function statuspelamar($id)
     {
         $data = [
-            'status' => 'Proses Interview'
+            'status' => 'Proses Interview',
+        ];
+
+        $this->db->where('id_pelamar', $id);
+        $this->db->update('recruitment___pelamar', $data);
+    }
+    public function statusinterview($id)
+    {
+        $data = [
+            'status' => 'Proses Pengerjaan Soal',
+        ];
+
+        $this->db->where('id_pelamar', $id);
+        $this->db->update('recruitment___pelamar', $data);
+    }
+    public function statussoal($id)
+    {
+        $data = [
+            'status' => 'Diterima   ',
         ];
 
         $this->db->where('id_pelamar', $id);

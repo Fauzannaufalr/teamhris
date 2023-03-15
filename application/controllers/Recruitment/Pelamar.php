@@ -126,6 +126,48 @@ class Pelamar extends CI_Controller
             die;
         }
     }
+    private function _kirimnilai()
+    {
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'belajarcoding78@gmail.com',
+            'smtp_pass' => 'jeudcmhfxmcuwllq',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+            'wordwrap'  => TRUE
+        ];
+
+
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+
+        $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+        $this->email->to($this->input->post('email'));
+        $data = [
+
+            'status' => $this->input->post('status'),
+            'nilai' => $this->input->post('nilai'),
+            'berkas' => $this->input->post('berkas'),
+            'jadwal' => $this->input->post('jadwal'),
+            'gmeet' => $this->input->post('gmeet'),
+
+
+        ];
+        $card = $this->load->view('email_nilai', $data, TRUE);
+
+        $this->email->subject('Soal diterima / ditolak');
+        $this->email->message($card);
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
 
     public function interview($id)
     {
@@ -181,7 +223,39 @@ class Pelamar extends CI_Controller
         } else {
             $email = $this->input->post('email');
             $this->_kirimSoal();
-            $this->Pelamar_model->statuspelamar($id);
+            $this->Pelamar_model->statusinterview($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
+            redirect('recruitment/pelamar');
+        }
+    }
+    public function nilai($id)
+    {
+        $this->form_validation->set_rules('nilai', 'Beri Nilai', 'required', [
+            'required' => 'Beri Nilai harus diisi !',
+        ]);
+        $this->form_validation->set_rules('jadwal', 'Jadwal ', 'required', [
+            'required' => 'Jadwal Interview Lanjutan harus diisi !',
+        ]);
+        $this->form_validation->set_rules('gmeet', 'Link Google Meet ', 'required', [
+            'required' => 'Link Google Meet harus diisi !',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = "Data Pelamar";
+            $data['pelamar'] = $this->Pelamar_model->getAllPelamar();
+            $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+            $data['user'] = $this->Hris_model->ambilUser();
+
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('recruitment/pelamar', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $email = $this->input->post('email');
+            $this->_kirimnilai();
+            $this->Pelamar_model->statussoal($id);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
             redirect('recruitment/pelamar');
         }
