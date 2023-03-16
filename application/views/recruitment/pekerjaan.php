@@ -86,11 +86,11 @@
                     </div>
                     <div class="form-group">
                         <label for="deskripsi_pekerjaan">Deskripsi Pekerjaan</label>
-                        <input type="text" class="form-control" id="deskripsi_pekerjaan" name="deskripsi_pekerjaan" placeholder="Masukan Deskripsi Pekerjann">
+                        <textarea name="deskripsi_pekerjaan"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="kualifikasi">Kualifikasi</label>
-                        <input type="text" class="form-control" id="kualifikasi" name="kualifikasi" placeholder="Masukan kualifikasi">
+                        <textarea class="form-control" id="kualifikasi" name="kualifikasi" placeholder="Masukan kualifikasi"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="tanggal_berakhir">tanggal Berakhir</label>
@@ -137,11 +137,12 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi_pekerjaan">Deskripsi Pekerjaan</label>
-                            <input type="text" class="form-control" id="deskripsi_pekerjaan" name="deskripsi_pekerjaan" value="<?= $it['deskripsi_pekerjaan']; ?>">
+                            <textarea name="deskripsi_pekerjaan"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kualifikasi">Kualifikasi</label>
-                            <input type="text" class="form-control" id="kualifikasi" name="kualifikasi" value="<?= $it['kualifikasi']; ?>">
+                            <textarea class="form-control" id="kualifikasi" name="kualifikasi" value="<?= $it['kualifikasi']; ?>"></textarea>
+
                         </div>
                         <div class="form-group">
                             <label for="tanggal_berakhir">Tanggal Berakhir</label>
@@ -188,4 +189,4 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
-<!-- akhir modal hapus --
+<!-- akhir modal hapus -->

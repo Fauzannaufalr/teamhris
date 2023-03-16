@@ -59,4 +59,11 @@ class Pekerjaan_model extends CI_Model
     {
         return $this->db->insert('recruitment___pelamar', $data);
     }
+    public function deskripsi($id)
+    {
+        $this->db->select('deskripsi_pekerjaan');
+        $this->db->from('recruitment___pekerjaan');
+        $this->db->where('id_pekerjaan', $id);
+        return  $this->db->get()->result_array();
+    }
 }

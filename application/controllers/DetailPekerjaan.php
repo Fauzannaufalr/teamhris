@@ -10,24 +10,17 @@ class DetailPekerjaan extends CI_Controller
         parent::__construct();
         $this->load->model('recruitment/Pekerjaan_model');
         $this->load->model('DataPosisi_model', 'posisi');
-
-
-        if ($this->session->userdata('nik')) {
-            redirect('admin');
-        }
     }
     public function index($id)
     {
         $data['title'] = 'Detail Pekerjaan';
         $data['pekerjaan'] = $this->Pekerjaan_model->ambilUserById($id);
-        $this->load->view('detailpekerjaan', $data);
-    }
-
-    public function detail($id)
-    {
-        $data['title'] = 'Detail Pekerjaan';
-        $data['pekerjaan'] = $this->Pekerjaan_model->ambilUserById($id);
-        $data['posisi'] = $this->posisi->getAllDataPosisi();
+        $deskripsi_pekerjaan = $this->input->post('deskripsi_pekerjaan');
+        $array_deskripsi = [];
+        if (!is_null($deskripsi_pekerjaan)) {
+            $array_deskripsi = explode("\n", $deskripsi_pekerjaan);
+        }
+        $data['array_deskripsi'] = $array_deskripsi;
         $this->load->view('detailpekerjaan', $data);
     }
 }

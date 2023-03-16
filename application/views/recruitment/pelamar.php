@@ -111,7 +111,7 @@
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <div class="form-group">
                             <label for="tanggal">Tanggal Interview</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                            <input type="datetime-local" class="form-control" id="tanggal" name="tanggal">
                         </div>
                         <div class="form-group">
                             <label for="gmeet">Link Google Meet</label>

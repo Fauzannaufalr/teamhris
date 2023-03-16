@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <div class="row">
 
-                            <a href="<?= base_url() ?>detailpekerjaan/detail/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4" ; class="btn btn-">
+                            <a href="<?= base_url() ?>detailpekerjaan/index/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4" ; class="btn btn-">
                                 Info Lengkap
                             </a>
                             <a type="button" style="margin-left:50px; background-color: #ff0000" ; class="btn btn-primary" data-toggle="modal" data-target="#modal-upload-cv<?= $pk['id_pekerjaan'] ?>">

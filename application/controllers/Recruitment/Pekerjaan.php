@@ -37,7 +37,12 @@ class Pekerjaan extends CI_Controller
         $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
-
+        $deskripsi_pekerjaan = $this->input->post('deskripsi_pekerjaan');
+        $array_deskripsi = [];
+        if (!is_null($deskripsi_pekerjaan)) {
+            $array_deskripsi = explode("\n", $deskripsi_pekerjaan);
+        }
+        $data['array_deskripsi'] = $array_deskripsi;
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required', [
             'required' => 'Nama harus diisi !'
         ]);
@@ -97,7 +102,6 @@ class Pekerjaan extends CI_Controller
         }
     }
 
-
     public function hapus($id_pekerjaan)
     {
         if ($this->Pekerjaan_model->hapus($id_pekerjaan)) {
@@ -106,5 +110,9 @@ class Pekerjaan extends CI_Controller
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
         redirect('recruitment/pekerjaan');
+    }
+
+    public function submit()
+    {
     }
 }
