@@ -9,6 +9,8 @@ class PengajuanGaji extends CI_Controller
         $this->load->library('dompdf_gen');
         $this->load->model('payroll/pengajuangaji_model', 'PengajuanGaji');
         $this->load->model('payroll/perhitungan_model', 'Perhitungan');
+        $this->load->model('payroll/DataPajak_model', 'DataPajak');
+        $this->load->model('payroll/Pajak_model', 'Pajak');
         $this->load->model('DataKaryawan_model', 'DataKaryawan');
         $this->load->model('Hris_model', 'Hris');
         if (!$this->session->userdata('nik')) {
@@ -20,8 +22,6 @@ class PengajuanGaji extends CI_Controller
     {
         $data['title'] = "Pengajuan Gaji Karyawan";
         $data['pengajuan'] = $this->PengajuanGaji->tampilPengajuan();
-        $data['datakaryawan'] = $this->DataKaryawan->getAllDataKaryawan();
-        $data['perhitungan'] = $this->Perhitungan->tampilPerhitungan();
         $data['user'] = $this->Hris->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -62,7 +62,7 @@ class PengajuanGaji extends CI_Controller
                 'smtp_host' => 'ssl://smtp.googlemail.com',
                 'smtp_port' => 465,
                 'smtp_user' => 'belajarcoding78@gmail.com',
-                'smtp_pass' => 'jeudcmhfxmcuwllq',
+                'smtp_pass' => 'mxaghqdhdmsbcjmz',
                 'mailtype' => 'html',
                 'charset' => 'utf-8',
                 'newline' => "\r\n",
@@ -96,6 +96,7 @@ class PengajuanGaji extends CI_Controller
         }
     }
 
+
     public function upload_file()
     {
         $config['upload_path'] = './dist/slipgaji';
@@ -113,8 +114,6 @@ class PengajuanGaji extends CI_Controller
     {
         $data['title'] = "Pengajuan Gaji Karyawan";
         $data['pengajuan'] = $this->PengajuanGaji->tampilPengajuan();
-        $data['datakaryawan'] = $this->DataKaryawan->getAllDataKaryawan();
-        $data['perhitungan'] = $this->Perhitungan->tampilPerhitungan();
         $data['user'] = $this->Hris->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -123,6 +122,8 @@ class PengajuanGaji extends CI_Controller
         $this->load->view('templates/footer');
 
         $this->_kirimEmail();
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Slip gaji berhasil dikirim!</div>');
+        redirect('payroll/PengajuanGaji');
     }
 
     public function cetakGaji()
@@ -155,5 +156,16 @@ class PengajuanGaji extends CI_Controller
         $this->dompdf->load_html($html);
         $this->dompdf->render();
         $this->dompdf->stream('slip_gaji.pdf', array('Attachment' => 0));
+    }
+
+    public function list()
+    {
+        // POST data
+        $postData = $this->input->post();
+
+        // Get data
+        $data = $this->PengajuanGaji->getUsers($postData);
+
+        echo json_encode($data);
     }
 }

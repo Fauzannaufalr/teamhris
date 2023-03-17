@@ -74,6 +74,18 @@
                 <td class="text-center">Rp <?= number_format($g['total'], 0, ',', '.'); ?></td>
             </tr>
         <?php endforeach; ?>
+        <tr>
+            <th colspan="4" style="text-align: right;">Total : </th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
+        </tr>
     </table>
 
     <table width="100%">

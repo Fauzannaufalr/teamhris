@@ -42,4 +42,134 @@ class PengajuanRateMitra_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('payroll___pengajuanratemitra', $data);
     }
+
+    function getUsers($postData = null)
+    {
+
+        $response = array();
+
+        ## Read value
+        $draw = $postData['draw'];
+        $start = $postData['start'];
+        $rowperpage = $postData['length']; // Rows display per page
+        $columnIndex = $postData['order'][0]['column']; // Column index
+        $columnName = $postData['columns'][$columnIndex]['data']; // Column name
+        $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
+        $searchValue = $postData['search']['value']; // Search value
+
+        // Custom search filter 
+        $searchCity = $postData['searchBulan'];
+        switch ($searchCity) {
+            case 'Januari':
+                $searchCityAngka = '01';
+                break;
+            case 'Februari':
+                $searchCityAngka = '02';
+                break;
+            case 'Maret':
+                $searchCityAngka = '03';
+                break;
+            case 'April':
+                $searchCityAngka = '04';
+                break;
+            case 'Mei':
+                $searchCityAngka = '05';
+                break;
+            case 'Juni':
+                $searchCityAngka = '06';
+                break;
+            case 'Juli':
+                $searchCityAngka = '07';
+                break;
+            case 'Agustus':
+                $searchCityAngka = '08';
+                break;
+            case 'September':
+                $searchCityAngka = '09';
+                break;
+            case 'Oktober':
+                $searchCityAngka = '10';
+                break;
+            case 'November':
+                $searchCityAngka = '11';
+                break;
+            case 'Desember':
+                $searchCityAngka = '12';
+                break;
+        }
+        $searchBulanTahun = $postData['searchTahun'] . $searchCityAngka;
+
+        ## Search 
+        $search_arr = array();
+        $searchQuery = "";
+        if ($searchValue != '') {
+            $search_arr[] = " (nama_karyawan like '%" . $searchValue . "%' or 
+            nama_perusahaan like '%" . $searchValue . "%' or 
+            keahlian like'%" . $searchValue . "%' or 
+            tools like'%" . $searchValue . "%' ) ";
+        }
+        if ($searchBulanTahun != '') {
+            $search_arr[] = " bulan_tahun='" . $searchBulanTahun . "' ";
+        }
+        // if ($searchGender != '') {
+        //     $search_arr[] = " ='" . $searchGender . "' ";
+        // }
+        if (count($search_arr) > 0) {
+            $searchQuery = implode(" and ", $search_arr);
+        }
+
+        ## Total number of records without filtering
+        $this->db->select('count(*) as allcount');
+        // $this->db->select('lg.*, dk.nama_karyawan, dk.nik, dk.email');
+        $this->db->from('payroll___pengajuanratemitra pm');
+        $this->db->join('data_mitra dm', 'dm.id = pm.id_datamitra');
+        // $records = $this->db->get('payroll___pengajuangaji')->result();
+        $records = $this->db->get()->result();
+        $totalRecords = $records[0]->allcount;
+
+        ## Total number of record with filtering
+        $this->db->select('count(*) as allcount');
+        $this->db->from('payroll___pengajuanratemitra pm');
+        $this->db->join('data_mitra dm', 'dm.id = pm.id_datamitra');
+        if ($searchQuery != '')
+            $this->db->where($searchQuery);
+        $records = $this->db->get()->result();
+        $totalRecordwithFilter = $records[0]->allcount;
+
+        ## Fetch records
+        $this->db->select('pm.*, dm.nama_karyawan, dm.email, dm.nama_perusahaan, dm.keahlian, dm.tools');
+        $this->db->from('payroll___pengajuanratemitra pm');
+        $this->db->join('data_mitra dm', 'dm.id = pm.id_datamitra');
+        if ($searchQuery != '')
+            $this->db->where($searchQuery);
+        // $this->db->order_by($columnName, $columnSortOrder);
+        $this->db->limit($rowperpage, $start);
+        $records = $this->db->get()->result();
+
+        $data = array();
+        $no = 1;
+        foreach ($records as $record) {
+
+            $data[] = array(
+                "no" => $no++,
+                "nama_perusahaan" => $record->nama_perusahaan,
+                "nama_karyawan" => $record->nama_karyawan,
+                "keahlian" => $record->keahlian,
+                "tools" => $record->tools,
+                "rate_total" => 'Rp ' . number_format($record->rate_total, 0, ', ', '.'),
+                "status" => $record->status,
+                "aksi" => '<button class="badge" style="background-color: #fbff39;" href="" data-toggle="modal" data-target="#modal-sm' . $record->id . '"><i class="fas fa-check-circle"></i> Status Bayar</button>',
+            );
+        }
+
+        ## Response
+        $response = array(
+            "draw" => intval($draw),
+            "iTotalRecords" => $totalRecords,
+            "iTotalDisplayRecords" => $totalRecordwithFilter,
+            "aaData" => $data
+        );
+
+        return $response;
+    }
 }

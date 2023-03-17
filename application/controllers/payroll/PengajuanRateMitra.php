@@ -48,4 +48,15 @@ class PengajuanRateMitra extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Status bayar berhasil diubah!</div>');
         redirect('payroll/pengajuanratemitra');
     }
+
+    public function list()
+    {
+        // POST data
+        $postData = $this->input->post();
+
+        // Get data
+        $data = $this->RateMitra->getUsers($postData);
+
+        echo json_encode($data);
+    }
 }

@@ -10,7 +10,7 @@
                         <div class="form-group row">
                             <label for="bulan" class="col-form-label">Bulan</label>
                             <div class="col">
-                                <select class="form-control select2">
+                                <select class="form-control select2" id="bulan">
                                     <option selected="selected">Januari</option>
                                     <option>Februari</option>
                                     <option>Maret</option>
@@ -27,7 +27,7 @@
                             </div>
                             <label for="tahun" class="col-form-label">Tahun</label>
                             <div class="col">
-                                <select class="form-control select2">
+                                <select class="form-control select2" id="tahun">
                                     <option selected="selected">2023</option>
                                     <option>2024</option>
                                     <option>2025</option>
@@ -68,7 +68,7 @@
                 <form class="form-horizontal">
                     <div class="card-body">
                         <div class="form-group row">
-                            <a class="btn btn-outline-success" href="<?= base_url('payroll/pengajuanratemitra/generate'); ?>"><i class="fas fa-archive"></i> Generate Data</a>
+                            <a class="btn btn-outline-success" href="<?= base_url('payroll/pengajuanratemitra/generate'); ?>"><i class="fas fa-archive"></i> Generate Data <?= date('F', strtotime('+1 month')); ?></a>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -95,7 +95,7 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="data" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -108,23 +108,6 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php $no = 1 ?>
-                    <?php foreach ($ratemitra as $rm) : ?>
-                        <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $rm['nama_perusahaan']; ?></td>
-                            <td><?= $rm['nama_karyawan']; ?></td>
-                            <td><?= $rm['keahlian']; ?></td>
-                            <td><?= $rm['tools']; ?></td>
-                            <td>Rp <?= number_format($rm['rate_total'], 0, ',', '.'); ?></td>
-                            <td><?= $rm['status']; ?></td>
-                            <td style="text-align: center;">
-                                <button class="badge" style="background-color: #fbff39;" href="" data-toggle="modal" data-target="#modal-sm<?= $rm['id']; ?>"><i class="fas fa-check-circle"></i> Status Bayar</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
             </table>
         </div>
         <!-- /.card-body -->
@@ -155,3 +138,52 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var userDataTable = $('#data').DataTable({
+            'responsive': true,
+            'orderable': true,
+            'processing': true,
+            'serverSide': true,
+            'serverMethod': 'post',
+            'searching': true, // Remove default Search Control
+            'ajax': {
+                'url': '<?= base_url() ?>payroll/pengajuanratemitra/list',
+                'data': function(data) {
+                    data.searchBulan = $('#bulan').val();
+                    data.searchTahun = $('#tahun').val();
+                }
+            },
+            'columns': [{
+                    data: 'no'
+                },
+                {
+                    data: 'nama_perusahaan'
+                },
+                {
+                    data: 'nama_karyawan'
+                },
+                {
+                    data: 'keahlian'
+                },
+                {
+                    data: 'tools'
+                },
+                {
+                    data: 'rate_total'
+                },
+                {
+                    data: 'status'
+                },
+                {
+                    data: 'aksi'
+                }
+            ]
+        });
+
+        $('#bulan,#tahun').change(function() {
+            userDataTable.draw();
+        });
+    });
+</script>

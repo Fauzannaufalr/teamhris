@@ -40,4 +40,6 @@
     <link rel="stylesheet" href="<?= base_url() ?>plugins/toastr/toastr.min.css">
     <!-- My CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>dist/css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
