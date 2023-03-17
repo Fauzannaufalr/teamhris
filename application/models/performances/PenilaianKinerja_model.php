@@ -26,8 +26,8 @@ class PenilaianKinerja_model extends CI_Model
     {
         $done_kerja = $this->input->post('done_kerja');
         $total_kerja = $this->input->post('total_kerja');
-        $nilai = ($done_kerja / $total_kerja) * "100%";
-
+        $nilai = ($done_kerja / $total_kerja) * 100;
+        // pr rumus penilaian kinerja
 
         if ($nilai >= 80 && $nilai <= 100) {
             $kategorisasi = "Sangat Baik";
@@ -55,7 +55,8 @@ class PenilaianKinerja_model extends CI_Model
     {
         $total_kerja = $this->input->post('total_kerja');
         $done_kerja = $this->input->post('done_kerja');
-        $nilai = ($total_kerja / $done_kerja) * 100;
+        $nilai = ($done_kerja / $total_kerja) * "100%";
+
         if ($nilai >= 80 && $nilai <= 100) {
             $kategorisasi = "Sangat Baik";
         } else if ($nilai >= 60 && $nilai <= 79) {
@@ -85,5 +86,13 @@ class PenilaianKinerja_model extends CI_Model
         $this->db->where('id_penilaian_kinerja', $id_penilaian_kinerja);
         $this->db->delete('performances___penilaian_kinerja');
         return ($this->db->affected_rows() > 0) ? true : false;
+    }
+    public function cetakKinerja($bulantahun)
+    {
+        $this->db->select('pk.*, dk.nama_karyawan, dk.nik, dk.email,pk.kategorisasi');
+        $this->db->from('performances___penilaian_kinerja pk');
+        $this->db->join('data_karyawan dk', 'dk.nik = pk.nik');
+        $this->db->where('tgl', $bulantahun);
+        return $this->db->get()->result_array();
     }
 }

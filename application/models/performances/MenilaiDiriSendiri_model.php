@@ -31,9 +31,9 @@ class MenilaiDiriSendiri_model extends CI_Model
         // Mendapatkan data dari formulir jawaban kuesioner
         $data = array(
             'id_penilaian_kuesioner' => $this->input->post('id_penilaian_kuesioner'),
-            'nik_user_by' => $this->input->post('nik_user_by'),
-            'nik_user_to' => $this->input->post('nik_user_to'),
-            'tanggal_dibuat' => $this->input->post('tanggal_dibuat'),
+            'nik_penilai' => $this->input->post('nik_penilai'),
+            'menilai' => $this->input->post('menilai'),
+            'tanggal' => $this->input->post('tanggal'),
             'total_nilai' => $this->input->post('total_nilai'),
             'total_soal' => $this->input->post('total_soal')
         );

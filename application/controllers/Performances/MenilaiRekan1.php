@@ -62,42 +62,51 @@ class MenilaiRekan1 extends CI_Controller
 
     public function simpan()
     {
-        $nilai = $this->input->post("nilai");
-        $id_penilaian_keusioner = count($id_penilaian_keusioner);
-        $nik_penilai = count($nik_penilai);
-        $nik_menilai = array_sum($nik_menilai);
-        $total_soal = count($nilai);
-        $total_nilai = count($nilai);
-        $tanggal = count($tanggal);
-        $data = [
-            "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
-            "nik_penilai" => $nik_penilai,
-            "nik_menilai" => $nik_menilai,
-            "tanggal" => $tanggal,
-            "total_nilai" => $total_nilai,
-            "total_soal" => $total_soal,
-            // masukin table dari penilaian kuesioner
-        ];
+        $id_penilaian_kuesioner = $this->insert_tabel_penilaian_kuesioner();
+        $this->insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner);
+        redirect("performances/menilairekan1");
+    }
 
-        // insert penilaian kuesioner
-        $this->db->insert("performances___penilaian_kuesioner", $data);
-        $id_penilaian_kuesioner = $this->db->insert_id();
+    private function insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner)
+    {
+        $post = $this->input->post();
+        $nik_penilai = $this->session->userdata("nik");
+        $nik_menilai = $post["nik_menilai"];
 
-        // insert detail penilaian kuesioner
-        foreach ($nilai as $id_kuesioner => $val):
-            $data = [
-                "ïd_kuesioner" => $id_kuesioner,
-                "ïd_detail_penilaian" => $id_detail_penilaian,
+        foreach ($post["nilai"] as $id_kuesioner => $nilai):
+            $data_insert_tabel_performances__detail_penilaian_kuesioner = [
+                "id_kuesioner" => $id_kuesioner,
                 "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
                 "nik_penilai" => $nik_penilai,
                 "nik_menilai" => $nik_menilai,
-                "nilai" => $val,
+                "tanggal" => date("d/m/Y"),
+                "nilai" => $nilai
             ];
-            $this->db->insert("performances___detail_penilaian_kuesioner", $data);
+            $this->db->insert(
+                "performances___detail_penilaian_kuesioner",
+                $data_insert_tabel_performances__detail_penilaian_kuesioner
+            );
+            // echo "<pre>" . print_r($data_insert_tabel_performances__detail_penilaian_kuesioner, true) . "</pre>";
         endforeach;
-        printr($_POST);
-        // printr($total);
     }
 
+    private function insert_tabel_penilaian_kuesioner()
+    {
+        $post = $this->input->post();
+        $nik_menilai = $post["nik_menilai"];
+        $total_nilai = array_sum($post["nilai"]);
+        $nik_penilai = $this->session->userdata("nik");
+        $total_soal = count($post["nilai"]);
+
+        $data_insert_tabel_performances___penilaian_kuesioner = [
+            "nik_penilai" => $nik_penilai,
+            "nik_menilai" => $nik_menilai,
+            "tanggal" => date("d/m/Y"),
+            "total_nilai" => $total_nilai,
+            "total_soal" => $total_soal
+        ];
+        $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
+        return $this->db->insert_id();
+    }
 
 }

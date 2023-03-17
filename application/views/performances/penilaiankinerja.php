@@ -36,34 +36,36 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <?php
+                    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+                        $bulan = $_GET['bulan'];
+                        $tahun = $_GET['tahun'];
+                        $bulantahun = $bulan . $tahun;
+                    } else {
+                        $bulan = date('m');
+                        $tahun = date('Y');
+                        $bulantahun = $bulan . $tahun;
 
+                    }
+
+                    ?>
                     <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
                     <?php if (count($penilaiankinerja) > 0) { ?>
-                        <a class="btn btn-outline-success ml-2" href="<?= base_url('payroll/laporangaji/cetakpenilaiankinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Hasil NIlai</a>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('performances/PenilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Laporan</a>
                     <?php } else { ?>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Hasil NIlai</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Laporan</button>
                     <?php } ?>
-                </div>
 
-            </div>
+                </div>
         </form>
     </div>
-    <?php
-    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
-        $bulan = $_GET['bulan'];
-        $tahun = $_GET['tahun'];
-        $bulantahun = $bulan . $tahun;
-    } else {
-        $bulan = date('m');
-        $tahun = date('Y');
-        $bulantahun = $bulan . $tahun;
 
-    }
-
-    ?>
     <div class="alert alert" style="background-color: #cc0000; color: white;">
         Menampilkan penilaian kinerja Bulan:<span class="font-weight-bold">
             <?php echo $bulan ?>
@@ -252,18 +254,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ubahPenilaianKinerjaLabel">Ubah Data Karyawan</h5>
+                    <h5 class="modal-title" id="ubahPenilaianKinerjaLabel">Ubah Data Karyawan</h5><br>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <form action="<?= base_url('performances/penilaiankinerja/ubah') ?>" method="POST">
                     <div class="modal-body">
+                        <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
+                        </h6>
                         <input type="hidden" name="id_penilaian_kinerja" value="<?= $pk['id_penilaian_kinerja']; ?>">
                         <div class=" form-group">
                             <label>NIK & Nama Karyawan</label>
-                            <select class="form-control" name="nik_nama" id="nik_nama">
-                                <option>-- Pilih Karyawan --</option>
+                            <select class="form-control" name="nik_nama" id="nik_nama" placeholder="-- Pilih Karyawan --">
+
                                 <?php foreach ($datakaryawan as $dk): ?>
                                     <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?>
                                     </option>
@@ -328,8 +333,30 @@
 <?php endforeach; ?>
 </div>
 </div>
-</div>
+
 <!-- ak.hir modal hapus -->
+<!-- Modal cetak gaji -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Data Penilaian Kinerja masih kosong.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Akhir modal cetak gaji -->
+
+
 <script>
     const nik_nama = document.getElementById("nik_nama");
     const id_posisi = document.getElementById("id_posisi");

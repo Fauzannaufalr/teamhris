@@ -18,11 +18,13 @@ class MenilaiDiriSendiri extends CI_Controller
 
     public function index()
     {
+        $nik = $this->session->userdata("nik");
         $data['title'] = "Menilai Diri Sendiri";
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+
 
 
         $this->load->view('templates/header', $data);
@@ -32,35 +34,53 @@ class MenilaiDiriSendiri extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function simpan_jawaban()
+    public function simpan()
     {
-        // Memeriksa apakah metode HTTP yang digunakan adalah POST
-        if ($this->input->method() != 'post') {
-            redirect('kuesioner');
-        }
+        $id_penilaian_kuesioner = $this->insert_tabel_penilaian_kuesioner();
+        $this->insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner);
+        redirect("performances/menilaidirisendiri");
+    }
 
-        // Mendapatkan data dari formulir jawaban kuesioner
-        $data_jawaban = array(
-            'id' => $this->input->post('nama'),
-            'id_karyawan' => $this->input->post('umur'),
-            'jawaban_pertanyaan_1' => $this->input->post('jawaban_pertanyaan_1'),
-            'jawaban_pertanyaan_2' => $this->input->post('jawaban_pertanyaan_2'),
-            'jawaban_pertanyaan_3' => $this->input->post('jawaban_pertanyaan_3'),
-            'jawaban_pertanyaan_4' => $this->input->post('jawaban_pertanyaan_4')
-        );
+    private function insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner)
+    {
+        $post = $this->input->post();
+        $nik_penilai = $this->session->userdata("nik");
+        $nik_menilai = $post["nik_menilai"];
 
-        // Memasukkan data jawaban kuesioner ke dalam database
-        $this->load->model('performances/MenilaiDiriSendiri_model');
-        $result = $this->MenilaiDiriSendiri_model->insert_jawaban($data_jawaban);
+        foreach ($post["nilai"] as $id_kuesioner => $nilai):
+            $data_insert_tabel_performances__detail_penilaian_kuesioner = [
+                "id_kuesioner" => $id_kuesioner,
+                "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
+                "nik_penilai" => $nik_penilai,
+                "nik_menilai" => $nik_menilai,
+                "tanggal" => date("d/m/Y"),
+                "nilai" => $nilai
+            ];
+            $this->db->insert(
+                "performances___detail_penilaian_kuesioner",
+                $data_insert_tabel_performances__detail_penilaian_kuesioner
+            );
+            // echo "<pre>" . print_r($data_insert_tabel_performances__detail_penilaian_kuesioner, true) . "</pre>";
+        endforeach;
+    }
 
-        // Menampilkan pesan berhasil atau gagal
-        if ($result) {
-            $this->session->set_flashdata('success_message', 'Jawaban kuesioner berhasil disimpan');
-        } else {
-            $this->session->set_flashdata('error_message', 'Jawaban kuesioner gagal disimpan');
-        }
+    private function insert_tabel_penilaian_kuesioner()
+    {
+        $post = $this->input->post();
+        $nik_menilai = $post["nik_menilai"];
+        $total_nilai = array_sum($post["nilai"]);
+        $nik_penilai = $this->session->userdata("nik");
+        $total_soal = count($post["nilai"]);
 
-        redirect('performances/menilaidirisendiri');
+        $data_insert_tabel_performances___penilaian_kuesioner = [
+            "nik_penilai" => $nik_penilai,
+            "nik_menilai" => $nik_menilai,
+            "tanggal" => date("m/Y"),
+            "total_nilai" => $total_nilai,
+            "total_soal" => $total_soal
+        ];
+        $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
+        return $this->db->insert_id();
     }
 
 }

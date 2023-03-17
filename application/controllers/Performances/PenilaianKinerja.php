@@ -6,6 +6,7 @@ class PenilaianKinerja extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('dompdf_gen');
         $this->load->model('performances/PenilaianKinerja_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
@@ -131,22 +132,27 @@ class PenilaianKinerja extends CI_Controller
         }
         redirect('performances/penilaiankinerja');
     }
-    public function cetakpenilaiankinerja()
+
+
+    public function cetakKinerja()
     {
-        $data['title'] = "Laporan Penilaian Kinerja";
+        $data['title'] = "Penilaian Kinerja";
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];
-            $bulantahun = $tahun . $bulan;
+            $bulantahun = $bulan . $tahun;
         } else {
-            $bulan = date('m', strtotime('+1 month'));
+            $bulan = date('m');
             $tahun = date('Y');
-            $bulantahun = $tahun . $bulan;
+            $bulantahun = $bulan . $tahun;
         }
-        $data['penilaiankinerja'] = $this->PenilaianKinerja_model->cetakpenilaiankinerja($bulantahun);
+
+        $data['cetak_kinerja'] = $this->PenilaianKinerja_model->cetakKinerja($bulantahun);
+        // printr($data['cetak_kinerja']);
         $this->load->view('templates/header', $data);
-        $this->load->view('performances/penilaiankinerja', $data);
+        $this->load->view('performances/cetak_kinerja', $data);
     }
+
     public function ajax_category()
     {
         $nik = $_GET["nik"];

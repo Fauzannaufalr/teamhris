@@ -8,31 +8,32 @@
           <?= validation_errors(); ?>
         </div>
       <?php endif; ?>
-      <div class="row">
-        <div class="col-lg-4">
-          <?= $this->session->flashdata('message'); ?>
-        </div>
-      </div>
 
+      <?php if ($this->session->flashdata('success')): ?>
+        <div style="color: green;">
+          <?php echo $this->session->flashdata('success'); ?>
+        </div>
+      <?php endif; ?>
       <div class="form-group col-md-4">
         <label>Penilai</label>
         <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
         <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
       </div>
 
-      <div class=" form-group col-md-4">
+      <form method="POST" action="<?= base_url('performances/MenilaiLeader/simpan') ?>">
 
-        <label>Menilai</label>
-        <select class=" form-control" name="nik_nama" id="nik_nama">
-          <option>-- Pilih Karyawan --</option>
-          <?php foreach ($datakaryawan as $dk): ?>
-            <option value="<?= $dk['id_karyawan']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
-          <?php endforeach; ?>
-        </select>
-      </div>
+        <div class=" form-group col-md-4">
+
+          <label>Menilai</label>
+          <select class=" form-control" name="nik_menilai" id="nik_menilai">
+            <option>-- Pilih Karyawan --</option>
+            <?php foreach ($datakaryawan as $dk): ?>
+              <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
 
 
-      <form method="POST" action="<?php base_url('MenilaiLeader/simpan') ?>">
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
             <thead style="background-color:  #cc0000; color: white;">
@@ -70,7 +71,7 @@
           </table>
           <input type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
           <br>
-          <button name="simpan" type="submit" class="btn btn-info">Simpan Penilaian</button>
+          <button name="simpan" value="kirim" type="submit" class="btn btn-info">Simpan Penilaian</button>
         </div>
       </form>
     </div>

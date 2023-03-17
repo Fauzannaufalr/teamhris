@@ -36,29 +36,37 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <?php
+                    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+                        $bulan = $_GET['bulan'];
+                        $tahun = $_GET['tahun'];
+                        $bulantahun = $bulan . $tahun;
+                    } else {
+                        $bulan = date('m');
+                        $tahun = date('Y');
+                        $bulantahun = $bulan . $tahun;
 
-                    <button type="submit" class="btn btn-info mb-2 ml-3"><i class="fas fa-eye"> Tampilkan
+                    }
+
+                    ?>
+                    <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
+                    <?php if (count($penilaiankuesioner) > 0) { ?>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('performances/PenilaianKuesioner/cetakkuesioner?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Laporan</a>
+                    <?php } else { ?>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Laporan</button>
+                    <?php } ?>
                 </div>
 
             </div>
         </form>
     </div>
-    <?php
-    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
-        $bulan = $_GET['bulan'];
-        $tahun = $_GET['tahun'];
-        $bulantahun = $bulan . $tahun;
-    } else {
-        $bulan = date('m');
-        $tahun = date('Y');
-        $bulantahun = $bulan . $tahun;
 
-    }
-
-    ?>
     <div class="alert alert" style="background-color: #cc0000; color: white;">
         Menampilkan penilaian kuesioner Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
@@ -85,15 +93,17 @@
 
             $jml_data = count($penilaiankuesioner);
             if ($jml_data > 0) { ?>
+                <!-- jml data > 0 artinya jika nilai lebih dari nol maka data atau nilainya itu ada -->
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead style="text-align: center;">
                         <tr>
                             <th>No</th>
-                            <th>NIK</th>
                             <th>Nama Karyawan</th>
-                            <th>Nilai</th>
-                            <th>Kategorisasi</th>
+                            <th>Penilai</th>
+                            <th>Menilai</th>
+                            <th>Tanggal</th>
+                            <th>Total Nilai</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -105,20 +115,29 @@
                                     <?= $no++; ?>
                                 </th>
                                 <td>
-                                    <?= $pr['nik']; ?>
-                                </td>
-                                <td>
                                     <?= $pr['nama_karyawan']; ?>
                                 </td>
 
                                 <td>
-                                    <?= $pr['kategorisasi']; ?>
+                                    <?= $pr['nik_penilai']; ?>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-secondary" style="font-size: 14px; color: white;"
-                                        data-toggle="modal"
-                                        data-target="#detailPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>">detail</button>
+                                    <?= $pr['nik_menilai']; ?>
                                 </td>
+                                <td>
+                                    <?= $pr['tanggal']; ?>
+                                </td>
+                                <td>
+                                    <?= $pr['total_nilai']; ?>
+                                </td>
+
+                                <td>
+                                    <a href="<?= base_url() ?>performances/penilaiankuesioner/detail/<?= $pr['id_penilaian_kuesioner'] ?>"
+                                        type="button" style="background-color: #d4d4d4" ; class="btn btn-Info">
+                                        Detail
+                                    </a>
+                                </td>
+
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -132,8 +151,30 @@
     <!-- /.card-body -->
 </div>
 
+
+
+<!-- Modal cetak kuesioner -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Data Penilaian Kuesioner masih kosong.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- ak.hir modal hapus -->
+<!-- Akhir modal cetak gaji -->
+
+
 <script>
     const nik_nama = document.getElementById("nik_nama");
     const id_posisi = document.getElementById("id_posisi");

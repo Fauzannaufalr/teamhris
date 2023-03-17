@@ -20,19 +20,20 @@
         <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
       </div>
 
-      <div class=" form-group col-md-4">
+      <form method="POST" action="<?= base_url('performances/MenilaiRekan1/simpan') ?>">
 
-        <label>Menilai</label>
-        <select class=" form-control" name="nik_nama" id="nik_nama">
-          <option>-- Pilih Karyawan --</option>
-          <?php foreach ($datakaryawan as $dk): ?>
-            <option value="<?= $dk['id_karyawan']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
-          <?php endforeach; ?>
-        </select>
-      </div>
+        <div class=" form-group col-md-4">
+
+          <label>Menilai</label>
+          <select class=" form-control" name="nik_menilai" id="nik_menilai">
+            <option>-- Pilih Karyawan --</option>
+            <?php foreach ($datakaryawan as $dk): ?>
+              <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
 
 
-      <form method="POST" action="<?php base_url('performances/MenilaiRekan1/Hasil') ?>">
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
             <thead style="background-color:  #cc0000; color: white;">
@@ -55,11 +56,11 @@
                   <td>
                     <select name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
-                      <option value="5" name="jawaban1">Sangat Baik</option>
-                      <option value="4" name="jawaban2">Baik</option>
-                      <option value="3" name="jawaban3">Cukup</option>
-                      <option value="2" name="jawaban4">Kurang Baik</option>
-                      <option value="1" name="jawaban5">Sangat Kurang Baik</option>
+                      <option value="10">Sangat Baik</option>
+                      <option value="9">Baik</option>
+                      <option value="8">Cukup</option>
+                      <option value="7">Kurang Baik</option>
+                      <option value="6">Sangat Kurang Baik</option>
                     </select>
                   </td>
                 </tr>
