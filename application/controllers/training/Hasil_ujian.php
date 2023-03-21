@@ -22,10 +22,10 @@ class Hasil_ujian extends CI_Controller
         if (isset($_GET['id'])) {
             $id = $this->input->get('id');
             $data['hasil'] = $this->hasil_model->get_peserta2($id);
-            $data['kelas'] = $this->m_data->get_data('Data_Posisi')->result();
+            $data['posisi'] = $this->m_data->get_data('Data_Posisi')->result();
         } else {
             $data['hasil'] = $this->hasil_model->get_peserta3();
-            $data['kelas'] = $this->m_data->get_data('Data_Posisi')->result();
+            $data['posisi'] = $this->m_data->get_data('Data_Posisi')->result();
         }
 
 

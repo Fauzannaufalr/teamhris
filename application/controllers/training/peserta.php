@@ -54,7 +54,7 @@ class peserta extends CI_Controller
         );
         $this->m_data->delete_data($where, 'tb_peserta');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Data Peserta Ujian berhasil di hapus !</h4></div>');
-        redirect(base_url('peserta'));
+        redirect('training/peserta');
     }
 
 
@@ -69,7 +69,7 @@ class peserta extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('training/peserta', $data);
+        $this->load->view('training/peserta_edit', $data);
         $this->load->view('templates/footer');
     }
 
@@ -87,7 +87,7 @@ class peserta extends CI_Controller
         if ($peserta == '' || $posisi == '' || $tanggal == '' || $jam == '' || $durasi_ujian == '' || $jenis == '') {
 
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> semua field harus diisi semua !</h4></div>');
-            redirect(base_url('peserta'));
+            redirect('training/peserta');
         } else {
             $data = array(
                 'id_karyawan'        => $peserta,
@@ -103,7 +103,7 @@ class peserta extends CI_Controller
 
             $this->m_data->update_data($where, $data, 'tb_peserta');
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Data berhasil di Update.</h4></div>');
-            redirect(base_url('peserta'));
+            redirect('training/peserta');
         }
         $data['user'] = $this->Hris_model->ambilUser();
         $data['title'] = 'peserta ujian';

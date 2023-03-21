@@ -32,23 +32,24 @@ class soal_ujian extends CI_Controller
 	public function edit($id)
 	{
 		$data['title'] = 'Data Soal';
-		$data['soal'] = $this->m_soal->get_joinsoal($id)->result();
+		$data['soal'] = $this->Soal_model->get_joinsoal($id)->result();
 		$data['kelas'] = $this->m_data->get_data('data_posisi')->result();
 		$data['user'] = $this->Hris_model->ambilUser();
+
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
-		$this->load->view('training/soal_ujian', $data);
+		$this->load->view('training/soal_ujian_edit', $data);
 		$this->load->view('templates/footer');
 	}
 
 
 	public function update()
 	{
-		$data['title'] = 'Data Soal';
+		$data['title'] = 'Edit Soal';
 		$data['user'] = $this->Hris_model->ambilUser();
 		$id 				= $this->input->post('id');
-		$nama_posisi 	= $this->input->post('nama_posisi');
+		$id_posisi 	= $this->input->post('id_posisi');
 		$soal				= $this->input->post('soal');
 		$a 					= $this->input->post('a');
 		$b					= $this->input->post('b');
@@ -59,7 +60,7 @@ class soal_ujian extends CI_Controller
 
 		$where = array('id_soal_ujian' => $id);
 		$data = array(
-			'id_posisi' => $nama_posisi,
+			'id_posisi' => $id_posisi,
 			'pertanyaan' => $soal,
 			'a' => $a,
 			'b' => $b,
@@ -68,14 +69,15 @@ class soal_ujian extends CI_Controller
 			'e' => $e,
 			'kunci_jawaban' => $kunci
 		);
+		// printr($data);
 		$this->m_data->update_data($where, $data, 'tb_soal');
 		$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Selamat, Soal telah berhasil diupdate!</h4></div>');
-		redirect(base_url('soal_ujian'));
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('training/soal_ujian', $data);
 		$this->load->view('templates/footer');
+		redirect(base_url('training/soal_ujian'));
 	}
 
 	public function hapus($id)
@@ -85,13 +87,13 @@ class soal_ujian extends CI_Controller
 		$where = array(
 			'id_soal_ujian' => $id
 		);
-		$this->Soal_model->delete_data($where, 'tb_soal');
+		$this->m_data->delete_data($where, 'tb_soal');
 		$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Perhatian, Data telah berhasil dihapus!</h4></div>');
-		redirect(base_url('soal_ujian'));
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('training/soal_ujian', $data);
 		$this->load->view('templates/footer');
+		redirect('training/soal_ujian');
 	}
 }

@@ -1,4 +1,4 @@
-<form action="<?= base_url('soal/insert'); ?>" method="post">
+<form action="<?= base_url('training/soal/insert'); ?>" method="post">
     <div class="box-body">
 
         <div class="form-horizontal">
@@ -7,11 +7,11 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Pilih Posisi</label>
                 <div class="col-sm-10">
-                    <select class="select2 form-control" name="nama_matapelajaran" required="">
-                        <option selected="selected" disabled="" value="">- Pilih Kategori Posisi -</option>
+                    <select class="select2 form-control" name="id_posisi" required="">
+                        <option value="">- Pilih Kategori Posisi -</option>
                         <?php foreach ($soal as $a) : ?>
-                        <option value="<?= $a['id_posisi'] ?>"><?= $a['kode']; ?> |
-                            <?= $a['nama_posisi']; ?></option>
+                            <option value="<?= $a['id_posisi']; ?>"><?= $a['kode']; ?> |
+                                <?= $a['nama_posisi']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -69,10 +69,8 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                    <a href="<?= base_url('soal_ujian') ?>" class="btn btn-default btn-flat"><span
-                            class="fa fa-arrow-left"></span> Kembali</a>
-                    <button type="submit" class="btn btn-primary btn-flat" title="Tambah Data Soal Ujian"><span
-                            class="fa fa-save"></span> Simpan</button>
+                    <a href="<?= base_url('training/soal_ujian') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span> Kembali</a>
+                    <button type="submit" class="btn btn-primary btn-flat" title="Tambah Data Soal Ujian"><span class="fa fa-save"></span> Simpan</button>
                 </div>
             </div>
         </div>

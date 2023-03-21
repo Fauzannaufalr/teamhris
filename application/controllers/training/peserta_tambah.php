@@ -13,7 +13,7 @@ class peserta_tambah extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Tambah Peserta';
+        $data['title'] = ' ';
         $data['user'] = $this->Hris_model->ambilUser();
         if (isset($_GET['kelas'])) {
             $id = $this->input->get('kelas');
@@ -41,20 +41,21 @@ class peserta_tambah extends CI_Controller
     {
         $data['title'] = 'Tambah Peserta';
         $data['user'] = $this->Hris_model->ambilUser();
-        $posisi             = $this->input->post('posisi');
-        $tanggal        = $this->input->post('tanggal');
-        $jam            = $this->input->post('jam');
-        $jenis            = $this->input->post('jenis_ujian');
+        $data['posisi'] = $this->m_data->get_data('data_posisi')->result_array();
+
+        $posisi             = $this->input->post('id_posisi');
+        $tanggal_ujian        = $this->input->post('tanggal');
+        $jam_ujian            = $this->input->post('jam');
+        $id_jenis_ujian            = $this->input->post('id_jenis_ujian');
         $durasi_ujian        = $this->input->post('durasi_ujian');
 
-
-        if ($posisi == '' || $tanggal == '' || $jam == '' || $durasi_ujian == '' || $jenis == '') {
+        if ($posisi == '' || $tanggal_ujian == '' || $jam_ujian == '' || $durasi_ujian == '' || $id_jenis_ujian == '') {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Input Data Peserta Gagal !</h4> Cek kembali data yang diinputkan.</div>');
-            redirect(base_url('peserta_tambah'));
+            redirect('training/peserta_tambah');
         } else {
-            $result = $this->m_data->insert_multiple();
+            $this->m_data->insert_multiple();
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Peserta Ujian berhasil dibuat !</h4></div>');
-            redirect(base_url('peserta_tambah'));
+            redirect('training/peserta', $data);
         }
 
         $this->load->view('templates/header', $data);

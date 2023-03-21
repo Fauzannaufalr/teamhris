@@ -23,7 +23,7 @@
                             <select class="select2 form-control" name="kelas" required="">
                                 <option selected="selected" disabled="" value="">- Pilih Kelas -</option>
                                 <?php foreach ($kelas as $a) { ?>
-                                <option value="<?= $a->id_kelas ?>"><?= $a->nama_kelas; ?></option>
+                                    <option value="<?= $a->id_kelas ?>"><?= $a->nama_kelas; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -36,7 +36,6 @@
                                 Kelas</button>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
@@ -45,14 +44,16 @@
 
     <div class="col-md-12">
         <div class="box box-success" style="overflow-x: scroll;">
-            <form class="form-horizontal" action="<?= base_url('peserta_tambah/insert_'); ?>" method="post">
+            <form class="form-horizontal" action="<?= base_url('training/peserta_tambah/insert_'); ?>" method="post">
                 <div class="box-body">
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">posisi</label>
                         <div class="col-sm-10">
-                            <select class="select2 form-control" name="mapel" required="">
+                            <select class="select2 form-control" name="id_posisi" required="">
                                 <option selected="selected" disabled="" value="">- Pilih posisi -</option>
-
+                                <?php foreach ($posisi as $a) { ?>
+                                    <option value="<?= $a->id_posisi ?>"><?= $a->kode; ?> | <?= $a->nama_posisi; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -61,12 +62,10 @@
                         <label class="col-sm-2 control-label">Tanggal Ujian</label>
                         <div class="col-sm-10">
                             <div class="input-group date">
-                                <input type="date" class="form-control pull-right" id="date" name="tanggal"
-                                    placeholder="2019-12-30" autocomplete="off" required="">
+                                <input type="date" class="form-control pull-right" id="date" name="tanggal" placeholder="2019-12-30" autocomplete="off" required="">
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Jam Ujian</label>
                         <div class="col-sm-10">
@@ -74,19 +73,19 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-clock-o"></i>
                                 </div>
-                                <input type="text" class="form-control" id="time" name="jam" required="">
+                                <input type="time" class="form-control" id="time" name="jam" required="">
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Jenis Ujian</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="jenis_ujian" required>
-                                <option selected="selected" disabled="" value="">- Pilih Jenis Ujian -</option>
+                            <select class="form-control" name="id_jenis_ujian" required>
+                                <option selected="selected" disabled="" value="">- Pilih Jenis Ujian -
+                                </option>
+                                <?php foreach ($jenis_ujian as $a) { ?>
+                                    <option value="<?= $a->id_jenis_ujian ?>"><?= $a->jenis_ujian; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -95,8 +94,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Durasi Ujian</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="durasi_ujian"
-                                placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
+                            <input type="text" class="form-control" name="durasi_ujian" placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
                         </div>
                     </div>
 
@@ -106,7 +104,7 @@
                 <!-- /.box-body -->
 
                 <div class="box-body">
-                    <table id="data" class="table table-bordered table-striped">
+                    <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
@@ -119,24 +117,26 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <input type="checkbox" name="id[]" value="" />
-                                </td>
-                            </tr>
-                        </tbody>
+                            <?php
+                            $no = 1;
+                            foreach ($karyawan as $d) { ?>
+                                <tr>
+                                    <td><?php echo $no++; ?></td>
+                                    <td><?php echo $d->id_karyawan; ?></td>
+                                    <td><?php echo $d->nik; ?></td>
+                                    <td><?php echo $d->id_kelas; ?></td>
+                                    <td>
+                                        <input type="checkbox" name="id[]" value="<?php echo $d->id_karyawan; ?>" />
+                                    </td>
+                                </tr>
+                            <?php } ?>
                     </table>
 
                 </div>
 
                 <div class="box-footer">
-                    <a href="<?= base_url('peserta') ?>" class="btn btn-default btn-flat"><span
-                            class="fa fa-arrow-left"></span> Kembali</a>
+                    <a href="<?= base_url('training/peserta') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
+                        Kembali</a>
                     <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
                         Simpan</button>
                 </div>

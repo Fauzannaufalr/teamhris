@@ -9,6 +9,7 @@ class DataKaryawan extends CI_Controller
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
+        $this->load->model('training/m_data');
 
         if (!$this->session->userdata('nik')) {
             redirect('auth');
@@ -21,6 +22,7 @@ class DataKaryawan extends CI_Controller
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
+        $data['id_kelas'] = $this->m_data->get_data('tb_kelas')->result_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -37,6 +39,7 @@ class DataKaryawan extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
+
         $this->form_validation->set_rules('nik', 'NIK', 'required|is_unique[data_karyawan.nik]', [
             'required' => 'NIK harus diisi !',
             'is_unique' => 'NIK Sudah Terdaftar !'
@@ -47,7 +50,7 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
         ]);
-        $this->form_validation->set_rules('kelas', 'Kelas', 'required', [
+        $this->form_validation->set_rules('id_kelas', 'Kelas', 'required', [
             'required' => 'Kelas harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
@@ -100,6 +103,9 @@ class DataKaryawan extends CI_Controller
         ]);
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
+        ]);
+        $this->form_validation->set_rules('kelas', 'kelas', 'required', [
+            'required' => 'kelas harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',

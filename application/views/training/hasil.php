@@ -14,9 +14,9 @@
                         <div class="col-sm-10">
                             <select class="select2 form-control" name="id" required="">
                                 <option selected="selected" disabled="">- Pilih Posisi -</option>
-                                <?php foreach ($kelas as $a) { ?>
-                                    <option value="<?= $a->id_posisi ?>"><?= $a->kode_posisi; ?> | <?= $a->nama_posisi; ?>
-                                    </option>
+                                <?php foreach ($posisi as $a) { ?>
+                                <option value="<?= $a->id_posisi ?>"><?= $a->kode; ?> | <?= $a->nama_posisi; ?>
+                                </option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -24,8 +24,10 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label"></label>
                         <div class="col-sm-10">
-                            <a href="<?= base_url('hasil_ujian'); ?>" class="btn btn-default btn-flat"><span class="fa fa-refresh"></span> Refresh</a>
-                            <button type="submit" class="btn btn-primary btn-flat" title="Filter Data Soal Ujian"><span class="fa fa-filter"></span> Filter</button>
+                            <a href="<?= base_url('training/hasil_ujian'); ?>" class="btn btn-default btn-flat"><span
+                                    class="fa fa-refresh"></span> Refresh</a>
+                            <button type="submit" class="btn btn-primary btn-flat" title="Filter Data Soal Ujian"><span
+                                    class="fa fa-filter"></span> Filter</button>
                         </div>
                     </div>
                 </div>
@@ -40,15 +42,7 @@
 
         <!-- Default box -->
         <div class="box box-success" style="overflow-x: scroll;">
-            <div class="box-header">
-                <?php if (isset($_GET['id'])) {
-                    $id = $_GET['id'];
-                ?>
-                    <a href="<?= base_url() . 'hasil_ujian/print_all?id=' . $id ?>" class="btn btn-danger btn-flat" target="_blank"><i class="fa fa-file-pdf-o"></i> Cetak Sesuai Filter</a>
-                <?php } ?>
 
-                <a href="<?= base_url('hasil_ujian/print_all') ?>" class="btn btn-primary btn-flat pull-right" target="_blank"><i class="fa fa-print"></i> Cetak Semua Hasil Ujian</a>
-            </div>
             <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -63,58 +57,49 @@
                             <th>Benar</th>
                             <th>Salah</th>
                             <th>Nilai</th>
-                            <th>Cetak</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
                         foreach ($hasil as $d) { ?>
-                            <tr>
-                                <td><?php echo $no++; ?></td>
-                                <td><?php echo $d->data_karyawan; ?></td>
-                                <td><?php echo $d->NIK; ?></td>
-                                <td><?php echo $d->data_posisi; ?></td>
-                                <td><?php echo date('d-m-Y', strtotime($d->tanggal_ujian)); ?></td>
-                                <td><?php echo date('H:i:s', strtotime($d->jam_ujian)); ?></td>
-                                <td><?php echo $d->jenis_ujian; ?></td>
-                                <td>
-                                    <?php
+                        <tr>
+                            <td><?php echo $no++; ?></td>
+                            <td><?php echo $d->id_karyawan; ?></td>
+                            <td><?php echo $d->nik; ?></td>
+                            <td><?php echo $d->id_posisi; ?></td>
+                            <td><?php echo date('d-m-Y', strtotime($d->tanggal_ujian)); ?></td>
+                            <td><?php echo date('H:i:s', strtotime($d->jam_ujian)); ?></td>
+                            <td><?php echo $d->jenis_ujian; ?></td>
+                            <td>
+                                <?php
                                     if ($d->benar == '') {
                                         echo "<span class='btn btn-xs btn-default'>Belum Ujian</span>";
                                     } else {
                                         echo $d->benar;
                                     }
                                     ?>
-                                </td>
-                                <td>
-                                    <?php
+                            </td>
+                            <td>
+                                <?php
                                     if ($d->salah == '') {
                                         echo "<span class='btn btn-xs btn-default'>Belum Ujian</span>";
                                     } else {
                                         echo $d->salah;
                                     }
                                     ?>
-                                </td>
-                                <td>
-                                    <?php
+                            </td>
+                            <td>
+                                <?php
                                     if ($d->nilai == '') {
                                         echo "<span class='btn btn-xs btn-default'>Belum Ujian</span>";
                                     } else {
                                         echo $d->nilai;
                                     }
                                     ?>
-                                </td>
-                                <td>
-                                    <?php
-                                    if ($d->nilai == '') {
-                                        echo "<span class='btn btn-xs btn-default'>Belum Ujian</span>";
-                                    } else {
-                                        echo "<a href='" . 'hasil_ujian/cetak/' . "$d->id_peserta' class='btn btn-xs btn-success' title='Cetak Hasil Ujian' target='_blank'><span class='fa fa-print'></span></a>";;
-                                    }
-                                    ?>
-                                </td>
-                            </tr>
+                            </td>
+
+                        </tr>
                         <?php } ?>
                     </tbody>
                 </table>

@@ -58,9 +58,9 @@ class m_data extends CI_Model
 		$count = $this->input->post('id');
 		foreach ($count as $i => $value) {
 			$entri[] = array(
-				'id_siswa' 	=> $this->input->post('id')[$i],
-				'id_posisi' => $this->input->post('posisi'),
-				'id_jenis_ujian' => $this->input->post('jenis_ujian'),
+				'id_karyawan' 	=> $this->input->post('id')[$i],
+				'id_posisi' => $this->input->post('id_posisi'),
+				'id_jenis_ujian' => $this->input->post('id_jenis_ujian'),
 				'tanggal_ujian' => $this->input->post('tanggal'),
 				'jam_ujian' 	=> $this->input->post('jam'),
 				'durasi_ujian' 	=> $durasi_ujian,

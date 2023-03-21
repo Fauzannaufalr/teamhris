@@ -1,4 +1,4 @@
-<form action="<?= base_url('jenis_ujian/create'); ?>" method="post" class="form-horizontal">
+<form action="<?= base_url('training/jenis_ujian/create'); ?>" method="post" class="form-horizontal">
     <div class="box-body">
         <div class="form-group">
             <label class="col-sm-3 control-label">Jenis Ujian</label>

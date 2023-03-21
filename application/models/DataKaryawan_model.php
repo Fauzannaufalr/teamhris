@@ -29,7 +29,7 @@ class DataKaryawan_model extends CI_Model
             'nik' => htmlspecialchars($this->input->post('nik')),
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
             'id_posisi' => htmlspecialchars($this->input->post('posisi')),
-            'id_kelas' => htmlspecialchars($this->input->post('kelas')),
+            'id_kelas' => htmlspecialchars($this->input->post('id_kelas')),
             'email' => htmlspecialchars($email),
             'status' => 'Aktif',
             'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
@@ -41,15 +41,7 @@ class DataKaryawan_model extends CI_Model
             'foto' => 'default.jpg'
 
         ];
-        $token = base64_encode(random_bytes(32));
-        $user_token = [
-            'email' => $email,
-            'token' => $token,
-            'date_created' => time()
-
-        ];
         $this->db->insert('data_karyawan', $data);
-        $this->db->insert('user_token', $user_token);
     }
 
     public function ubahDataKaryawan()
@@ -59,7 +51,7 @@ class DataKaryawan_model extends CI_Model
             'nik' => htmlspecialchars($this->input->post('nik')),
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
             'id_posisi' => htmlspecialchars($this->input->post('posisi')),
-            'id_kelas' => htmlspecialchars($this->input->post('kelas')),
+            'id_kelas' => htmlspecialchars($this->input->post('id_kelas')),
             'email' => htmlspecialchars($email),
             'status' => htmlspecialchars($this->input->post('status')),
             'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),

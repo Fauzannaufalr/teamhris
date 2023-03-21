@@ -15,8 +15,8 @@
                                 <select class="select2 form-control" name="id" required="">
                                     <option selected="selected" disabled="">- Pilih posisi -</option>
                                     <?php foreach ($kelas as $a) { ?>
-                                        <option value="<?= $a->id_posisi ?>"><?= $a->kode; ?> |
-                                            <?= $a->nama_posisi; ?></option>
+                                    <option value="<?= $a->id_posisi ?>"><?= $a->kode; ?> |
+                                        <?= $a->nama_posisi; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -24,8 +24,10 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
-                                <a href="<?= base_url('soal_ujian'); ?>" class="btn btn-default btn-flat"><span class="fa fa-refresh"></span> Refresh</a>
-                                <button type="submit" class="btn btn-primary btn-flat" title="Filter Data posisi"><span class="fa fa-filter"></span> Filter</button>
+                                <a href="<?= base_url('training/soal_ujian'); ?>" class="btn btn-default btn-flat"><span
+                                        class="fa fa-refresh"></span> Refresh</a>
+                                <button type="submit" class="btn btn-primary btn-flat" title="Filter Data posisi"><span
+                                        class="fa fa-filter"></span> Filter</button>
                             </div>
                         </div>
                     </div>
@@ -43,10 +45,12 @@
                 <div class="box-header">
                     <h3 class="box-title"></h3>
 
-                    <a href="<?= base_url('training/soal') ?>"><button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#modal-default"><span class="fa fa-plus"></span>
+                    <a href="<?= base_url('training/soal') ?>"><button type="button" class="btn btn-primary btn-flat"
+                            data-toggle="modal" data-target="#modal-default"><span class="fa fa-plus"></span>
                             Tambah</button></a>
 
-                    <a href="<?php echo base_url('master/DataPosisi'); ?>"><button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#"><span></span>Data
+                    <a href="<?php echo base_url('master/DataPosisi'); ?>"><button type="button"
+                            class="btn btn-primary btn-flat" data-toggle="modal" data-target="#"><span></span>Data
                             Posisi</button></a>
                 </div>
 
@@ -65,16 +69,16 @@
                         <?php
                         $no = 1;
                         foreach ($soal_ujian as $d) { ?>
-                            <tr>
-                                <td><?php echo $no++; ?></td>
-                                <td><?php echo $d->kode; ?></td>
-                                <td><?php echo $d->nama_posisi; ?></td>
-                                <td>
-                                    <?php echo $d->pertanyaan; ?>
+                        <tr>
+                            <td><?php echo $no++; ?></td>
+                            <td><?php echo $d->kode; ?></td>
+                            <td><?php echo $d->nama_posisi; ?></td>
+                            <td>
+                                <?php echo $d->pertanyaan; ?>
 
-                                    <ol type="A">
-                                        <li>
-                                            <?php if ('A' == $d->kunci_jawaban) {
+                                <ol type="A">
+                                    <li>
+                                        <?php if ('A' == $d->kunci_jawaban) {
                                                 echo "<b>";
                                                 echo $d->a;
                                                 echo "</b>";
@@ -82,9 +86,9 @@
                                                 echo $d->a;
                                             }
                                             ?>
-                                        </li>
-                                        <li>
-                                            <?php if ('B' == $d->kunci_jawaban) {
+                                    </li>
+                                    <li>
+                                        <?php if ('B' == $d->kunci_jawaban) {
                                                 echo "<b>";
                                                 echo $d->b;
                                                 echo "</b>";
@@ -92,9 +96,9 @@
                                                 echo $d->b;
                                             }
                                             ?>
-                                        </li>
-                                        <li>
-                                            <?php if ('C' == $d->kunci_jawaban) {
+                                    </li>
+                                    <li>
+                                        <?php if ('C' == $d->kunci_jawaban) {
                                                 echo "<b>";
                                                 echo $d->c;
                                                 echo "</b>";
@@ -102,9 +106,9 @@
                                                 echo $d->c;
                                             }
                                             ?>
-                                        </li>
-                                        <li>
-                                            <?php if ('D' == $d->kunci_jawaban) {
+                                    </li>
+                                    <li>
+                                        <?php if ('D' == $d->kunci_jawaban) {
                                                 echo "<b>";
                                                 echo $d->d;
                                                 echo "</b>";
@@ -112,9 +116,9 @@
                                                 echo $d->d;
                                             }
                                             ?>
-                                        </li>
-                                        <li>
-                                            <?php if ('E' == $d->kunci_jawaban) {
+                                    </li>
+                                    <li>
+                                        <?php if ('E' == $d->kunci_jawaban) {
                                                 echo "<b>";
                                                 echo $d->e;
                                                 echo "</b>";
@@ -122,16 +126,18 @@
                                                 echo $d->e;
                                             }
                                             ?>
-                                        </li>
-                                    </ol>
-                                </td>
-                                <td><b><?php echo $d->kunci_jawaban; ?></b></td>
+                                    </li>
+                                </ol>
+                            </td>
+                            <td><b><?php echo $d->kunci_jawaban; ?></b></td>
 
-                                <td>
-                                    <a href="<?= base_url() . 'soal_ujian/edit/' . $d->id_soal_ujian; ?>" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit" title="Ubah"></span></a> |
-                                    <a href="<?= base_url() . 'soal_ujian/hapus/' . $d->id_soal_ujian; ?>" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash" onclick="return confirm('Apakah yakin data soal ini akan di hapus?')" title="Hapus"></span></a>
-                                </td>
-                            </tr>
+                            <td>
+                                <a href="<?= base_url(); ?>training/soal_ujian/edit/<?= $d->id_soal_ujian ?>"
+                                    class="btn btn-xs btn-success">ubah</a>
+                                <a href="<?= base_url(); ?>training/soal_ujian/hapus/<?= $d->id_soal_ujian ?>"
+                                    class="btn btn-xs btn-danger">hapus</a>
+                            </td>
+                        </tr>
                         <?php } ?>
                     </tbody>
                 </table>

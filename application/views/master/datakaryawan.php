@@ -92,9 +92,9 @@
                     </div>
                     <div class="form-group">
                         <label>Kelas</label>
-                        <select class="form-control" name="posisi">
+                        <select class="form-control" name="id_kelas">
                             <option value="">-- Pilih Kelas --</option>
-                            <?php foreach ($tb_kelas as $tk) : ?>
+                            <?php foreach ($id_kelas as $tk) : ?>
                                 <option value="<?= $tk['id_kelas']; ?>"><?= $tk['nama_kelas']; ?></option>
                             <?php endforeach; ?>
                         </select>
