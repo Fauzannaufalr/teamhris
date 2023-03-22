@@ -64,6 +64,13 @@ class Pekerjaan_model extends CI_Model
         $this->db->select('deskripsi_pekerjaan');
         $this->db->from('recruitment___pekerjaan');
         $this->db->where('id_pekerjaan', $id);
-        return  $this->db->get()->result_array();
+        return  $this->db->get()->row_array();
+    }
+    public function kualifikasi($id)
+    {
+        $this->db->select('kualifikasi');
+        $this->db->from('recruitment___pekerjaan');
+        $this->db->where('id_pekerjaan', $id);
+        return  $this->db->get()->row_array();
     }
 }

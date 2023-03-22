@@ -32,14 +32,15 @@ class Tampilan extends CI_Controller
         // Lakukan upload file
         if ($this->upload->do_upload('cv')) {
             // Jika upload berhasil, simpan nama file ke database
-            $filename = $this->upload->data();
+            $filename = $this->upload->data('file_name');
             $data = [
-                'file_cv' => $filename['file_name'],
+                'file_cv' => $filename,
                 'email' => $this->input->post('email'),
                 'status' => 'pelamar',
                 'id_pekerjaan' => $this->input->post('id_posisi')
             ];
 
+            $this->db->insert('recruitment___pelamar', $data);
             // Tampilkan pesan berhasil
             $this->session->set_flashdata('success', 'CV berhasil diupload.');
         } else {
@@ -48,7 +49,6 @@ class Tampilan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        $this->db->insert('recruitment___pelamar', $data);
         redirect('tampilan');
     }
     public function tambah()
@@ -64,7 +64,7 @@ class Tampilan extends CI_Controller
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
         ]);
-        $this->form_validation->set_rules('file_cv', 'File CV', 'required', [
+        $this->form_validation->set_rules('cv', 'File CV', 'required', [
             'required' => 'Upload CV !'
         ]);
 

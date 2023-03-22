@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kualifikasi">Kualifikasi</label>
-                        <textarea class="form-control" id="kualifikasi" name="kualifikasi" placeholder="Masukan kualifikasi"></textarea>
+                        <textarea name="kualifikasi"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="tanggal_berakhir">tanggal Berakhir</label>
@@ -141,7 +141,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kualifikasi">Kualifikasi</label>
-                            <textarea class="form-control" id="kualifikasi" name="kualifikasi" value="<?= $it['kualifikasi']; ?>"></textarea>
+                            <textarea name="kualifikasi"></textarea>
 
                         </div>
                         <div class="form-group">
