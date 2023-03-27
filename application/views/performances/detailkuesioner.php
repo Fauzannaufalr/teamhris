@@ -3,23 +3,22 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
 
             <?php if ($this->session->userdata('level') !== 'biasa')
                 if ($this->session->userdata('level') !== 'leader') { ?>
 
                 <?php } ?>
 
-
+            <div class="card">
+                <div class="card-header" style="background-color: cc00000;">
+                    Saran
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <?= $saran ?>
+                    </blockquote>
+                </div>
+            </div>
             <form method="POST">
                 <div class=" table-responsive">
                     <table id="" class="table table-bordered table-striped">
@@ -28,36 +27,42 @@
                                 <th>No</th>
                                 <th>Soal</th>
                                 <th>Nilai</th>
-                                <th>Aksi</th>
-
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no = 1; ?>
-                            <?php foreach ($detailkuesioner as $dk): ?>
+                            <?php $no = 1;
+                            $total = 0;
+                            ?>
+                            <?php foreach ($detailkuesioner as $dk):
+                                $total = $total + $dk["nilai"];
+                                ?>
                                 <tr>
                                     <td style="text-align: center;">
                                         <?= $no++ ?>
                                     </td>
-                                    <td style="text-align: center;">
-                                        <?= $dk['total_soal'] ?>
+
+                                    <td>
+                                        <?= $dk['kuesioner'] ?>
                                     </td>
                                     <td style="text-align: center;">
-                                        <?= $dk['total_nilai'] ?>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <a href=<?= base_url("performances/penilaiankuesioner") ?> type="button"
-                                            style="background-color: #d4d4d4" ; class="btn btn-Info">
-                                            Kembali
-                                        </a>
+                                        <?= $dk['nilai'] ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                             <tr>
+                                <td colspan=2><b>TOTAL NILAI</b></td>
+                                <td class="text-center" style="color: black;">
+                                    <?= $total ?>
+                                </td>
+                            </tr>
+
                         </tbody>
 
                     </table>
-
+                    <a href=<?= base_url("performances/penilaiankuesioner") ?> type="button"
+                        style="background-color: #d4d4d4" ; class="btn btn-Info">
+                        Kembali
+                    </a>
                 </div>
             </form>
         </div>

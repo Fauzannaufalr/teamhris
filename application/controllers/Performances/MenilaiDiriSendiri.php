@@ -45,7 +45,7 @@ class MenilaiDiriSendiri extends CI_Controller
     {
         $post = $this->input->post();
         $nik_penilai = $this->session->userdata("nik");
-        $nik_menilai = $post["nik_menilai"];
+        $nik_menilai = $this->session->userdata("nik");
 
         foreach ($post["nilai"] as $id_kuesioner => $nilai):
             $data_insert_tabel_performances__detail_penilaian_kuesioner = [
@@ -53,23 +53,25 @@ class MenilaiDiriSendiri extends CI_Controller
                 "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
                 "nik_penilai" => $nik_penilai,
                 "nik_menilai" => $nik_menilai,
-                "tanggal" => date("d/m/Y"),
+                "tanggal" => date("m/Y"),
                 "nilai" => $nilai
             ];
             $this->db->insert(
                 "performances___detail_penilaian_kuesioner",
                 $data_insert_tabel_performances__detail_penilaian_kuesioner
-            );
+            ); //
             // echo "<pre>" . print_r($data_insert_tabel_performances__detail_penilaian_kuesioner, true) . "</pre>";
         endforeach;
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil disimpan!</div>');
+        redirect('performances/menilaidirisendiri');
     }
 
     private function insert_tabel_penilaian_kuesioner()
     {
         $post = $this->input->post();
-        $nik_menilai = $post["nik_menilai"];
-        $total_nilai = array_sum($post["nilai"]);
         $nik_penilai = $this->session->userdata("nik");
+        $nik_menilai = $this->session->userdata("nik");
+        $total_nilai = array_sum($post["nilai"]);
         $total_soal = count($post["nilai"]);
 
         $data_insert_tabel_performances___penilaian_kuesioner = [
@@ -77,7 +79,8 @@ class MenilaiDiriSendiri extends CI_Controller
             "nik_menilai" => $nik_menilai,
             "tanggal" => date("m/Y"),
             "total_nilai" => $total_nilai,
-            "total_soal" => $total_soal
+            "total_soal" => $total_soal,
+            "saran" => $post['saran']
         ];
         $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
         return $this->db->insert_id();

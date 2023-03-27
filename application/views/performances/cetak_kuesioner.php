@@ -46,59 +46,43 @@
             </td>
         </tr>
     </table>
-    <table class="table table-bordered table-triped">
-        <tr>
-            <th class="text-center">No</th>
-            <th class="text-center">NIK</th>
-            <th class="text-center">Nama Karyawan</th>
-            <th class="text-center">NIK Penilai</th>
-            <th class="text-center">NIK Menilai</th>
-            <th class="text-center">Total Nilai</th>
-            <th class="text-center">Aksi</th>
-
-        </tr>
-        <?php $no = 1; ?>
-        <?php foreach ($cetak_kuesioner as $cr): ?>
+    <table id="example1" class="table table-bordered table-striped">
+        <thead style="text-align: center;">
             <tr>
-                <td class="text-center">
-                    <?= $no++ ?>
-                </td>
-                <td class="text-center">
-                    <?= $cr['nik']; ?>
-                </td>
-                <td class="text-center">
-                    <?= $cr['nama_karyawan']; ?>
-                </td>
-                <td class="text-center">
-                    <?= $cr['nik_penilai']; ?>
-                </td>
-                <td class="text-center">
-                    <?= $cr['nik_menilai']; ?>
-                </td>
-                <td class="text-center"></td>
-                <?= $cr['tanggal']; ?>
-                </td>
-                <td class="text-center">
-                    <?= $cr['total_nilai']; ?>
-                </td>
-
+                <th>No</th>
+                <th>NIK & Nama Penilai</th>
+                <th>NIK & Nama Menilai</th>
+                <th>Tanggal</th>
+                <th>Total Nilai</th>
             </tr>
-        <?php endforeach; ?>
-    </table>
+        </thead>
+        <tbody>
+            <?php $no = 1 ?>
+            <?php foreach ($cetak_kuesioner as $pr): ?>
+                <tr style="text-align: center;">
+                    <th>
+                        <?= $no++; ?>
+                    </th>
 
-    <table width="100%">
-        <tr>
-            <td></td>
-            <td width="200px">
-                <p>Bandung,
-                    <?= date("d M Y") ?> <br> Finance
-                </p>
-                <br>
-                <br>
-                <p>Human Capital</p>
+                    <td>
+                        <?= $pr['nik_penilai'],
+                            $pr['nama_karyawan_penilai']; ?>
+                    </td>
 
-            </td>
-        </tr>
+                    <td>
+                        <?= $pr['nik_menilai']; ?>
+                        <?= $pr['nama_karyawan_menilai']; ?>
+                    </td>
+                    <td>
+                        <?= $pr['tanggal']; ?>
+                    </td>
+                    <td>
+                        <?= $pr['total_nilai']; ?>
+                    </td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
     </table>
 </body>
 

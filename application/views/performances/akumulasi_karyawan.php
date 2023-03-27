@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #ff0000;">
+        <div class="card-header" style="color: white; background-color: #cc0000;">
             <h4> Filter Data Akumulasi Penilaian</h4>
         </div>
 
@@ -64,7 +64,7 @@
 
 
             <table id="example1" class="table table-bordered table-striped">
-                <thead style="background-color: #ff0000; text-align: center ;">
+                <thead style="background-color: #cc0000; text-align: center ;">
                     <tr style="color: #ffffff;">
                         <th>No</th>
                         <th>Nama Karyawan</th>

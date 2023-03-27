@@ -25,9 +25,11 @@
         <div class=" form-group col-md-4">
 
           <label>Menilai</label>
-          <select class=" form-control" name="nik_menilai" id="nik_menilai">
+          <select required class=" form-control" name="nik_menilai" id="nik_menilai">
             <option>-- Pilih Karyawan --</option>
-            <?php foreach ($datakaryawan as $dk): ?>
+            <?php foreach ($datakaryawan as $dk):
+              if (in_array($dk['nik'], $sudah_menilai))
+                continue; ?>
               <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
             <?php endforeach; ?>
           </select>
@@ -54,7 +56,7 @@
                     <?= $sk['kuesioner'] ?>
                   </td>
                   <td>
-                    <select name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
+                    <select required name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
                       <option value="10">Sangat Baik</option>
                       <option value="9">Baik</option>
@@ -69,7 +71,7 @@
             </tbody>
 
           </table>
-          <input type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
+          <input required type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
           <br>
           <button name="simpan" value="kirim" type="submit" class="btn btn-info">Simpan Penilaian</button>
         </div>

@@ -27,7 +27,9 @@
           <label>Menilai</label>
           <select class=" form-control" name="nik_menilai" id="nik_menilai">
             <option>-- Pilih Karyawan --</option>
-            <?php foreach ($datakaryawan as $dk): ?>
+            <?php foreach ($datakaryawan as $dk):
+              if (in_array($dk['nik'], $sudah_menilai))
+                continue; ?>
               <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
             <?php endforeach; ?>
           </select>

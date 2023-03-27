@@ -15,6 +15,19 @@ class MenilaiLeader extends CI_Controller
             redirect('auth');
         }
     }
+    private function extract_nik_penilai()
+    {
+        $nik = $this->session->userdata("nik");
+        $tgl_skrg = date("Y/m/d");
+        $sudah_menilai = $this->db->query("SELECT pk.nik_menilai
+        FROM performances___penilaian_kuesioner pk WHERE pk.nik_penilai ='$nik'")->result_array();
+
+        $temp = [];
+        foreach ($sudah_menilai as $item):
+            $temp[] = $item['nik_menilai'];
+        endforeach;
+        return $temp;
+    }
 
     public function index()
     {
@@ -23,7 +36,9 @@ class MenilaiLeader extends CI_Controller
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
+        $data['sudah_menilai'] = $this->extract_nik_penilai();
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
+
 
 
         $this->load->view('templates/header', $data);
@@ -38,17 +53,6 @@ class MenilaiLeader extends CI_Controller
         $id_penilaian_kuesioner = $this->insert_tabel_penilaian_kuesioner();
         $this->insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner);
         redirect("performances/menilaileader");
-
-        $this->form_validation->set_rules('nik_penilai', 'NIK', 'required|is_unique[performances___penilaian_kuesioner.nik_penilai]', [
-            'required' => 'NIK Sudah Dinilai !',
-            'is_unique' => 'NIK Sudah Dinilai !'
-        ]);
-
-        $this->form_validation->set_rules('nik_menilai', 'Nik Menilai', 'is_unique', [
-            'is_unique' => 'NIK Sudah Dinilai !'
-        ]);
-
-
     }
 
 
@@ -64,7 +68,7 @@ class MenilaiLeader extends CI_Controller
                 "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
                 "nik_penilai" => $nik_penilai,
                 "nik_menilai" => $nik_menilai,
-                "tanggal" => date("d/m/Y"),
+                "tanggal" => date("m/Y"),
                 "nilai" => $nilai
             ];
             $this->db->insert(
@@ -86,9 +90,10 @@ class MenilaiLeader extends CI_Controller
         $data_insert_tabel_performances___penilaian_kuesioner = [
             "nik_penilai" => $nik_penilai,
             "nik_menilai" => $nik_menilai,
-            "tanggal" => date("d/m/Y"),
+            "tanggal" => date("m/Y"),
             "total_nilai" => $total_nilai,
-            "total_soal" => $total_soal
+            "total_soal" => $total_soal,
+            "saran" => $post['saran']
         ];
         $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
         return $this->db->insert_id();

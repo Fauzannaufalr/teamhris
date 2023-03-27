@@ -4,11 +4,20 @@ class PenilaianKuesioner_model extends CI_Model
 {
     public function tampilPenilaianKuesioner()
     {
-        $this->db->select('*');
-        $this->db->join('data_karyawan', 'data_karyawan.nik = performances___penilaian_kuesioner.nik_penilai');
-        // $this->db->join('data_karyawan', 'data_karyawan.nik = performances___penilaian_kuesioner.nik_menilai');
-        $this->db->from('performances___penilaian_kuesioner');
-        $query = $this->db->get();
+        $query = $this->db->query("SELECT 
+        pk.id_penilaian_kuesioner,
+        pk.nik_penilai,
+        pk.nik_menilai,
+        dk_a.nama_karyawan AS nama_karyawan_penilai,
+        dk_b.nama_karyawan AS nama_karyawan_menilai,
+        pk.tanggal,
+        pk.total_nilai,
+        pk.saran,
+        pk.total_soal
+        FROM performances___penilaian_kuesioner pk
+        INNER JOIN data_karyawan dk_a ON pk.nik_penilai = dk_a.nik 
+        INNER JOIN data_karyawan dk_b ON pk.nik_menilai = dk_b.nik 
+        ");
         return $query->result_array();
     }
 
@@ -25,10 +34,50 @@ class PenilaianKuesioner_model extends CI_Model
     }
     public function cetakKuesioner($bulantahun)
     {
-        $this->db->select('pr.*, dk.nama_karyawan, dk.nik, dk.email,');
-        $this->db->from('performances___penilaian_kuesioner pr');
-        $this->db->join('data_karyawan dk', 'dk.nik = pr.nik_penilai', 'dk.nik = pr.nik_menilai');
-        $this->db->where('tanggal', $bulantahun);
-        return $this->db->get()->result_array();
+        $query = $this->db->query("SELECT 
+        pk.id_penilaian_kuesioner,
+        pk.nik_penilai,
+        pk.nik_menilai,
+        dk_a.nama_karyawan AS nama_karyawan_penilai,
+        dk_b.nama_karyawan AS nama_karyawan_menilai,
+        pk.tanggal,
+        pk.total_nilai,
+        pk.saran,
+        pk.total_soal
+        FROM performances___penilaian_kuesioner pk
+        INNER JOIN data_karyawan dk_a ON pk.nik_penilai = dk_a.nik 
+        INNER JOIN data_karyawan dk_b ON pk.nik_menilai = dk_b.nik 
+        ");
+        return $query->result_array();
+    }
+
+    public function kategorisasiKuesioner()
+    {
+        $total_soal = $this->input->post('total_soal');
+        $nilai = $this->input->post('nilai');
+        $total_nilai = ($total_soal / $nilai) * 100;
+        // pr rumus penilaian kuesioner
+
+        if ($total_nilai >= 80 && $total_nilai <= 100) {
+            $kategorisasi = "Sangat Baik";
+        } else if ($total_nilai >= 60 && $total_nilai <= 79) {
+            $kategorisasi = "Baik";
+        } else if ($total_nilai >= 40 && $total_nilai <= 59) {
+            $kategorisasi = "Cukup";
+        } else if ($total_nilai >= 20 && $total_nilai <= 39) {
+            $kategorisasi = "Kurang";
+        } else if ($total_nilai >= 0 && $total_nilai <= 19) {
+            $kategorisasi = "Sangat Kurang";
+        }
+        echo "Kategorisasi: " . $kategorisasi;
+        $data = [
+            "nik_penilai" => $this->input->post("nik_penilai"),
+            'nik_menilai' => $this->input->post("nik_menilai"),
+            'tanggal' => date("m/Y"),
+            'total_nilai' => $total_nilai,
+            'total_soal' => $total_soal,
+            "kategorisasi" => $kategorisasi,
+        ];
+        $this->db->insert('performances___penilaian_kuesioner', $data);
     }
 }
