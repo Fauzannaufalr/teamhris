@@ -297,7 +297,32 @@ foreach ($data as $dk => $value) {
     $jumlahKeahlian = $value;
     // echo $namaKeahlian . '-' . $jumlahKeahlian;
 }
-print_r(array_count_values($allKeahlianCount));
+// print_r(array_count_values($allKeahlianCount));
+// print_r($data['Developer']);
+?>
+
+<?php
+$allTools = [];
+$allToolsCount = [];
+foreach ($keahlian as $kt) {
+    $Toolsexplode = explode(', ', $kt['tools']);
+    $countTools = count($Toolsexplode);
+    for ($i = 0; $i < $countTools; $i++) {
+        if (!in_array($Toolsexplode[$i], $allTools, true)) {
+            array_push($allTools, $Toolsexplode[$i]);
+        }
+        array_push($allToolsCount, $Toolsexplode[$i]);
+    };
+}
+$dataTools = array_count_values($allToolsCount);
+$datajs = json_encode(array_count_values($allToolsCount));
+$dataTotal = 0;
+foreach ($dataTools as $dt => $value) {
+    $namaTools = $dt;
+    $jumlahTools = $value;
+    // echo $namaKeahlian . '-' . $jumlahKeahlian;
+}
+print_r(array_count_values($allToolsCount));
 // print_r($data['Developer']);
 ?>
 <script>
@@ -325,10 +350,10 @@ print_r(array_count_values($allKeahlianCount));
     new Chart(Tools, {
         type: 'bar',
         data: {
-            labels: ['PHP', 'Figma', 'Java', 'Vue.js', 'Javascript', 'Python'],
+            labels: <?= json_encode(array_keys(array_count_values($allToolsCount))) ?>,
             datasets: [{
                 label: 'Tools',
-                data: [12, 19, 3, 5, 2, 3],
+                data: <?= json_encode(array_values(array_count_values($allToolsCount))) ?>,
                 borderWidth: 1
             }]
         },
