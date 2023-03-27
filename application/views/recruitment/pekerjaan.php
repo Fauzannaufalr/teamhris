@@ -86,11 +86,11 @@
                     </div>
                     <div class="form-group">
                         <label for="deskripsi_pekerjaan">Deskripsi Pekerjaan</label>
-                        <textarea name="deskripsi_pekerjaan"></textarea>
+                        <textarea class="form-control" name="deskripsi_pekerjaan"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="kualifikasi">Kualifikasi</label>
-                        <textarea name="kualifikasi"></textarea>
+                        <textarea class="form-control" name="kualifikasi"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="tanggal_berakhir">tanggal Berakhir</label>
@@ -137,11 +137,11 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi_pekerjaan">Deskripsi Pekerjaan</label>
-                            <textarea name="deskripsi_pekerjaan"></textarea>
+                            <textarea class="form-control" name="deskripsi_pekerjaan"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kualifikasi">Kualifikasi</label>
-                            <textarea name="kualifikasi"></textarea>
+                            <textarea class="form-control" name="kualifikasi"></textarea>
 
                         </div>
                         <div class="form-group">

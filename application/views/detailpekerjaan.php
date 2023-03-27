@@ -24,12 +24,14 @@
                             <h1><?= $dp['nama_posisi']  ?></h1>
                         <?php endif ?>
                     <?php endforeach ?>
+                    <a type="button" style="margin-left:50px; background-color: #cc0000" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv">
+                        Daftar Sekarang
+                    </a>
                 </div>
 
             </div>
         </div>
     </section>
-    <button>Daftar Sekarang </button>
 
     <div class="job">
         <h3>DESKRIPSI PEKERJAAN</h3>

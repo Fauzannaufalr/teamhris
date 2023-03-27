@@ -8,13 +8,15 @@ class Uploadtes extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('recruitment/Hasiltes_model');
+        $this->load->model('Recruitment/uploadtes_model');
+        $this->load->model('DataPosisi_model');
     }
     public function index()
     {
         $data['title'] = 'Upload Hasil Tes';
-        $data['hasiltes'] = $this->Hasiltes_model->getAllHasiltes();
-        $this->load->view('recruitment/uploadtes', $data);
+        $data['hasiltes'] = $this->uploadtes_model->getAllhasiltes();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $this->load->view('uploadtespelamar', $data);
     }
 
     public function upload_hasiltes()
@@ -30,17 +32,18 @@ class Uploadtes extends CI_Controller
         $this->upload->initialize($config);
 
         // Lakukan upload file
-        if ($this->upload->do_upload('uploadtes')) {
+        if ($this->upload->do_upload('uploadfile')) {
             // Jika upload berhasil, simpan nama file ke database
-            $filename = $this->upload->data();
+            $filename = $this->upload->data('file_name');
             $data = [
-                'hasil_pengerjaan' => $filename['uploadtes'],
+                'id_pekerjaan' => $this->input->post('posisi'),
                 'email' => $this->input->post('email'),
-                'status' => 'beri nilai',
-                'id_pekerjaan' => $this->input->post('id_posisi')
+                'hasil_link' => $this->input->post('uploadlink'),
+                'hasil_file' => $filename,
             ];
 
             // Tampilkan pesan berhasil
+            $this->db->insert('recruitment___hasiltes', $data);
             $this->session->set_flashdata('success', 'Jawaban berhasil diupload.');
         } else {
             // Jika upload gagal, tampilkan pesan error
@@ -48,8 +51,7 @@ class Uploadtes extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        $this->db->insert('recruitment___hasiltes', $data);
-        redirect('recruitment/uploads');
+        redirect('uploadtes');
     }
     public function tambah()
     {
@@ -73,7 +75,7 @@ class Uploadtes extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('recruitment/uploadtes', $data);
+            $this->load->view('uploadtespelamar', $data);
             $this->load->view('templates/footer');
         } else {
             $this->Pekerjaan_model->tambahuploadtes();

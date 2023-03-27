@@ -16,7 +16,7 @@ class DetailPekerjaan extends CI_Controller
         $data['title'] = 'Detail Pekerjaan';
         $data['pekerjaan'] = $this->Pekerjaan_model->ambilUserById($id);
         $deskripsi_pekerjaan = $this->Pekerjaan_model->deskripsi($id);
-        $deskripsi_pekerjaan = $this->Pekerjaan_model->kualifikasi($id);
+        $kualifikasi = $this->Pekerjaan_model->kualifikasi($id);
         $data['posisi'] = $this->posisi->getAllDataPosisi();
 
 
@@ -28,11 +28,10 @@ class DetailPekerjaan extends CI_Controller
         }
         $data['array_deskripsi'] = $array_deskripsi;
 
-        $deskripsi_pekerjaan = $this->Pekerjaan_model->kualifikasi($id);
 
         $array_kualifikasi = [];
-        if (!is_null($deskripsi_pekerjaan)) {
-            foreach ($deskripsi_pekerjaan as $dp) {
+        if (!is_null($kualifikasi)) {
+            foreach ($kualifikasi as $dp) {
                 $array_kualifikasi = explode("\n", $dp);
             }
         }

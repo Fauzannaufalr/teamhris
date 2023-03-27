@@ -38,11 +38,18 @@ class Pekerjaan extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
         $deskripsi_pekerjaan = $this->input->post('deskripsi_pekerjaan');
+        $kualifikasi = $this->input->post('kualifikasi');
         $array_deskripsi = [];
         if (!is_null($deskripsi_pekerjaan)) {
             $array_deskripsi = explode("\n", $deskripsi_pekerjaan);
         }
         $data['array_deskripsi'] = $array_deskripsi;
+
+        $array_kualifikasi = [];
+        if (!is_null($kualifikasi)) {
+            $array_kualifikasi = explode("\n", $kualifikasi);
+        }
+        $data['array_kualifikasi'] = $array_kualifikasi;
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required', [
             'required' => 'Nama harus diisi !'
         ]);
