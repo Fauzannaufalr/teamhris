@@ -2,7 +2,7 @@
 
     <div class="card">
         <div class="card-header" style="color: white; background-color: #cc0000;">
-            <h4> Filter Data Penilaian Kinerja</h4>
+            <h4> Filter Data Penilaian Kuesioner</h4>
         </div>
 
         <form class="form-horizontal">
@@ -99,9 +99,8 @@
                     <thead style="text-align: center;">
                         <tr>
                             <th>No</th>
-                            <th>Nama Karyawan</th>
-                            <th>Penilai</th>
-                            <th>Menilai</th>
+                            <th>NIK & Nama Penilai</th>
+                            <th>NIK & Nama Menilai</th>
                             <th>Tanggal</th>
                             <th>Total Nilai</th>
                             <th>Aksi</th>
@@ -114,15 +113,15 @@
                                 <th>
                                     <?= $no++; ?>
                                 </th>
+
                                 <td>
-                                    <?= $pr['nama_karyawan']; ?>
+                                    <?= $pr['nik_penilai'],
+                                        $pr['nama_karyawan_penilai']; ?>
                                 </td>
 
                                 <td>
-                                    <?= $pr['nik_penilai']; ?>
-                                </td>
-                                <td>
                                     <?= $pr['nik_menilai']; ?>
+                                    <?= $pr['nama_karyawan_menilai']; ?>
                                 </td>
                                 <td>
                                     <?= $pr['tanggal']; ?>
@@ -130,6 +129,7 @@
                                 <td>
                                     <?= $pr['total_nilai']; ?>
                                 </td>
+
 
                                 <td>
                                     <a href="<?= base_url() ?>performances/penilaiankuesioner/detail/<?= $pr['id_penilaian_kuesioner'] ?>"

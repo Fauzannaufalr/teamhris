@@ -1,8 +1,8 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #ff0000;">
-            <h4> Filter Data Akumulasi Penilaian</h4>
+        <div class="card-header" style="color: white; background-color: #cc0000;">
+            <h4> Filter Data Akumulasi Penilaian Karyawan</h4>
         </div>
 
         <form class="form-horizontal">
@@ -27,25 +27,43 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2">
+                    <div class="col-md-2 ml-2">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
-                            <option value="">2017</option>
-                            <option value="">2018</option>
-                            <option value="">2019</option>
-                            <option value="">2020</option>
-                            <option value="">2021</option>
-                            <option value="">2022</option>
+                            <?php $tahun = date('Y');
+                            for ($i = 2020; $i < $tahun + 3; $i++) { ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php } ?>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-info mb-2 ml-3"><i class="fas fa-eye"> Tampilkan
+                    <?php
+                    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+                        $bulan = $_GET['bulan'];
+                        $tahun = $_GET['tahun'];
+                        $bulantahun = $bulan . $tahun;
+                    } else {
+                        $bulan = date('m');
+                        $tahun = date('Y');
+                        $bulantahun = $bulan . $tahun;
+
+                    }
+
+                    ?>
+                    <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
-                </div>
 
-            </div>
+
+                </div>
         </form>
+    </div>
+
+    <div class="alert alert" style="background-color: #cc0000; color: white;">
+        Menampilkan Akumulasi Penilaian Bulan:<span class="font-weight-bold">
+            <?php echo $bulan ?>
+        </span> Tahun:<span class="font-weight-bold">
+            <?php echo $tahun ?>
     </div>
     <div class="card">
         <div class="card-body">
@@ -62,22 +80,50 @@
                 </div>
             </div>
 
+            <?php
 
-            <table id="example1" class="table table-bordered table-striped">
-                <thead style="background-color: #ff0000; text-align: center ;">
-                    <tr style=" color: #ffffff;">
-                        <th>No</th>
-                        <th>Nama Karyawan</th>
-                        <th>Nilai Kinerja</th>
-                        <th>Nilai Kuesioner</th>
-                        <th>Total</th>
-                        <th>Kategorisasi</th>
-                    </tr>
-                </thead>
+            $jml_data = COUNT($akumulasi);
+            if ($jml_data > 0) { ?>
 
-            </table>
+
+
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead style="text-align: center;  background-color:#cc0000; color: white;">
+                        <tr>
+                            <th>No</th>
+                            <th>NIK & Nama Karyawan</th>
+                            <th>Aksi</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1 ?>
+                        <?php foreach ($akumulasi as $ak): ?>
+                            <tr style="text-align: center;">
+                                <th>
+                                    <?= $no++; ?>
+                                </th>
+
+                                <td>
+                                    <?= $ak['nik'],
+                                        $ak['nama_karyawan']; ?>
+                                </td>
+                                <td>
+                                    <a href="<?= base_url() ?>performances/akumulasi/detail/<?= $ak['nik'] ?>" type="button"
+                                        style="background-color: #d4d4d4" ; class="btn btn-Info">
+                                        Detail
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                    Data masih kosong, silahkan mengisi form penilaian!</span>
+            <?php } ?>
         </div>
     </div>
     <!-- /.card-body -->
-
 </div>

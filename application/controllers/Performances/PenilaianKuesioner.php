@@ -24,25 +24,39 @@ class PenilaianKuesioner extends CI_Controller
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         } else {
             $bulan = date('m');
             $tahun = date('Y');
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         }
+        $data['penilaiankuesioner'] = $this->db->query("SELECT 
+        pk.id_penilaian_kuesioner,
+        pk.nik_penilai,
+        pk.nik_menilai,
+        dk_a.nama_karyawan AS nama_karyawan_penilai,
+        dk_b.nama_karyawan AS nama_karyawan_menilai,
+        pk.tanggal,
+        pk.total_nilai,
+        pk.saran,
+        pk.total_soal
+        FROM performances___penilaian_kuesioner pk
+        INNER JOIN data_karyawan dk_a ON pk.nik_penilai = dk_a.nik 
+        INNER JOIN data_karyawan dk_b ON pk.nik_menilai = dk_b.nik
+        WHERE pk.tanggal='$bulantahun'")->result_array();
 
-        $data['penilaiankuesioner'] = $this->db->query("SELECT performances___penilaian_kuesioner.*,
-            data_karyawan.nama_karyawan, data_karyawan.id_posisi
-            FROM performances___penilaian_kuesioner
-            INNER JOIN data_karyawan ON performances___penilaian_kuesioner.nik_penilai=data_karyawan.nik
-            WHERE performances___penilaian_kuesioner.tanggal='$bulantahun'
-            ORDER BY data_karyawan.nama_karyawan ASC")->result_array();
 
-        $data['penilaiankuesioner'] = $this->PenilaianKuesioner_model->tampilPenilaianKuesioner();
+
+
+
+
+        // $data['penilaiankuesioner'] = $this->PenilaianKuesioner_model->tampilPenilaianKuesioner();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        // printr($bulantahun);
+        // $data['penilaiankuesioner'] = $this->PenilaianKuesioner_model->tampilPenilaianKuesioner();
+
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -52,10 +66,24 @@ class PenilaianKuesioner extends CI_Controller
     public function detail($id)
     {
         $data['title'] = 'Detail Kuesioner';
-        $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        $data['penilaiankuesioner'] = $this->PenilaianKuesioner_model->ambilUserById($id);
-        $data['detailkuesioner'] = $this->PenilaianKuesioner_model->ambilUserById($id);
+        $data['saran'] = $this->db->query("SELECT pk.saran FROM performances___penilaian_kuesioner pk
+         WHERE pk.id_penilaian_kuesioner = '$id'")->row()->saran;
+        $data['detailkuesioner'] = $this->db->query("SELECT
+        dpk.id_kuesioner,
+        sk.kuesioner, 
+        dpk.id_penilaian_kuesioner,
+        dpk.nik_penilai,
+        dpk.nik_menilai,
+        dpk.tanggal,
+        dpk.nilai
+        FROM performances___detail_penilaian_kuesioner dpk
+        INNER JOIN soal_kuesioner sk ON sk.id_kuesioner = dpk.id_kuesioner
+        WHERE dpk.id_penilaian_kuesioner = '$id'        
+        ")->result_array();
+        // printr($data['detailkuesioner']);
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);

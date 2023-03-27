@@ -24,12 +24,13 @@ class PenilaianKinerja extends CI_Controller
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         } else {
             $bulan = date('m');
             $tahun = date('Y');
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         }
+        // printr($bulantahun);
 
         $data['penilaiankinerja'] = $this->db->query("SELECT performances___penilaian_kinerja.*,
         data_karyawan.nama_karyawan, data_karyawan.id_posisi

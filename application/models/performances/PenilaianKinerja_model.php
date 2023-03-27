@@ -33,7 +33,7 @@ class PenilaianKinerja_model extends CI_Model
             $kategorisasi = "Sangat Baik";
         } else if ($nilai >= 60 && $nilai <= 79) {
             $kategorisasi = "Baik";
-        } else if ($nilai >= 40 && $nilai <= 69) {
+        } else if ($nilai >= 40 && $nilai <= 59) {
             $kategorisasi = "Cukup";
         } else if ($nilai >= 20 && $nilai <= 39) {
             $kategorisasi = "Kurang";
@@ -43,7 +43,7 @@ class PenilaianKinerja_model extends CI_Model
         echo "Kategorisasi: " . $kategorisasi;
         $data = [
             "nik" => $this->input->post("nik_nama"),
-            'tgl' => date("mY"),
+            'tgl' => date("m/Y"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
             "nilai" => $nilai,
@@ -71,7 +71,7 @@ class PenilaianKinerja_model extends CI_Model
         echo "Kategorisasi: " . $kategorisasi;
         $data = [
             "nik" => $this->input->post("nik_nama"),
-            'tgl' => date("mY"),
+            'tgl' => date("m/Y"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
             "nilai" => $nilai,

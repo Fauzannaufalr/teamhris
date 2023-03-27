@@ -16,43 +16,38 @@ class MenilaiRekan1 extends CI_Controller
         }
     }
 
+    private function extract_nik_penilai()
+    {
+        $nik = $this->session->userdata("nik");
+        $tgl_skrg = date("Y/m/d");
+        $sudah_menilai = $this->db->query("SELECT pk.nik_menilai
+        FROM performances___penilaian_kuesioner pk WHERE pk.nik_penilai ='$nik'")->result_array();
+
+        $temp = [];
+        foreach ($sudah_menilai as $item):
+            $temp[] = $item['nik_menilai'];
+        endforeach;
+        return $temp;
+    }
+
     public function index()
     {
         $nik = $this->session->userdata("nik");
         $data['title'] = "Menilai Rekan1";
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
+        // $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
+        $data['sudah_menilai'] = $this->extract_nik_penilai();
+        $data['datakaryawan'] = $this->db->query("SELECT 
+        dk.nik,
+        dk.nama_karyawan
+        FROM data_karyawan dk
+        WHERE dk.nik != '$nik'
+        ")->result_array();
+
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-        // printr($da   ta);
-        // 2.menilai 
-        // menampilkan data karyawan yang nik nya bukan dari login
 
-        // 3.simpan kuesioner (diri sendiri, rekan1 , rekan 2)
-        // dimasukan ke tabel 'performances___penilaian_kuesioner' & 'performances___detail_penilaian_kuesioner	' (pake perulangan)
-        // * <input type='text'name='nilai_kue[]' />
-        // $_POST['nilai_kue']
-        // [
-        //     'nilai_kue' => [
-        //         0 => 5,
-        //         1 => 3,
-        //         2 => 2,
-        //     ]
-        // ]
-        // $teamhris = [
-        //     "application" => [
-        //         "cache" => [
-        //             0 => "ïndex.html"
-        //         ],
-        //         "config" => [
-        //             0 => "autoload.php",
-        //             1 => "config.php",
-        //             2 => "constant.php",
-        //             // ,..
-        //         ]
-        //     ]
-        // ];
-
+        // printr($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -79,7 +74,7 @@ class MenilaiRekan1 extends CI_Controller
                 "id_penilaian_kuesioner" => $id_penilaian_kuesioner,
                 "nik_penilai" => $nik_penilai,
                 "nik_menilai" => $nik_menilai,
-                "tanggal" => date("d/m/Y"),
+                "tanggal" => date("m/Y"),
                 "nilai" => $nilai
             ];
             $this->db->insert(
@@ -101,9 +96,10 @@ class MenilaiRekan1 extends CI_Controller
         $data_insert_tabel_performances___penilaian_kuesioner = [
             "nik_penilai" => $nik_penilai,
             "nik_menilai" => $nik_menilai,
-            "tanggal" => date("d/m/Y"),
+            "tanggal" => date("m/Y"),
             "total_nilai" => $total_nilai,
-            "total_soal" => $total_soal
+            "total_soal" => $total_soal,
+            "saran" => $post['saran']
         ];
         $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
         return $this->db->insert_id();
