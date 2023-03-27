@@ -88,84 +88,111 @@ class Pelamar extends CI_Controller
     }
     private function _kirimSoal()
     {
-        $config = [
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'belajarcoding78@gmail.com',
-            'smtp_pass' => 'mxaghqdhdmsbcjmz',
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n",
-            'wordwrap'  => TRUE
-        ];
+        $file_data = $this->upload_file();
+        if (is_array($file_data)) {
+
+            $config = [
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'belajarcoding78@gmail.com',
+                'smtp_pass' => 'mxaghqdhdmsbcjmz',
+                'mailtype' => 'html',
+                'charset' => 'utf-8',
+                'newline' => "\r\n",
+                'wordwrap'  => TRUE
+            ];
 
 
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
+            $this->load->library('email', $config);
+            $this->email->initialize($config);
 
-        $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
-        $this->email->to($this->input->post('email'));
-        $data = [
-            'id_posisi' => $this->input->post('posisi'),
-            'pg' => $this->input->post('pg'),
-            'essay' => $this->input->post('essay'),
-            'upload' => $this->input->post('upload'),
-            'dataposisi' => $this->DataPosisi_model->getAllDataPosisi()
+            $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+            $this->email->to($this->input->post('email'));
+            $data = [
+                'id_posisi' => $this->input->post('posisi'),
+                'pg' => $this->input->post('pg'),
+                'essay' => $this->input->post('essay'),
+                'upload' => $this->input->post('upload'),
+                'dataposisi' => $this->DataPosisi_model->getAllDataPosisi()
 
-        ];
-        $card = $this->load->view('email_soal', $data, TRUE);
+            ];
+            $card = $this->load->view('email_soal', $data, TRUE);
 
-        $this->email->subject('Soal Tes Recruitment');
-        $this->email->message($card);
+            $this->email->subject('Soal Tes Recruitment');
+            $this->email->message($card);
 
-        if ($this->email->send()) {
-            return true;
+            $this->email->attach($file_data['full_path']);
+
+            if ($this->email->send()) {
+                if (delete_files($file_data['file_path'])) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal berhasil dikirim!</div>');
+                    redirect('recruitment/pelamar');
+                }
+            } else {
+                if (delete_files($file_data['file_path'])) {
+                    $this->session->set_flashdata('message', 'There is an error in email send');
+                    redirect('recruitment/pelamar');
+                }
+            }
         } else {
-            echo $this->email->print_debugger();
-            die;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
+            redirect('recruitment/pelamar');
         }
     }
     private function _kirimnilai()
     {
-        $config = [
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'belajarcoding78@gmail.com',
-            'smtp_pass' => 'mxaghqdhdmsbcjmz',
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n",
-            'wordwrap'  => TRUE
-        ];
+        $file_data = $this->upload_berkas();
+        if (is_array($file_data)) {
+
+            $config = [
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'belajarcoding78@gmail.com',
+                'smtp_pass' => 'mxaghqdhdmsbcjmz',
+                'mailtype' => 'html',
+                'charset' => 'utf-8',
+                'newline' => "\r\n",
+                'wordwrap'  => TRUE
+            ];
 
 
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
+            $this->load->library('email', $config);
+            $this->email->initialize($config);
 
-        $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
-        $this->email->to($this->input->post('email'));
-        $data = [
+            $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+            $this->email->to($this->input->post('email'));
+            $data = [
+                'pg' => $this->input->post('pg'),
+                'essay' => $this->input->post('essay'),
+                'berkas' => $this->input->post('berkas'),
+                'jadwal' => $this->input->post('jadwal'),
+                'gmeet' => $this->input->post('gmeet'),
 
-            'status' => $this->input->post('status'),
-            'nilai' => $this->input->post('nilai'),
-            'berkas' => $this->input->post('berkas'),
-            'jadwal' => $this->input->post('jadwal'),
-            'gmeet' => $this->input->post('gmeet'),
 
+            ];
+            $card = $this->load->view('email_nilai', $data, TRUE);
 
-        ];
-        $card = $this->load->view('email_nilai', $data, TRUE);
+            $this->email->subject('Diterima/ Ditolah');
+            $this->email->message($card);
 
-        $this->email->subject('Soal diterima / ditolak');
-        $this->email->message($card);
+            $this->email->attach($file_data['full_path']);
 
-        if ($this->email->send()) {
-            return true;
+            if ($this->email->send()) {
+                if (delete_files($file_data['file_path'])) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal berhasil dikirim!</div>');
+                    redirect('recruitment/pelamar');
+                }
+            } else {
+                if (delete_files($file_data['file_path'])) {
+                    $this->session->set_flashdata('message', 'There is an error in email send');
+                    redirect('recruitment/pelamar');
+                }
+            }
         } else {
-            echo $this->email->print_debugger();
-            die;
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
+            redirect('recruitment/pelamar');
         }
     }
 
@@ -204,7 +231,7 @@ class Pelamar extends CI_Controller
             'required' => 'Link Soal PG harus diisi !',
         ]);
 
-        $this->form_validation->set_rules('upload', 'Link Upload Jawaban', 'required', [
+        $this->form_validation->set_rules('linkuploadjawaban', 'Link Upload Jawaban', 'required', [
             'required' => 'Link Upload Jawaban harus diisi !',
         ]);
 
@@ -230,15 +257,6 @@ class Pelamar extends CI_Controller
     }
     public function nilai($id)
     {
-        $this->form_validation->set_rules('nilai', 'Beri Nilai', 'required', [
-            'required' => 'Beri Nilai harus diisi !',
-        ]);
-        $this->form_validation->set_rules('jadwal', 'Jadwal ', 'required', [
-            'required' => 'Jadwal Interview Lanjutan harus diisi !',
-        ]);
-        $this->form_validation->set_rules('gmeet', 'Link Google Meet ', 'required', [
-            'required' => 'Link Google Meet harus diisi !',
-        ]);
 
         if ($this->form_validation->run() == false) {
             $data['title'] = "Data Pelamar";
@@ -254,22 +272,10 @@ class Pelamar extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $email = $this->input->post('email');
-            $this->_kirimnilai();
+            $this->_kirimnilai($id);
             $this->Pelamar_model->statussoal($id);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
             redirect('recruitment/pelamar');
-        }
-    }
-    public function upload_file()
-    {
-        $config['upload_path'] = './dist/uploads';
-        $config['max_size'] = '4024';
-        $config['allowed_types'] = 'doc|docx|pdf';
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload('essay')) {
-            return $this->upload->data();
-        } else {
-            return $this->upload->display_errors();
         }
     }
 
@@ -285,5 +291,30 @@ class Pelamar extends CI_Controller
         header('Content-Disposition: attachment; filename="' . $filename . '"');
 
         readfile($file_path);
+    }
+
+    public function upload_file()
+    {
+        $config['upload_path'] = './dist/uploads';
+        $config['max_size'] = '4024';
+        $config['allowed_types'] = 'doc|docx|pdf';
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('essay')) {
+            return $this->upload->data();
+        } else {
+            return $this->upload->display_errors();
+        }
+    }
+    public function upload_berkas()
+    {
+        $config['upload_path'] = './dist/uploads';
+        $config['max_size'] = '4024';
+        $config['allowed_types'] = 'doc|docx|pdf';
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('berkas')) {
+            return $this->upload->data();
+        } else {
+            return $this->upload->display_errors();
+        }
     }
 }

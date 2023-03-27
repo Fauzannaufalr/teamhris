@@ -22,8 +22,8 @@ class Hris extends CI_Controller
         $bulantahun = date("Y") . date("m", strtotime('+1 month'));
         $data['title'] = "Dashboard";
         $data['user'] = $this->Hris_model->ambilUser();
-        $data['laporan_gk'] = $this->PengajuanGaji->laporan();
-        $data['laporan_rm'] = $this->RateMitra->laporan();
+        // $data['laporan_gk'] = $this->PengajuanGaji->laporan();
+        // $data['laporan_rm'] = $this->RateMitra->laporan();
         $data['bariskaryawan'] = $this->db->get('data_karyawan')->num_rows();
         $data['barisposisi'] = $this->db->get('data_posisi')->num_rows();
         $data['barismitra'] = $this->db->get('data_mitra')->num_rows();

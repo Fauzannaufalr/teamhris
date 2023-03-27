@@ -38,7 +38,7 @@
                             <td><?= $ko['hasil_link']; ?></td>
                             <td><a href="<?php echo base_url('recruitment/hasiltes/download_file/' . $ko['hasil_file']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
                             <td>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $ko['id_hasiltes'] ?>">hapus</button>
+                                <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ko['id_hasiltes'] ?>"><i class="fas fa-trash-alt"></i>hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

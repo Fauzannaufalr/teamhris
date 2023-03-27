@@ -51,8 +51,8 @@
                                 <?= $it['foto']; ?>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahpekerjaan<?= $it['id_pekerjaan']; ?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $it['id_pekerjaan'] ?>">hapus</button>
+                                <button type="button" class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahpekerjaan<?= $it['id_pekerjaan']; ?>"><i class="fas fa-edit"></i>edit</button>
+                                <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $it['id_pekerjaan'] ?>"><i class="fas fa-trash-alt"></i>hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

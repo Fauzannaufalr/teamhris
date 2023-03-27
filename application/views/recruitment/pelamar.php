@@ -205,8 +205,8 @@
                             <input type="file" class="form-control" id="essay" name="essay">
                         </div>
                         <div class="form-group">
-                            <label for="upload">Link Upload Jawaban</label>
-                            <input type="text" class="form-control" id="upload" name="upload">
+                            <label for="linkuploadjawaban">Link Upload Jawaban</label>
+                            <input type="text" class="form-control" name="linkuploadjawaban">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -265,8 +265,12 @@
                                     const node = document.createElement('div');
                                     node.innerHTML = `
                                     <div class="form-group">
-                                        <label for="nilai">Beri Nilai:</label>
-                                        <input type="text" id="nilai" name="nilai" class="form-control">
+                                        <label for="pg">Beri Nilai pg:</label>
+                                        <input type="text"  name="pg" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="essay">Beri Nilai Essay:</label>
+                                        <input type="text"  name="essay" class="form-control">
                                     </div>
         
                                     <div class="form-group">
