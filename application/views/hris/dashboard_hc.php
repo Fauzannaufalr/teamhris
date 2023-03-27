@@ -62,7 +62,44 @@
         </div>
         <!-- /.card-body -->
     </div>
-
+    <?php switch (date('m')) {
+        case '01':
+            $bulan = 'Januari';
+            break;
+        case '02':
+            $bulan = 'Februari';
+            break;
+        case '03':
+            $bulan = 'Maret';
+            break;
+        case '04':
+            $bulan = 'April';
+            break;
+        case '05':
+            $bulan = 'Mei';
+            break;
+        case '06':
+            $bulan = 'Juni';
+            break;
+        case '07':
+            $bulan = 'Juli';
+            break;
+        case '08':
+            $bulan = 'Agustus';
+            break;
+        case '09':
+            $bulan = 'September';
+            break;
+        case '10':
+            $bulan = 'Oktober';
+            break;
+        case '11':
+            $bulan = 'November';
+            break;
+        case '12':
+            $bulan = 'Desember';
+            break;
+    } ?>
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
@@ -70,7 +107,8 @@
                     <h3 class="card-title" style="color: white;">Laporan Gaji Karyawan</h3>
                 </div>
                 <div class="card-body">
-                    <div class="col-lg-7">
+                    <h5>Bulan <?= $bulan; ?></h5>
+                    <div class="col-lg-12">
                         <canvas id="karyawan"></canvas>
                     </div>
                 </div>
@@ -82,28 +120,9 @@
                     <h3 class="card-title" style="color: white;">Laporan Rate Mitra</h3>
                 </div>
                 <div class="card-body">
-                    <div class="col-lg-7">
+                    <h5>Bulan <?= $bulan; ?></h5>
+                    <div class="col-lg-12">
                         <canvas id="mitra"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
-                    <h3 class="card-title" style="color: white;">Laporan Gaji Karyawan</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <canvas id="keahlian"></canvas>
-                        </div>
-                        <div class="col-lg-6">
-                            <canvas id="Tools"></canvas>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -147,8 +166,11 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
+    const a = <?= $laporan_gk[0]['Sudah'] ?>;
+    const b = <?= $laporan_gk[0]['Belum'] ?>;
+
     const karyawan = document.getElementById('karyawan');
     const d_karyawan = {
         labels: [
@@ -156,8 +178,8 @@
             'Belum dibayar'
         ],
         datasets: [{
-            label: 'My First Dataset',
-            data: [200, 50],
+            label: 'Gaji Karyawan',
+            data: [a, b],
             backgroundColor: [
                 '#28a745',
                 'rgb(255, 205, 86)'
@@ -168,9 +190,32 @@
 
     new Chart(karyawan, {
         type: 'pie',
-        data: d_karyawan
+        data: d_karyawan,
+        options: {
+            legend: {
+                display: true,
+                labels: {
+                    display: false,
+                    fontSize: 10
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                        if (parseInt(totalData) >= 1000) {
+                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        } else {
+                            return 'Rp ' + totalData;
+                        }
+                    }
+                }
+            }
+        }
     });
 
+    const c = <?= $laporan_rm[0]['Sudah'] ?>;
+    const d = <?= $laporan_rm[0]['Belum'] ?>;
     const mitra = document.getElementById('mitra');
     const d_mitra = {
         labels: [
@@ -179,7 +224,7 @@
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [200, 50],
+            data: [c, d],
             backgroundColor: [
                 '#28a745',
                 'rgb(255, 205, 86)'
@@ -190,45 +235,25 @@
 
     new Chart(mitra, {
         type: 'pie',
-        data: d_mitra
-    });
-
-
-    const keahlian = document.getElementById('keahlian');
-    new Chart(keahlian, {
-        type: 'bar',
-        data: {
-            labels: ['Developer', 'UI/UX', 'QA'],
-            datasets: [{
-                label: 'Keahlian',
-                data: [12, 130, 3],
-                borderWidth: 1
-            }]
-        },
+        data: d_mitra,
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            legend: {
+                display: true,
+                labels: {
+                    display: false,
+                    fontSize: 10
                 }
-            }
-        }
-    });
-
-    const Tools = document.getElementById('Tools');
-    new Chart(Tools, {
-        type: 'bar',
-        data: {
-            labels: ['PHP', 'Figma', 'Java', 'Vue.js', 'Javascript', 'Python'],
-            datasets: [{
-                label: 'Tools',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                        if (parseInt(totalData) >= 1000) {
+                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        } else {
+                            return 'Rp ' + totalData;
+                        }
+                    }
                 }
             }
         }

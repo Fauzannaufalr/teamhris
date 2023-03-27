@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<html><head>
     <title><?= $title ?></title>
     <style type="text/css">
         body {
@@ -9,35 +7,22 @@
             color: black;
         }
     </style>
-</head>
-
-<body>
+</head><body>
     <center>
         <h1>PT. Sahaware Teknologi Indonesia</h1>
         <h2>Daftar Gaji Pegawai</h2>
     </center>
 
-    <?php
-    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
-        $bulan = $_GET['bulan'];
-        $tahun = $_GET['tahun'];
-        $bulantahun = $bulan . $tahun;
-    } else {
-        $bulan = date('m');
-        $tahun = date('Y');
-        $bulantahun = $bulan . $tahun;
-    }
-    ?>
     <table>
         <tr>
             <td>Bulan</td>
             <td>:</td>
-            <td><?= $bulan ?></td>
+            <td></td>
         </tr>
         <tr>
             <td>Tahun</td>
             <td>:</td>
-            <td><?= $tahun ?></td>
+            <td></td>
         </tr>
     </table>
     <table class="table table-bordered table-triped">
@@ -76,15 +61,6 @@
         <?php endforeach; ?>
         <tr>
             <th colspan="4" style="text-align: right;">Total : </th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
-            <th>Rp. <?= number_format($g['total'], 0, ',', '.') ?></th>
         </tr>
     </table>
 
@@ -99,9 +75,7 @@
             </td>
         </tr>
     </table>
-</body>
-
-</html>
+</body></html>
 
 <script type="text/javascript">
     window.print();

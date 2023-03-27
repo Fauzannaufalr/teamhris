@@ -5,55 +5,35 @@
                 <div class="card-header" style="background-color: #cc0000;">
                     <h3 class="card-title" style="color: white;">Cetak Data</h3>
                 </div>
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuanratemitra/cetakrate'); ?>">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="bulan" class="col-form-label">Bulan</label>
                             <div class="col">
-                                <select class="form-control select2" id="bulan">
-                                    <option selected="selected">Januari</option>
-                                    <option>Februari</option>
-                                    <option>Maret</option>
-                                    <option>April</option>
-                                    <option>Mei</option>
-                                    <option>Juni</option>
-                                    <option>Juli</option>
-                                    <option>Agustus</option>
-                                    <option>September</option>
-                                    <option>Oktober</option>
-                                    <option>November</option>
-                                    <option>Desember</option>
+                                <select class="form-control select2" id="bulan" name="bulan">
+                                    <option selected="selected" value="01">Januari</option>
+                                    <option value="02">Februari</option>
+                                    <option value="03">Maret</option>
+                                    <option value="04">April</option>
+                                    <option value="05">Mei</option>
+                                    <option value="06">Juni</option>
+                                    <option value="07">Juli</option>
+                                    <option value="08">Agustus</option>
+                                    <option value="09">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
                                 </select>
                             </div>
                             <label for="tahun" class="col-form-label">Tahun</label>
                             <div class="col">
-                                <select class="form-control select2" id="tahun">
-                                    <option selected="selected">2023</option>
-                                    <option>2024</option>
-                                    <option>2025</option>
-                                    <option>2026</option>
-                                    <option>2027</option>
-                                    <option>2028</option>
-                                    <option>2029</option>
-                                    <option>2030</option>
+                                <select class="form-control select2" id="tahun" name="tahun">
+                                    <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
+                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                    <?php endfor; ?>
                                 </select>
                             </div>
-                            <?php
-                            if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
-                                $bulan = $_GET['bulan'];
-                                $tahun = $_GET['tahun'];
-                                $bulantahun = $tahun . $bulan;
-                            } else {
-                                $bulan = date('m', strtotime('+1 month'));
-                                $tahun = date('Y');
-                                $bulantahun = $tahun . $bulan;
-                            }
-                            ?>
-                            <?php if (count($ratemitra) > 0) { ?>
-                                <a class="btn btn-outline-success ml-2" href="<?= base_url('payroll/pengajuanratemitra/cetakgaji?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Data</a>
-                            <?php } else { ?>
-                                <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Data</button>
-                            <?php } ?>
+                            <button type="submit" class="btn btn-outline-success ml-2"><i class="fas fa-print"></i> Cetak Data</button>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -80,21 +60,6 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-4">
-                    <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <table id="data" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -185,5 +150,30 @@
         $('#bulan,#tahun').change(function() {
             userDataTable.draw();
         });
+    });
+</script>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
     });
 </script>

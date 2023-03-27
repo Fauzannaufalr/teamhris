@@ -1,13 +1,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-
-            <?= $this->session->flashdata('message'); ?>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataPajak"><i class="fas fa-plus"></i>
                 Tambah Data Pajak
             </button>
@@ -16,7 +9,7 @@
     <div class="row">
         <div class="col-md-8">
             <table class="table table-bordered">
-                <thead style="text-align: center; background-color: #ff0000; color: #ffffff;">
+                <thead style="text-align: center; background-color: #cc0000; color: #ffffff;">
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Golongan</th>
@@ -34,8 +27,8 @@
                             <td><?= $dp['kode']; ?></td>
                             <td>Rp <?= number_format($dp['tarif'], 0, ',', '.'); ?></td>
                             <td>
-                                <a href="" class="badge" style="background-color: #fbff39; color: black;" data-toggle="modal" data-target="#ubahDataPajak<?= $dp['id']; ?>">ubah</a>
-                                <a href="" class="badge" style="background-color: #ff0000; color: black;" data-toggle="modal" data-target="#modal-sm<?= $dp['id']; ?>">hapus</a>
+                                <button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahDataPajak<?= $dp['id']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $dp['id']; ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -150,3 +143,35 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
+</script>

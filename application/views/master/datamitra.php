@@ -3,17 +3,6 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataMitra"><i class="fas fa-plus"></i>
                 Tambah Mitra
             </button>
@@ -54,8 +43,8 @@
                             <td><?= $dm['tanggal_keluar']; ?></td>
                             <td><?= $dm['status']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #ffcc00;" data-toggle="modal" data-target="#ubahDataMitra<?= $dm['id'] ?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dm['id'] ?>">hapus</button>
+                                <button type="button" class="badge" style="color: black; background-color: gold;" data-toggle="modal" data-target="#ubahDataMitra<?= $dm['id'] ?>"><i class="fas fa-edit"></i> Edit</button>
+                                <button type="button" class="badge" style="color: antiquewhite; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dm['id'] ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -63,6 +52,26 @@
             </table>
         </div>
         <!-- /.card-body -->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="background-color: #cc0000;">
+                    <h3 class="card-title" style="color: white;">Laporan Keahlian & Tools Mitra</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <canvas id="keahlian"></canvas>
+                        </div>
+                        <div class="col-lg-6">
+                            <canvas id="Tools"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -233,3 +242,102 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<?php
+$allKeahlian = [];
+$allKeahlianCount = [];
+foreach ($keahlian as $kt) {
+    $keahlianexplode = explode(', ', $kt['keahlian']);
+    $countKeahlian = count($keahlianexplode);
+    for ($i = 0; $i < $countKeahlian; $i++) {
+        if (!in_array($keahlianexplode[$i], $allKeahlian, true)) {
+            array_push($allKeahlian, $keahlianexplode[$i]);
+        }
+        array_push($allKeahlianCount, $keahlianexplode[$i]);
+    };
+}
+$data = array_count_values($allKeahlianCount);
+$datajs = json_encode(array_count_values($allKeahlianCount));
+$dataTotal = 0;
+foreach ($data as $dk => $value) {
+    $namaKeahlian = $dk;
+    $jumlahKeahlian = $value;
+    // echo $namaKeahlian . '-' . $jumlahKeahlian;
+}
+print_r(array_count_values($allKeahlianCount));
+// print_r($data['Developer']);
+?>
+<script>
+    const keahlian = document.getElementById('keahlian');
+    new Chart(keahlian, {
+        type: 'bar',
+        data: {
+            labels: <?= json_encode(array_keys(array_count_values($allKeahlianCount))) ?>,
+            datasets: [{
+                label: 'Keahlian',
+                data: <?= json_encode(array_values(array_count_values($allKeahlianCount))) ?>,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const Tools = document.getElementById('Tools');
+    new Chart(Tools, {
+        type: 'bar',
+        data: {
+            labels: ['PHP', 'Figma', 'Java', 'Vue.js', 'Javascript', 'Python'],
+            datasets: [{
+                label: 'Tools',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

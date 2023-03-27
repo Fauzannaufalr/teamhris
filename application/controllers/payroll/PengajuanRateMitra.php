@@ -6,6 +6,7 @@ class PengajuanRateMitra extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('dompdf_gen');
         $this->load->model('payroll/Pajak_model', 'Pajak');
         $this->load->model('payroll/PengajuanRateMitra_model', 'RateMitra');
         $this->load->model('Hris_model', 'Hris');
@@ -38,14 +39,14 @@ class PengajuanRateMitra extends CI_Controller
         $this->load->view('payroll/pengajuan_rate_mitra', $data);
         $this->load->view('templates/footer');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Generate data berhasil!</div>');
+        $this->session->set_flashdata('message', 'Generate data berhasil!');
         redirect('payroll/pengajuanratemitra');
     }
 
     public function status($id)
     {
         $this->RateMitra->statusBayar($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Status bayar berhasil diubah!</div>');
+        $this->session->set_flashdata('message', 'Status bayar berhasil diubah!');
         redirect('payroll/pengajuanratemitra');
     }
 
@@ -58,5 +59,30 @@ class PengajuanRateMitra extends CI_Controller
         $data = $this->RateMitra->getUsers($postData);
 
         echo json_encode($data);
+    }
+
+    public function cetakRate()
+    {
+        $data['title'] = "Pengajuan Rate Mitra";
+        // ambil data dari form
+        $bulan = $this->input->post('bulan');
+        $tahun = $this->input->post('tahun');
+        $bulantahun = $tahun . $bulan;
+        $data['cetak_rate'] = $this->RateMitra->cetakRate($bulantahun);
+        if (count($data['cetak_rate']) > 0) {
+            $this->load->view('payroll/cetakrate', $data);
+
+            $paper_size = 'A4';
+            $orientation = 'potrait';
+            $html = $this->output->get_output();
+            $this->dompdf->set_paper($paper_size, $orientation);
+
+            $this->dompdf->load_html($html);
+            $this->dompdf->render();
+            $this->dompdf->stream('pengajuan_rate_mitra.pdf', array('Attachment' => 0));
+        } else {
+            $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
+            redirect('payroll/Pengajuanratemitra');
+        }
     }
 }

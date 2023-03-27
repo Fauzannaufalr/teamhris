@@ -3,21 +3,7 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-4">
-                    <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahPerhitungan"><i class="fas fa-plus"></i>
                 Tambah Perhitungan Gaji
             </button>
@@ -48,8 +34,8 @@
                             <td>Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?></td>
                             <td>Rp <?= number_format($pg['bonus'], 0, ',', '.'); ?></td>
                             <td style="text-align: center;">
-                                <a href="" class="badge" style="background-color: #fbff39; color: black;" data-toggle="modal" data-target="#ubahPerhitungan<?= $pg['id_perhitungan']; ?>">ubah</a>
-                                <a href="" class="badge" style="background-color: #ff0000; color: white;" data-toggle="modal" data-target="#modal-sm<?= $pg['id_perhitungan']; ?>">hapus</a>
+                                <button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahPerhitungan<?= $pg['id_perhitungan']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="badge" style="background-color: #ff0000; color: antiquewhite;" data-toggle="modal" data-target="#modal-sm<?= $pg['id_perhitungan']; ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -140,23 +126,23 @@
                         </div>
                         <div class="form-group">
                             <label for="t_kinerja">Tunjangan Kinerja</label>
-                            <input type="text" class="form-control" id="t_kinerja" name="t_kinerja" value="<?= $pg['t_kinerja']; ?>">
+                            <input type="text" class="form-control" id="t_kinerja_ubah<?= $pg['id_perhitungan']; ?>" name="t_kinerja" value="Rp <?= number_format($pg['t_kinerja'], 0, ',', '.'); ?>">
                         </div>
                         <div class="form-group">
                             <label for="t_fungsional">Tunjangan Fungsional</label>
-                            <input type="text" class="form-control" id="t_fungsional" name="t_fungsional" value="<?= $pg['t_fungsional']; ?>">
+                            <input type="text" class="form-control" id="t_fungsional_ubah<?= $pg['id_perhitungan']; ?>" name="t_fungsional" value="Rp <?= number_format($pg['t_fungsional'], 0, ',', '.'); ?>">
                         </div>
                         <div class="form-group">
                             <label for="t_jabatan">Tunjangan Jabatan</label>
-                            <input type="text" class="form-control" id="t_jabatan" name="t_jabatan" value="<?= $pg['t_jabatan']; ?>">
+                            <input type="text" class="form-control" id="t_jabatan_ubah<?= $pg['id_perhitungan']; ?>" name="t_jabatan" value="Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?>">
                         </div>
                         <div class="form-group">
                             <label for="potongan">Potongan</label>
-                            <input type="text" class="form-control" id="potongan" name="potongan" value="<?= $pg['potongan']; ?>">
+                            <input type="text" class="form-control" id="potongan_ubah<?= $pg['id_perhitungan']; ?>" name="potongan" value="Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?>">
                         </div>
                         <div class="form-group">
                             <label for="bonus">Bonus</label>
-                            <input type="text" class="form-control" id="bonus" name="bonus" value="<?= $pg['bonus']; ?>">
+                            <input type="text" class="form-control" id="bonus_ubah<?= $pg['id_perhitungan']; ?>" name="bonus" value="Rp <?= number_format($pg['bonus'], 0, ',', '.'); ?>">
                         </div>
                     </div>
                     <div class=" modal-footer">
@@ -167,6 +153,32 @@
             </div>
         </div>
     </div>
+    <script>
+        var t_kinerja_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('t_kinerja_ubah<?= $pg['id_perhitungan']; ?>');
+        t_kinerja_ubah<?= $pg['id_perhitungan']; ?>.addEventListener('keyup', function(e) {
+            t_kinerja_ubah<?= $pg['id_perhitungan']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+
+        var t_fungsional_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('t_fungsional_ubah<?= $pg['id_perhitungan']; ?>');
+        t_fungsional_ubah<?= $pg['id_perhitungan']; ?>.addEventListener('keyup', function(e) {
+            t_fungsional_ubah<?= $pg['id_perhitungan']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+
+        var t_jabatan_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('t_jabatan_ubah<?= $pg['id_perhitungan']; ?>');
+        t_jabatan_ubah<?= $pg['id_perhitungan']; ?>.addEventListener('keyup', function(e) {
+            t_jabatan_ubah<?= $pg['id_perhitungan']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+
+        var potongan_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('potongan_ubah<?= $pg['id_perhitungan']; ?>');
+        potongan_ubah<?= $pg['id_perhitungan']; ?>.addEventListener('keyup', function(e) {
+            potongan_ubah<?= $pg['id_perhitungan']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+
+        var bonus_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('bonus_ubah<?= $pg['id_perhitungan']; ?>');
+        bonus_ubah<?= $pg['id_perhitungan']; ?>.addEventListener('keyup', function(e) {
+            bonus_ubah<?= $pg['id_perhitungan']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+    </script>
 <?php endforeach; ?>
 
 <!-- Modal hapus -->
@@ -193,3 +205,78 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
+</script>
+
+<script>
+    var t_kinerja = document.getElementById('t_kinerja');
+    t_kinerja.addEventListener('keyup', function(e) {
+        t_kinerja.value = formatRupiah(this.value, 'Rp ');
+    });
+
+    var t_fungsional = document.getElementById('t_fungsional');
+    t_fungsional.addEventListener('keyup', function(e) {
+        t_fungsional.value = formatRupiah(this.value, 'Rp ');
+    });
+
+    var t_jabatan = document.getElementById('t_jabatan');
+    t_jabatan.addEventListener('keyup', function(e) {
+        t_jabatan.value = formatRupiah(this.value, 'Rp ');
+    });
+
+    var potongan = document.getElementById('potongan');
+    potongan.addEventListener('keyup', function(e) {
+        potongan.value = formatRupiah(this.value, 'Rp ');
+    });
+
+    var bonus = document.getElementById('bonus');
+    bonus.addEventListener('keyup', function(e) {
+        bonus.value = formatRupiah(this.value, 'Rp ');
+    });
+
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp ' + rupiah : '');
+    }
+</script>

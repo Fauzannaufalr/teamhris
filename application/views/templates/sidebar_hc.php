@@ -30,7 +30,7 @@
                               </ul>
                           </li>
                       </ul>
-                      <ul class="nav nav-treeview nav-sidebar nav-child-indent">
+                      <!-- <ul class="nav nav-treeview nav-sidebar nav-child-indent">
                           <li class="nav-item">
                               <a href="#" class="nav-link" style="background-color: #ffffff; color: black;">
                                   <p>
@@ -53,7 +53,7 @@
                                   </li>
                               </ul>
                           </li>
-                      </ul>
+                      </ul> -->
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="<?= base_url('payroll/perhitungan') ?>" class="nav-link " style="background-color: #ffffff; color: black;">

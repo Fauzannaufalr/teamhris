@@ -19,6 +19,7 @@ class DataMitra extends CI_Controller
     {
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
+        $data['keahlian'] = $this->DataMitra_model->getAllKeahlian();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
         $this->load->view('templates/header', $data);
@@ -51,18 +52,8 @@ class DataMitra extends CI_Controller
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
         ]);
-        $this->form_validation->set_rules('alamat', 'alamat', 'required', [
-            'required' => 'Alamat harus diisi !'
-        ]);
         $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
-            'required' => 'Telepon harus diisi !',
             'numeric' => 'Telepon harus diisi dengan angka !'
-        ]);
-        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
-            'required' => 'Tanggal masuk harus diisi !'
-        ]);
-        $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
-            'required' => 'Tanggal keluar harus diisi !'
         ]);
         $this->form_validation->set_rules('rate_total', 'tanggal_keluar', 'required', [
             'required' => 'Rate total harus diisi !'
@@ -76,7 +67,7 @@ class DataMitra extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->DataMitra_model->tambahDataMitra();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
             redirect('master/datamitra');
         }
     }
@@ -104,18 +95,8 @@ class DataMitra extends CI_Controller
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
         ]);
-        $this->form_validation->set_rules('alamat', 'alamat', 'required', [
-            'required' => 'Alamat harus diisi !'
-        ]);
         $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric', [
-            'required' => 'Telepon harus diisi !',
             'numeric' => 'Telepon harus diisi dengan angka !'
-        ]);
-        $this->form_validation->set_rules('tanggal_masuk', 'tanggal_masuk', 'required', [
-            'required' => 'Tanggal masuk harus diisi !'
-        ]);
-        $this->form_validation->set_rules('tanggal_keluar', 'tanggal_keluar', 'required', [
-            'required' => 'Tanggal keluar harus diisi !'
         ]);
         $this->form_validation->set_rules('rate_total', 'tanggal_keluar', 'required', [
             'required' => 'Rate total harus diisi !'
@@ -129,7 +110,7 @@ class DataMitra extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->DataMitra_model->ubahDataMitra();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diubah!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil diubah!');
             redirect('master/datamitra');
         }
     }
@@ -138,9 +119,9 @@ class DataMitra extends CI_Controller
     {
         $data['mitra'] = $this->DataMitra_model->ambilDataById($id_mitra);
         if ($this->DataMitra_model->hapus($id_mitra)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data gagal dihapus!</div>');
+            $this->session->set_flashdata('error', 'Data gagal dihapus!');
         }
         redirect('master/datamitra');
     }

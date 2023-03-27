@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
     <title>Slip Gaji</title>
     <style type="text/css">
         body {
@@ -9,9 +7,7 @@
             color: black;
         }
     </style>
-</head>
-
-<body>
+</head><body>
     <center>
         <h1>PT. Sahaware Teknologi Indonesia</h1>
         <h2>Slip Gaji Karyawan</h2>
@@ -38,7 +34,7 @@
                 <td><?= $sg['nama_posisi'] ?></td>
             </tr>
             <tr>
-                <td>Jabatan</td>
+                <td>Bulan Tahun</td>
                 <td>:</td>
                 <td><?= $sg['bulan_tahun'] ?></td>
             </tr>
@@ -104,6 +100,4 @@
             </tr>
         </table>
     <?php endforeach; ?>
-</body>
-
-</html>
+</body></html>

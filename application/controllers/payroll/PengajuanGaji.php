@@ -42,60 +42,54 @@ class PengajuanGaji extends CI_Controller
         $this->load->view('payroll/PengajuanGaji', $data);
         $this->load->view('templates/footer');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Generate data berhasil!</div>');
+        $this->session->set_flashdata('message', 'Data berhasil digenerate');
         redirect('payroll/PengajuanGaji');
     }
 
     public function status($id)
     {
         $this->PengajuanGaji->statusBayar($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Status bayar berhasil diubah!</div>');
+        $this->session->set_flashdata('message', 'Status bayar berhasil diubah!');
         redirect('payroll/PengajuanGaji');
     }
 
     private function _kirimEmail()
     {
-        $file_data = $this->upload_file();
-        if (is_array($file_data)) {
-            $config = [
-                'protocol' => 'smtp',
-                'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_port' => 465,
-                'smtp_user' => 'belajarcoding78@gmail.com',
-                'smtp_pass' => 'mxaghqdhdmsbcjmz',
-                'mailtype' => 'html',
-                'charset' => 'utf-8',
-                'newline' => "\r\n",
-                'wordwrap'  => TRUE
-            ];
+        $pdf = $this->dompdf->output();
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'belajarcoding78@gmail.com',
+            'smtp_pass' => 'mxaghqdhdmsbcjmz',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+            'wordwrap'  => TRUE
+        ];
 
-            $this->load->library('email', $config);
-            $this->email->initialize($config);
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
 
-            $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
-            $this->email->to($this->input->post('email'));
+        $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+        $this->email->to($this->input->post('email'));
 
-            $this->email->subject('Slip Gaji');
-            $this->email->message('Kirim slip gaji');
+        $this->email->subject('Slip Gaji');
+        $this->email->message('Kirim slip gaji');
 
-            $this->email->attach($file_data['full_path']);
-            if ($this->email->send()) {
-                if (delete_files($file_data['file_path'])) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Slip gaji berhasil dikirim!</div>');
-                    redirect('payroll/PengajuanGaji');
-                }
-            } else {
-                if (delete_files($file_data['file_path'])) {
-                    $this->session->set_flashdata('message', 'There is an error in email send');
-                    redirect('payroll/PengajuanGaji');
-                }
-            }
+        $this->email->attach($pdf, 'application/pdf', "Slip Gaji" . ".pdf", false);
+
+        $r = $this->email->send();
+        if (!$r) {
+            // "Failed to send email:" . $this->email->print_debugger(array("header")));
+            $this->session->set_flashdata('error', 'Gagal kirim!');
+            redirect('payroll/PengajuanGaji');
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
+            // "Email sent"
+            $this->session->set_flashdata('message', 'Slip gaji berhasil dikirim!');
             redirect('payroll/PengajuanGaji');
         }
     }
-
 
     public function upload_file()
     {
@@ -110,37 +104,44 @@ class PengajuanGaji extends CI_Controller
         }
     }
 
-    public function kirimSlip()
+    public function kirimSlip($id)
     {
-        $data['title'] = "Pengajuan Gaji Karyawan";
-        $data['pengajuan'] = $this->PengajuanGaji->tampilPengajuan();
-        $data['user'] = $this->Hris->ambilUser();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('payroll/PengajuanGaji', $data);
-        $this->load->view('templates/footer');
+        $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
+        $this->load->view('payroll/cetakslip', $data);
 
+        $paper_size = 'A4';
+        $orientation = 'potrait';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
         $this->_kirimEmail();
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Slip gaji berhasil dikirim!</div>');
-        redirect('payroll/PengajuanGaji');
     }
 
     public function cetakGaji()
     {
         $data['title'] = "Pengajuan Gaji Karyawan";
-        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
-            $bulan = $_GET['bulan'];
-            $tahun = $_GET['tahun'];
-            $bulantahun = $tahun . $bulan;
-        } else {
-            $bulan = date('m', strtotime('+1 month'));
-            $tahun = date('Y');
-            $bulantahun = $tahun . $bulan;
-        }
+        // ambil data dari form
+        $bulan = $this->input->post('bulan');
+        $tahun = $this->input->post('tahun');
+        $bulantahun = $tahun . $bulan;
         $data['cetak_gaji'] = $this->PengajuanGaji->cetakGaji($bulantahun);
-        $this->load->view('templates/header', $data);
-        $this->load->view('payroll/cetakgaji', $data);
+        if (count($data['cetak_gaji']) > 0) {
+            $this->load->view('payroll/cetakgaji', $data);
+
+            $paper_size = 'A4';
+            $orientation = 'potrait';
+            $html = $this->output->get_output();
+            $this->dompdf->set_paper($paper_size, $orientation);
+
+            $this->dompdf->load_html($html);
+            $this->dompdf->render();
+            $this->dompdf->stream('pengajuan_gaji.pdf', array('Attachment' => 0));
+        } else {
+            $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
+            redirect('payroll/PengajuanGaji');
+        }
     }
 
     public function cetak_slip($id)

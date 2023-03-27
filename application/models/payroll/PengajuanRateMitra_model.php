@@ -58,46 +58,8 @@ class PengajuanRateMitra_model extends CI_Model
         $searchValue = $postData['search']['value']; // Search value
 
         // Custom search filter 
-        $searchCity = $postData['searchBulan'];
-        switch ($searchCity) {
-            case 'Januari':
-                $searchCityAngka = '01';
-                break;
-            case 'Februari':
-                $searchCityAngka = '02';
-                break;
-            case 'Maret':
-                $searchCityAngka = '03';
-                break;
-            case 'April':
-                $searchCityAngka = '04';
-                break;
-            case 'Mei':
-                $searchCityAngka = '05';
-                break;
-            case 'Juni':
-                $searchCityAngka = '06';
-                break;
-            case 'Juli':
-                $searchCityAngka = '07';
-                break;
-            case 'Agustus':
-                $searchCityAngka = '08';
-                break;
-            case 'September':
-                $searchCityAngka = '09';
-                break;
-            case 'Oktober':
-                $searchCityAngka = '10';
-                break;
-            case 'November':
-                $searchCityAngka = '11';
-                break;
-            case 'Desember':
-                $searchCityAngka = '12';
-                break;
-        }
-        $searchBulanTahun = $postData['searchTahun'] . $searchCityAngka;
+        $searchBulan = $postData['searchBulan'];
+        $searchBulanTahun = $postData['searchTahun'] . $searchBulan;
 
         ## Search 
         $search_arr = array();
@@ -171,5 +133,23 @@ class PengajuanRateMitra_model extends CI_Model
         );
 
         return $response;
+    }
+
+    public function cetakRate($bulantahun)
+    {
+        $this->db->select('pm.*, dm.nama_karyawan, dm.email, dm.nama_perusahaan, dm.keahlian, dm.tools');
+        $this->db->from('payroll___pengajuanratemitra pm');
+        $this->db->join('data_mitra dm', 'dm.id = pm.id_datamitra');
+        $this->db->where('bulan_tahun', $bulantahun);
+        return  $this->db->get()->result_array();
+    }
+
+    public function laporan()
+    {
+        $this->db->select("(SELECT SUM(rate_total) FROM `payroll___pengajuanratemitra` WHERE bulan_tahun = '202304' AND status = 'Sudah dibayar') AS Sudah
+        ,
+        (SELECT SUM(rate_total) FROM `payroll___pengajuanratemitra` WHERE bulan_tahun = '202304' AND status = 'Belum dibayar') AS Belum");
+        // $this->db->from('payroll___pengajuangaji');
+        return  $this->db->get()->result_array();
     }
 }

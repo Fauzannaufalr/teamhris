@@ -3,21 +3,6 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-4">
-                    <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahBpjsKaryawan"><i class="fas fa-plus"></i>
                 Tambah BPJS Karyawan
             </button>
@@ -205,9 +190,7 @@
 <?php endforeach; ?>
 
 <script>
-
     function hitungtotal() {
-        alert('tambah');
         var nilai = $("#kelas option:selected").text();
         var ambilNilai = nilai.split(" - Rp ");
         var ambilNilaia = ambilNilai[1].replace(".", "");
@@ -241,4 +224,36 @@
             minimumFractionDigits: 0
         }).format(total);
     }
+</script>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
 </script>

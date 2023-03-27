@@ -10,6 +10,13 @@ class DataMitra_model extends CI_Model
         return  $this->db->get()->result_array();
     }
 
+    public function getAllKeahlian()
+    {
+        $this->db->select('keahlian,tools');
+        $this->db->from('data_mitra');
+        return  $this->db->get()->result_array();
+    }
+
     public function tambahDataMitra()
     {
         $data = [

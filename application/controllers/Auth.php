@@ -46,11 +46,14 @@ class Auth extends CI_Controller
                 unset($user['password']);
                 $this->session->set_userdata($user); // ini disession agar data nya terambil global
                 redirect('hris'); // lokasi setelah melakukan akticitas login
-            } else {
+            } elseif($user['status'] == 'Tidak Aktif') {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;">  Akun sudah tidak aktif! </div>');
+                redirect('auth');
+            } else{
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;">  Password Anda Salah! </div>');
                 redirect('auth');
             }
-        } else {
+        }else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> User tidak terdaftar!</div>');
             redirect('auth');
         }

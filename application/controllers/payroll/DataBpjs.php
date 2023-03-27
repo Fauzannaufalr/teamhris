@@ -47,7 +47,7 @@ class DataBpjs extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->DataBpjs->tambahDataBpjs();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
             redirect('payroll/databpjs');
         }
     }
@@ -73,7 +73,7 @@ class DataBpjs extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->DataBpjs->ubahDataBpjs();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
             redirect('payroll/databpjs');
         }
     }
@@ -81,9 +81,9 @@ class DataBpjs extends CI_Controller
     public function hapus($id)
     {
         if ($this->DataBpjs->hapus($id)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
-            $this->session->set_flashdata('message', 'Data gagal dihapus');
+            $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
         redirect('payroll/databpjs');
     }

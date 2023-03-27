@@ -3,21 +3,6 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-4">
-                    <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahPajakKaryawan"><i class="fas fa-plus"></i>
                 Tambah Pajak Karyawan
             </button>
@@ -42,8 +27,8 @@
                             <td><?= $pk['golongan']; ?></td>
                             <td><?= $pk['kode']; ?></td>
                             <td>
-                                <a href="" class="badge" style="background-color: #fbff39; color: black;" data-toggle="modal" data-target="#ubahPajakKaryawan<?= $pk['id_pajak']; ?>">ubah</a>
-                                <a href="" class="badge" style="background-color: #ff0000; color: black;" data-toggle="modal" data-target="#modal-sm<?= $pk['id_pajak']; ?>">hapus</a>
+                                <button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahPajakKaryawan<?= $pk['id_pajak']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="badge" style="background-color: #ff0000; color: antiquewhite;" data-toggle="modal" data-target="#modal-sm<?= $pk['id_pajak']; ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -169,3 +154,35 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
+</script>

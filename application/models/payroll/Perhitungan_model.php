@@ -21,7 +21,9 @@ class Perhitungan_model extends CI_Model
             'potongan' => $this->input->post('potongan'),
             'bonus' => $this->input->post('bonus')
         ];
-        $this->db->insert('payroll___perhitungan', $data);
+        $data_replace = str_replace('Rp ', '', $data);
+        $data_replace = str_replace('.', '', $data_replace);
+        $this->db->insert('payroll___perhitungan', $data_replace);
     }
 
     public function ubahPerhitungan()
@@ -34,9 +36,10 @@ class Perhitungan_model extends CI_Model
             'potongan' => $this->input->post('potongan'),
             'bonus' => $this->input->post('bonus')
         ];
-
+        $data_replace = str_replace('Rp ', '', $data);
+        $data_replace = str_replace('.', '', $data_replace);
         $this->db->where('id', $this->input->post('id'));
-        $this->db->update('payroll___perhitungan', $data);
+        $this->db->update('payroll___perhitungan', $data_replace);
     }
 
     public function hapus($id)

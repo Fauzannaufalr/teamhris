@@ -8,6 +8,8 @@ class Hris extends CI_Controller
         parent::__construct();
         $this->load->model('Hris_model');
         $this->load->model('DataPosisi_model', 'DataPosisi');
+        $this->load->model('payroll/pengajuangaji_model', 'PengajuanGaji');
+        $this->load->model('payroll/pengajuanratemitra_model', 'RateMitra');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
@@ -17,8 +19,11 @@ class Hris extends CI_Controller
     {
         $periode = isset($_GET["periode"]) ? $_GET["periode"] : 0;
         $tahun = isset($_GET["tahun"]) ? $_GET["tahun"] : 0;
+        $bulantahun = date("Y") . date("m", strtotime('+1 month'));
         $data['title'] = "Dashboard";
         $data['user'] = $this->Hris_model->ambilUser();
+        $data['laporan_gk'] = $this->PengajuanGaji->laporan();
+        $data['laporan_rm'] = $this->RateMitra->laporan();
         $data['bariskaryawan'] = $this->db->get('data_karyawan')->num_rows();
         $data['barisposisi'] = $this->db->get('data_posisi')->num_rows();
         $data['barismitra'] = $this->db->get('data_mitra')->num_rows();

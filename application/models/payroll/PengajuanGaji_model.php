@@ -7,7 +7,7 @@ class PengajuanGaji_model extends CI_Model
         $this->db->select('lg.*, dk.nama_karyawan, dk.nik, dk.email');
         $this->db->from('payroll___pengajuangaji lg');
         $this->db->join('data_karyawan dk', 'dk.id_karyawan = lg.id_datakaryawan');
-        $this->db->order_by('lg.id_datakaryawan', 'asc');
+        $this->db->order_by('dk.nik', 'asc');
         return  $this->db->get()->result_array();
     }
 
@@ -91,46 +91,8 @@ class PengajuanGaji_model extends CI_Model
         $searchValue = $postData['search']['value']; // Search value
 
         // Custom search filter 
-        $searchCity = $postData['searchBulan'];
-        switch ($searchCity) {
-            case 'Januari':
-                $searchCityAngka = '01';
-                break;
-            case 'Februari':
-                $searchCityAngka = '02';
-                break;
-            case 'Maret':
-                $searchCityAngka = '03';
-                break;
-            case 'April':
-                $searchCityAngka = '04';
-                break;
-            case 'Mei':
-                $searchCityAngka = '05';
-                break;
-            case 'Juni':
-                $searchCityAngka = '06';
-                break;
-            case 'Juli':
-                $searchCityAngka = '07';
-                break;
-            case 'Agustus':
-                $searchCityAngka = '08';
-                break;
-            case 'September':
-                $searchCityAngka = '09';
-                break;
-            case 'Oktober':
-                $searchCityAngka = '10';
-                break;
-            case 'November':
-                $searchCityAngka = '11';
-                break;
-            case 'Desember':
-                $searchCityAngka = '12';
-                break;
-        }
-        $searchBulanTahun = $postData['searchTahun'] . $searchCityAngka;
+        $searchBulan = $postData['searchBulan'];
+        $searchBulanTahun = $postData['searchTahun'] . $searchBulan;
 
         ## Search 
         $search_arr = array();
@@ -172,9 +134,10 @@ class PengajuanGaji_model extends CI_Model
         $this->db->select('lg.*, dk.nama_karyawan, dk.nik, dk.email');
         $this->db->from('payroll___pengajuangaji lg');
         $this->db->join('data_karyawan dk', 'dk.id_karyawan = lg.id_datakaryawan');
-        if ($searchQuery != '')
+        if ($searchQuery != '') {
             $this->db->where($searchQuery);
-        // $this->db->order_by($columnName, $columnSortOrder);
+            $this->db->order_by('dk.nik', 'asc');
+        }
         $this->db->limit($rowperpage, $start);
         $records = $this->db->get()->result();
 
@@ -211,5 +174,14 @@ class PengajuanGaji_model extends CI_Model
         );
 
         return $response;
+    }
+
+    public function laporan()
+    {
+        $this->db->select("(SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '202304' AND status = 'Sudah dibayar') AS Sudah
+        ,
+        (SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '202304' AND status = 'Belum dibayar') AS Belum");
+        // $this->db->from('payroll___pengajuangaji');
+        return  $this->db->get()->result_array();
     }
 }

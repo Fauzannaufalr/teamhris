@@ -39,21 +39,6 @@ class Perhitungan extends CI_Controller
             'required' => 'NIK & Nama Karyawan harus diisi !',
             'is_unique' => 'NIK & Nama Sudah Terdaftar !'
         ]);
-        $this->form_validation->set_rules('t_kinerja', 'tunjangan', 'numeric', [
-            'numeric' => 'Tunjangan harus angka'
-        ]);
-        $this->form_validation->set_rules('t_fungsional', 'tunjangan', 'numeric', [
-            'numeric' => 'Tunjangan harus angka'
-        ]);
-        $this->form_validation->set_rules('t_jabatan', 'tunjangan', 'numeric', [
-            'numeric' => 'Tunjangan harus angka'
-        ]);
-        $this->form_validation->set_rules('potongan', 'potongan', 'numeric', [
-            'numeric' => 'Potongan harus angka'
-        ]);
-        $this->form_validation->set_rules('bonus', 'bonus', 'numeric', [
-            'numeric' => 'Bonus harus angka'
-        ]);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -63,7 +48,7 @@ class Perhitungan extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->Perhitungan->tambahPerhitungan();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
             redirect('payroll/perhitungan');
         }
     }
@@ -78,22 +63,6 @@ class Perhitungan extends CI_Controller
         $this->form_validation->set_rules('nik_nama', 'nik_nama', 'required', [
             'required' => 'NIK & Nama Karyawan harus diisi !'
         ]);
-        $this->form_validation->set_rules('t_kinerja', 'tunjangan', 'numeric', [
-            'numeric' => 'Tunjangan harus angka'
-        ]);
-        $this->form_validation->set_rules('t_fungsional', 'tunjangan', 'numeric', [
-            'numeric' => 'Tunjangan harus angka'
-        ]);
-        $this->form_validation->set_rules('t_jabatan', 'tunjangan', 'numeric', [
-            'numeric' => 'Tunjangan harus angka'
-        ]);
-        $this->form_validation->set_rules('potongan', 'potongan', 'required|numeric', [
-            'required' => 'Potongan harus diisi !',
-            'numeric' => 'Potongan harus angka'
-        ]);
-        $this->form_validation->set_rules('bonus', 'bonus', 'numeric', [
-            'numeric' => 'Bonus harus angka'
-        ]);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -103,7 +72,7 @@ class Perhitungan extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->Perhitungan->ubahPerhitungan();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diubah!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil diubah!');
             redirect('payroll/perhitungan');
         }
     }
@@ -111,9 +80,9 @@ class Perhitungan extends CI_Controller
     public function hapus($id)
     {
         if ($this->Perhitungan->hapus($id)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
-            $this->session->set_flashdata('message', 'Data gagal dihapus');
+            $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
         redirect('payroll/perhitungan');
     }
