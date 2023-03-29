@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #cc0000;">
+        <div class="card-header" style="color: white; background-color: #8b0000;">
             <h4> Filter Data Penilaian Kuesioner</h4>
         </div>
 
@@ -49,7 +49,7 @@
                     }
 
                     ?>
-                    <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
+                    <button type="submit" class="btn btn-outline-success ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
@@ -67,7 +67,7 @@
         </form>
     </div>
 
-    <div class="alert alert" style="background-color: #cc0000; color: white;">
+    <div class="alert alert" style="background-color: #8b0000; color: white;">
         Menampilkan penilaian kuesioner Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="fofnt-weight-bold">
@@ -96,7 +96,7 @@
                 <!-- jml data > 0 artinya jika nilai lebih dari nol maka data atau nilainya itu ada -->
 
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;">
+                    <thead style="text-align: center; background-color: #8b0000; color: white;  ">
                         <tr>
                             <th>No</th>
                             <th>NIK & Nama Penilai</th>
@@ -109,19 +109,19 @@
                     <tbody>
                         <?php $no = 1 ?>
                         <?php foreach ($penilaiankuesioner as $pr): ?>
-                            <tr style="text-align: center;">
+                            <tr style=" text-align: center;">
                                 <th>
                                     <?= $no++; ?>
                                 </th>
 
                                 <td>
-                                    <?= $pr['nik_penilai'],
+                                    <?= $pr['nik_penilai'], "<br>" .
                                         $pr['nama_karyawan_penilai']; ?>
                                 </td>
 
                                 <td>
-                                    <?= $pr['nik_menilai']; ?>
-                                    <?= $pr['nama_karyawan_menilai']; ?>
+                                    <?= $pr['nik_menilai'], "<br>" .
+                                        $pr['nama_karyawan_menilai']; ?>
                                 </td>
                                 <td>
                                     <?= $pr['tanggal']; ?>
@@ -129,11 +129,10 @@
                                 <td>
                                     <?= $pr['total_nilai']; ?>
                                 </td>
-
-
                                 <td>
-                                    <a href="<?= base_url() ?>performances/penilaiankuesioner/detail/<?= $pr['id_penilaian_kuesioner'] ?>"
-                                        type="button" style="background-color: #d4d4d4" ; class="btn btn-Info">
+                                    <a class="badge"
+                                        href="<?= base_url() ?>performances/penilaiankuesioner/detail/<?= $pr['id_penilaian_kuesioner'] ?>"
+                                        type="button" style="background-color: #d4d4d4" ;><i class="fas fa-share"></i>
                                         Detail
                                     </a>
                                 </td>
@@ -172,7 +171,7 @@
         </div>
     </div>
 </div>
-<!-- Akhir modal cetak gaji -->
+<!-- Akhir modal cetak kuesioner -->
 
 
 <script>

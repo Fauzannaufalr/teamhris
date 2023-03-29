@@ -65,10 +65,8 @@
                     <?= $no++ ?>
                 </td>
                 <td class="text-center">
-                    <?= $ck['nik']; ?>
-                </td>
-                <td class="text-center">
-                    <?= $ck['nama_karyawan']; ?>
+                    <?= $ck['nik'], "<br>" .
+                        $ck['nama_karyawan']; ?>
                 </td>
 
                 <td class="text-center">

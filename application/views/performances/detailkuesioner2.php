@@ -9,60 +9,53 @@
 
                 <?php } ?>
 
-            <div class="card">
-                <div class="card-header" style="background-color: 8b0000;">
-                    Saran
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <?= $saran ?>
-                    </blockquote>
-                </div>
-            </div>
+
             <form method="POST">
                 <div class=" table-responsive">
                     <table id="" class="table table-bordered table-striped">
                         <thead style="background-color: #8b0000; color: white;">
                             <tr style="text-align: center;">
                                 <th>No</th>
-                                <th>Soal</th>
-                                <th>Nilai</th>
+                                <th>Menilai</th>
+                                <th>Menilai</th>
+                                <th>Aksi</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <?php $no = 1;
-                            $total = 0;
+                            // $total = $total + $d["nilai"];
                             ?>
-                            <?php foreach ($detailkuesioner as $dk):
-                                $total = $total + $dk["nilai"];
+                            <?php foreach ($detailkuesioner as $d):
+
                                 ?>
                                 <tr>
                                     <td style="text-align: center;">
                                         <?= $no++ ?>
                                     </td>
 
-                                    <td>
-                                        <?= $dk['kuesioner'] ?>
-                                    </td>
                                     <td style="text-align: center;">
-                                        <?= $dk['nilai'] ?>
+                                        <?= $d['nik'], "<br>" .
+                                            $d['nama_karyawan']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $d['menilai_orang']; ?> Orang
+
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <a class=" badge"
+                                            href="<?= base_url() ?>performances/penilaiankuesioner/detail1/<?= $d['nik'] ?>"
+                                            type=" button" style="background-color: #d4d4d4" ;><i class="fas fa-share"></i>
+                                            Detail
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                            <tr>
-                                <td colspan=2><b>TOTAL NILAI</b></td>
-                                <td class="text-center" style="color: black;">
-                                    <?= $total ?>
-                                </td>
-                            </tr>
 
                         </tbody>
-
                     </table>
-                    <a class="badge" href=<?= base_url("performances/penilaiankuesioner") ?> type="button"
-                        style="background-color: #d4d4d4" ;><i class="fas fa-reply"></i>
-                        Kembali
-                    </a>
+
 
                 </div>
             </form>

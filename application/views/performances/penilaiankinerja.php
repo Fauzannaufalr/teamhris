@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #cc0000;">
+        <div class="card-header" style="color: white; background-color:#8b0000;">
             <h4> Filter Data Penilaian Kinerja</h4>
         </div>
 
@@ -66,7 +66,7 @@
         </form>
     </div>
 
-    <div class="alert alert" style="background-color: #cc0000; color: white;">
+    <div class="alert alert" style="background-color:#8b0000 ; color: white;">
         Menampilkan penilaian kinerja Bulan:<span class="font-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="font-weight-bold">
@@ -88,11 +88,11 @@
             </div>
             <div class="form-group row">
                 <div class="col-mb-1">
-                    <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal"
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
                         Tambah Penilaian
                     </button>
-                    <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal"
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#tambahImportExcel"><i class="fas fa-plus"></i>
                         Import
                     </button>
@@ -107,11 +107,10 @@
 
 
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;  background-color:#cc0000; color: white;">
+                    <thead style="text-align: center;  background-color: #8b0000; color: white;">
                         <tr>
                             <th>No</th>
-                            <th>NIK</th>
-                            <th>Nama Karyawan</th>
+                            <th>NIK & Nama Karyawan</th>
                             <th>Total Kerja</th>
                             <th>Done Kerja</th>
                             <th>Nilai</th>
@@ -127,10 +126,7 @@
                                     <?= $no++; ?>
                                 </th>
                                 <td>
-                                    <?= $pk['nik']; ?>
-                                </td>
-                                <td>
-                                    <?= $pk['nama_karyawan']; ?>
+                                    <?= $pk['nik'], "<br>" . $pk['nama_karyawan']; ?>
                                 </td>
 
                                 <td>
@@ -147,13 +143,14 @@
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-secondary" style="font-size: 14px; color: white;"
-                                        data-toggle="modal"
-                                        data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>">edit</button>
 
-                                    <button type="button" class="btn btn-warning" style="font-size: 12px; color: white;"
-                                        data-toggle="modal"
-                                        data-target="#modal-sm<?= $pk['id_penilaian_kinerja'] ?>">hapus</button>
+                                    <button class="badge" style="background-color: #fbff39; color: black;" data-toggle="modal"
+                                        data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>"><i
+                                            class="fas fa-trash-alt"></i> Edit</button>
+                                    <button class="badge" style="background-color: #8b0000; color: antiquewhite"
+                                        data-toggle="modal" data-target="#modal-sm<?= $pk['id_penilaian_kinerja'] ?>"><i
+                                            class="fas fa-trash-alt"></i> Hapus</button>
+
                                 </td>
                             <?php endforeach; ?>
                     </tbody>
@@ -335,7 +332,7 @@
 </div>
 
 <!-- ak.hir modal hapus -->
-<!-- Modal cetak gaji -->
+<!-- Modal cetak penlilaian kinerja -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -354,7 +351,7 @@
         </div>
     </div>
 </div>
-<!-- Akhir modal cetak gaji -->
+<!-- Akhir modal cetak penlilaian kinerja -->
 
 
 <script>

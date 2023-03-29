@@ -116,7 +116,6 @@ class PenilaianKuesioner extends CI_Controller
         }
 
         $data['cetak_kuesioner'] = $this->PenilaianKuesioner_model->cetakKuesioner($bulantahun);
-        // printr($data['cetak_kinerja']);
         $this->load->view('templates/header', $data);
         $this->load->view('performances/cetak_kuesioner', $data);
     }

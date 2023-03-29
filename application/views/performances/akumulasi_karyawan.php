@@ -1,8 +1,10 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #cc0000;">
-            <h4> Filter Data Akumulasi Penilaian</h4>
+        <div class="card-header" style="color: white; background-color: #8b0000;">
+            <h4>
+                <?php $user ?>
+            </h4>
         </div>
 
         <form class="form-horizontal">
@@ -27,25 +29,51 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2">
+                    <div class="col-md-2 ml-2">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
-                            <option value="">2017</option>
-                            <option value="">2018</option>
-                            <option value="">2019</option>
-                            <option value="">2020</option>
-                            <option value="">2021</option>
-                            <option value="">2022</option>
+                            <?php $tahun = date('Y');
+                            for ($i = 2020; $i < $tahun + 3; $i++) { ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php } ?>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-info mb-2 ml-3"><i class="fas fa-eye"> Tampilkan
+                    <?php
+                    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+                        $bulan = $_GET['bulan'];
+                        $tahun = $_GET['tahun'];
+                        $bulantahun = $bulan . $tahun;
+                    } else {
+                        $bulan = date('m');
+                        $tahun = date('Y');
+                        $bulantahun = $bulan . $tahun;
+
+                    }
+
+                    ?>
+                    <button type="submit" class="btn btn-outline-success ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
-                </div>
 
-            </div>
+                    <?php if (count($akumulasi) > 0) { ?>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('performances/Akumulasi/cetakakumulasikaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Laporan</a>
+                    <?php } else { ?>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Laporan</button>
+                    <?php } ?>
+
+                </div>
         </form>
+    </div>
+
+    <div class="alert alert" style="background-color: #8b0000; color: white;">
+        Menampilkan Akumulasi Penilaian Bulan:<span class="font-weight-bold">
+            <?php echo $bulan ?>
+        </span> Tahun:<span class="font-weight-bold">
+            <?php echo $tahun ?>
     </div>
     <div class="card">
         <div class="card-body">
@@ -62,22 +90,72 @@
                 </div>
             </div>
 
+            <?php
 
-            <table id="example1" class="table table-bordered table-striped">
-                <thead style="background-color: #cc0000; text-align: center ;">
-                    <tr style="color: #ffffff;">
-                        <th>No</th>
-                        <th>Nama Karyawan</th>
-                        <th>Nilai Kinerja</th>
-                        <th>Nilai Kuesioner</th>
-                        <th>Total</th>
-                        <th>Kategorisasi</th>
-                    </tr>
-                </thead>
+            $jml_data = COUNT($akumulasi);
+            if ($jml_data > 0) { ?>
 
-            </table>
+
+
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                        <tr>
+                            <th>No</th>
+                            <th>NIK & Nama Karyawan</th>
+                            <th>Aksi</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1 ?>
+                        <?php foreach ($akumulasi as $ak): ?>
+                            <tr style="text-align: center;">
+                                <th>
+                                    <?= $no++; ?>
+                                </th>
+
+                                <td>
+                                    <?= $ak['nik'],
+                                        $ak['nama_karyawan']; ?>
+                                </td>
+
+                                <td>
+                                    <a class="badge" href="<?= base_url() ?>performances/akumulasi/detail/<?= $ak['nik'] ?>"
+                                        type="button" style="background-color: #d4d4d4" ;><i class="fas fa-share"></i>
+                                        Detail
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                    Data masih kosong, silahkan mengisi form kuesioner dan penilaian kinerja!</span>
+            <?php } ?>
         </div>
     </div>
     <!-- /.card-body -->
-
 </div>
+
+<!-- Modal cetak akumulasi keseluruhan -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Data akumulasi masih kosong.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Akhir modal cetak akumulasi keseluruhan -->

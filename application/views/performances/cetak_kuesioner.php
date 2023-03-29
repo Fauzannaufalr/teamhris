@@ -16,7 +16,7 @@
 <body>
     <center>
         <h1>PT. Sahaware Teknologi Indonesia</h1>
-        <h2>Bukti Penilaian</h2>
+        <h2>Bukti Penilaian Kuesioner</h2>
     </center>
 
     <?php
@@ -65,13 +65,13 @@
                     </th>
 
                     <td>
-                        <?= $pr['nik_penilai'],
+                        <?= $pr['nik_penilai'], "<br>" .
                             $pr['nama_karyawan_penilai']; ?>
                     </td>
 
                     <td>
-                        <?= $pr['nik_menilai']; ?>
-                        <?= $pr['nama_karyawan_menilai']; ?>
+                        <?= $pr['nik_menilai'], "<br>" .
+                            $pr['nama_karyawan_menilai']; ?>
                     </td>
                     <td>
                         <?= $pr['tanggal']; ?>

@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #cc0000;">
+        <div class="card-header" style="color: white; background-color: #8b0000;">
             <h4> Filter Data Akumulasi Penilaian Karyawan</h4>
         </div>
 
@@ -49,17 +49,25 @@
                     }
 
                     ?>
-                    <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
+                    <button type="submit" class="btn btn-outline-success ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
 
+                    <?php if (count($akumulasi) > 0) { ?>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('performances/Akumulasi/cetakakumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Laporan</a>
+                    <?php } else { ?>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Laporan</button>
+                    <?php } ?>
 
                 </div>
         </form>
     </div>
 
-    <div class="alert alert" style="background-color: #cc0000; color: white;">
+    <div class="alert alert" style="background-color: #8b0000; color: white;">
         Menampilkan Akumulasi Penilaian Bulan:<span class="font-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="font-weight-bold">
@@ -88,10 +96,11 @@
 
 
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;  background-color:#cc0000; color: white;">
+                    <thead style="text-align: center;  background-color:#8b0000; color: white;">
                         <tr>
                             <th>No</th>
-                            <th>NIK & Nama Karyawan</th>
+                            <th>Penilai</th>
+                            <th>Menilai</th>
                             <th>Aksi</th>
 
                         </tr>
@@ -105,12 +114,16 @@
                                 </th>
 
                                 <td>
-                                    <?= $ak['nik'],
+                                    <?= $ak['nik'], "<br>" .
                                         $ak['nama_karyawan']; ?>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url() ?>performances/akumulasi/detail/<?= $ak['nik'] ?>" type="button"
-                                        style="background-color: #d4d4d4" ; class="btn btn-Info">
+                                    <?= $ak['menilai_orang']; ?> Orang
+
+                                </td>
+                                <td>
+                                    <a class="badge" href="<?= base_url() ?>performances/akumulasi/detail/<?= $ak['nik'] ?>"
+                                        type="button" style="background-color: #d4d4d4" ;><i class="fas fa-share"></i>
                                         Detail
                                     </a>
                                 </td>
@@ -121,9 +134,30 @@
                 </table>
             <?php } else { ?>
                 <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                    Data masih kosong, silahkan mengisi form penilaian!</span>
+                    Data masih kosong, silahkan mengisi form kuesioner dan penilaian kinerja!</span>
             <?php } ?>
         </div>
     </div>
     <!-- /.card-body -->
 </div>
+
+<!-- Modal cetak akumulasi keseluruhan -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Data akumulasi masih kosong.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Akhir modal cetak akumulasi keseluruhan -->

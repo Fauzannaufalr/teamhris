@@ -36,7 +36,7 @@ class PenilaianKinerja extends CI_Controller
         data_karyawan.nama_karyawan, data_karyawan.id_posisi
         FROM performances___penilaian_kinerja
         INNER JOIN data_karyawan ON performances___penilaian_kinerja.nik=data_karyawan.nik
-        WHERE performances___penilaian_kinerja.tgl='$bulantahun'
+        WHERE performances___penilaian_kinerja.tanggal='$bulantahun'
         ORDER BY data_karyawan.nama_karyawan ASC")->result_array();
 
 

@@ -3,12 +3,12 @@
 class PenilaianKinerja_model extends CI_Model
 {
     public function tampilPenilaianKinerja()
-    {
+    { //model ini akan di tampilkan pada penilaian kinerja
         $this->db->select('data_karyawan.*, 
             performances___penilaian_kinerja.id_penilaian_kinerja,
             performances___penilaian_kinerja.nik,
             performances___penilaian_kinerja.nilai,
-            performances___penilaian_kinerja.tgl,
+            performances___penilaian_kinerja.tanggal,
             performances___penilaian_kinerja.total_kerja,
             performances___penilaian_kinerja.done_kerja,
             performances___penilaian_kinerja.kategorisasi,
@@ -43,7 +43,7 @@ class PenilaianKinerja_model extends CI_Model
         echo "Kategorisasi: " . $kategorisasi;
         $data = [
             "nik" => $this->input->post("nik_nama"),
-            'tgl' => date("m/Y"),
+            'tanggal' => date("m/Y"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
             "nilai" => $nilai,
@@ -71,7 +71,7 @@ class PenilaianKinerja_model extends CI_Model
         echo "Kategorisasi: " . $kategorisasi;
         $data = [
             "nik" => $this->input->post("nik_nama"),
-            'tgl' => date("m/Y"),
+            'tanggal' => date("m/Y"),
             'total_kerja' => $total_kerja,
             'done_kerja' => $done_kerja,
             "nilai" => $nilai,
@@ -89,10 +89,10 @@ class PenilaianKinerja_model extends CI_Model
     }
     public function cetakKinerja($bulantahun)
     {
-        $this->db->select('pk.*, dk.nama_karyawan, dk.nik, dk.email,pk.kategorisasi');
+        $this->db->select('pk.*, dk.nama_karyawan, dk.nik, dk.email');
         $this->db->from('performances___penilaian_kinerja pk');
         $this->db->join('data_karyawan dk', 'dk.nik = pk.nik');
-        $this->db->where('tgl', $bulantahun);
+        $this->db->where('tanggal', $bulantahun);
         return $this->db->get()->result_array();
     }
 }

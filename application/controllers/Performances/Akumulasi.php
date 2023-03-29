@@ -35,11 +35,18 @@ class Akumulasi extends CI_Controller
             $bulantahun = $bulan . "/" . $tahun;
         }
 
-        $data['akumulasi'] = $this->db->query("SELECT DISTINCT *
-        FROM performances___penilaian_kuesioner 
-        JOIN data_karyawan ON  performances___penilaian_kuesioner.nik_menilai = data_karyawan.nik
-        JOIN performances___penilaian_kinerja ON  performances___penilaian_kinerja.nik = data_karyawan.nik
-        WHERE performances___penilaian_kuesioner.tanggal AND performances___penilaian_kinerja.tgl='$bulantahun'")->result_array();
+        $data['akumulasi'] = $this->db->query("SELECT 
+        dk.nik,
+        dk.nama_karyawan,
+        (
+            SELECT COUNT(pk.total_nilai) FROM performances___penilaian_kuesioner pk 
+                WHERE pk.nik_menilai = dk.nik
+        ) AS menilai_orang
+        FROM data_karyawan dk
+        INNER JOIN performances___penilaian_kinerja pkerja
+        ON pkerja.nik = dk.nik 
+        ")->result_array();
+
         // printr($data['akumulasi']);
         // $nik_session = $this->session->userdata('nik');
         // $data['akumulasi'] = $this->db->query("SELECT 
@@ -84,10 +91,21 @@ class Akumulasi extends CI_Controller
     }
 
 
-    public function detail($id)
+    public function detail($nik)
     {
         $data['title'] = 'Detail Akumulasi';
-        $data['detail'] = $this->Akumulasi_model->tampilAkumulasi($id);
+        $data['detail'] = $this->db->query("SELECT 
+            dk.nik,
+            dk.nama_karyawan,
+            pk.total_nilai AS nilai_kuesioner,
+            pker.nilai AS nilai_kinerja
+
+            FROM performances___penilaian_kuesioner pk
+            INNER JOIN data_karyawan dk ON dk.nik = pk.nik_menilai 
+            INNER JOIN performances___penilaian_kinerja pker ON pk.nik_menilai = pker.nik 
+            WHERE pk.nik_penilai = '$nik'
+        ")->result_array();
+        // printr($data);
         $data['user'] = $this->Hris_model->ambilUser();
 
         $this->load->view('templates/header', $data);
@@ -97,7 +115,7 @@ class Akumulasi extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function karyawanAkumulasi()
+    public function karyawanAkumulasiKeseluruhan()
     {
         $data['title'] = 'Detail Akumulasi';
         $data['detail'] = $this->Akumulasi_model->tampilAkumulasi();

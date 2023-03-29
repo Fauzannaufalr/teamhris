@@ -38,16 +38,18 @@ class MenilaiRekan1 extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         // $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
         $data['sudah_menilai'] = $this->extract_nik_penilai();
+        $currentDate = date('m/Y');
         $data['datakaryawan'] = $this->db->query("SELECT 
         dk.nik,
         dk.nama_karyawan
         FROM data_karyawan dk
         WHERE dk.nik != '$nik'
+        AND dk.nik NOT IN (SELECT pk.nik_menilai FROM performances___penilaian_kuesioner pk WHERE tanggal='$currentDate' AND pk.nik_penilai != pk.nik_menilai)
         ")->result_array();
+        // printr($data['datakaryawan']);
 
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
 
-        // printr($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

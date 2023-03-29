@@ -12,7 +12,8 @@
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -27,7 +28,8 @@
                 <div class="icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
-                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -43,7 +45,8 @@
                 <div class="icon">
                     <i class="fas fa-user-lock"></i>
                 </div>
-                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -107,7 +110,9 @@
                     <h3 class="card-title" style="color: white;">Laporan Gaji Karyawan</h3>
                 </div>
                 <div class="card-body">
-                    <h5>Bulan <?= $bulan; ?></h5>
+                    <h5>Bulan
+                        <?= $bulan; ?>
+                    </h5>
                     <div class="col-lg-12">
                         <canvas id="karyawan"></canvas>
                     </div>
@@ -120,7 +125,9 @@
                     <h3 class="card-title" style="color: white;">Laporan Rate Mitra</h3>
                 </div>
                 <div class="card-body">
-                    <h5>Bulan <?= $bulan; ?></h5>
+                    <h5>Bulan
+                        <?= $bulan; ?>
+                    </h5>
                     <div class="col-lg-12">
                         <canvas id="mitra"></canvas>
                     </div>
@@ -201,7 +208,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function(tooltipItem, data) {
+                    label: function (tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -246,7 +253,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function(tooltipItem, data) {
+                    label: function (tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
