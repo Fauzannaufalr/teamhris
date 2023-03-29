@@ -125,4 +125,15 @@ class DataMitra extends CI_Controller
         }
         redirect('master/datamitra');
     }
+
+    public function tabel()
+    {
+        // POST data
+        $postData = $this->input->post();
+
+        // Get data
+        $data = $this->DataMitra_model->dataTable($postData);
+
+        echo json_encode($data);
+    }
 }

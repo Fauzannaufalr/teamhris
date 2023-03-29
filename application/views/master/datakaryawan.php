@@ -17,8 +17,11 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
-            <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataKaryawan"><i class="fas fa-plus"></i>
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#tambahDataKaryawan"><i class="fas fa-plus"></i>
                 Tambah Karyawan
+            </button>
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#importDataKaryawan"><i class="fas fa-plus"></i>
+                Import Data
             </button>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -270,4 +273,36 @@
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
-<!-- akhir modal hapus --
+<!-- akhir modal hapus -->
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="importDataKaryawan" tabindek="-1" role+dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Import Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('master/datakaryawan/import') ?>" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="import" name="import" accept=".xlsx,.xls">
+                            <label class="custom-file-label" for="import">Choose file</label>
+                        </div>
+                    </div>
+                    <!-- modal footer  -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <button type="submit" class="btn" style="background-color: #cc0000; color: antiquewhite;">Import</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- akhir modal hapus -->

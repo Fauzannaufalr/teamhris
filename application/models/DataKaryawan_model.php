@@ -72,4 +72,42 @@ class DataKaryawan_model extends CI_Model
         $this->db->delete('data_karyawan');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
+
+    public function import()
+    {
+        if (isset($_POST["submit"])) {
+            $file = $_FILES['import']['tmp_name'];
+            $handle = fopen($file, "r");
+            while (($filedata = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                $data = [
+                    'nik' => htmlspecialchars($filedata[0]),
+                    'nama_karyawan' => htmlspecialchars($filedata[1]),
+                    'id_posisi' => htmlspecialchars($filedata[2]),
+                    'id_kelas' => htmlspecialchars($filedata[3]),
+                    'email' => htmlspecialchars($filedata[4]),
+                    'status' => $filedata[5],
+                    'gajipokok' => htmlspecialchars($filedata[6]),
+                    'nik_leader' => htmlspecialchars($filedata[7]),
+                    'level' => htmlspecialchars($filedata[8]),
+                    'alamat' => htmlspecialchars($filedata[9]),
+                    'telepon' => htmlspecialchars($filedata[10]),
+                    'password' => password_hash($filedata[11], PASSWORD_DEFAULT),
+                    'foto' => $filedata[12]
+
+                ];
+                $this->db->insert('data_karyawan', $data);
+                return $this->db->insert_id();
+            }
+            fclose($handle);
+            redirect('master/datakaryawan');
+        }
+    }
+
+    public function import_data($data)
+    {
+        $jumlah = count($data);
+        if ($jumlah > 0) {
+            $this->db->insert('data_karyawan', $data);
+        }
+    }
 }

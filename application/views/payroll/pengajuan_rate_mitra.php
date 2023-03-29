@@ -40,6 +40,44 @@
                 </form>
             </div>
         </div>
+        <?php switch (date('m')) {
+            case '01':
+                $bulan = 'Februari';
+                break;
+            case '02':
+                $bulan = 'Maret';
+                break;
+            case '03':
+                $bulan = 'April';
+                break;
+            case '04':
+                $bulan = 'Mei';
+                break;
+            case '05':
+                $bulan = 'Juni';
+                break;
+            case '06':
+                $bulan = 'Juli';
+                break;
+            case '07':
+                $bulan = 'Agustus';
+                break;
+            case '08':
+                $bulan = 'September';
+                break;
+            case '09':
+                $bulan = 'Oktober';
+                break;
+            case '10':
+                $bulan = 'November';
+                break;
+            case '11':
+                $bulan = 'Desember';
+                break;
+            case '12':
+                $bulan = 'Januari';
+                break;
+        } ?>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header" style="background-color: #cc0000;">
@@ -48,7 +86,7 @@
                 <form class="form-horizontal">
                     <div class="card-body">
                         <div class="form-group row">
-                            <a class="btn btn-outline-success" href="<?= base_url('payroll/pengajuanratemitra/generate'); ?>"><i class="fas fa-archive"></i> Generate Data <?= date('F', strtotime('+1 month')); ?></a>
+                            <a class="btn btn-outline-success" href="<?= base_url('payroll/pengajuanratemitra/generate'); ?>"><i class="fas fa-archive"></i> Generate Data <?= $bulan; ?></a>
                         </div>
                     </div>
                     <!-- /.card-body -->

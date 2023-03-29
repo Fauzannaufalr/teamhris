@@ -76,7 +76,7 @@ class PengajuanGaji_model extends CI_Model
         return  $this->db->get()->result_array();
     }
 
-    function getUsers($postData = null)
+    function dataTable($postData = null)
     {
 
         $response = array();
@@ -147,8 +147,7 @@ class PengajuanGaji_model extends CI_Model
 
             $data[] = array(
                 "no" => $no++,
-                "nik" => $record->nik,
-                "nama" => $record->nama_karyawan,
+                "nik_nama" => $record->nik . ' - ' . $record->nama_karyawan,
                 "posisi" => $record->nama_posisi,
                 "gaji" => 'Rp ' . number_format($record->gajipokok, 0, ', ', '.'),
                 "bpjs" => 'Rp ' . number_format($record->bpjs, 0, ', ', '.'),

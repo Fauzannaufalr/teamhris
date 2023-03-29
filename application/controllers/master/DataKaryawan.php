@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class DataKaryawan extends CI_Controller
 {
@@ -151,5 +154,87 @@ class DataKaryawan extends CI_Controller
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
         redirect('master/datakaryawan');
+    }
+
+    function import()
+    {
+        $data['title'] = "Data Karyawan";
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Hris_model->ambilUser();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('master/datakaryawan', $data);
+        $this->load->view('templates/footer');
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['upload_path'] = './dist/import';
+        $config['file_name'] = 'doc' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('import')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('dist/import/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+                    switch ($row->getCellAtIndex(3)) {
+                        case 'QA':
+                            $posisi = '7';
+                            break;
+                        case 'Front End Developer':
+                            $posisi = '5';
+                            break;
+                        case 'Back End Developer':
+                            $posisi = '6';
+                            break;
+                        case 'Fullstack Developer':
+                            $posisi = '9';
+                            break;
+                        case 'QC':
+                            $posisi = '10';
+                            break;
+                    }
+                    switch ($row->getCellAtIndex(4)) {
+                        case 'Senior':
+                            $kelas = '1';
+                            break;
+                        case 'Junior':
+                            $kelas = '2';
+                            break;
+                    }
+                    if ($numRow > 1) {
+                        $data = array(
+                            'nik' => htmlspecialchars($row->getCellAtIndex(1)),
+                            'nama_karyawan' => htmlspecialchars($row->getCellAtIndex(2)),
+                            'id_posisi' => htmlspecialchars($posisi),
+                            'id_kelas' => htmlspecialchars($kelas),
+                            'email' => htmlspecialchars($row->getCellAtIndex(5)),
+                            'status' => $row->getCellAtIndex(6),
+                            'gajipokok' => htmlspecialchars($row->getCellAtIndex(7)),
+                            'nik_leader' => htmlspecialchars($row->getCellAtIndex(8)),
+                            'level' => htmlspecialchars($row->getCellAtIndex(9)),
+                            'alamat' => htmlspecialchars($row->getCellAtIndex(10)),
+                            'telepon' => htmlspecialchars($row->getCellAtIndex(11)),
+                            'password' => password_hash($row->getCellAtIndex(12), PASSWORD_DEFAULT),
+                            'foto' => $row->getCellAtIndex(13)
+                        );
+                        $this->DataKaryawan_model->import_data($data);
+                    }
+                    $numRow++;
+                }
+                $reader->close();
+                unlink('dist/import/' . $file['file_name']);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diimport!</div>');
+                redirect('master/datakaryawan');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+            redirect('master/datakaryawan');
+        };
     }
 }

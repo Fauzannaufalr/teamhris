@@ -95,4 +95,15 @@ class Pajak extends CI_Controller
         }
         redirect('payroll/pajak');
     }
+
+    public function tabel()
+    {
+        // POST data
+        $postData = $this->input->post();
+
+        // Get data
+        $data = $this->Pajak->dataTable($postData);
+
+        echo json_encode($data);
+    }
 }

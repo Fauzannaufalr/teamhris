@@ -86,4 +86,15 @@ class Perhitungan extends CI_Controller
         }
         redirect('payroll/perhitungan');
     }
+
+    public function tabel()
+    {
+        // POST data
+        $postData = $this->input->post();
+
+        // Get data
+        $data = $this->Perhitungan->dataTable($postData);
+
+        echo json_encode($data);
+    }
 }

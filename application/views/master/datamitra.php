@@ -6,7 +6,7 @@
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahDataMitra"><i class="fas fa-plus"></i>
                 Tambah Mitra
             </button>
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="data" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -25,30 +25,6 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php $no = 1 ?>
-                    <?php foreach ($datamitra as $dm) : ?>
-                        <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $dm['nama_perusahaan']; ?></td>
-                            <td><?= $dm['nama_karyawan']; ?></td>
-                            <td><?= $dm['keahlian']; ?></td>
-                            <td><?= $dm['tools']; ?></td>
-                            <td><?= $dm['email']; ?></td>
-                            <td><?= $dm['telepon']; ?></td>
-                            <td><?= $dm['alamat']; ?></td>
-                            <td>Rp <?= number_format($dm['rate_total'], 0, ',', '.'); ?></td>
-                            <td><?= $dm['dokumen_kerjasama']; ?></td>
-                            <td><?= $dm['tanggal_masuk']; ?></td>
-                            <td><?= $dm['tanggal_keluar']; ?></td>
-                            <td><?= $dm['status']; ?></td>
-                            <td>
-                                <button type="button" class="badge" style="color: black; background-color: gold;" data-toggle="modal" data-target="#ubahDataMitra<?= $dm['id'] ?>"><i class="fas fa-edit"></i> Edit</button>
-                                <button type="button" class="badge" style="color: antiquewhite; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dm['id'] ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
             </table>
         </div>
         <!-- /.card-body -->
@@ -305,7 +281,7 @@ foreach ($data as $dk => $value) {
 $allTools = [];
 $allToolsCount = [];
 foreach ($keahlian as $kt) {
-    $Toolsexplode = explode(', ', $kt['tools']);
+    $Toolsexplode = explode(', ', mb_strtoupper($kt['tools']));
     $countTools = count($Toolsexplode);
     for ($i = 0; $i < $countTools; $i++) {
         if (!in_array($Toolsexplode[$i], $allTools, true)) {
@@ -322,9 +298,10 @@ foreach ($dataTools as $dt => $value) {
     $jumlahTools = $value;
     // echo $namaKeahlian . '-' . $jumlahKeahlian;
 }
-print_r(array_count_values($allToolsCount));
+// print_r(array_count_values($allToolsCount));
 // print_r($data['Developer']);
 ?>
+
 <script>
     const keahlian = document.getElementById('keahlian');
     new Chart(keahlian, {
@@ -364,5 +341,66 @@ print_r(array_count_values($allToolsCount));
                 }
             }
         }
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var userDataTable = $('#data').DataTable({
+            'responsive': true,
+            'orderable': true,
+            'ordering': true,
+            'processing': true,
+            'serverSide': true,
+            "autoWidth": false,
+            'serverMethod': 'post',
+            'searching': true, // Remove default Search Control
+            'ajax': {
+                'url': '<?= base_url() ?>master/datamitra/tabel'
+            },
+            'columns': [{
+                    data: 'no'
+                },
+                {
+                    data: 'nama_perusahaan'
+                },
+                {
+                    data: 'nama'
+                },
+                {
+                    data: 'keahlian'
+                },
+                {
+                    data: 'tools'
+                },
+                {
+                    data: 'email'
+                },
+                {
+                    data: 'telepon'
+                },
+                {
+                    data: 'alamat'
+                },
+                {
+                    data: 'rate'
+                },
+                {
+                    data: 'dokumen'
+                },
+                {
+                    data: 'tgl_masuk'
+                },
+                {
+                    data: 'tgl_keluar'
+                },
+                {
+                    data: 'status'
+                },
+                {
+                    data: 'aksi'
+                }
+            ]
+        });
     });
 </script>

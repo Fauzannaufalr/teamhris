@@ -165,7 +165,7 @@ class PengajuanGaji extends CI_Controller
         $postData = $this->input->post();
 
         // Get data
-        $data = $this->PengajuanGaji->getUsers($postData);
+        $data = $this->PengajuanGaji->dataTable($postData);
 
         echo json_encode($data);
     }

@@ -6,33 +6,16 @@
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahPajakKaryawan"><i class="fas fa-plus"></i>
                 Tambah Pajak Karyawan
             </button>
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="data" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>NIK</th>
-                        <th>Nama Karyawan</th>
+                        <th>NIK - Nama Karyawan</th>
                         <th>Golongan</th>
                         <th>Kode</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php $no = 1 ?>
-                    <?php foreach ($pajakkaryawan as $pk) : ?>
-                        <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $pk['nik']; ?></td>
-                            <td><?= $pk['nama_karyawan']; ?></td>
-                            <td><?= $pk['golongan']; ?></td>
-                            <td><?= $pk['kode']; ?></td>
-                            <td>
-                                <button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahPajakKaryawan<?= $pk['id_pajak']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                                <button class="badge" style="background-color: #ff0000; color: antiquewhite;" data-toggle="modal" data-target="#modal-sm<?= $pk['id_pajak']; ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
             </table>
         </div>
         <!-- /.card-body -->
@@ -184,5 +167,39 @@
                 title: flashData
             })
         <?php endif; ?>
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var userDataTable = $('#data').DataTable({
+            'responsive': true,
+            'orderable': true,
+            'ordering': true,
+            'processing': true,
+            'serverSide': true,
+            "autoWidth": false,
+            'serverMethod': 'post',
+            'searching': true, // Remove default Search Control
+            'ajax': {
+                'url': '<?= base_url() ?>payroll/pajak/tabel'
+            },
+            'columns': [{
+                    data: 'no'
+                },
+                {
+                    data: 'nik_nama'
+                },
+                {
+                    data: 'golongan'
+                },
+                {
+                    data: 'kode'
+                },
+                {
+                    data: 'aksi'
+                },
+            ]
+        });
     });
 </script>

@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
@@ -7,12 +6,11 @@
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahPerhitungan"><i class="fas fa-plus"></i>
                 Tambah Perhitungan Gaji
             </button>
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="data" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>NIK</th>
-                        <th>Nama Karyawan</th>
+                        <th>NIK - Nama Karyawan</th>
                         <th>Tj. Kinerja</th>
                         <th>Tj. Fungsional</th>
                         <th>Tj. Jabatan</th>
@@ -21,25 +19,6 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php $no = 1 ?>
-                    <?php foreach ($perhitungan as $pg) : ?>
-                        <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $pg['nik']; ?></td>
-                            <td><?= $pg['nama_karyawan']; ?></td>
-                            <td>Rp <?= number_format($pg['t_kinerja'], 0, ',', '.'); ?></td>
-                            <td>Rp <?= number_format($pg['t_fungsional'], 0, ',', '.'); ?></td>
-                            <td>Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?></td>
-                            <td>Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?></td>
-                            <td>Rp <?= number_format($pg['bonus'], 0, ',', '.'); ?></td>
-                            <td style="text-align: center;">
-                                <button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahPerhitungan<?= $pg['id_perhitungan']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                                <button class="badge" style="background-color: #ff0000; color: antiquewhite;" data-toggle="modal" data-target="#modal-sm<?= $pg['id_perhitungan']; ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
             </table>
         </div>
         <!-- /.card-body -->
@@ -279,4 +258,47 @@
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return prefix == undefined ? rupiah : (rupiah ? 'Rp ' + rupiah : '');
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var userDataTable = $('#data').DataTable({
+            'responsive': true,
+            'orderable': true,
+            'ordering': true,
+            'processing': true,
+            'serverSide': true,
+            "autoWidth": false,
+            'serverMethod': 'post',
+            'searching': true, // Remove default Search Control
+            'ajax': {
+                'url': '<?= base_url() ?>payroll/perhitungan/tabel'
+            },
+            'columns': [{
+                    data: 'no'
+                },
+                {
+                    data: 'nik_nama'
+                },
+                {
+                    data: 'kinerja'
+                },
+                {
+                    data: 'fungsional'
+                },
+                {
+                    data: 'jabatan'
+                },
+                {
+                    data: 'potongan'
+                },
+                {
+                    data: 'bonus'
+                },
+                {
+                    data: 'aksi'
+                },
+            ]
+        });
+    });
 </script>

@@ -25,7 +25,7 @@
             <td></td>
         </tr>
     </table>
-    <table class="table table-bordered table-triped">
+    <table class="table table-bordered table-triped" border="1">
         <tr>
             <th class="text-center">No</th>
             <th class="text-center">Nama Perusahaan</th>

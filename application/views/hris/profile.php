@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="text-right">
-                        <a href="<?= base_url('hris/ubahprofile'); ?>" class="btn btn-sm" style="background-color: #ff0000; color: white;">
+                        <a href="<?= base_url('hris/ubahprofile'); ?>" class="btn btn-sm" style="background-color: #cc0000; color: white;">
                             <i class="fas fa-user-edit"></i> Ubah Profile
                         </a>
                     </div>
