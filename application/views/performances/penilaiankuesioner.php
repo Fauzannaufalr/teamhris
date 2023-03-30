@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2 ml-5">
+                    <div class="col-md-2 ">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
                             <?php $tahun = date('Y');
@@ -54,7 +54,7 @@
                         </i>
                     </button>
                     <?php if (count($penilaiankuesioner) > 0) { ?>
-                        <a class="btn btn-outline-success ml-2"
+                        <a class="btn btn-outline-success  ml-2"
                             href="<?= base_url('performances/PenilaianKuesioner/cetakkuesioner?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Laporan</a>
                     <?php } else { ?>
@@ -100,8 +100,7 @@
                         <tr>
                             <th>No</th>
                             <th>NIK & Nama Penilai</th>
-                            <th>NIK & Nama Menilai</th>
-                            <th>Tanggal</th>
+                            <th>NIK & Nama M enilai</th>
                             <th>Total Nilai</th>
                             <th>Aksi</th>
                         </tr>
@@ -118,20 +117,17 @@
                                     <?= $pr['nik_penilai'], "<br>" .
                                         $pr['nama_karyawan_penilai']; ?>
                                 </td>
-
                                 <td>
-                                    <?= $pr['nik_menilai'], "<br>" .
+                                    <?= $pr['nik_penilai'], "<br>" .
                                         $pr['nama_karyawan_menilai']; ?>
                                 </td>
+
                                 <td>
-                                    <?= $pr['tanggal']; ?>
-                                </td>
-                                <td>
-                                    <?= $pr['total_nilai']; ?>
+                                    <?= $pr['total_nilai'] ?>
                                 </td>
                                 <td>
                                     <a class="badge"
-                                        href="<?= base_url() ?>performances/penilaiankuesioner/detail/<?= $pr['id_penilaian_kuesioner'] ?>"
+                                        href="<?= base_url() ?>performances/penilaiankuesioner/detail2/<?= $pr['id_penilaian_kuesioner'] ?>"
                                         type="button" style="background-color: #d4d4d4" ;><i class="fas fa-share"></i>
                                         Detail
                                     </a>

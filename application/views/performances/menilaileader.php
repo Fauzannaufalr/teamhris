@@ -38,7 +38,7 @@
 
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
-            <thead style="background-color:  #cc0000; color: white;">
+            <thead style="background-color:  #8b0000; color: white;">
               <tr style="text-align: center;">
                 <th style="text-align: center;">No</th>
                 <th>Pertanyaan</th>
@@ -56,13 +56,14 @@
                     <?= $sk['kuesioner'] ?>
                   </td>
                   <td>
+                    <!-- pr -->
                     <select name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
-                      <option value="10">Sangat Baik</option>
-                      <option value="9">Baik</option>
-                      <option value="8">Cukup</option>
-                      <option value="7">Kurang Baik</option>
-                      <option value="6">Sangat Kurang Baik</option>
+                      <option value="5">Sangat Baik</option>
+                      <option value="4">Baik</option>
+                      <option value="3">Cukup</option>
+                      <option value="2">Kurang Baik</option>
+                      <option value="1">Sangat Kurang Baik</option>
                     </select>
                   </td>
                 </tr>

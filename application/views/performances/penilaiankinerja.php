@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2 ml-2">
+                    <div class="col-md-2 ">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
                             <?php $tahun = date('Y');
@@ -49,7 +49,7 @@
                     }
 
                     ?>
-                    <button type="submit" class="btn btn-outline-success mb-2 ml-auto"><i class="fas fa-eye"> Tampilkan
+                    <button type="submit" class="btn btn-outline-success ml-auto"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
@@ -93,7 +93,7 @@
                         Tambah Penilaian
                     </button>
                     <button type="button" class="btn btn-outline-success" data-toggle="modal"
-                        data-target="#tambahImportExcel"><i class="fas fa-plus"></i>
+                        data-target="#importPenilaianKinerja"><i class="fas fa-plus"></i>
                         Import
                     </button>
                 </div>
@@ -126,7 +126,8 @@
                                     <?= $no++; ?>
                                 </th>
                                 <td>
-                                    <?= $pk['nik'], "<br>" . $pk['nama_karyawan']; ?>
+                                    <?= $pk['nik'], "<br>" .
+                                        $pk['nama_karyawan']; ?>
                                 </td>
 
                                 <td>
@@ -164,34 +165,38 @@
     <!-- /.card-body -->
 </div>
 <!-- modal untuk impor excel -->
-<div class="modal fade" id="tambahImportExcel" tabindex="-1" aria-labelledby="tambahImportExcelLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="importPenilaianKinerja" tabindek="-1" role+dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahImportExcelLabel">Upload File Excel</h5>
+                <h4 class="modal-title">Import Data</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="<?php echo base_url() ?>performances/PenilaianKinerja/upload"
+            <form action="<?= base_url('performances/penilaiankinerja/import') ?>" method="POST"
                 enctype="multipart/form-data">
                 <div class="modal-body">
-                    <div class=" form-group">
-                        <label for="foto">Pilih File</label>
-                        <h5><b><i>Format File Excel harus sesuai dengan templates, silahkan klik disini</i></b></h5>
-                        <input type="file" class="form-control" id="foto" name="foto" placeholder="Masukan foto">
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="import" name="import" accept=".xlsx,.xls">
+                            <label class="custom-file-label" for="import">Choose file</label>
+                        </div>
                     </div>
-
-                    <!-- modal footer -->
+                    <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                        <button type="submit" class="btn"
+                            style="background-color: #cc0000; color: antiquewhite;">Import</button>
                     </div>
                 </div>
             </form>
         </div>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
 </div>
 <!-- Akhir tambah data masal Modal -->
 
@@ -265,17 +270,29 @@
                         <div class=" form-group">
                             <label>NIK & Nama Karyawan</label>
                             <select class="form-control" name="nik_nama" id="nik_nama" placeholder="-- Pilih Karyawan --">
-
                                 <?php foreach ($datakaryawan as $dk): ?>
-                                    <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?>
-                                    </option>
+                                    <?php if ($dk['nik'] == $pk['nik']): ?>
+                                        <option value="<?= $dk['nik']; ?>" selected><?= $dk['nama_karyawan'] ?></option>
+                                    <?php else: ?>
+                                        <option value="<?= $pk['nik']; ?>"><?= $dk['nama_karyawan'] ?></option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Posisi</label>
-                            <input type="text" readonly id="id_posisi" class="form-control" />
+                            <?php foreach ($datakaryawan as $dk): ?>
+                                <?php if ($dk['nik'] == $pk['nik']): ?>
+                                    <?php foreach ($dataposisi as $dp): ?>
+                                        <?php if ($dp['id_posisi'] == $dk['id_posisi']): ?>
+                                            <input type="text" readonly id="id_posisi" class="form-control"
+                                                value="<?= $dp['nama_posisi']; ?>" />
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <!-- <input type="text" readonly id="id_posisi" class="form-control" /> -->
                         </div>
 
                         <div class="form-group">

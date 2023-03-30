@@ -38,7 +38,7 @@
 
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
-            <thead style="background-color:  #cc0000; color: white;">
+            <thead style="background-color:  #8b0000; color: white;">
               <tr style="text-align: center;">
                 <th style="text-align: center;">No</th>
                 <th>Pertanyaan</th>

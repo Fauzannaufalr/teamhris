@@ -35,17 +35,11 @@ class Akumulasi extends CI_Controller
             $bulantahun = $bulan . "/" . $tahun;
         }
 
-        $data['akumulasi'] = $this->db->query("SELECT 
-        dk.nik,
-        dk.nama_karyawan,
-        (
-            SELECT COUNT(pk.total_nilai) FROM performances___penilaian_kuesioner pk 
-                WHERE pk.nik_menilai = dk.nik
-        ) AS menilai_orang
-        FROM data_karyawan dk
-        INNER JOIN performances___penilaian_kinerja pkerja
-        ON pkerja.nik = dk.nik 
-        ")->result_array();
+        $data['akumulasi'] = $this->db->query("SELECT DISTINCT *
+        FROM performances___penilaian_kuesioner 
+        JOIN data_karyawan ON  performances___penilaian_kuesioner.nik_menilai = data_karyawan.nik
+        JOIN performances___penilaian_kinerja ON  performances___penilaian_kinerja.nik = data_karyawan.nik
+        WHERE performances___penilaian_kuesioner.tanggal AND performances___penilaian_kinerja.tanggal='$bulantahun'")->result_array();
 
         // printr($data['akumulasi']);
         // $nik_session = $this->session->userdata('nik');
@@ -70,7 +64,26 @@ class Akumulasi extends CI_Controller
     }
 
 
+    public function detail($id)
+    {
+        $data['title'] = 'Detail Akumulasi';
+        $data['detail'] = $this->Akumulasi_model->tampilAkumulasi($id);
+        $data['user'] = $this->Hris_model->ambilUser();
 
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/detailakumulasi', $data);
+        $this->load->view('templates/footer');
+
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/detailakumulasi', $data);
+        $this->load->view('templates/footer');
+    }
     public function cetakAkumulasi()
     {
         $data['title'] = "Akumulasi Karyawan";
@@ -91,60 +104,38 @@ class Akumulasi extends CI_Controller
     }
 
 
-    public function detail($nik)
-    {
-        $data['title'] = 'Detail Akumulasi';
-        $data['detail'] = $this->db->query("SELECT 
-            dk.nik,
-            dk.nama_karyawan,
-            pk.total_nilai AS nilai_kuesioner,
-            pker.nilai AS nilai_kinerja
 
-            FROM performances___penilaian_kuesioner pk
-            INNER JOIN data_karyawan dk ON dk.nik = pk.nik_menilai 
-            INNER JOIN performances___penilaian_kinerja pker ON pk.nik_menilai = pker.nik 
-            WHERE pk.nik_penilai = '$nik'
-        ")->result_array();
-        // printr($data);
-        $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('performances/detailakumulasi', $data);
-        $this->load->view('templates/footer');
-    }
+// public function karyawanAkumulasiKeseluruhan()
+// {
+//     $data['title'] = 'Detail Akumulasi';
+//     $data['detail'] = $this->Akumulasi_model->tampilAkumulasi();
+//     $data['user'] = $this->Hris_model->ambilUser();
 
-    public function karyawanAkumulasiKeseluruhan()
-    {
-        $data['title'] = 'Detail Akumulasi';
-        $data['detail'] = $this->Akumulasi_model->tampilAkumulasi();
-        $data['user'] = $this->Hris_model->ambilUser();
-
-        $data['title'] = "Akumulasi Penilaian";
-        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
-            $bulan = $_GET['bulan'];
-            $tahun = $_GET['tahun'];
-            $bulantahun = $bulan . "/" . $tahun;
-        } else {
-            $bulan = date('m');
-            $tahun = date('Y');
-            $bulantahun = $bulan . "/" . $tahun;
+//     $data['title'] = "Akumulasi Penilaian";
+//     if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+//         $bulan = $_GET['bulan'];
+//         $tahun = $_GET['tahun'];
+//         $bulantahun = $bulan . "/" . $tahun;
+//     } else {
+//         $bulan = date('m');
+//         $tahun = date('Y');
+//         $bulantahun = $bulan . "/" . $tahun;
 
 
 
-        }
-        $data['akumulasi'] = $this->db->query("SELECT *
-        FROM performances___penilaian_kuesioner 
-        JOIN data_karyawan ON  performances___penilaian_kuesioner.nik_menilai = data_karyawan.nik
-        JOIN data_karyawan ON  performances___penilaian_kinerja.nik = data_karyawan.nik
-        WHERE performances___penilaian_kuesioner.tanggal AND performances___penilaian_kinerja.tanggal='$bulantahun'")->result_array();
+//     }
+//     $data['akumulasi'] = $this->db->query("SELECT *
+//     FROM performances___penilaian_kuesioner 
+//     JOIN data_karyawan ON  performances___penilaian_kuesioner.nik_menilai = data_karyawan.nik
+//     JOIN data_karyawan ON  performances___penilaian_kinerja.nik = data_karyawan.nik
+//     WHERE performances___penilaian_kuesioner.tanggal AND performances___penilaian_kinerja.tanggal='$bulantahun'")->result_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('performances/detailakumulasi', $data);
-        $this->load->view('templates/footer');
-    }
+//     $this->load->view('templates/header', $data);
+//     $this->load->view('templates/navbar', $data);
+//     $this->load->view('templates/sidebar', $data);
+//     $this->load->view('performances/detailakumulasi', $data);
+//     $this->load->view('templates/footer');
+// }
 
 }

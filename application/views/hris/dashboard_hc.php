@@ -135,134 +135,150 @@
             </div>
         </div>
     </div>
-
     <div class="card">
         <div class="card-body">
 
-            <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
-                <thead style="background-color: #cc0000;">
-                    <tr style="color: #ffffff;">
-                        <th rowspan="2" style="vertical-align: middle;">Nama Karyawan</th>
-                        <th colspan="7">Nilai</th>
-                    </tr>
-                    <tr style="color: #ffffff;">
-                        <th>Januari</th>
-                        <th>Februari</th>
-                        <th>Maret</th>
-                        <th>April</th>
-                        <th>Mei</th>
-                        <th>Juni</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr style="color: #ffffff;">
-                        <th>Karyawan A</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                        <th>B</th>
-                        <th>C</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                    </tr>
-                </thead>
-            </table>
+            <!-- validation crud -->
+            <?php if (validation_errors()): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead style="background-color: #8b0000; text-align: center ;">
+                            <tr style="color: #ffffff;">
+                                <th rowspan="2" style="vertical-align: middle;">Nama Karyawan</th>
+                                <th colspan="7">Nilai</th>
+                            </tr>
+                            <tr style="color: #ffffff;">
+                                <th>Januari</th>
+                                <th>Februari</th>
+                                <th>Maret</th>
+                                <th>April</th>
+                                <th>Mei</th>
+                                <th>Juni</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr style="color: #ffffff;">
+                                <th>Karyawan A</th>
+                                <th>SB</th>
+                                <th>SB</th>
+                                <th>B</th>
+                                <th>C</th>
+                                <th>SB</th>
+                                <th>SB</th>
+                                <th>SB</th>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+
+
+
             <!-- /.card-body -->
         </div>
-    </div>
-    <!-- /.card-body -->
-</div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script>
-    const a = <?= $laporan_gk[0]['Sudah'] ?>;
-    const b = <?= $laporan_gk[0]['Belum'] ?>;
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script>
+            const a = <?= $laporan_gk[0]['Sudah'] ?>;
+            const b = <?= $laporan_gk[0]['Belum'] ?>;
 
-    const karyawan = document.getElementById('karyawan');
-    const d_karyawan = {
-        labels: [
-            'Sudah dibayar',
-            'Belum dibayar'
-        ],
-        datasets: [{
-            label: 'Gaji Karyawan',
-            data: [a, b],
-            backgroundColor: [
-                '#28a745',
-                'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-        }]
-    };
+            const karyawan = document.getElementById('karyawan');
+            const d_karyawan = {
+                labels: [
+                    'Sudah dibayar',
+                    'Belum dibayar'
+                ],
+                datasets: [{
+                    label: 'Gaji Karyawan',
+                    data: [a, b],
+                    backgroundColor: [
+                        '#28a745',
+                        'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            };
 
-    new Chart(karyawan, {
-        type: 'pie',
-        data: d_karyawan,
-        options: {
-            legend: {
-                display: true,
-                labels: {
-                    display: false,
-                    fontSize: 10
-                }
-            },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                        if (parseInt(totalData) >= 1000) {
-                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        } else {
-                            return 'Rp ' + totalData;
+            new Chart(karyawan, {
+                type: 'pie',
+                data: d_karyawan,
+                options: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            display: false,
+                            fontSize: 10
+                        }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                                if (parseInt(totalData) >= 1000) {
+                                    return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                } else {
+                                    return 'Rp ' + totalData;
+                                }
+                            }
                         }
                     }
                 }
-            }
-        }
-    });
+            });
 
-    const c = <?= $laporan_rm[0]['Sudah'] ?>;
-    const d = <?= $laporan_rm[0]['Belum'] ?>;
-    const mitra = document.getElementById('mitra');
-    const d_mitra = {
-        labels: [
-            'Sudah dibayar',
-            'Belum dibayar'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [c, d],
-            backgroundColor: [
-                '#28a745',
-                'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-        }]
-    };
+            const c = <?= $laporan_rm[0]['Sudah'] ?>;
+            const d = <?= $laporan_rm[0]['Belum'] ?>;
+            const mitra = document.getElementById('mitra');
+            const d_mitra = {
+                labels: [
+                    'Sudah dibayar',
+                    'Belum dibayar'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [c, d],
+                    backgroundColor: [
+                        '#28a745',
+                        'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            };
 
-    new Chart(mitra, {
-        type: 'pie',
-        data: d_mitra,
-        options: {
-            legend: {
-                display: true,
-                labels: {
-                    display: false,
-                    fontSize: 10
-                }
-            },
-            tooltips: {
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                        if (parseInt(totalData) >= 1000) {
-                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        } else {
-                            return 'Rp ' + totalData;
+            new Chart(mitra, {
+                type: 'pie',
+                data: d_mitra,
+                options: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            display: false,
+                            fontSize: 10
+                        }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                                if (parseInt(totalData) >= 1000) {
+                                    return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                } else {
+                                    return 'Rp ' + totalData;
+                                }
+                            }
                         }
                     }
                 }
-            }
-        }
-    });
-</script>
+            });
+        </script>

@@ -16,7 +16,7 @@
                         <thead style="background-color: #8b0000; color: white;">
                             <tr style="text-align: center;">
                                 <th>No</th>
-                                <th>Menilai</th>
+                                <th>NIk & Nama Karyawan</th>
                                 <th>Nilai Kinerja</th>
                                 <th>Nilai Kuesioner</th>
                                 <th>Total</th>
@@ -26,7 +26,7 @@
                         <tbody>
                             <?php $no = 1;
                             ?>
-                            <?php foreach ($detail as $d):
+                            <?php foreach ($detailkuesioner1 as $d):
                                 $total_nilai = ($d['nilai_kinerja'] + $d['nilai_kuesioner']) / 2;
                                 ?>
                                 <tr>
@@ -70,7 +70,7 @@
                         </tbody>
                     </table>
 
-                    <a class="badge" href=<?= base_url("performances/akumulasi") ?> type="button"
+                    <a class="badge" href=<?= base_url("performances/penilaiankuesioner") ?> type="button"
                         style="background-color: #d4d4d4" ;><i class="fas fa-reply"></i>
                         Kembali
                     </a>

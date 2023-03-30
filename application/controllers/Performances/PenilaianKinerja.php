@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class PenilaianKinerja extends CI_Controller
 {
@@ -153,6 +156,58 @@ class PenilaianKinerja extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('performances/cetak_kinerja', $data);
     }
+    function import()
+    {
+        $data['title'] = "Penilaian Kinerja";
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Hris_model->ambilUser();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/penilaiankinerja', $data);
+        $this->load->view('templates/footer');
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['upload_path'] = './dist/import';
+        $config['file_name'] = 'doc' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('import')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('./dist/import/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+
+                    if ($numRow > 1) {
+                        $data = array(
+                            'nik' => htmlspecialchars($row->getCellAtIndex(1)),
+                            'tanggal' => htmlspecialchars($row->getCellAtIndex(2)),
+                            'total_kerja' => htmlspecialchars($row->getCellAtIndex(3)),
+                            'done_kerja' => htmlspecialchars($row->getCellAtIndex(4)),
+                            'nilai' => $row->getCellAtIndex(5),
+                            'kategorisasi' => htmlspecialchars($row->getCellAtIndex(6)),
+                        );
+                        $this->PenilaianKinerja_model->import_data($data);
+                    }
+                    $numRow++;
+                }
+                $reader->close();
+                unlink('./dist/import/' . $file['file_name']);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diimport!</div>');
+                redirect('performances/penilaiankinerja');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+            redirect('master/performances/penilaianknerja');
+        }
+        ;
+    }
 
     public function ajax_category()
     {
@@ -166,5 +221,6 @@ class PenilaianKinerja extends CI_Controller
                     WHERE data_karyawan.nik = '$nik'");
         print_r(json_encode($category->row()));
     }
+
 
 }

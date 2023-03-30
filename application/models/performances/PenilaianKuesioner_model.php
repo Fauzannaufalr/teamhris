@@ -32,7 +32,7 @@ class PenilaianKuesioner_model extends CI_Model
         $this->db->delete('performances___penilaian_kuesioner');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
-    public function cetakKuesioner($bulantahun)
+    public function cetakKuesioner()
     {
         $query = $this->db->query("SELECT 
         pk.id_penilaian_kuesioner,

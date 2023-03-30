@@ -49,8 +49,7 @@
         <thead>
             <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">NIK</th>
-                <th class="text-center">Nama Karyawan</th>
+                <th class="text-center">NIK & Nama Karyawan</th>
                 <th class="text-center">Total Kerja</th>
                 <th class="text-center">Done Kerja</th>
                 <th class="text-center">Nilai</th>

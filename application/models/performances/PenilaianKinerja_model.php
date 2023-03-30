@@ -92,7 +92,15 @@ class PenilaianKinerja_model extends CI_Model
         $this->db->select('pk.*, dk.nama_karyawan, dk.nik, dk.email');
         $this->db->from('performances___penilaian_kinerja pk');
         $this->db->join('data_karyawan dk', 'dk.nik = pk.nik');
-        $this->db->where('tanggal', $bulantahun);
         return $this->db->get()->result_array();
+    }
+
+
+    public function import_data($data)
+    {
+        $jumlah = count($data);
+        if ($jumlah > 0) {
+            $this->db->insert('performances___penilaian_kinerja', $data);
+        }
     }
 }

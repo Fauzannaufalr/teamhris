@@ -30,6 +30,7 @@ class PenilaianKuesioner extends CI_Controller
             $tahun = date('Y');
             $bulantahun = $bulan . "/" . $tahun;
         }
+
         $data['penilaiankuesioner'] = $this->db->query("SELECT 
         pk.id_penilaian_kuesioner,
         pk.nik_penilai,
@@ -47,9 +48,6 @@ class PenilaianKuesioner extends CI_Controller
 
 
 
-
-
-
         // $data['penilaiankuesioner'] = $this->PenilaianKuesioner_model->tampilPenilaianKuesioner();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
@@ -63,7 +61,34 @@ class PenilaianKuesioner extends CI_Controller
         $this->load->view('performances/penilaiankuesioner', $data);
         $this->load->view('templates/footer');
     }
-    public function detail($id)
+    // public function detail1($id)
+    // {
+    //     $data['title'] = 'Detail Kuesioner';
+    //     $data['detailkuesioner'] = $this->db->query("SELECT
+    //     dpk.nik_penilai,
+    //     dpk.nik_menilai,
+    //     dpk.tanggal,
+    //     dpk.nilai
+    //     (
+    //         SELECT COUNT(dpk.total_nilai) FROM performances___penilaian_kuesioner pk 
+    //             WHERE dpk1.nik_menilai = dk.nik
+    //     ) AS menilai_orang
+    //     INNER JOIN data_karyawan dk ON dpk.nik_menilai = dk.nik
+    //      WHERE dpk.id_penilaian_kuesioner = '$id'
+    //     ")->result_array();
+    //     // printr($data['detailkuesioner']);
+    //     $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+    //     $data['user'] = $this->Hris_model->ambilUser();
+    //     $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/navbar', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('performances/detailkuesioner1', $data);
+    //     $this->load->view('templates/footer');
+    // }
+
+    public function detail2($id)
     {
         $data['title'] = 'Detail Kuesioner';
         $data['saran'] = $this->db->query("SELECT pk.saran FROM performances___penilaian_kuesioner pk

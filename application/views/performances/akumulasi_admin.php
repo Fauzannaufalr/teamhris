@@ -56,7 +56,7 @@
 
                     <?php if (count($akumulasi) > 0) { ?>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('performances/Akumulasi/cetakakumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/Akumulasi/cetakaakumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Laporan</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
@@ -99,15 +99,17 @@
                     <thead style="text-align: center;  background-color:#8b0000; color: white;">
                         <tr>
                             <th>No</th>
-                            <th>Penilai</th>
-                            <th>Menilai</th>
-                            <th>Aksi</th>
-
+                            <th>NIK & Nama Karyawan</th>
+                            <th>Nilai Kinerja</th>
+                            <th>Nilai Kuesioner</th>
+                            <th>Nilai</th>
+                            <th>Kategorisasi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1 ?>
-                        <?php foreach ($akumulasi as $ak): ?>
+                        <?php foreach ($akumulasi as $ak):
+                            $nilaiakumulasi = ($ak['nilai'] + $ak['total_nilai']) / 2; ?>
                             <tr style="text-align: center;">
                                 <th>
                                     <?= $no++; ?>
@@ -118,14 +120,16 @@
                                         $ak['nama_karyawan']; ?>
                                 </td>
                                 <td>
-                                    <?= $ak['menilai_orang']; ?> Orang
-
+                                    <?= $ak['nilai']; ?>
                                 </td>
                                 <td>
-                                    <a class="badge" href="<?= base_url() ?>performances/akumulasi/detail/<?= $ak['nik'] ?>"
-                                        type="button" style="background-color: #d4d4d4" ;><i class="fas fa-share"></i>
-                                        Detail
-                                    </a>
+                                    <?= $ak['total_nilai']; ?>
+                                </td>
+                                <td>
+                                    <?= $nilaiakumulasi ?>
+                                </td>
+                                <td>
+                                    <?= $ak['kategorisasi']; ?>
                                 </td>
 
                             </tr>

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Aspek Penilaian</h3>
                 </div>
                 <div class="card-body">
@@ -16,7 +16,7 @@
 
         <div class="col-lg-6">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Persentase Penilaian</h3>
                 </div>
                 <div class="card-body">
@@ -28,14 +28,14 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header" style="color: white; background-color: #cc0000;">
+        <div class="card-header" style="color: white; background-color: #8b0000;">
             <h4> Filter Data Akumulasi Penilaian</h4>
         </div>
 
         <form class="form-horizontal">
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="bulan" class="col-form-label">Bulan: </label>
+                    <label for="bulan" class="col-form-label">Periode: </label>
                     <div class="col-md-2">
                         <select class="form-control select2" name="periode">
                             <option value="">-- Pilih Periode--</option>
@@ -44,6 +44,7 @@
 
                         </select>
                     </div>
+
                     <label for="tahun" class="col-form-label">Tahun: </label>
                     <div class="col-md-2">
                         <select class="form-control" name="tahun">
@@ -85,7 +86,7 @@
             <div class="card">
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
-                        <thead style="background-color: #cc0000; text-align: center ;">
+                        <thead style="background-color: #8b0000; text-align: center ;">
                             <tr style="color: #ffffff;">
                                 <th>No</th>
                                 <th>Nama Karyawan</th>
@@ -107,11 +108,11 @@
             const karyawan = document.getElementById('karyawan');
             const d_karyawan = {
                 labels: [
-                    'Sangat Baik',
-                    'Baik',
-                    'Cukup ',
-                    'Kurang',
-                    'Sangat Kurang'
+                    'Sangat Baik : 80 - 100',
+                    'Baik : 60 - 79',
+                    'Cukup: 40 - 59',
+                    'Kurang : 20 - 39',
+                    'Sangat Kurang : 0 - 19'
                 ],
                 datasets: [{
                     label: 'My First Dataset',

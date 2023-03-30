@@ -6,7 +6,11 @@
             <!-- general form elements -->
             <div class="card">
                 <?= $this->session->flashdata('message'); ?>
+<<<<<<< Updated upstream
                 <div class="card-header" style="background-color: #cc0000;">
+=======
+                <div class="card-header" style="background-color: #8b0000;">
+>>>>>>> Stashed changes
                     <h3 class="card-title" style="color: #ffffff;">Ubah Profile</h3>
                 </div>
                 <!-- /.card-header -->
@@ -49,8 +53,14 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer" style="text-align: right;">
+<<<<<<< Updated upstream
                         <button type="submit" class="btn btn-danger" style="background-color: #cc0000;">Simpan</button>
                         <a href="<?= base_url('hris/profile'); ?>" class="btn" style="background-color: #d4d4d4;">Kembali</a>
+=======
+                        <button type="submit" class="btn btn-danger" style="background-color: #8b0000;">Simpan</button>
+                        <a href="<?= base_url('hris/profile'); ?>" class="btn"
+                            style="background-color: #d4d4d4;">Kembali</a>
+>>>>>>> Stashed changes
                     </div>
                 </form>
             </div>
