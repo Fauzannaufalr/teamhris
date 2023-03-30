@@ -24,23 +24,23 @@
                             <h1><?= $dp['nama_posisi']  ?></h1>
                         <?php endif ?>
                     <?php endforeach ?>
-                    <a type="button" style="margin-left:50px; background-color: #cc0000" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv">
+                    <a type="button" style="margin-left:50px; background-color: #d63638; font-family:Arial, Helvetica, sans-serif;" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv">
                         Daftar Sekarang
                     </a>
                 </div>
 
             </div>
         </div>
-    </section>
+    </section><br>
 
     <div class="job">
-        <h3>DESKRIPSI PEKERJAAN</h3>
+        <h3>Deskripsi Pekerjaan</h3>
         <ul>
             <?php foreach ($array_deskripsi as $deskripsi) : ?>
                 <li><?= $deskripsi ?></li>
             <?php endforeach; ?>
         </ul>
-        <h3>KUALIFIKASI</h3>
+        <h3>Kualifikasi</h3>
         <ul>
             <?php foreach ($array_kualifikasi as $kualifikasi) : ?>
                 <li><?= $kualifikasi ?></li>

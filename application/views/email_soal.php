@@ -7,7 +7,7 @@
                         <h4>Tes Soal Recruitment</h4>
                         <p>Kepada Yth...</p>
                         <br>
-                        <p>Kami dari PT. SAHAWARE TEKNOLOGI INDONESIA mengerjakan soal recruitment </p>
+                        <p>Kami dari PT. SAHAWARE TEKNOLOGI INDONESIA mengundang Anda untuk mengikuti proses Tes Soal Recruitment, informasi sebagai berikut : </p>
                         <h4>Posisi</h4>
                         <?php foreach ($dataposisi as $dp) : ?>
                             <?php if ($dp['id_posisi'] == $id_posisi) : ?>
@@ -16,10 +16,10 @@
                         <?php endforeach; ?>
                         <h4>Link Soal PG</h4>
                         <p><?php echo $pg; ?></p>
-                        <h4>Link Soal Essay</h4>
-                        <p><?php echo $essay; ?></p>
                         <h4>Link Upload Hasil</h4>
                         <p><?php echo $upload; ?></p>
+                        <h4>Soal Essay</h4>
+                        <p><?php echo $essay; ?></p>
                     </td>
 
                 </tr>

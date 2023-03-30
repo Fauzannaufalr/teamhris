@@ -86,7 +86,7 @@ class Pelamar extends CI_Controller
             die;
         }
     }
-    private function _kirimSoal()
+    private function _kirimSoal($id)
     {
         $file_data = $this->upload_file();
         if (is_array($file_data)) {
@@ -126,12 +126,8 @@ class Pelamar extends CI_Controller
 
             if ($this->email->send()) {
                 if (delete_files($file_data['file_path'])) {
+                    $this->Pelamar_model->statusinterview($id);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal berhasil dikirim!</div>');
-                    redirect('recruitment/pelamar');
-                }
-            } else {
-                if (delete_files($file_data['file_path'])) {
-                    $this->session->set_flashdata('message', 'There is an error in email send');
                     redirect('recruitment/pelamar');
                 }
             }
@@ -140,7 +136,7 @@ class Pelamar extends CI_Controller
             redirect('recruitment/pelamar');
         }
     }
-    private function _kirimnilai()
+    private function _kirimnilai($id)
     {
         $file_data = $this->upload_berkas();
         if (is_array($file_data)) {
@@ -181,12 +177,8 @@ class Pelamar extends CI_Controller
 
             if ($this->email->send()) {
                 if (delete_files($file_data['file_path'])) {
+                    $this->Pelamar_model->statussoal($id);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal berhasil dikirim!</div>');
-                    redirect('recruitment/pelamar');
-                }
-            } else {
-                if (delete_files($file_data['file_path'])) {
-                    $this->session->set_flashdata('message', 'There is an error in email send');
                     redirect('recruitment/pelamar');
                 }
             }
@@ -249,8 +241,8 @@ class Pelamar extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $email = $this->input->post('email');
-            $this->_kirimSoal();
-            $this->Pelamar_model->statusinterview($id);
+            $this->_kirimSoal($id);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
             redirect('recruitment/pelamar');
         }
@@ -273,7 +265,7 @@ class Pelamar extends CI_Controller
         } else {
             $email = $this->input->post('email');
             $this->_kirimnilai($id);
-            $this->Pelamar_model->statussoal($id);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
             redirect('recruitment/pelamar');
         }

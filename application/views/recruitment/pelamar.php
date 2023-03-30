@@ -49,7 +49,7 @@
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
                                     <button class="badge badge-primary" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Beri Nilai</button>
-
+                                <?php elseif ($ds['status'] == 'Diterima') : ?>
                                 <?php endif; ?>
                                 <button class="badge badge-danger" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar']; ?>">Hapus</button>
                             </td>
@@ -201,7 +201,7 @@
                             <input type="text" class="form-control" id="pg" name="pg">
                         </div>
                         <div class="form-group">
-                            <label for="essay">Link Soal Essay</label>
+                            <label for="essay">Soal Essay</label>
                             <input type="file" class="form-control" id="essay" name="essay">
                         </div>
                         <div class="form-group">
@@ -269,12 +269,12 @@
                                         <input type="text"  name="pg" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="essay">Beri Nilai Essay:</label>
+                                        <label for="essay">Beri Nilai :</label>
                                         <input type="text"  name="essay" class="form-control">
                                     </div>
         
                                     <div class="form-group">
-                                        <label for="berkas">Upload Berkas:</label>
+                                        <label for="berkas">Upload Berkas (Ditolak):</label>
                                         <input type="file" id="berkas" name="berkas" class="form-control">
                                     </div>`;
 
@@ -285,12 +285,17 @@
                                     const node = document.createElement('div');
                                     node.innerHTML = `
                                     <div class="form-group">
-                                        <label for="nilai">Beri Nilai:</label>
+                                        <label for="nilai">Beri Nilai Pg:</label>
                                         <input type="text" id="nilai" name="nilai" class="form-control">
                                     </div>
-        
+                                    
                                     <div class="form-group">
-                                        <label for="berkas">Upload Berkas:</label>
+                                        <label for="nilai">Beri Nilai :</label>
+                                        <input type="text" id="nilai" name="nilai" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="berkas">Upload Berkas (Diterima):</label>
                                         <input type="file" id="berkas" name="berkas" class="form-control">
                                     </div>
 
