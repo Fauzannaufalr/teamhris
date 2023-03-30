@@ -14,6 +14,7 @@
                         <th>Tj. Kinerja</th>
                         <th>Tj. Fungsional</th>
                         <th>Tj. Jabatan</th>
+                        <th>Tj. Bpjs Kesehatan</th>
                         <th>Potongan</th>
                         <th>Bonus</th>
                         <th>Aksi</th>
@@ -57,6 +58,10 @@
                     <div class="form-group">
                         <label for="t_jabatan">Tunjangan Jabatan</label>
                         <input type="text" class="form-control" id="t_jabatan" name="t_jabatan" placeholder="Masukan tunjangan jabatan">
+                    </div>
+                    <div class="form-group">
+                        <label for="t_bpjs">Tunjangan BPJS Kesehatan</label>
+                        <input type="text" class="form-control" id="t_bpjs" name="t_bpjs" placeholder="Masukan tunjangan bpjs">
                     </div>
                     <div class="form-group">
                         <label for="potongan">Potongan</label>
@@ -116,6 +121,10 @@
                             <input type="text" class="form-control" id="t_jabatan_ubah<?= $pg['id_perhitungan']; ?>" name="t_jabatan" value="Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?>">
                         </div>
                         <div class="form-group">
+                            <label for="t_bpjs">Tunjangan BPJS Kesehatan</label>
+                            <input type="text" class="form-control" id="t_bpjs_ubah<?= $pg['id_perhitungan']; ?>" name="t_bpjs" value="Rp <?= number_format($pg['t_bpjs'], 0, ',', '.'); ?>">
+                        </div>
+                        <div class="form-group">
                             <label for="potongan">Potongan</label>
                             <input type="text" class="form-control" id="potongan_ubah<?= $pg['id_perhitungan']; ?>" name="potongan" value="Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?>">
                         </div>
@@ -146,6 +155,11 @@
         var t_jabatan_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('t_jabatan_ubah<?= $pg['id_perhitungan']; ?>');
         t_jabatan_ubah<?= $pg['id_perhitungan']; ?>.addEventListener('keyup', function(e) {
             t_jabatan_ubah<?= $pg['id_perhitungan']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+
+        var t_bpjs_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('t_bpjs_ubah<?= $pg['id_perhitungan']; ?>');
+        t_bpjs_ubah<?= $pg['id_perhitungan']; ?>.addEventListener('keyup', function(e) {
+            t_bpjs_ubah<?= $pg['id_perhitungan']; ?>.value = formatRupiah(this.value, 'Rp ');
         });
 
         var potongan_ubah<?= $pg['id_perhitungan']; ?> = document.getElementById('potongan_ubah<?= $pg['id_perhitungan']; ?>');
@@ -233,6 +247,11 @@
         t_jabatan.value = formatRupiah(this.value, 'Rp ');
     });
 
+    var t_bpjs = document.getElementById('t_bpjs');
+    t_bpjs.addEventListener('keyup', function(e) {
+        t_bpjs.value = formatRupiah(this.value, 'Rp ');
+    });
+
     var potongan = document.getElementById('potongan');
     potongan.addEventListener('keyup', function(e) {
         potongan.value = formatRupiah(this.value, 'Rp ');
@@ -288,6 +307,9 @@
                 },
                 {
                     data: 'jabatan'
+                },
+                {
+                    data: 'bpjs'
                 },
                 {
                     data: 'potongan'

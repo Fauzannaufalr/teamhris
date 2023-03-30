@@ -106,11 +106,12 @@
                             <th>NIK - Nama Karyawan</th>
                             <th>Posisi</th>
                             <th>Gaji Pokok</th>
-                            <th>BPJS Kesehatan</th>
+                            <!-- <th>BPJS Kesehatan</th> -->
                             <th>Pajak</th>
                             <th>Tj. Kinerja</th>
                             <th>Tj. Fungsional</th>
                             <th>Tj. Jabatan</th>
+                            <th>Tj. BPJS Kesehatan</th>
                             <th>Potongan</th>
                             <th>Bonus</th>
                             <th>Total</th>
@@ -185,8 +186,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <label for="bpjs" class="col-form-label">BPJS Kesehatan</label>
-                                <input type="text" class="form-control" id="bpjs" name="bpjs" disabled value="Rp <?= number_format($pg['bpjs'], 0, ',', '.'); ?>">
+                                <label for="kinerja" class="col-form-label">Tunjangan kinerja</label>
+                                <input type="text" class="form-control" id="kinerja" name="kinerja" disabled value="Rp <?= number_format($pg['t_kinerja'], 0, ',', '.'); ?>">
                             </div>
                             <div class="col-md-6">
                                 <label for="pajak" class="col-form-label">Pajak</label>
@@ -195,8 +196,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <label for="kinerja" class="col-form-label">Tunjangan kinerja</label>
-                                <input type="text" class="form-control" id="kinerja" name="kinerja" disabled value="Rp <?= number_format($pg['t_kinerja'], 0, ',', '.'); ?>">
+                                <label for="nama" class="col-form-label">Tunjangan Jabatan</label>
+                                <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?>">
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Tunjangan Fungsional</label>
@@ -205,8 +206,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <label for="nama" class="col-form-label">Tunjangan Jabatan</label>
-                                <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?>">
+                                <label for="bpjs" class="col-form-label">Tunjangan BPJS Kesehatan</label>
+                                <input type="text" class="form-control" id="bpjs" name="bpjs" disabled value="Rp <?= number_format($pg['t_bpjs'], 0, ',', '.'); ?>">
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Potongan</label>
@@ -223,13 +224,6 @@
                                 <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['total'], 0, ',', '.'); ?>">
                             </div>
                         </div>
-                        <!-- <div class="form-group row">
-                            <label for="nama" class="col-form-label">File</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="slipgaji" name="slipgaji">
-                                <label class=" custom-file-label" for="slipgaji">Choose file</label>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -273,9 +267,6 @@
                     data: 'gaji'
                 },
                 {
-                    data: 'bpjs'
-                },
-                {
                     data: 'pajak'
                 },
                 {
@@ -286,6 +277,9 @@
                 },
                 {
                     data: 'jabatan'
+                },
+                {
+                    data: 'bpjs'
                 },
                 {
                     data: 'potongan'

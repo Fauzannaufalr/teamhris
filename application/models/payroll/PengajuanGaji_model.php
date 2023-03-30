@@ -27,9 +27,9 @@ class PengajuanGaji_model extends CI_Model
         $this->db->delete('payroll___pengajuangaji');
         $this->db->affected_rows();
 
-        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, pb.total as bpjs, pp.id_datapajak as pajak, pg.t_kinerja, pg.t_fungsional, pg.t_jabatan, pg.potongan, pg.bonus');
+        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, pp.id_datapajak as pajak, pg.t_kinerja, pg.t_fungsional, pg.t_jabatan, pg.t_bpjs, pg.potongan, pg.bonus');
         $this->db->from('data_karyawan dk ');
-        $this->db->join('payroll___bpjs pb', 'pb.id_datakaryawan = dk.id_karyawan', 'left');
+        // $this->db->join('payroll___bpjs pb', 'pb.id_datakaryawan = dk.id_karyawan', 'left');
         $this->db->join('payroll___pajak pp', 'pp.id_datakaryawan = dk.id_karyawan', 'left');
         $this->db->join('data_posisi dp', 'dp.id_posisi = dk.id_posisi', 'left');
         $this->db->join('payroll___perhitungan pg', 'pg.id_datakaryawan = dk.id_karyawan', 'left');
@@ -42,14 +42,14 @@ class PengajuanGaji_model extends CI_Model
                 'id_datakaryawan' => $ng['id_karyawan'],
                 'nama_posisi' => $ng['nama_posisi'],
                 'gajipokok' => $ng['gajipokok'],
-                'bpjs' => $ng['bpjs'],
                 'pajak' => $ng['pajak'],
                 't_kinerja' => $ng['t_kinerja'],
                 't_fungsional' => $ng['t_fungsional'],
                 't_jabatan' => $ng['t_jabatan'],
+                't_bpjs' => $ng['t_bpjs'],
                 'potongan' => $ng['potongan'],
                 'bonus' => $ng['bonus'],
-                'total' => $ng['gajipokok'] + $ng['bpjs'] - $ng['pajak'] + $ng['t_kinerja'] + $ng['t_fungsional'] + $ng['t_jabatan'] - $ng['potongan'] + $ng['bonus'],
+                'total' => $ng['gajipokok'] + $ng['t_bpjs'] - $ng['pajak'] + $ng['t_kinerja'] + $ng['t_fungsional'] + $ng['t_jabatan'] - $ng['potongan'] + $ng['bonus'],
                 'status' => 'Belum dibayar'
             ];
             $this->db->insert('payroll___pengajuangaji', $data);
@@ -150,11 +150,12 @@ class PengajuanGaji_model extends CI_Model
                 "nik_nama" => $record->nik . ' - ' . $record->nama_karyawan,
                 "posisi" => $record->nama_posisi,
                 "gaji" => 'Rp ' . number_format($record->gajipokok, 0, ', ', '.'),
-                "bpjs" => 'Rp ' . number_format($record->bpjs, 0, ', ', '.'),
+                // "bpjs" => 'Rp ' . number_format($record->bpjs, 0, ', ', '.'),
                 "pajak" => 'Rp ' . number_format($record->pajak, 0, ', ', '.'),
                 "kinerja" => 'Rp ' . number_format($record->t_kinerja, 0, ', ', '.'),
                 "fungsional" => 'Rp ' . number_format($record->t_fungsional, 0, ', ', '.'),
                 "jabatan" => 'Rp ' . number_format($record->t_jabatan, 0, ', ', '.'),
+                "bpjs" => 'Rp ' . number_format($record->t_bpjs, 0, ', ', '.'),
                 "potongan" => 'Rp ' . number_format($record->potongan, 0, ', ', '.'),
                 "bonus" => 'Rp ' . number_format($record->bonus, 0, ', ', '.'),
                 "total" => 'Rp ' . number_format($record->total, 0, ', ', '.'),

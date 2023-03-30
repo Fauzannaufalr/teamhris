@@ -18,6 +18,7 @@ class Perhitungan_model extends CI_Model
             't_kinerja' => $this->input->post('t_kinerja'),
             't_fungsional' => $this->input->post('t_fungsional'),
             't_jabatan' => $this->input->post('t_jabatan'),
+            't_bpjs' => $this->input->post('t_bpjs'),
             'potongan' => $this->input->post('potongan'),
             'bonus' => $this->input->post('bonus')
         ];
@@ -33,6 +34,7 @@ class Perhitungan_model extends CI_Model
             't_kinerja' => $this->input->post('t_kinerja'),
             't_fungsional' => $this->input->post('t_fungsional'),
             't_jabatan' => $this->input->post('t_jabatan'),
+            't_bpjs' => $this->input->post('t_bpjs'),
             'potongan' => $this->input->post('potongan'),
             'bonus' => $this->input->post('bonus')
         ];
@@ -114,6 +116,7 @@ class Perhitungan_model extends CI_Model
                 "kinerja" => 'Rp ' . number_format($record->t_kinerja, 0, ', ', '.'),
                 "fungsional" => 'Rp ' . number_format($record->t_fungsional, 0, ', ', '.'),
                 "jabatan" => 'Rp ' . number_format($record->t_jabatan, 0, ', ', '.'),
+                "bpjs" => 'Rp ' . number_format($record->t_bpjs, 0, ', ', '.'),
                 "potongan" => 'Rp ' . number_format($record->potongan, 0, ', ', '.'),
                 "bonus" => 'Rp ' . number_format($record->bonus, 0, ', ', '.'),
                 "aksi" => '<button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahPerhitungan' . $record->id_perhitungan . '"><i class="fas fa-edit"></i> Edit</button>

@@ -162,6 +162,7 @@ class DataKaryawan extends CI_Controller
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
+        $data['kelas'] = $this->m_data->get_data('tb_kelas')->result_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -178,34 +179,19 @@ class DataKaryawan extends CI_Controller
             $file = $this->upload->data();
             $reader = ReaderEntityFactory::createXLSXReader();
 
-            $reader->open('dist/import/' . $file['file_name']);
+            $reader->open('./dist/import/' . $file['file_name']);
             foreach ($reader->getSheetIterator() as $sheet) {
                 $numRow = 1;
                 foreach ($sheet->getRowIterator() as $row) {
-                    switch ($row->getCellAtIndex(3)) {
-                        case 'QA':
-                            $posisi = '7';
-                            break;
-                        case 'Front End Developer':
-                            $posisi = '5';
-                            break;
-                        case 'Back End Developer':
-                            $posisi = '6';
-                            break;
-                        case 'Fullstack Developer':
-                            $posisi = '9';
-                            break;
-                        case 'QC':
-                            $posisi = '10';
-                            break;
+                    foreach ($data['dataposisi'] as $dp) {
+                        if ($dp['nama_posisi'] == $row->getCellAtIndex(3)) {
+                            $posisi = $dp['id_posisi'];
+                        }
                     }
-                    switch ($row->getCellAtIndex(4)) {
-                        case 'Senior':
-                            $kelas = '1';
-                            break;
-                        case 'Junior':
-                            $kelas = '2';
-                            break;
+                    foreach ($data['kelas'] as $dk) {
+                        if ($dk['nama_kelas'] == $row->getCellAtIndex(4)) {
+                            $kelas = $dk['id_kelas'];
+                        }
                     }
                     if ($numRow > 1) {
                         $data = array(
@@ -228,7 +214,7 @@ class DataKaryawan extends CI_Controller
                     $numRow++;
                 }
                 $reader->close();
-                unlink('dist/import/' . $file['file_name']);
+                unlink('./dist/import/' . $file['file_name']);
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diimport!</div>');
                 redirect('master/datakaryawan');
             }
