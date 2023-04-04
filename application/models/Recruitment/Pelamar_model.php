@@ -35,6 +35,15 @@ class Pelamar_model extends CI_Model
         $this->db->where('id_pelamar', $id);
         $this->db->update('recruitment___pelamar', $data);
     }
+    public function statushasilinterview($id)
+    {
+        $data = [
+            'status' => 'lulus interview',
+        ];
+
+        $this->db->where('id_pelamar', $id);
+        $this->db->update('recruitment___pelamar', $data);
+    }
     public function statusinterview($id)
     {
         $data = [
@@ -47,10 +56,24 @@ class Pelamar_model extends CI_Model
     public function statussoal($id)
     {
         $data = [
-            'status' => 'Diterima   ',
+            'status' => 'Diterima',
         ];
 
         $this->db->where('id_pelamar', $id);
+        $this->db->update('recruitment___pelamar', $data);
+    }
+
+    public function tambah_hasil_interview($id_pelamar, $nama_file)
+    {
+        $data = array(
+            'hasil_interview' => $nama_file
+        );
+        $this->db->where('id_pelamar', $id_pelamar);
+        $this->db->update('recruitment___pelamar', $data);
+    }
+    public function update_data($where, $data)
+    {
+        $this->db->where($where);
         $this->db->update('recruitment___pelamar', $data);
     }
 }

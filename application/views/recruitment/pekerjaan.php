@@ -126,7 +126,7 @@
                 <form action="<?= base_url('recruitment/pekerjaan/ubah') ?>" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="id_pekerjaan" value="<?= $it['id_pekerjaan']; ?>">
-                        <div class=" form-group">
+                        <div class="form-group">
                             <label>Posisi</label>
                             <select class="form-control" name="posisi">
                                 <option value="">-- Pilih Posisi --</option>
@@ -137,16 +137,15 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi_pekerjaan">Deskripsi Pekerjaan</label>
-                            <textarea class="form-control" name="deskripsi_pekerjaan"></textarea>
+                            <textarea class="form-control" name="deskripsi_pekerjaan"><?= $it['deskripsi_pekerjaan']; ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kualifikasi">Kualifikasi</label>
-                            <textarea class="form-control" name="kualifikasi"></textarea>
-
+                            <textarea class="form-control" name="kualifikasi"><?= $it['kualifikasi']; ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="tanggal_berakhir">Tanggal Berakhir</label>
-                            <input type="text" class="form-control" id="tanggal_berakhir" name="tanggal_berakhir" value="<?= $it['tanggal_berakhir']; ?>">
+                            <input type="date" class="form-control" id="tanggal_berakhir" name="tanggal_berakhir" value="<?= $it['tanggal_berakhir']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto</label>
@@ -163,6 +162,7 @@
         </div>
     </div>
 <?php endforeach; ?>
+
 
 
 <!-- Modal Hapus -->

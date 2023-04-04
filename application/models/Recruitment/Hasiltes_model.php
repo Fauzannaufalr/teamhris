@@ -26,13 +26,13 @@ class Hasiltes_model extends CI_Model
         $query = $this->db->get_where('recruitment___hasiltes', array('hasil_pengerjaan' => $file));
         return $query->row_array();
     }
-    public function statuspelamar($id)
-    {
-        $data = [
-            'status' => 'beri nilai'
-        ];
 
-        $this->db->where('id_hasiltes', $id);
-        $this->db->update('recruitment___hasiltes', $data);
+    public function tampilhasiltes()
+    {
+        // return $this->db->get('data_karyawan')->result_array();
+        $this->db->select('*');
+        $this->db->from('recruitment___hasiltes');
+        $this->db->where('status', 'siap dinilai');
+        return  $this->db->get()->result_array();
     }
 }

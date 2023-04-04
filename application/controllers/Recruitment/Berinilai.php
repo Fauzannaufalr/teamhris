@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Hasiltes extends CI_Controller
+class Berinilai extends CI_Controller
 {
     public function __construct()
     {
@@ -10,26 +10,17 @@ class Hasiltes extends CI_Controller
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
         $this->load->helper(array('url', 'download'));
-
-        if (!$this->session->userdata('nik')) {
-            redirect('auth');
-        }
     }
 
     public function index()
     {
         // printr($_SESSION);
-        $data['title'] = "Hasil Tes";
-        $data['hasiltes'] = $this->Hasiltes_model->getAllHasiltes();
+        $data['title'] = "Beri Nilai";
+        $data['berinilai'] = $this->Hasiltes_model->tampilhasiltes();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('recruitment/hasiltes', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('recruitment/berinilai', $data);
     }
 
 
@@ -43,7 +34,7 @@ class Hasiltes extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/Berinilai');
+        redirect('recruitment/berinilai');
     }
 
     public function download_file($filename)
@@ -60,15 +51,17 @@ class Hasiltes extends CI_Controller
         readfile($file_path);
     }
 
-    public function siapnilai($id)
+    public function sudahnilai($id)
     {
         $data = [
-            'status' => 'siap dinilai'
+            'status' => 'sudah dinilai ',
+            'nilai_pg' => htmlspecialchars($this->input->post('hasil_link')),
+            'nilai_tes' => htmlspecialchars($this->input->post('hasil_file')),
         ];
 
         $this->db->where('id_hasiltes', $id);
         $this->db->update('recruitment___hasiltes', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> siap dinilai</div>');
-        redirect('recruitment/hasiltes');
+        redirect('recruitment/berinilai');
     }
 }

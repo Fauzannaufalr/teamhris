@@ -37,7 +37,9 @@ class Tampilan extends CI_Controller
                 'file_cv' => $filename,
                 'email' => $this->input->post('email'),
                 'status' => 'pelamar',
-                'id_pekerjaan' => $this->input->post('id_posisi')
+                'id_pekerjaan' => $this->input->post('id_posisi'),
+                'nama' => $this->input->post('nama'),
+                'telepon' => $this->input->post('telepon'),
             ];
 
             $this->db->insert('recruitment___pelamar', $data);

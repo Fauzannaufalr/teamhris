@@ -9,6 +9,7 @@
     <!--<title>Registration Form in HTML CSS</title>-->
     <!---Custom CSS File--->
     <link rel="stylesheet" href="<?= base_url() ?>dist/css/styleupload.css" type="text/css" />
+    <title>Upload Hasil Tes</title>
 </head>
 
 <body>
@@ -16,6 +17,11 @@
     <section class="container">
         <header>Upload Hasil Tes</header>
         <form action="<?= base_url('uploadtes/upload_hasiltes') ?>" method="POST" enctype="multipart/form-data" class="form">
+            <div class="input-box">
+                <label>Nama</label>
+                <input type="text" placeholder="Masukan Nama Anda" name="nama" required />
+            </div>
+
             <div class="input-box">
                 <label>Posisi</label>
                 <select class="form-control" id="posisi" name="posisi">
@@ -26,16 +32,12 @@
                 </select>
             </div>
             <div class="input-box">
-                <label>Email</label>
-                <input type="text" placeholder="Masukan Email Anda" name="email" required />
+                <label for="uploadlink">Upload Hasil Tes(LINK)</label>
+                <input type="text" class="form-control" id="uploadlink" name="uploadlink">
             </div>
             <div class="input-box">
                 <label for="uploadfile">Upload Hasil Tes(FILE)</label>
                 <input type="file" class="form-control" id="uploadfile" name="uploadfile">
-            </div>
-            <div class="input-box">
-                <label for="uploadlink">Upload Hasil Tes(LINK)</label>
-                <input type="text" class="form-control" id="uploadlink" name="uploadlink">
             </div>
             <button>Submit</button>
         </form>

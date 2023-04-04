@@ -17,11 +17,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Nama</th>
                         <th>Posisi</th>
                         <th>Email</th>
                         <th>File CV</th>
-                        <th>Nilai PG</th>
-                        <th>Nilai Tes</th>
+                        <th>Nomor Telepon</th>
+                        <th>Hasil Interview</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -31,6 +32,7 @@
                     <?php foreach ($pelamar as $ds) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
+                            <td><?= $ds['nama']; ?></td>
                             <?php foreach ($dataposisi as $dp) : ?>
                                 <?php if ($dp['id_posisi'] == $ds['id_pekerjaan']) : ?>
                                     <td><?= $dp['nama_posisi']; ?></td>
@@ -38,13 +40,15 @@
                             <?php endforeach; ?>
                             <td><?= $ds['email']; ?></td>
                             <td><a href="<?php echo base_url('recruitment/pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
-                            <td><?= $ds['pg']  ?></td>
-                            <td><?= $ds['essay']  ?></td>
+                            <td><?= $ds['telepon']  ?></td>
+                            <td><?= $ds['hasil_interview']  ?></td>
                             <td><?= $ds['status']; ?></td>
                             <td>
                                 <?php if ($ds['status'] == 'pelamar') : ?>
                                     <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                                 <?php elseif ($ds['status'] == 'Proses Interview') : ?>
+                                    <button class="badge badge-warning" data-toggle="modal" data-target="#hasilModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i>Hasil Interiview</button>
+                                <?php elseif ($ds['status'] == 'lulus interview') : ?>
                                     <button class="badge badge-secondary" data-toggle="modal" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Lihat Jadwal</button>
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
@@ -326,3 +330,64 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<!-- Modal hasil interview -->
+<?php foreach ($pelamar as $ds) : ?>
+    <div class="modal fade" id="hasilModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="hasilModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hasilModalLabel">Hasil Interview</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('recruitment/pelamar/tambah_hasil_interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <input type="hidden" name="id" id="email" value="<?= $ds['id_pelamar']; ?>">
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select id="status<?= $ds['id_pelamar']; ?>" name="status<?= $ds['id_pelamar']; ?>" class="form-control" onchange="toggleForm('form<?= $ds['id_pelamar']; ?>', this.value)">
+                                <option value="Tidak Lulus">Tidak Lulus</option>
+                                <option value="Lulus" selected>Lulus</option>
+                            </select>
+                        </div>
+                        <div id="form<?= $ds['id_pelamar']; ?>"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-danger">Kirim</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<script>
+    function toggleForm(id, status) {
+        var form = document.getElementById(id);
+        if (status == 'Lulus') {
+            form.innerHTML = `
+      <div class="form-group">
+        <label for="hasil_interview">Upload file penerimaan:</label>
+        <input type="file" name="hasil_interview" class="form-control">
+      </div>
+    `;
+        } else if (status == 'Tidak Lulus') {
+            form.innerHTML = `
+      <div class="form-group">
+        <label for="alasan_penolakan">Alasan penolakan:</label>
+        <input type="file" name="hasil_interview" class="form-control">
+      </div>
+    `;
+        }
+    }
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>

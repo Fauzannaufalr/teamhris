@@ -54,8 +54,8 @@ class Pelamar extends CI_Controller
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'belajarcoding78@gmail.com',
-            'smtp_pass' => 'mxaghqdhdmsbcjmz',
+            'smtp_user' => 'hristeam13@gmail.com',
+            'smtp_pass' => 'riztsicgznvyhudn',
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
@@ -136,7 +136,7 @@ class Pelamar extends CI_Controller
             redirect('recruitment/pelamar');
         }
     }
-    private function _kirimnilai($id)
+    public function _kirimnilai($id)
     {
         $file_data = $this->upload_berkas();
         if (is_array($file_data)) {
@@ -307,6 +307,90 @@ class Pelamar extends CI_Controller
             return $this->upload->data();
         } else {
             return $this->upload->display_errors();
+        }
+    }
+
+    private function _hasilinterview($email)
+    {
+        $file_data = $this->upload_file();
+        if (is_array($file_data)) {
+
+            $config = [
+                'protocol' => 'smtp',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 465,
+                'smtp_user' => 'belajarcoding78@gmail.com',
+                'smtp_pass' => 'mxaghqdhdmsbcjmz',
+                'mailtype' => 'html',
+                'charset' => 'utf-8',
+                'newline' => "\r\n",
+                'wordwrap'  => TRUE
+            ];
+
+
+            $this->load->library('email', $config);
+            $this->email->initialize($config);
+
+            $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+            $this->email->to($email);
+            $data = [
+                'hasil_interview' => $this->input->post('hasil_interview'),
+
+            ];
+            $card = $this->load->view('hasil_interview', $data, TRUE);
+
+            $this->email->subject('Hasil Interview');
+            $this->email->message($card);
+
+            $this->email->attach($file_data['full_path']);
+
+            if ($this->email->send()) {
+                if (delete_files($file_data['file_path'])) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hasil Interview berhasil dikirim!</div>');
+                    redirect('recruitment/pelamar');
+                }
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
+            redirect('recruitment/pelamar');
+        }
+    }
+
+
+    public function tambah_hasil_interview()
+    {
+        $id_pelamar = $this->input->post('id_pelamar');
+        // Konfigurasi library upload
+        $config['upload_path'] = './dist/uploads';
+        $config['allowed_types'] = 'pdf';
+        $config['max_size'] = 2048;
+        $config['encrypt_name'] = TRUE;
+        $id = $this->input->post('id');
+        $status = $this->input->post('status' . $id);
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('hasil_interview')) {
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('tambah_hasil_interview', $error);
+        } else {
+            $data = $this->upload->data();
+            $nama_file = $data['file_name'];
+
+            $this->Pelamar_model->tambah_hasil_interview($id_pelamar, $nama_file);
+            $email = $this->input->post('email');
+
+            if ($status == 'lulus') {
+                $data_update = array('status' => 'lulus');
+                $where = array('id_pelamar' => $id);
+                $this->Pelamar_model->update_data($where, $data_update);
+            } else {
+                $data_update = array('status' => 'tidak lulus');
+                $where = array('id_pelamar' => $id);
+                $this->Pelamar_model->update_data($where, $data_update);
+            }
+            $this->_hasilinterview($email);
+
+            redirect('recruitment/pelamar/' . $id_pelamar);
         }
     }
 }

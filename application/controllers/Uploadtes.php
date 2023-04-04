@@ -37,9 +37,10 @@ class Uploadtes extends CI_Controller
             $filename = $this->upload->data('file_name');
             $data = [
                 'id_pekerjaan' => $this->input->post('posisi'),
-                'email' => $this->input->post('email'),
                 'hasil_link' => $this->input->post('uploadlink'),
                 'hasil_file' => $filename,
+                'nama' => $this->input->post('nama'),
+
             ];
 
             // Tampilkan pesan berhasil
@@ -61,12 +62,8 @@ class Uploadtes extends CI_Controller
         $data['user'] = $this->Admin_model->ambilUser();
 
         $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required',);
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
-            'required' => 'Email harus diisi !',
-            'valid_email' => 'Yang Anda Masukan Bukan Email !'
-        ]);
-        $this->form_validation->set_rules('uploadtes', 'Upload Hasil Tes', 'required', [
-            'required' => 'Upload Hasil Tes !'
+        $this->form_validation->set_rules('nama', 'Nama', 'required', [
+            'required' => 'Nama Harus Diisi !'
         ]);
 
 

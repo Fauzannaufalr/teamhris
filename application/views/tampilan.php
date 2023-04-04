@@ -59,7 +59,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="uploadcvLabel">Upload CV Anda</h5>
+                        <h5 class="modal-title" id="uploadcvLabel">Masukan Data Anda</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -68,6 +68,10 @@
                         <input type="hidden" name="id_posisi" value="<?= $pk['id_posisi'] ?>">
                         <div class="modal-body">
                             <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Anda">
+                            </div>
+                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email Anda">
                             </div>
@@ -75,6 +79,11 @@
                                 <label for="cv">Upload CV (PDF)</label>
                                 <input type="file" class="form-control" id="cv" name="cv">
                             </div>
+                            <div class="form-group">
+                                <label for="telepon">Telepon</label>
+                                <input type="int" class="form-control" id="telepon" name="telepon" placeholder="Masukan Nomor Telepon Anda">
+                            </div>
+
                             <!-- modal footer  -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>

@@ -18,29 +18,38 @@
                     <tr>
                         <th>No</th>
                         <th>Posisi</th>
-                        <th>Email</th>
+                        <th>Nama</th>
                         <th>Hasil Tes (LINK)</th>
                         <th>Hasil Tes (FILE)</th>
+                        <th>Nilai Tes (pg)</th>
+                        <th>Nilai Tes</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
                     <?php foreach ($hasiltes as $ko) : ?>
-                        <tr>
-                            <th><?= $no++; ?></th>
-                            <?php foreach ($dataposisi as $dp) : ?>
-                                <?php if ($dp['id_posisi'] == $ko['id_pekerjaan']) : ?>
-                                    <td><?= $dp['nama_posisi']; ?></td>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            <td><?= $ko['email']; ?></td>
-                            <td><?= $ko['hasil_link']; ?></td>
-                            <td><a href="<?php echo base_url('recruitment/hasiltes/download_file/' . $ko['hasil_file']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
-                            <td>
-                                <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ko['id_hasiltes'] ?>"><i class="fas fa-trash-alt"></i>hapus</button>
-                            </td>
-                        </tr>
+                        <?php if ($ko['status'] == 'siap dinilai') : ?>
+
+                        <?php else : ?>
+                            <tr>
+                                <th><?= $no++; ?></th>
+                                <?php foreach ($dataposisi as $dp) : ?>
+                                    <?php if ($dp['id_posisi'] == $ko['id_pekerjaan']) : ?>
+                                        <td><?= $dp['nama_posisi']; ?></td>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <td><?= $ko['nama']; ?></td>
+                                <td><?= $ko['hasil_link']; ?></td>
+                                <td><a href="<?php echo base_url('recruitment/hasiltes/download_file/' . $ko['hasil_file']); ?>"><span class="glyphicon glyphicon-download-alt">download</a></td>
+                                <td><?= $ko['nilai_pg']; ?></td>
+                                <td><?= $ko['nilai_tes']; ?></td>
+                                <td>
+                                    <button type="button" class="badge badge-success" color: antiquewhite" data-toggle="modal" data-target="#modal-nilai<?= $ko['id_hasiltes'] ?>"><i class="fas fa-pen-square"></i>Nilai</button>
+                                    <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ko['id_hasiltes'] ?>"><i class="fas fa-trash-alt"></i>Hapus</button>
+                                </td>
+                            </tr>
+                        <?php endif ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -66,6 +75,33 @@
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
                     <a href="<?= base_url() ?>recruitment/hasiltes/hapus/<?= $ko['id_hasiltes'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+
+
+
+
+<?php foreach ($hasiltes as $ko) : ?>
+    <div class="modal fade" id="modal-nilai<?= $ko['id_hasiltes']; ?>" tabindek="-1" role+dialog">
+        <div class="modal-dialog modal-nilai">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Beri Nilai</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah siap untuk dinilai ?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
+                    <a href="<?= base_url() ?>recruitment/hasiltes/siapnilai/<?= $ko['id_hasiltes'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

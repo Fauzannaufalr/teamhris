@@ -83,9 +83,6 @@ class Pekerjaan extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required', [
-            'required' => 'Nama harus diisi !'
-        ]);
         $this->form_validation->set_rules('deskripsi_pekerjaan', 'Deskripsi', 'required', [
             'required' => 'Deskripsi harus diisi !'
         ]);
@@ -104,7 +101,7 @@ class Pekerjaan extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->Pekerjaan_model->ubahPekerjaan();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diedit!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diubah!</div>');
             redirect('recruitment/pekerjaan');
         }
     }
