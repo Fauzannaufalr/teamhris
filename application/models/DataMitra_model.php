@@ -22,8 +22,8 @@ class DataMitra_model extends CI_Model
         $data = [
             'nama_perusahaan' => $this->input->post('perusahaan'),
             'nama_karyawan' => $this->input->post('nama'),
-            'keahlian' => $this->input->post('keahlian'),
-            'tools' => $this->input->post('tools'),
+            'keahlian' => serialize($this->input->post('keahlian[]')),
+            'tools' => serialize($this->input->post('tools[]')),
             'email' => $this->input->post('email'),
             'telepon' => $this->input->post('telepon'),
             'alamat' => $this->input->post('alamat'),
@@ -41,8 +41,8 @@ class DataMitra_model extends CI_Model
         $data = [
             'nama_perusahaan' => $this->input->post('perusahaan'),
             'nama_karyawan' => $this->input->post('nama'),
-            'keahlian' => $this->input->post('keahlian'),
-            'tools' => $this->input->post('tools'),
+            'keahlian' => serialize($this->input->post('keahlian[]')),
+            'tools' => serialize($this->input->post('tools[]')),
             'email' => $this->input->post('email'),
             'telepon' => $this->input->post('telepon'),
             'alamat' => $this->input->post('alamat'),
@@ -119,22 +119,39 @@ class DataMitra_model extends CI_Model
         $data = array();
         $no = 1;
         foreach ($records as $record) {
+            $k1 = unserialize($record->keahlian);
+            $k2 = serialize($k1);
+            $k3 = array($k2);
+            $k4 = array();
+            for ($i = 0; $i < count($k3); $i++) {
+                $k5 = unserialize($k3[$i]);
+                $k4[] = implode(', ', $k5);
+            }
+
+            $t1 = unserialize($record->tools);
+            $t2 = serialize($t1);
+            $t3 = array($t2);
+            $t4 = array();
+            for ($i = 0; $i < count($t3); $i++) {
+                $t5 = unserialize($t3[$i]);
+                $t4[] = implode(', ', $t5);
+            }
 
             $data[] = array(
                 "no" => $no++,
                 "nama_perusahaan" => $record->nama_perusahaan,
                 "nama" => $record->nama_karyawan,
-                "keahlian" => $record->keahlian,
-                "tools" => $record->tools,
+                "keahlian" => $k4,
+                "tools" => $t4,
                 "email" => $record->email,
                 "telepon" => $record->telepon,
                 "alamat" => $record->alamat,
                 "rate" => $record->rate_total,
-                "dokumen" => $record->dokumen_kerjasama,
+                "dokumen" => '<a href="' . $record->dokumen_kerjasama . '">Link Dokumen</a>',
                 "tgl_masuk" => $record->tanggal_masuk,
                 "tgl_keluar" => $record->tanggal_keluar,
                 "status" => $record->status,
-                "aksi" => '<button type="button" class="badge" style="color: black; background-color: gold;" data-toggle="modal" data-target="#ubahDataMitra' . $record->id . '"><i class="fas fa-edit"></i> Edit</button>
+                "aksi" => '<button type="button" onclick="myFunction' . $record->id . '()" id="ubahDataMitraEdit' . $record->id . '" class="badge" style="color: black; background-color: gold;" data-toggle="modal" data-target="#ubahDataMitra' . $record->id . '"><i class="fas fa-edit"></i> Edit</button>
                 <button type="button" class="badge" style="color: antiquewhite; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm' . $record->id . '"><i class="fas fa-trash-alt"></i> Hapus</button>',
             );
         }

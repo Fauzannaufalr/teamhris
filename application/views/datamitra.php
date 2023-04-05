@@ -81,11 +81,11 @@
                         <table id="myTable" class=" table order-list-new">
                             <tbody>
                                 <tr class="row">
-                                    <td class="col-sm-2" style="border:none;">
-                                        <button id="addrowKeahlian" type="button" class="btn btn-success" style="width: 100%;"><i class="fas fa-plus"></i></button>
+                                    <td class="col-sm-1" style="border:none;">
+                                        <button id="addrowNew" type="button" class="btn btn-success" style="width: 100%;"><i class="fas fa-plus"></i></button>
                                     </td>
-                                    <td class="col-sm-10" style="border:none;">
-                                        <input type="text" class="form-control" name="keahlian[]" />
+                                    <td class="col-sm-11" style="border:none;">
+                                        <input type="text" class="form-control" name="conf_status[]" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -94,18 +94,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tools">Tools</label>
-                        <table id="myTable" class=" table order-list-new-tools">
-                            <tbody>
-                                <tr class="row">
-                                    <td class="col-sm-2" style="border:none;">
-                                        <button id="addrowTools" type="button" class="btn btn-success" style="width: 100%;"><i class="fas fa-plus"></i></button>
-                                    </td>
-                                    <td class="col-sm-10" style="border:none;">
-                                        <input type="text" class="form-control" name="tools[]" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <input type="text" class="form-control" id="tools" name="tools" placeholder="Masukan tools">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -174,26 +163,26 @@
                             <label for="keahlian">Keahlian</label>
                             <table id="myTable<?= $dm['id'] ?>" class=" table order-list<?= $dm['id'] ?>">
                                 <tbody>
-                                    <?php $datakeahlian = unserialize($dm['keahlian']) ?>
-                                    <?php if (count($datakeahlian) > 0) : ?>
-                                        <?php foreach ($datakeahlian as $key => $value) : ?>
+                                    <?php $conf_status = unserialize($dm['keahlian']) ?>
+                                    <?php if (count($conf_status) > 0) : ?>
+                                        <?php foreach ($conf_status as $key => $value) : ?>
                                             <tr class="row baris-keahlian">
-                                                <td class="col-sm-2" style="border:none;">
+                                                <td class="col-sm-1" style="border:none;">
                                                     <?php if ($key == 0) echo '<button id="addrow' . $dm['id'] . '" type="button" class="btn btn-success" style="width: 100%;"><i class="fas fa-plus"></i></button>'; ?>
                                                     <?php if ($key > 0) echo '<button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button>'; ?>
                                                 </td>
-                                                <td class="col-sm-10 edit<?= $dm['id'] ?>" style="border:none;">
-                                                    <input type="text" class="form-control" name="keahlian[]" value="<?= $value ?>" />
+                                                <td class="col-sm-11 edit<?= $dm['id'] ?>" style="border:none;">
+                                                    <input type="text" class="form-control" name="conf_status[]" value="<?= $value ?>" />
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else : ?>
                                         <tr class="row baris-keahlian">
-                                            <td class="col-sm-2" style="border:none;">
+                                            <td class="col-sm-1" style="border:none;">
                                                 <button id="addrow<?= $dm['id'] ?>" type="button" class="btn btn-success" style="width: 100%;"><i class="fas fa-plus"></i></button>
                                             </td>
-                                            <td class="col-sm-10 edit<?= $dm['id'] ?>" style="border:none;">
-                                                <input type="text" class="form-control" name="keahlian[]" />
+                                            <td class="col-sm-11 edit<?= $dm['id'] ?>" style="border:none;">
+                                                <input type="text" class="form-control" name="conf_status[]" />
                                             </td>
                                         </tr>
                                     <?php endif; ?>
@@ -203,34 +192,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tools">Tools</label>
-                            <table id="myTable<?= $dm['id'] ?>" class=" table order-list-tools<?= $dm['id'] ?>">
-                                <tbody>
-                                    <?php $datatools = unserialize($dm['tools']) ?>
-                                    <?php if (count($datatools) > 0) : ?>
-                                        <?php foreach ($datatools as $key => $value) : ?>
-                                            <tr class="row baris-tools">
-                                                <td class="col-sm-2" style="border:none;">
-                                                    <?php if ($key == 0) echo '<button id="addrowtools' . $dm['id'] . '" type="button" class="btn btn-success" style="width: 100%;"><i class="fas fa-plus"></i></button>'; ?>
-                                                    <?php if ($key > 0) echo '<button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button>'; ?>
-                                                </td>
-                                                <td class="col-sm-10 edit<?= $dm['id'] ?>" style="border:none;">
-                                                    <input type="text" class="form-control" name="tools[]" value="<?= $value ?>" />
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <tr class="row baris-tools">
-                                            <td class="col-sm-2" style="border:none;">
-                                                <button id="addrowtools<?= $dm['id'] ?>" type="button" class="btn btn-success" style="width: 100%;"><i class="fas fa-plus"></i></button>
-                                            </td>
-                                            <td class="col-sm-10 edit<?= $dm['id'] ?>" style="border:none;">
-                                                <input type="text" class="form-control" name="tools[]" />
-                                            </td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                            <!-- <input type="text" class="form-control" id="tools" name="tools" value="<?= $dm['tools']; ?>"> -->
+                            <input type="text" class="form-control" id="tools" name="tools" value="<?= $dm['tools']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -292,47 +254,19 @@
                     $(this).remove();
                 }
             });
-
-            $("table#myTable<?= $dm['id'] ?>.order-list-tools<?= $dm['id'] ?> tr").each(function() {
-                var badCount = 0;
-                var inputLength = $(this).find('input').length;
-                $(this).find('input').each(function() {
-                    if ($(this).val() == "") {
-                        badCount++;
-                    }
-                });
-                if (badCount == inputLength) {
-                    $(this).remove();
-                }
-            });
         }
 
         $("#addrow<?= $dm['id'] ?>").on("click", function() {
             var newRow<?= $dm['id'] ?> = $('<tr class="row baris-keahlian">');
             var cols<?= $dm['id'] ?> = "";
-            cols<?= $dm['id'] ?> += '<td class="col-sm-2" style="border:none;"><button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button></td>';
-            cols<?= $dm['id'] ?> += '<td class="col-sm-10 edit<?= $dm['id'] ?>" style="border:none;"><input type="text" class="form-control" name="keahlian[]"/></td>';
+            cols<?= $dm['id'] ?> += '<td class="col-sm-1" style="border:none;"><button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button></td>';
+            cols<?= $dm['id'] ?> += '<td class="col-sm-11 edit<?= $dm['id'] ?>" style="border:none;"><input type="text" class="form-control" name="conf_status[]"/></td>';
             newRow<?= $dm['id'] ?>.append(cols<?= $dm['id'] ?>);
             $("table.order-list<?= $dm['id'] ?>").append(newRow<?= $dm['id'] ?>);
             drcounter++;
         });
 
-        $("#addrowtools<?= $dm['id'] ?>").on("click", function() {
-            var newRow<?= $dm['id'] ?> = $('<tr class="row baris-tools">');
-            var cols<?= $dm['id'] ?> = "";
-            cols<?= $dm['id'] ?> += '<td class="col-sm-2" style="border:none;"><button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button></td>';
-            cols<?= $dm['id'] ?> += '<td class="col-sm-10 edit<?= $dm['id'] ?>" style="border:none;"><input type="text" class="form-control" name="tools[]"/></td>';
-            newRow<?= $dm['id'] ?>.append(cols<?= $dm['id'] ?>);
-            $("table.order-list-tools<?= $dm['id'] ?>").append(newRow<?= $dm['id'] ?>);
-            drcounter++;
-        });
-
         $("table.order-list<?= $dm['id'] ?>").on("click", ".ibtnDel", function(event) {
-            $(this).closest("tr").remove();
-            drcounter -= 1
-        });
-
-        $("table.order-list-tools<?= $dm['id'] ?>").on("click", ".ibtnDel", function(event) {
             $(this).closest("tr").remove();
             drcounter -= 1
         });
@@ -401,7 +335,7 @@ $allKeahlian = [];
 $allKeahlianCount = [];
 foreach ($keahlian as $kt) {
     foreach (unserialize($kt['keahlian']) as $ktkt) {
-        $keahlianexplode = explode(', ', $ktkt);
+        $keahlianexplode = explode(',', $ktkt);
         $countKeahlian = count($keahlianexplode);
         for ($i = 0; $i < $countKeahlian; $i++) {
             if (!in_array($keahlianexplode[$i], $allKeahlian, true)) {
@@ -427,16 +361,14 @@ foreach ($data as $dk => $value) {
 $allTools = [];
 $allToolsCount = [];
 foreach ($keahlian as $kt) {
-    foreach (unserialize($kt['tools']) as $ktkt) {
-        $Toolsexplode = explode(', ', $ktkt);
-        $countTools = count($Toolsexplode);
-        for ($i = 0; $i < $countTools; $i++) {
-            if (!in_array($Toolsexplode[$i], $allTools, true)) {
-                array_push($allTools, $Toolsexplode[$i]);
-            }
-            array_push($allToolsCount, $Toolsexplode[$i]);
-        };
-    }
+    $Toolsexplode = explode(', ', mb_strtoupper($kt['tools']));
+    $countTools = count($Toolsexplode);
+    for ($i = 0; $i < $countTools; $i++) {
+        if (!in_array($Toolsexplode[$i], $allTools, true)) {
+            array_push($allTools, $Toolsexplode[$i]);
+        }
+        array_push($allToolsCount, $Toolsexplode[$i]);
+    };
 }
 $dataTools = array_count_values($allToolsCount);
 $datajs = json_encode(array_count_values($allToolsCount));
@@ -554,38 +486,22 @@ foreach ($dataTools as $dt => $value) {
     });
 
     function dynamicRowsNew() {
-        $("#addrowKeahlian").on("click", function() {
+        $("#addrowNew").on("click", function() {
             var newRow = $('<tr class="row add-new">');
             var cols = "";
-            cols += '<td class="col-sm-2" style="border:none;"><button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button></td>';
-            cols += '<td class="col-sm-10" style="border:none;"><input type="text" class="form-control" name="keahlian[]"/></td>';
+            cols += '<td class="col-sm-1" style="border:none;"><button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button></td>';
+            cols += '<td class="col-sm-11" style="border:none;"><input type="text" class="form-control" name="conf_status[]"/></td>';
             newRow.append(cols);
             $("table.order-list-new").append(newRow);
             drcounterNew++;
         });
 
-        $("#addrowTools").on("click", function() {
-            var newRow = $('<tr class="row add-new">');
-            var cols = "";
-            cols += '<td class="col-sm-2" style="border:none;"><button type="button" class="btn btn-primary ibtnDel" style="width: 100%;"><i class="fas fa-trash"></i></button></td>';
-            cols += '<td class="col-sm-10" style="border:none;"><input type="text" class="form-control" name="tools[]"/></td>';
-            newRow.append(cols);
-            $("table.order-list-new-tools").append(newRow);
-            drcounterNew++;
-        });
-
         $("#tambahDataMitraClear").on("click", function(event) {
             $('table.order-list-new tr.add-new').remove();
-            $('table.order-list-new-tools tr.add-new').remove();
             drcounterNew = 0
         });
 
         $("table.order-list-new").on("click", ".ibtnDel", function(event) {
-            $(this).closest("tr").remove();
-            drcounter -= 1
-        });
-
-        $("table.order-list-new-tools").on("click", ".ibtnDel", function(event) {
             $(this).closest("tr").remove();
             drcounter -= 1
         });

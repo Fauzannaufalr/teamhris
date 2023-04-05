@@ -4,7 +4,7 @@ class PengajuanGaji_model extends CI_Model
 {
     public function tampilPengajuan()
     {
-        $this->db->select('lg.*, dk.nama_karyawan, dk.nik, dk.email');
+        $this->db->select('lg.*, dk.nama_karyawan, dk.nik, dk.email, dk.type');
         $this->db->from('payroll___pengajuangaji lg');
         $this->db->join('data_karyawan dk', 'dk.id_karyawan = lg.id_datakaryawan');
         $this->db->order_by('dk.nik', 'asc');
@@ -13,7 +13,7 @@ class PengajuanGaji_model extends CI_Model
 
     public function ambilKaryawanById($id)
     {
-        $this->db->select('lg.*, dk.nama_karyawan, dk.nik, dk.email');
+        $this->db->select('lg.*, dk.nama_karyawan, dk.nik, dk.email, dk.type');
         $this->db->from('payroll___pengajuangaji lg');
         $this->db->join('data_karyawan dk', 'dk.id_karyawan = lg.id_datakaryawan');
         $this->db->where('id', $id);
@@ -27,7 +27,7 @@ class PengajuanGaji_model extends CI_Model
         $this->db->delete('payroll___pengajuangaji');
         $this->db->affected_rows();
 
-        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, pp.id_datapajak as pajak, pg.t_kinerja, pg.t_fungsional, pg.t_jabatan, pg.t_bpjs, pg.potongan, pg.bonus');
+        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, dk.type, pp.id_datapajak as pajak, pg.t_kinerja, pg.t_fungsional, pg.t_jabatan, pg.t_bpjs, pg.potongan, pg.bonus');
         $this->db->from('data_karyawan dk ');
         // $this->db->join('payroll___bpjs pb', 'pb.id_datakaryawan = dk.id_karyawan', 'left');
         $this->db->join('payroll___pajak pp', 'pp.id_datakaryawan = dk.id_karyawan', 'left');
@@ -41,6 +41,7 @@ class PengajuanGaji_model extends CI_Model
                 'bulan_tahun' => $ng['bulan_tahun'],
                 'id_datakaryawan' => $ng['id_karyawan'],
                 'nama_posisi' => $ng['nama_posisi'],
+                'type' => $ng['type'],
                 'gajipokok' => $ng['gajipokok'],
                 'pajak' => $ng['pajak'],
                 't_kinerja' => $ng['t_kinerja'],
@@ -176,12 +177,33 @@ class PengajuanGaji_model extends CI_Model
         return $response;
     }
 
-    public function laporan()
+    public function laporan($bulantahun)
     {
-        $this->db->select("(SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '202304' AND status = 'Sudah dibayar') AS Sudah
+        $this->db->select("(SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '" . $bulantahun . "' AND status = 'Sudah dibayar') AS Sudah
         ,
-        (SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '202304' AND status = 'Belum dibayar') AS Belum");
-        // $this->db->from('payroll___pengajuangaji');
-        return  $this->db->get()->result_array();
+        (SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '" . $bulantahun . "' AND status = 'Belum dibayar') AS Belum");
+        $hasil = $this->db->get()->result_array();
+        if ($hasil[0]['Sudah'] == null) {
+            $hasil[0]['Sudah'] = 0;
+        }
+        if ($hasil[0]['Belum'] == null) {
+            $hasil[0]['Belum'] = 0;
+        }
+        return $hasil;
+    }
+
+    public function laporanType($bulantahun)
+    {
+        $this->db->select("(SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '" . $bulantahun . "' AND type = 'Office') AS Office
+        ,
+        (SELECT SUM(total) FROM `payroll___pengajuangaji` WHERE bulan_tahun = '" . $bulantahun . "' AND type = 'Project Base') AS Project");
+        $hasil = $this->db->get()->result_array();
+        if ($hasil[0]['Office'] == null) {
+            $hasil[0]['Office'] = 0;
+        }
+        if ($hasil[0]['Project'] == null) {
+            $hasil[0]['Project'] = 0;
+        }
+        return $hasil;
     }
 }

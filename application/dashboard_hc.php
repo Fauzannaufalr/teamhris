@@ -228,265 +228,248 @@
             </div>
         </div>
     </div>
+
     <div class="card">
         <div class="card-body">
-
-            <!-- validation crud -->
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead style="background-color: #8b0000; text-align: center ;">
-                            <tr style="color: #ffffff;">
-                                <th rowspan="2" style="vertical-align: middle;">Nama Karyawan</th>
-                                <th colspan="7">Nilai</th>
-                            </tr>
-                            <tr style="color: #ffffff;">
-                                <th>Januari</th>
-                                <th>Februari</th>
-                                <th>Maret</th>
-                                <th>April</th>
-                                <th>Mei</th>
-                                <th>Juni</th>
-                                <th>Total</th>
-                            </tr>
-                            <tr style="color: #ffffff;">
-                                <th>Karyawan A</th>
-                                <th>SB</th>
-                                <th>SB</th>
-                                <th>B</th>
-                                <th>C</th>
-                                <th>SB</th>
-                                <th>SB</th>
-                                <th>SB</th>
-                            </tr>
-                        </thead>
-
-                    </table>
-                </div>
-            </div>
-
-
-
+            <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
+                <thead style="background-color: #cc0000;">
+                    <tr style="color: #ffffff;">
+                        <th rowspan="2" style="vertical-align: middle;">Nama Karyawan</th>
+                        <th colspan="7">Nilai</th>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <th>Januari</th>
+                        <th>Februari</th>
+                        <th>Maret</th>
+                        <th>April</th>
+                        <th>Mei</th>
+                        <th>Juni</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <th>Karyawan A</th>
+                        <th>SB</th>
+                        <th>SB</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>SB</th>
+                        <th>SB</th>
+                        <th>SB</th>
+                    </tr>
+                </thead>
+            </table>
             <!-- /.card-body -->
         </div>
+    </div>
+    <!-- /.card-body -->
+</div>
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-        <script>
-            const a = <?= $laporan_gk[0]['Sudah'] ?>;
-            const b = <?= $laporan_gk[0]['Belum'] ?>;
+<script>
+    const a = <?= $laporan_gk[0]['Sudah'] ?>;
+    const b = <?= $laporan_gk[0]['Belum'] ?>;
 
-            const karyawan = document.getElementById('karyawan');
-            const d_karyawan = {
-                labels: [
-                    'Sudah dibayar',
-                    'Belum dibayar'
-                ],
-                datasets: [{
-                    label: 'Gaji Karyawan',
-                    data: [a, b],
-                    backgroundColor: [
-                        '#28a745',
-                        'rgb(255, 205, 86)'
-                    ],
-                    hoverOffset: 4
-                }]
-            };
+    const karyawan = document.getElementById('karyawan');
+    const d_karyawan = {
+        labels: [
+            'Sudah dibayar',
+            'Belum dibayar'
+        ],
+        datasets: [{
+            label: 'Gaji Karyawan',
+            data: [a, b],
+            backgroundColor: [
+                '#28a745',
+                'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]
+    };
 
-            new Chart(karyawan, {
-                type: 'pie',
-                data: d_karyawan,
-                options: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            display: false,
-                            fontSize: 10
-                        }
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItem, data) {
-                                var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                                if (parseInt(totalData) >= 1000) {
-                                    return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                } else {
-                                    return 'Rp ' + totalData;
-                                }
-                            }
+    new Chart(karyawan, {
+        type: 'pie',
+        data: d_karyawan,
+        options: {
+            legend: {
+                display: true,
+                labels: {
+                    display: false,
+                    fontSize: 10
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                        if (parseInt(totalData) >= 1000) {
+                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        } else {
+                            return 'Rp ' + totalData;
                         }
                     }
                 }
-            });
+            }
+        }
+    });
 
-            const c = <?= $laporan_rm[0]['Sudah'] ?>;
-            const d = <?= $laporan_rm[0]['Belum'] ?>;
-            const mitra = document.getElementById('mitra');
-            const d_mitra = {
-                labels: [
-                    'Sudah dibayar',
-                    'Belum dibayar'
-                ],
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [c, d],
-                    backgroundColor: [
-                        '#28a745',
-                        'rgb(255, 205, 86)'
-                    ],
-                    hoverOffset: 4
-                }]
-            };
+    const c = <?= $laporan_rm[0]['Sudah'] ?>;
+    const d = <?= $laporan_rm[0]['Belum'] ?>;
+    const mitra = document.getElementById('mitra');
+    const d_mitra = {
+        labels: [
+            'Sudah dibayar',
+            'Belum dibayar'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [c, d],
+            backgroundColor: [
+                '#28a745',
+                'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]
+    };
 
-            new Chart(mitra, {
-                type: 'pie',
-                data: d_mitra,
-                options: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            display: false,
-                            fontSize: 10
-                        }
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItem, data) {
-                                var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                                if (parseInt(totalData) >= 1000) {
-                                    return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                } else {
-                                    return 'Rp ' + totalData;
-                                }
-                            }
+    new Chart(mitra, {
+        type: 'pie',
+        data: d_mitra,
+        options: {
+            legend: {
+                display: true,
+                labels: {
+                    display: false,
+                    fontSize: 10
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                        if (parseInt(totalData) >= 1000) {
+                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        } else {
+                            return 'Rp ' + totalData;
                         }
                     }
                 }
-            });
+            }
+        }
+    });
 
-            const e = <?= $laporan_type[0]['Office'] ?>;
-            const f = <?= $laporan_type[0]['Project'] ?>;
-            const type = document.getElementById('type');
-            const d_type = {
-                labels: [
-                    'Office',
-                    'Project Base'
-                ],
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [e, f],
-                    backgroundColor: [
-                        '#28a745',
-                        'rgb(255, 205, 86)'
-                    ],
-                    hoverOffset: 4
-                }]
-            };
+    const e = <?= $laporan_type[0]['Office'] ?>;
+    const f = <?= $laporan_type[0]['Project'] ?>;
+    const type = document.getElementById('type');
+    const d_type = {
+        labels: [
+            'Office',
+            'Project Base'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [e, f],
+            backgroundColor: [
+                '#28a745',
+                'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]
+    };
 
-            new Chart(type, {
-                type: 'pie',
-                data: d_type,
-                options: {
-                    // maintainAspectRatio: false,
-                    legend: {
-                        display: true,
-                        labels: {
-                            display: false,
-                            fontSize: 10
-                        }
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function(tooltipItem, data) {
-                                var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                                if (parseInt(totalData) >= 1000) {
-                                    return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                } else {
-                                    return 'Rp ' + totalData;
-                                }
-                            }
+    new Chart(type, {
+        type: 'pie',
+        data: d_type,
+        options: {
+            // maintainAspectRatio: false,
+            legend: {
+                display: true,
+                labels: {
+                    display: false,
+                    fontSize: 10
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                        if (parseInt(totalData) >= 1000) {
+                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        } else {
+                            return 'Rp ' + totalData;
                         }
                     }
                 }
-            });
-        </script>
+            }
+        }
+    });
+</script>
 
-        <script type="text/javascript">
-            // START TYPE
-            $('#bulan_type,#tahun_type').change(function() {
-                bulanType = document.getElementById('bulan_type').value;
-                tahunType = document.getElementById('tahun_type').value;
-                console.log(bulanType);
-                console.log(tahunType);
-                $.ajax({
-                    url: '<?= base_url() ?>hris/filter_per_type',
-                    dataType: 'json',
-                    type: "POST",
-                    data: {
-                        bulanType,
-                        tahunType
-                    },
-                    success: function(result) {
+<script type="text/javascript">
+    // START TYPE
+    $('#bulan_type,#tahun_type').change(function() {
+        bulanType = document.getElementById('bulan_type').value;
+        tahunType = document.getElementById('tahun_type').value;
+        console.log(bulanType);
+        console.log(tahunType);
+        $.ajax({
+            url: '<?= base_url() ?>hris/filter_per_type',
+            dataType: 'json',
+            type: "POST",
+            data: {
+                bulanType,
+                tahunType
+            },
+            success: function(result) {
 
-                        const e2 = result[0]['Office'];
-                        const f2 = result[0]['Project'];
-                        const type = document.getElementById('type');
-                        const d_type = {
-                            labels: [
-                                'Office',
-                                'Project Base'
-                            ],
-                            datasets: [{
-                                label: 'My First Dataset',
-                                data: [e2, f2],
-                                backgroundColor: [
-                                    '#28a745',
-                                    'rgb(255, 205, 86)'
-                                ],
-                                hoverOffset: 4
-                            }]
-                        };
+                const e2 = result[0]['Office'];
+                const f2 = result[0]['Project'];
+                const type = document.getElementById('type');
+                const d_type = {
+                    labels: [
+                        'Office',
+                        'Project Base'
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [e2, f2],
+                        backgroundColor: [
+                            '#28a745',
+                            'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
 
-                        new Chart(type, {
-                            type: 'pie',
-                            data: d_type,
-                            options: {
-                                // maintainAspectRatio: false,
-                                legend: {
-                                    display: true,
-                                    labels: {
-                                        display: false,
-                                        fontSize: 10
+                new Chart(type, {
+                    type: 'pie',
+                    data: d_type,
+                    options: {
+                        // maintainAspectRatio: false,
+                        legend: {
+                            display: true,
+                            labels: {
+                                display: false,
+                                fontSize: 10
+                            }
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                                    if (parseInt(totalData) >= 1000) {
+                                        return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    } else {
+                                        return 'Rp ' + totalData;
                                     }
-                                },
-                                tooltips: {
-                                    callbacks: {
-                                        label: function(tooltipItem, data) {
-                                            var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                                            if (parseInt(totalData) >= 1000) {
-                                                return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                            } else {
-                                                return 'Rp ' + totalData;
-                                            }
-                                        }
-                                    }
                                 }
                             }
-                        });
+                        }
                     }
                 });
-            });
-            // END TYPE
-        </script>
+            }
+        });
+    });
+    // END TYPE
+</script>

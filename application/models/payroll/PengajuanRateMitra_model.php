@@ -116,8 +116,8 @@ class PengajuanRateMitra_model extends CI_Model
                 "no" => $no++,
                 "nama_perusahaan" => $record->nama_perusahaan,
                 "nama_karyawan" => $record->nama_karyawan,
-                "keahlian" => $record->keahlian,
-                "tools" => $record->tools,
+                "keahlian" => unserialize($record->keahlian),
+                "tools" => unserialize($record->tools),
                 "rate_total" => 'Rp ' . number_format($record->rate_total, 0, ', ', '.'),
                 "status" => $record->status,
                 "aksi" => '<button class="badge" style="background-color: #fbff39;" href="" data-toggle="modal" data-target="#modal-sm' . $record->id . '"><i class="fas fa-check-circle"></i> Status Bayar</button>',
@@ -144,11 +144,11 @@ class PengajuanRateMitra_model extends CI_Model
         return  $this->db->get()->result_array();
     }
 
-    public function laporan()
+    public function laporan($bulantahun)
     {
-        $this->db->select("(SELECT SUM(rate_total) FROM `payroll___pengajuanratemitra` WHERE bulan_tahun = '202304' AND status = 'Sudah dibayar') AS Sudah
+        $this->db->select("(SELECT SUM(rate_total) FROM `payroll___pengajuanratemitra` WHERE bulan_tahun = '" . $bulantahun . "' AND status = 'Sudah dibayar') AS Sudah
         ,
-        (SELECT SUM(rate_total) FROM `payroll___pengajuanratemitra` WHERE bulan_tahun = '202304' AND status = 'Belum dibayar') AS Belum");
+        (SELECT SUM(rate_total) FROM `payroll___pengajuanratemitra` WHERE bulan_tahun = '" . $bulantahun . "' AND status = 'Belum dibayar') AS Belum");
         // $this->db->from('payroll___pengajuangaji');
         return  $this->db->get()->result_array();
     }

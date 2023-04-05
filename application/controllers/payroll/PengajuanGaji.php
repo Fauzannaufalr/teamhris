@@ -108,16 +108,23 @@ class PengajuanGaji extends CI_Controller
     {
         $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
         $this->load->view('payroll/cetakslip', $data);
-
-        $paper_size = 'A4';
-        $orientation = 'potrait';
-        $html = $this->output->get_output();
-        $this->dompdf->set_paper($paper_size, $orientation);
-
-        $this->dompdf->load_html($html);
-        $this->dompdf->render();
         $this->_kirimEmail();
     }
+
+    // public function kirimSlip($id)
+    // {
+    //     $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
+    //     $this->load->view('payroll/cetakslip', $data);
+
+    //     $paper_size = 'A4';
+    //     $orientation = 'potrait';
+    //     $html = $this->output->get_output();
+    //     $this->dompdf->set_paper($paper_size, $orientation);
+
+    //     $this->dompdf->load_html($html);
+    //     $this->dompdf->render();
+    //     $this->_kirimEmail();
+    // }
 
     public function cetakGaji()
     {
@@ -138,6 +145,22 @@ class PengajuanGaji extends CI_Controller
             $this->dompdf->load_html($html);
             $this->dompdf->render();
             $this->dompdf->stream('pengajuan_gaji.pdf', array('Attachment' => 0));
+        } else {
+            $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
+            redirect('payroll/PengajuanGaji');
+        }
+    }
+
+    public function excel()
+    {
+        $data['title'] = "Pengajuan Gaji Karyawan";
+        // ambil data dari form
+        $data['bulan'] = $this->input->post('bulan');
+        $data['tahun'] = $this->input->post('tahun');
+        $bulantahun = $data['tahun'] . $data['bulan'];
+        $data['cetak_gaji'] = $this->PengajuanGaji->cetakGaji($bulantahun);
+        if (count($data['cetak_gaji']) > 0) {
+            $this->load->view('payroll/cetakexcel', $data);
         } else {
             $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
             redirect('payroll/PengajuanGaji');

@@ -9,6 +9,7 @@ class DataKaryawan_model extends CI_Model
         $this->db->from('data_karyawan');
         $this->db->join('data_posisi', 'data_posisi.id_posisi = data_karyawan.id_posisi');
         $this->db->join('tb_kelas', 'tb_kelas.id_kelas = data_karyawan.id_kelas');
+        $this->db->order_by('data_karyawan.nik', 'asc');
         return $this->db->get()->result_array();
     }
     public function getDataKaryawanExcept($nik)
@@ -37,6 +38,7 @@ class DataKaryawan_model extends CI_Model
             'level' => htmlspecialchars($this->input->post('level')),
             'alamat' => htmlspecialchars($this->input->post('alamat')),
             'telepon' => htmlspecialchars($this->input->post('telepon')),
+            'type' => htmlspecialchars($this->input->post('type')),
             'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'foto' => 'default.jpg'
 
@@ -58,7 +60,8 @@ class DataKaryawan_model extends CI_Model
             'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
             'level' => htmlspecialchars($this->input->post('level')),
             'alamat' => htmlspecialchars($this->input->post('alamat')),
-            'telepon' => htmlspecialchars($this->input->post('telepon'))
+            'telepon' => htmlspecialchars($this->input->post('telepon')),
+            'type' => htmlspecialchars($this->input->post('type'))
 
         ];
 

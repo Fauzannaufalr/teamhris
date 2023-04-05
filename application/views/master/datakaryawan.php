@@ -3,20 +3,6 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-4">
-                    <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#tambahDataKaryawan"><i class="fas fa-plus"></i>
                 Tambah Karyawan
             </button>
@@ -32,8 +18,10 @@
                         <th>Posisi</th>
                         <th>Kelas</th>
                         <th>Gaji Pokok</th>
-                        <th>Level</th>
                         <th>Email</th>
+                        <th>Alamat</th>
+                        <th>Telepon</th>
+                        <th>Type</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -48,12 +36,14 @@
                             <td><?= $dk['nama_posisi']; ?></td>
                             <td><?= $dk['nama_kelas']; ?></td>
                             <td>Rp<?= number_format($dk['gajipokok'], 0, ',', '.'); ?></td>
-                            <td><?= $dk['level']; ?></td>
                             <td><?= $dk['email']; ?></td>
+                            <td><?= $dk['alamat']; ?></td>
+                            <td><?= $dk['telepon']; ?></td>
+                            <td><?= $dk['type']; ?></td>
                             <td><?= $dk['status']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-default" style="font-size: 14px; color: black; background-color: #fbff39;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>">edit</button>
-                                <button type="button" class="btn btn-danger" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>">hapus</button>
+                                <button type="button" class="badge" style="color: black; background-color: gold;" data-toggle="modal" data-target="#ubahDataKaryawan<?= $dk['id_karyawan']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                                <button type="button" class="badge" style="color: antiquewhite; background-color:  #cc0000;" data-toggle="modal" data-target="#modal-sm<?= $dk['id_karyawan'] ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -133,6 +123,14 @@
                         <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Masukan Nomor Telepon">
                     </div>
                     <div class="form-group">
+                        <label for="type">Type</label>
+                        <select class="form-control" name="type">
+                            <option value="">-- Pilih Type Karyawan --</option>
+                            <option value="Office">Office</option>
+                            <option value="Project Base">Project Base</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Masukan password">
                     </div>
@@ -187,13 +185,13 @@
                         </div>
                         <div class=" form-group">
                             <label>Kelas</label>
-                            <select class="form-control" name="posisi">
+                            <select class="form-control" name="id_kelas">
                                 <option value="">-- Pilih Kelas --</option>
-                                <?php foreach ($tb_kelas as $tk) : ?>
-                                    <?php if ($tk['id_kelas'] == $tk['id_kelas']) : ?>
+                                <?php foreach ($id_kelas as $tk) : ?>
+                                    <?php if ($tk['id_kelas'] == $dk['id_kelas']) : ?>
                                         <option value="<?= $tk['id_kelas']; ?>" selected><?= $tk['nama_kelas'] ?></option>
                                     <?php else : ?>
-                                        <option value="<?= $tk['id_kelas']; ?>"><?= $dp['nama_kelas'] ?></option>
+                                        <option value="<?= $tk['id_kelas']; ?>"><?= $tk['nama_kelas'] ?></option>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
@@ -217,10 +215,13 @@
                             <label for="level">Level</label>
                             <select class="form-control" name="level">
                                 <option disabled>-- Pilih Level --</option>
-                                <option value="hc">hc</option>
-                                <option value="leader">leader</option>
-                                <option value="biasa">biasa</option>
-                                <option value="ceo">ceo</option>
+                                <?php foreach ($level as $lv) : ?>
+                                    <?php if ($lv == $dk['level']) : ?>
+                                        <option value="<?= $lv; ?>" selected><?= $lv ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $lv; ?>"><?= $lv ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -235,7 +236,19 @@
                             <label for="telepon">Telepon</label>
                             <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $dk['telepon']; ?>">
                         </div>
-
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select class="form-control" name="type">
+                                <option value="">-- Pilih Type Karyawan --</option>
+                                <?php foreach ($type as $tp) : ?>
+                                    <?php if ($tp == $dk['type']) : ?>
+                                        <option value="<?= $tp; ?>" selected><?= $tp ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $tp; ?>"><?= $tp ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <!-- modal footer  -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -306,3 +319,35 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- akhir modal hapus -->
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
+</script>

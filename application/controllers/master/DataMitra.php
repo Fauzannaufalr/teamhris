@@ -42,10 +42,10 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
             'required' => 'Nama Karyawan harus diisi !'
         ]);
-        $this->form_validation->set_rules('keahlian', 'Posisi', 'required', [
+        $this->form_validation->set_rules('keahlian[]', 'Posisi', 'required', [
             'required' => 'Keahlian harus diisi !'
         ]);
-        $this->form_validation->set_rules('tools', 'Posisi', 'required', [
+        $this->form_validation->set_rules('tools[]', 'Posisi', 'required', [
             'required' => 'tools harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
@@ -85,10 +85,10 @@ class DataMitra extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Karyawan', 'required', [
             'required' => 'Nama Karyawan harus diisi !'
         ]);
-        $this->form_validation->set_rules('keahlian', 'Posisi', 'required', [
+        $this->form_validation->set_rules('keahlian[]', 'Posisi', 'required', [
             'required' => 'Keahlian harus diisi !'
         ]);
-        $this->form_validation->set_rules('tools', 'Posisi', 'required', [
+        $this->form_validation->set_rules('tools[]', 'Posisi', 'required', [
             'required' => 'tools harus diisi !'
         ]);
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
@@ -117,7 +117,6 @@ class DataMitra extends CI_Controller
 
     public function hapus($id_mitra)
     {
-        $data['mitra'] = $this->DataMitra_model->ambilDataById($id_mitra);
         if ($this->DataMitra_model->hapus($id_mitra)) {
             $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {

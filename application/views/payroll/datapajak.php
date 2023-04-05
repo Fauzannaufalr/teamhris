@@ -150,7 +150,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 5000
         });
         <?php if ($this->session->flashdata('message')) : ?>
             const flashData = <?= json_encode($this->session->flashdata('message')) ?>;

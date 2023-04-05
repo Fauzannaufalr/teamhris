@@ -10,7 +10,7 @@
                         <div class="form-group row">
                             <label for="bulan" class="col-form-label">Bulan</label>
                             <div class="col">
-                                <select class="form-control select2" id="bulan" name="bulan">
+                                <select class="form-control select2" id="bulan" name="bulan" onChange="myNewFunction(this);">
                                     <option selected="selected" value="01">Januari</option>
                                     <option value="02">Februari</option>
                                     <option value="03">Maret</option>
@@ -98,6 +98,8 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
+            <h3>Bulan <div id="month" style="display: inline;"></div>
+            </h3>
             <table id="data" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -197,7 +199,7 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 5000
         });
         <?php if ($this->session->flashdata('message')) : ?>
             const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
@@ -214,4 +216,13 @@
             })
         <?php endif; ?>
     });
+
+    let d = new Date();
+    let m = d.getMonth() + 1
+    let month = ('0' + m).slice(-2);
+    document.getElementById("bulan").value = month;
+
+    function myNewFunction(sel) {
+        $('#month').html(sel.options[sel.selectedIndex].text);
+    }
 </script>

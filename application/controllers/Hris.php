@@ -19,14 +19,16 @@ class Hris extends CI_Controller
     {
         $periode = isset($_GET["periode"]) ? $_GET["periode"] : 0;
         $tahun = isset($_GET["tahun"]) ? $_GET["tahun"] : 0;
-        $bulantahun = date("Y") . date("m", strtotime('+1 month'));
+        $bulantahun = date("Y") . date("m");
         $data['title'] = "Dashboard";
         $data['user'] = $this->Hris_model->ambilUser();
-        // $data['laporan_gk'] = $this->PengajuanGaji->laporan();
-        // $data['laporan_rm'] = $this->RateMitra->laporan();
+        $data['laporan_gk'] = $this->PengajuanGaji->laporan($bulantahun);
+        $data['laporan_type'] = $this->PengajuanGaji->laporanType($bulantahun);
+        $data['laporan_rm'] = $this->RateMitra->laporan($bulantahun);
         $data['bariskaryawan'] = $this->db->get('data_karyawan')->num_rows();
         $data['barisposisi'] = $this->db->get('data_posisi')->num_rows();
         $data['barismitra'] = $this->db->get('data_mitra')->num_rows();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -112,5 +114,36 @@ class Hris extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Profile anda berhasil diubah!</div>');
             redirect('hris/profile');
         }
+    }
+
+    public function filter_per_type()
+    {
+        $bulan = $this->input->post('bulan_type');
+        $tahun = $this->input->post('tahun_type');
+        $bulantahun = $tahun . $bulan;
+
+        $data = $this->PengajuanGaji->laporanType($bulantahun);
+        // print_r($data);
+        echo json_encode($data);
+    }
+
+    public function filter_per_status()
+    {
+        $bulan = $this->input->post('bulan_status');
+        $tahun = $this->input->post('tahun_status');
+        $bulantahun = $tahun . $bulan;
+
+        $data = $this->PengajuanGaji->laporan($bulantahun);
+        echo json_encode($data);
+    }
+
+    public function filter_per_mitra()
+    {
+        $bulan = $this->input->post('bulan_mitra');
+        $tahun = $this->input->post('tahun_mitra');
+        $bulantahun = $tahun . $bulan;
+
+        $data = $this->RateMitra->laporan($bulantahun);
+        echo json_encode($data);
     }
 }
