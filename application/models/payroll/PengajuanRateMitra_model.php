@@ -111,13 +111,30 @@ class PengajuanRateMitra_model extends CI_Model
         $data = array();
         $no = 1;
         foreach ($records as $record) {
+            $k1 = unserialize($record->keahlian);
+            $k2 = serialize($k1);
+            $k3 = array($k2);
+            $k4 = array();
+            for ($i = 0; $i < count($k3); $i++) {
+                $k5 = unserialize($k3[$i]);
+                $k4[] = implode(', ', $k5);
+            }
+
+            $t1 = unserialize($record->tools);
+            $t2 = serialize($t1);
+            $t3 = array($t2);
+            $t4 = array();
+            for ($i = 0; $i < count($t3); $i++) {
+                $t5 = unserialize($t3[$i]);
+                $t4[] = implode(', ', $t5);
+            }
 
             $data[] = array(
                 "no" => $no++,
                 "nama_perusahaan" => $record->nama_perusahaan,
                 "nama_karyawan" => $record->nama_karyawan,
-                "keahlian" => unserialize($record->keahlian),
-                "tools" => unserialize($record->tools),
+                "keahlian" => $k4,
+                "tools" => $t4,
                 "rate_total" => 'Rp ' . number_format($record->rate_total, 0, ', ', '.'),
                 "status" => $record->status,
                 "aksi" => '<button class="badge" style="background-color: #fbff39;" href="" data-toggle="modal" data-target="#modal-sm' . $record->id . '"><i class="fas fa-check-circle"></i> Status Bayar</button>',
@@ -150,6 +167,13 @@ class PengajuanRateMitra_model extends CI_Model
         ,
         (SELECT SUM(rate_total) FROM `payroll___pengajuanratemitra` WHERE bulan_tahun = '" . $bulantahun . "' AND status = 'Belum dibayar') AS Belum");
         // $this->db->from('payroll___pengajuangaji');
-        return  $this->db->get()->result_array();
+        $hasil = $this->db->get()->result_array();
+        if ($hasil[0]['Sudah'] == null) {
+            $hasil[0]['Sudah'] = 0;
+        }
+        if ($hasil[0]['Belum'] == null) {
+            $hasil[0]['Belum'] = 0;
+        }
+        return $hasil;
     }
 }

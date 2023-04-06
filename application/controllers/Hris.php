@@ -118,32 +118,21 @@ class Hris extends CI_Controller
 
     public function filter_per_type()
     {
-        $bulan = $this->input->post('bulan_type');
-        $tahun = $this->input->post('tahun_type');
+        $bulan = $this->input->post('bulanType');
+        $tahun = $this->input->post('tahunType');
         $bulantahun = $tahun . $bulan;
 
         $data = $this->PengajuanGaji->laporanType($bulantahun);
-        // print_r($data);
         echo json_encode($data);
     }
 
     public function filter_per_status()
     {
-        $bulan = $this->input->post('bulan_status');
-        $tahun = $this->input->post('tahun_status');
+        $bulan = $this->input->post('bulanStatus');
+        $tahun = $this->input->post('tahunStatus');
         $bulantahun = $tahun . $bulan;
 
         $data = $this->PengajuanGaji->laporan($bulantahun);
-        echo json_encode($data);
-    }
-
-    public function filter_per_mitra()
-    {
-        $bulan = $this->input->post('bulan_mitra');
-        $tahun = $this->input->post('tahun_mitra');
-        $bulantahun = $tahun . $bulan;
-
-        $data = $this->RateMitra->laporan($bulantahun);
         echo json_encode($data);
     }
 }

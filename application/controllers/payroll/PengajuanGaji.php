@@ -107,14 +107,14 @@ class PengajuanGaji extends CI_Controller
     public function kirimSlip($id)
     {
         $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
-        $this->load->view('payroll/cetakslip', $data);
+        $this->load->view('payroll/cetak/cetakslipexcel', $data);
         $this->_kirimEmail();
     }
 
     // public function kirimSlip($id)
     // {
     //     $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
-    //     $this->load->view('payroll/cetakslip', $data);
+    //     $this->load->view('payroll/cetak/cetakslipdf', $data);
 
     //     $paper_size = 'A4';
     //     $orientation = 'potrait';
@@ -135,7 +135,7 @@ class PengajuanGaji extends CI_Controller
         $bulantahun = $tahun . $bulan;
         $data['cetak_gaji'] = $this->PengajuanGaji->cetakGaji($bulantahun);
         if (count($data['cetak_gaji']) > 0) {
-            $this->load->view('payroll/cetakgaji', $data);
+            $this->load->view('payroll/cetak/cetakgajipdf', $data);
 
             $paper_size = 'A4';
             $orientation = 'potrait';
@@ -160,7 +160,7 @@ class PengajuanGaji extends CI_Controller
         $bulantahun = $data['tahun'] . $data['bulan'];
         $data['cetak_gaji'] = $this->PengajuanGaji->cetakGaji($bulantahun);
         if (count($data['cetak_gaji']) > 0) {
-            $this->load->view('payroll/cetakexcel', $data);
+            $this->load->view('payroll/cetak/cetakgajiexcel', $data);
         } else {
             $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
             redirect('payroll/PengajuanGaji');
@@ -170,7 +170,7 @@ class PengajuanGaji extends CI_Controller
     public function cetak_slip($id)
     {
         $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
-        $this->load->view('payroll/cetakslip', $data);
+        $this->load->view('payroll/cetak/cetakslippdf', $data);
 
         $paper_size = 'A4';
         $orientation = 'potrait';

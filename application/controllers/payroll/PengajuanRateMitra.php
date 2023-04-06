@@ -70,7 +70,7 @@ class PengajuanRateMitra extends CI_Controller
         $bulantahun = $tahun . $bulan;
         $data['cetak_rate'] = $this->RateMitra->cetakRate($bulantahun);
         if (count($data['cetak_rate']) > 0) {
-            $this->load->view('payroll/cetakrate', $data);
+            $this->load->view('payroll/cetak/cetakratepdf', $data);
 
             $paper_size = 'A4';
             $orientation = 'potrait';
@@ -80,6 +80,22 @@ class PengajuanRateMitra extends CI_Controller
             $this->dompdf->load_html($html);
             $this->dompdf->render();
             $this->dompdf->stream('pengajuan_rate_mitra.pdf', array('Attachment' => 0));
+        } else {
+            $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
+            redirect('payroll/Pengajuanratemitra');
+        }
+    }
+
+    public function cetakRateExcel()
+    {
+        $data['title'] = "Pengajuan Rate Mitra";
+        // ambil data dari form
+        $data['bulan'] = $this->input->post('bulan');
+        $data['tahun'] = $this->input->post('tahun');
+        $bulantahun = $data['tahun'] . $data['bulan'];
+        $data['cetak_rate'] = $this->RateMitra->cetakRate($bulantahun);
+        if (count($data['cetak_rate']) > 0) {
+            $this->load->view('payroll/cetak/cetakrateexcel', $data);
         } else {
             $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
             redirect('payroll/Pengajuanratemitra');

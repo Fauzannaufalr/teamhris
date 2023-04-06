@@ -5,13 +5,13 @@
                 <div class="card-header" style="background-color: #cc0000;">
                     <h3 class="card-title" style="color: white;">Cetak Data</h3>
                 </div>
-                <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuanratemitra/cetakrate'); ?>">
+                <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuanratemitra/cetakrateexcel'); ?>">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="bulan" class="col-form-label">Bulan</label>
                             <div class="col">
                                 <select class="form-control select2" id="bulan" name="bulan" onChange="myNewFunction(this);">
-                                    <option selected="selected" value="01">Januari</option>
+                                    <option value="01">Januari</option>
                                     <option value="02">Februari</option>
                                     <option value="03">Maret</option>
                                     <option value="04">April</option>
@@ -146,6 +146,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#month').html($('#bulan option:selected').text());
         var userDataTable = $('#data').DataTable({
             'responsive': true,
             'orderable': true,
