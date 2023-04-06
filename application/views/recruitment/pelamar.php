@@ -15,7 +15,7 @@
             </div>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                    <tr>
+                    <tr style="text-align: center;">
                         <th>No</th>
                         <th>Nama</th>
                         <th>Posisi</th>
@@ -41,15 +41,14 @@
                             <td><?= $ds['email']; ?></td>
                             <td><a href="<?php echo base_url('recruitment/pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
                             <td><?= $ds['telepon']  ?></td>
-                            <td><?= $ds['hasil_interview']  ?></td>
+                            <td><a href="<?php echo base_url('recruitment/pelamar/download_hasil/' . $ds['hasil_interview']); ?>"><span class="glyphicon glyphicon-download-alt">Hasil Interview</a></td>
                             <td><?= $ds['status']; ?></td>
                             <td>
                                 <?php if ($ds['status'] == 'pelamar') : ?>
                                     <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                                 <?php elseif ($ds['status'] == 'Proses Interview') : ?>
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#hasilModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i>Hasil Interiview</button>
-                                <?php elseif ($ds['status'] == 'lulus interview') : ?>
-                                    <button class="badge badge-secondary" data-toggle="modal" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Lihat Jadwal</button>
+                                <?php elseif ($ds['status'] == 'lulus') : ?>
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
                                     <button class="badge badge-primary" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Beri Nilai</button>
@@ -201,11 +200,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="pg">Link Soal PG</label>
+                            <label for="pg">Soal PG (Link)</label>
                             <input type="text" class="form-control" id="pg" name="pg">
                         </div>
                         <div class="form-group">
-                            <label for="essay">Soal Essay</label>
+                            <label for="essay">Soal Tes (File)</label>
                             <input type="file" class="form-control" id="essay" name="essay">
                         </div>
                         <div class="form-group">
@@ -378,7 +377,7 @@
         } else if (status == 'Tidak Lulus') {
             form.innerHTML = `
       <div class="form-group">
-        <label for="alasan_penolakan">Alasan penolakan:</label>
+        <label for="hasil_interview">Alasan penolakan:</label>
         <input type="file" name="hasil_interview" class="form-control">
       </div>
     `;

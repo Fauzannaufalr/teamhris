@@ -95,8 +95,8 @@ class Pelamar extends CI_Controller
                 'protocol' => 'smtp',
                 'smtp_host' => 'ssl://smtp.googlemail.com',
                 'smtp_port' => 465,
-                'smtp_user' => 'belajarcoding78@gmail.com',
-                'smtp_pass' => 'mxaghqdhdmsbcjmz',
+                'smtp_user' => 'hristeam13@gmail.com',
+                'smtp_pass' => 'riztsicgznvyhudn',
                 'mailtype' => 'html',
                 'charset' => 'utf-8',
                 'newline' => "\r\n",
@@ -113,7 +113,7 @@ class Pelamar extends CI_Controller
                 'id_posisi' => $this->input->post('posisi'),
                 'pg' => $this->input->post('pg'),
                 'essay' => $this->input->post('essay'),
-                'upload' => $this->input->post('upload'),
+                'upload' => $this->input->post('linkuploadjawaban'),
                 'dataposisi' => $this->DataPosisi_model->getAllDataPosisi()
 
             ];
@@ -122,14 +122,13 @@ class Pelamar extends CI_Controller
             $this->email->subject('Soal Tes Recruitment');
             $this->email->message($card);
 
+
             $this->email->attach($file_data['full_path']);
 
-            if ($this->email->send()) {
-                if (delete_files($file_data['file_path'])) {
-                    $this->Pelamar_model->statusinterview($id);
-                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal berhasil dikirim!</div>');
-                    redirect('recruitment/pelamar');
-                }
+            if (!$this->email->send()) {
+                $this->Pelamar_model->statushasilinterview($id);
+                redirect('recruitment/pelamar');
+            } else {
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
@@ -216,12 +215,11 @@ class Pelamar extends CI_Controller
     }
     public function soal($id)
     {
-        $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
-            'required' => 'Posisi harus diisi !'
-        ]);
-        $this->form_validation->set_rules('pg', 'Link Soal PG', 'required', [
+
+        $this->form_validation->set_rules('pg', 'Soal PG', 'required', [
             'required' => 'Link Soal PG harus diisi !',
         ]);
+
 
         $this->form_validation->set_rules('linkuploadjawaban', 'Link Upload Jawaban', 'required', [
             'required' => 'Link Upload Jawaban harus diisi !',
@@ -243,7 +241,7 @@ class Pelamar extends CI_Controller
             $email = $this->input->post('email');
             $this->_kirimSoal($id);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal Tes Recruitment berhasil diKirim!</div>');
             redirect('recruitment/pelamar');
         }
     }
@@ -284,6 +282,19 @@ class Pelamar extends CI_Controller
 
         readfile($file_path);
     }
+    public function download_hasil($filename)
+    {
+        // Menentukan path file yang akan didownload
+        $file_path = './dist/uploads/' . $filename;
+        if (!file_exists($file_path)) {
+            redirect('recruitment/pelamar');
+        };
+        header('Content-Type: application/octet-stream');
+        header('Content-Length: ' . filesize($file_path));
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+        readfile($file_path);
+    }
 
     public function upload_file()
     {
@@ -310,17 +321,31 @@ class Pelamar extends CI_Controller
         }
     }
 
-    private function _hasilinterview($email)
+    public function upload_hasil_interview()
     {
-        $file_data = $this->upload_file();
+        $config['upload_path'] = './dist/uploads';
+        $config['max_size'] = '4024';
+        $config['allowed_types'] = 'doc|docx|pdf';
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('hasil_interview')) {
+            return $this->upload->data();
+        } else {
+            return $this->upload->display_errors();
+        }
+    }
+
+    private function _hasilinterview($email, $id)
+    {
+        $file_data = $this->upload_hasil_interview();
+        // printr($file_data);
         if (is_array($file_data)) {
 
             $config = [
                 'protocol' => 'smtp',
                 'smtp_host' => 'ssl://smtp.googlemail.com',
                 'smtp_port' => 465,
-                'smtp_user' => 'belajarcoding78@gmail.com',
-                'smtp_pass' => 'mxaghqdhdmsbcjmz',
+                'smtp_user' => 'hristeam13@gmail.com',
+                'smtp_pass' => 'riztsicgznvyhudn',
                 'mailtype' => 'html',
                 'charset' => 'utf-8',
                 'newline' => "\r\n",
@@ -334,11 +359,10 @@ class Pelamar extends CI_Controller
             $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
             $this->email->to($email);
             $data = [
-                'hasil_interview' => $this->input->post('hasil_interview'),
+                'hasil_interview' => $this->input->post('status' . $id),
 
             ];
             $card = $this->load->view('hasil_interview', $data, TRUE);
-
             $this->email->subject('Hasil Interview');
             $this->email->message($card);
 
@@ -349,6 +373,8 @@ class Pelamar extends CI_Controller
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hasil Interview berhasil dikirim!</div>');
                     redirect('recruitment/pelamar');
                 }
+            } else {
+                "";
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
@@ -357,9 +383,9 @@ class Pelamar extends CI_Controller
     }
 
 
-    public function tambah_hasil_interview()
+    public function tambah_hasil_interview($id_pelamar)
     {
-        $id_pelamar = $this->input->post('id_pelamar');
+        // $id_pelamar = $this->input->post('id_pelamar');
         // Konfigurasi library upload
         $config['upload_path'] = './dist/uploads';
         $config['allowed_types'] = 'pdf';
@@ -379,18 +405,24 @@ class Pelamar extends CI_Controller
             $this->Pelamar_model->tambah_hasil_interview($id_pelamar, $nama_file);
             $email = $this->input->post('email');
 
-            if ($status == 'lulus') {
-                $data_update = array('status' => 'lulus');
+            $this->_hasilinterview($email, $id);
+            if ($status == 'Lulus') {
+                $data_update = array(
+                    'status' => 'lulus',
+                    'hasil_interview' => $nama_file
+                );
                 $where = array('id_pelamar' => $id);
                 $this->Pelamar_model->update_data($where, $data_update);
             } else {
-                $data_update = array('status' => 'tidak lulus');
+                $data_update = array(
+                    'status' => 'Tidak Lulus',
+                    'hasil_interview' => $nama_file
+                );
                 $where = array('id_pelamar' => $id);
                 $this->Pelamar_model->update_data($where, $data_update);
             }
-            $this->_hasilinterview($email);
 
-            redirect('recruitment/pelamar/' . $id_pelamar);
+            redirect('recruitment/pelamar');
         }
     }
 }
