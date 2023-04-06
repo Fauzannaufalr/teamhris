@@ -69,7 +69,7 @@ class m_data extends CI_Model
 
 			);
 		}
-		//return $entri;
+		// return $entri;
 		// echo "<pre>"; print_r($timer_ujian);die;
 		$this->db->insert_batch('tb_peserta', $entri);
 		return true;

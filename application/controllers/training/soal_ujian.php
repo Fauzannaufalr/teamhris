@@ -1,4 +1,9 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
 class soal_ujian extends CI_Controller
 {
 	public function __construct()
@@ -95,5 +100,52 @@ class soal_ujian extends CI_Controller
 		$this->load->view('training/soal_ujian', $data);
 		$this->load->view('templates/footer');
 		redirect('training/soal_ujian');
+	}
+	function import()
+	{
+		$data['DataPosisi'] = $this->DataPosisi_model->getAllDataPosisi();
+		$config['allowed_types'] = 'xlsx|xls';
+		$config['upload_path'] = './dist/import';
+		$config['file_name'] = 'doc' . time();
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('import')) {
+			$file = $this->upload->data();
+			$reader = ReaderEntityFactory::createXLSXReader();
+
+			$reader->open('./dist/import/' . $file['file_name']);
+			foreach ($reader->getSheetIterator() as $sheet) {
+				$numRow = 1;
+				foreach ($sheet->getRowIterator() as $row) {
+					foreach ($data['DataPosisi'] as $dp) {
+						if ($dp['nama_posisi'] == $row->getCellAtIndex(0)) {
+							$posisi = $dp['id_posisi'];
+						}
+					}
+					if ($numRow > 1) {
+						$data = array(
+							'id_posisi' => htmlspecialchars($posisi),
+							'pertanyaan' => htmlspecialchars($row->getCellAtIndex(1)),
+							'a' => htmlspecialchars($row->getCellAtIndex(2)),
+							'b' => htmlspecialchars($row->getCellAtIndex(3)),
+							'c' => htmlspecialchars($row->getCellAtIndex(4)),
+							'd' => htmlspecialchars($row->getCellAtIndex(5)),
+							'e' => htmlspecialchars($row->getCellAtIndex(6)),
+							'kunci_jawaban' => htmlspecialchars($row->getCellAtIndex(7)),
+						);
+						$this->Soal_model->import_data($data);
+					}
+					$numRow++;
+				}
+				$reader->close();
+				unlink('./dist/import/' . $file['file_name']);
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diimport!</div>');
+				redirect('training/soal_ujian');
+			}
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
+			redirect('training/soal_ujian');
+		};
 	}
 }

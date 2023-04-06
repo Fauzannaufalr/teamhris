@@ -33,11 +33,16 @@ class DataPosisi extends CI_Controller
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
         ]);
+        $this->form_validation->set_rules('kode', 'kode', 'required', [
+            'required' => 'kode harus diisi !'
+        ]);
+
+
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar' . $data);
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('master/dataposisi', $data);
             $this->load->view('templates/footer');
         } else {

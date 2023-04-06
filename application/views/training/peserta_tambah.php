@@ -23,7 +23,7 @@
                             <select class="select2 form-control" name="kelas" required="">
                                 <option selected="selected" disabled="" value="">- Pilih Kelas -</option>
                                 <?php foreach ($kelas as $a) { ?>
-                                    <option value="<?= $a->id_kelas ?>"><?= $a->nama_kelas; ?></option>
+                                <option value="<?= $a->id_kelas ?>"><?= $a->nama_kelas; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -52,7 +52,7 @@
                             <select class="select2 form-control" name="id_posisi" required="">
                                 <option selected="selected" disabled="" value="">- Pilih posisi -</option>
                                 <?php foreach ($posisi as $a) { ?>
-                                    <option value="<?= $a->id_posisi ?>"><?= $a->kode; ?> | <?= $a->nama_posisi; ?></option>
+                                <option value="<?= $a->id_posisi ?>"><?= $a->kode; ?> | <?= $a->nama_posisi; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -62,7 +62,8 @@
                         <label class="col-sm-2 control-label">Tanggal Ujian</label>
                         <div class="col-sm-10">
                             <div class="input-group date">
-                                <input type="date" class="form-control pull-right" id="date" name="tanggal" placeholder="2019-12-30" autocomplete="off" required="">
+                                <input type="date" class="form-control pull-right" id="date" name="tanggal"
+                                    placeholder="2019-12-30" autocomplete="off" required="">
                             </div>
                         </div>
                     </div>
@@ -70,9 +71,6 @@
                         <label class="col-sm-2 control-label">Jam Ujian</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-clock-o"></i>
-                                </div>
                                 <input type="time" class="form-control" id="time" name="jam" required="">
                             </div>
                         </div>
@@ -84,7 +82,7 @@
                                 <option selected="selected" disabled="" value="">- Pilih Jenis Ujian -
                                 </option>
                                 <?php foreach ($jenis_ujian as $a) { ?>
-                                    <option value="<?= $a->id_jenis_ujian ?>"><?= $a->jenis_ujian; ?></option>
+                                <option value="<?= $a->id_jenis_ujian ?>"><?= $a->jenis_ujian; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -94,7 +92,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Durasi Ujian</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="durasi_ujian" placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
+                            <input type="text" class="form-control" name="durasi_ujian"
+                                placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
                         </div>
                     </div>
 
@@ -120,22 +119,23 @@
                             <?php
                             $no = 1;
                             foreach ($karyawan as $d) { ?>
-                                <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo $d->id_karyawan; ?></td>
-                                    <td><?php echo $d->nik; ?></td>
-                                    <td><?php echo $d->id_kelas; ?></td>
-                                    <td>
-                                        <input type="checkbox" name="id[]" value="<?php echo $d->id_karyawan; ?>" />
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><?php echo $no++; ?></td>
+                                <td><?php echo $d->nama_karyawan; ?></td>
+                                <td><?php echo $d->nik; ?></td>
+                                <td><?php echo $d->id_kelas; ?></td>
+                                <td>
+                                    <input type="checkbox" name="id[]" value="<?php echo $d->id_karyawan; ?>" />
+                                </td>
+                            </tr>
                             <?php } ?>
                     </table>
 
                 </div>
 
                 <div class="box-footer">
-                    <a href="<?= base_url('training/peserta') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
+                    <a href="<?= base_url('training/peserta') ?>" class="btn btn-default btn-flat"><span
+                            class="fa fa-arrow-left"></span>
                         Kembali</a>
                     <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
                         Simpan</button>
@@ -146,3 +146,45 @@
     </div>
     <!-- /.col-->
 </div>
+<script type="text/javascript">
+// $('#cek-semua').on('click', function () {
+//   $(this).closest('table').find(':checkbox').prop('checked', this.checked);
+// });
+
+$('#cek-semua').click(function() {
+    $('input:checkbox').prop('checked', this.checked);
+})
+//Flat red color scheme for iCheck
+// $('input[type="checkbox"].flat-red').iCheck({
+//   checkboxClass: 'icheckbox_flat-green'
+// });
+
+
+
+$(function() {
+    $('#data').dataTable();
+});
+
+$('#datepicker').datepicker({
+    autoclose: true,
+    todayHighlight: true,
+    orientation: "bottom auto",
+    format: 'yyyy-mm-dd'
+});
+$('#date').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd'
+});
+$('#timepicker').timepicker({
+    showInputs: false,
+    showMeridian: false
+});
+$('#time').timepicker({
+    showInputs: false,
+    showMeridian: false
+});
+
+$('.select2').select2();
+
+$('.alert-dismissible').alert().delay(3000).slideUp('slow');
+</script>
