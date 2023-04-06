@@ -18,7 +18,7 @@ class MenilaiLeader extends CI_Controller
     private function extract_nik_penilai()
     {
         $nik = $this->session->userdata("nik");
-        $tgl_skrg = date("Y/m/d");
+        $tgl_skrg = date("m/Y");
         $sudah_menilai = $this->db->query("SELECT pk.nik_menilai
         FROM performances___penilaian_kuesioner pk WHERE pk.nik_penilai ='$nik'")->result_array();
 
@@ -38,7 +38,15 @@ class MenilaiLeader extends CI_Controller
         $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
         $data['sudah_menilai'] = $this->extract_nik_penilai();
         $data['soalkuesioner'] = $this->SoalKuesioner_model->getAllSoalKuesioner();
-
+        $currentDate = date('m/Y');
+        $data['datakaryawan'] = $this->db->query("SELECT 
+        dk.nik,
+        dk.nama_karyawan
+        FROM data_karyawan dk
+        WHERE dk.nik != '$nik'
+        AND dk.nik NOT IN (SELECT pk.nik_menilai FROM performances___penilaian_kuesioner pk WHERE tanggal='$currentDate' AND pk.nik_penilai = '$nik')
+        ")->result_array();
+        // printr($data['datakaryawan']);
 
 
         $this->load->view('templates/header', $data);

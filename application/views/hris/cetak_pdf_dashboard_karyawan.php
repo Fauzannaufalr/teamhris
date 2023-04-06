@@ -16,18 +16,18 @@
 <body>
     <center>
         <h1>PT. Sahaware Teknologi Indonesia</h1>
-        <h2>Hasil Penilaian Kinerja</h2>
+        <h2>Hasil Penilaian Perbulan</h2>
     </center>
 
     <?php
     if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
         $bulan = $_GET['bulan'];
         $tahun = $_GET['tahun'];
-        $bulantahun = $bulan . $tahun;
+        $bulantahun = $bulan . "/" . $tahun;
     } else {
         $bulan = date('m');
         $tahun = date('Y');
-        $bulantahun = $bulan . $tahun;
+        $bulantahun = $bulan . "/" . $tahun;
     }
     ?>
     <table>
@@ -49,9 +49,8 @@
         <thead>
             <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">NIK & Nama Karyawan</th>
-                <th class="text-center">Nilai Kerja</th>
-                <th class="text-center">Nilai Kuesioner</th>
+                <th class="text-center">NIK</th>
+                <th class="text-center">Nama Karyawan</th>
                 <th class="text-center">Nilai</th>
                 <th class="text-center">Kategorisasi</th>
             </tr>
@@ -60,39 +59,43 @@
             <?php $no = 1;
             $total = 0;
             ?>
-            <?php foreach ($cetak_akumulasi_admin as $ck):
+            <?php
+            $nik = $this->session->userdata("nik");
+            $level = $this->session->userdata("level");
 
-                ?>
+            foreach ($cetak_dashboard_pdf as $cdk):
+                if ($nik !== $cdk['nik'] && $level !== "hc") {
+                    continue;
+                }
+                $nilaiakumulasi = (($cdk['total_nilai_kuesioner']) + ($cdk['total_nilai_kinerja'])) / 2; ?>
+
                 <tr>
                     <td style="text-align: center;">
                         <?= $no++ ?>
                     </td>
 
-                    <td>
-                        <?= $ck['nik'],
-                            $ck['nama_karyawan']; ?>
+                    <td style="text-align: center;">
+                        <?= $cdk['nik']; ?>
                     </td>
                     <td style="text-align: center;">
-                        <?= $ck['nilai'] ?>
+                        <?= $cdk['nama_karyawan']; ?>
                     </td>
+
                     <td style="text-align: center;">
-                        <?= $ck['total'] ?>
-                    </td>
-                    <td style="text-align: center;">
-                        <?= ($ck['nilai'] + $ck['total']) / 2; ?>
+                        <?= $nilaiakumulasi ?>
                     </td>
                     <td style="text-align: center;">
                         <?php
-                        $total_nilai = ($ck['nilai'] + $ck['total']) / 2;
-                        if ($total_nilai >= 80 && $total_nilai <= 100) {
+
+                        if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
                             echo "Sangat Baik";
-                        } else if ($total_nilai >= 60 && $total_nilai <= 79) {
+                        } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
                             echo "Baik";
-                        } else if ($total_nilai >= 40 && $total_nilai <= 59) {
+                        } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
                             echo "Cukup";
-                        } else if ($total_nilai >= 20 && $total_nilai <= 39) {
+                        } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
                             echo "Kurang";
-                        } else if ($total_nilai >= 0 && $total_nilai <= 19) {
+                        } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
                             echo "Sangat Kurang";
                         }
                         ?>
@@ -111,11 +114,11 @@
             <td></td>
             <td width="200px">
                 <p>Bandung,
-                    <?= date("d M Y") ?> <br> Finance
+                    <?= date("d M Y") ?> <br>Human Capital
                 </p>
                 <br>
                 <br>
-                <p>Human Capital</p>
+                <p>Aisyiah Ummul Mutqinah S.Psi.M.Psi</p>
 
             </td>
         </tr>

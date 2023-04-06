@@ -65,8 +65,16 @@
         </li>
     </ul>
 
-
-
+    <?php if ($this->session->userdata('level') !== 'biasa') { ?>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="<?= base_url('performances/akumulasi') ?>" class="nav-link "
+                    style="background-color: #ffffff; color: black;">
+                    <p>Akumulasi Penilaian</p>
+                </a>
+            </li>
+        </ul>
+    <?php } ?>
 <li class="nav-item">
     <a href="#" class="nav-link" style="color: #ffffff;">
         <i class="nav-icon fas fa-chalkboard-teacher"></i>

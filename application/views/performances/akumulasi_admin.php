@@ -40,11 +40,11 @@
                     if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
                         $bulan = $_GET['bulan'];
                         $tahun = $_GET['tahun'];
-                        $bulantahun = $bulan . $tahun;
+                        $bulantahun = $bulan . "/" . $tahun;
                     } else {
                         $bulan = date('m');
                         $tahun = date('Y');
-                        $bulantahun = $bulan . $tahun;
+                        $bulantahun = $bulan . "/" . $tahun;
 
                     }
 
@@ -56,11 +56,17 @@
 
                     <?php if (count($akumulasi) > 0) { ?>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('performances/Akumulasi/cetakaakumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak Laporan</a>
+                            href="<?= base_url('performances/Akumulasi/cetakAkumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('performances/Akumulasi/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Laporan</button>
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
 
                 </div>
@@ -103,7 +109,7 @@
                             <th>Nilai Kinerja</th>
                             <th>Nilai Kuesioner</th>
                             <th>Nilai</th>
-                            <th>Kategorisasi</th>
+                            <th>kategorisasi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,10 +134,22 @@
                                 <td>
                                     <?= $nilaiakumulasi ?>
                                 </td>
-                                <td>
-                                    <?= $ak['kategorisasi']; ?>
-                                </td>
+                                <td style="text-align: center;">
+                                    <?php
+                                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                                        echo "Sangat Baik";
+                                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                                        echo "Baik";
+                                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                                        echo "Cukup";
+                                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                                        echo "Kurang";
+                                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                                        echo "Sangat Kurang";
+                                    }
+                                    ?>
 
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

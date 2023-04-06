@@ -87,7 +87,7 @@ class PenilaianKinerja_model extends CI_Model
         $this->db->delete('performances___penilaian_kinerja');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
-    public function cetakKinerja($bulantahun)
+    public function cetakKinerja()
     {
         $this->db->select('pk.*, dk.nama_karyawan, dk.nik, dk.email');
         $this->db->from('performances___penilaian_kinerja pk');
@@ -103,4 +103,17 @@ class PenilaianKinerja_model extends CI_Model
             $this->db->insert('performances___penilaian_kinerja', $data);
         }
     }
+    public function checkPenilaianKinerjaExists($nik, $bulan, $tahun)
+    {
+        $this->db->where('nik', $nik);
+        $this->db->where('MONTH(tanggal)', $bulan);
+        $this->db->where('YEAR(tanggal)', $tahun);
+        $query = $this->db->get('performances___penilaian_kinerja');
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

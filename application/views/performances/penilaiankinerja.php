@@ -56,10 +56,15 @@
                     <?php if (count($penilaiankinerja) > 0) { ?>
                         <a class="btn btn-outline-success ml-2"
                             href="<?= base_url('performances/PenilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak Laporan</a>
+                                class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('performances/PenilaianKinerja/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Laporan</button>
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
 
                 </div>
@@ -120,7 +125,8 @@
                     </thead>
                     <tbody>
                         <?php $no = 1 ?>
-                        <?php foreach ($penilaiankinerja as $pk): ?>
+                        <?php foreach ($penilaiankinerja as $pk):
+                            ?>
                             <tr style=" text-align: center;">
                                 <th>
                                     <?= $no++; ?>
@@ -348,7 +354,6 @@
 </div>
 </div>
 
-<!-- ak.hir modal hapus -->
 <!-- Modal cetak penlilaian kinerja -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

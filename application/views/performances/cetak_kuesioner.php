@@ -84,6 +84,20 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <table width="100%">
+        <tr>
+            <td></td>
+            <td width="200px">
+                <p>Bandung,
+                    <?= date("d M Y") ?> <br>Human Capital
+                </p>
+                <br>
+                <br>
+                <p>Aisyiah Ummul Mutqinah S.Psi.M.Psi</p>
+
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

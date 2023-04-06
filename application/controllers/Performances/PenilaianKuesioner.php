@@ -133,11 +133,11 @@ class PenilaianKuesioner extends CI_Controller
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         } else {
             $bulan = date('m');
             $tahun = date('Y');
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         }
 
         $data['cetak_kuesioner'] = $this->PenilaianKuesioner_model->cetakKuesioner($bulantahun);

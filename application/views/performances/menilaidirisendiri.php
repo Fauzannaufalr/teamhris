@@ -18,8 +18,9 @@
       <form method="POST" action="<?= base_url('performances/MenilaiDiriSendiri/simpan') ?>">
         <div class="form-group form-group col-md-4">
           <label>Menilai</label>
-          <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
-          <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
+          <input required type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan"
+            class="form-control" />
+          <input required type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
         </div>
 
         <div class="table-responsive">
@@ -42,13 +43,13 @@
                     <?= $sk['kuesioner'] ?>
                   </td>
                   <td>
-                    <select name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
+                    <select required name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
-                      <option value="10">Sangat Baik</option>
-                      <option value="9">Baik</option>
-                      <option value="8">Cukup</option>
-                      <option value="7">Kurang Baik</option>
-                      <option value="6">Sangat Kurang Baik</option>
+                      <option value="5">Sangat Baik</option>
+                      <option value="4">Baik</option>
+                      <option value="3">Cukup</option>
+                      <option value="2">Kurang Baik</option>
+                      <option value="1">Sangat Kurang Baik</option>
                     </select>
                   </td>
                 </tr>
@@ -57,7 +58,7 @@
             </tbody>
 
           </table>
-          <input type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
+          <input required type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
           <br>
           <button name="simpan" value="kirim" type="submit" class="btn btn-info">Simpan Penilaian</button>
         </div>

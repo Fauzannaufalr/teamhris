@@ -57,19 +57,28 @@ class PenilaianKinerja extends CI_Controller
     }
 
 
+    private function nik_sudah_digunakan_by_month($nik)
+    {
+        $currentDate = date("m/Y");
+        $query = $this->db->query("SELECT pk.nik FROM performances___penilaian_kinerja pk WHERE 
+        pk.nik = '$nik' AND pk.tanggal = '$currentDate' ")->result_array();
+        if (count($query) > 0) {
+            return true;
+        }
+        return false;
+    }
 
     public function tambah()
     {
-
+        $nik = $this->input->post("nik_nama");
         $data['title'] = "Penilaian Kinerja";
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik_nama', 'NIK', 'required|is_unique[performances___penilaian_kinerja.nik]', [
+        $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
             'required' => 'NIK harus diisi !',
-            'is_unique' => 'NIK Sudah Terdaftar !'
         ]);
         $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
             'required' => 'Total Kerja harus diisi !'
@@ -77,17 +86,23 @@ class PenilaianKinerja extends CI_Controller
         $this->form_validation->set_rules('done_kerja', 'Done Kerja', 'required', [
             'required' => 'Done Kerja harus diisi !'
         ]);
-
-
+        $nik_digunakan = $this->nik_sudah_digunakan_by_month($nik);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('performances/penilaiankinerja', $data);
+            $this->load->view('performance__s/penilaiankinerja', $data);
             $this->load->view('templates/footer');
         } else {
+            if ($nik_digunakan) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIK telah digunakan</div>');
+                redirect('performances/penilaiankinerja');
+                return;
+            }
+
             $this->PenilaianKinerja_model->tambahPenilaianKinerja();
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
             redirect('performances/penilaiankinerja');
         }
@@ -144,11 +159,11 @@ class PenilaianKinerja extends CI_Controller
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         } else {
             $bulan = date('m');
             $tahun = date('Y');
-            $bulantahun = $bulan . $tahun;
+            $bulantahun = $bulan . "/" . $tahun;
         }
 
         $data['cetak_kinerja'] = $this->PenilaianKinerja_model->cetakKinerja($bulantahun);
@@ -156,13 +171,45 @@ class PenilaianKinerja extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('performances/cetak_kinerja', $data);
     }
+
+    public function cetakExcel()
+    {
+        $data['title'] = "Penilaian Kinerja";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . "/" . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . "/" . $tahun;
+        }
+
+        $data['cetak_kinerja'] = $this->PenilaianKinerja_model->cetakKinerja($bulantahun);
+        // printr($data['cetak_kinerja']);
+        $this->load->view('performances/cetak_excel_kinerja', $data);
+    }
+
+    private function nik_sudah_digunakan_by_month1($nik)
+    {
+        $currentDate = date("m/Y");
+        $query = $this->db->query("SELECT pk.nik FROM performances___penilaian_kinerja pk WHERE 
+        pk.nik = '$nik' AND pk.tanggal = '$currentDate' ")->result_array();
+        if (count($query) > 0) {
+            return true;
+        }
+        return false;
+    }
     function import()
     {
+        $nik = $this->input->post("nik_nama");
         $data['title'] = "Penilaian Kinerja";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
+
+        $nik_digunakan = $this->nik_sudah_digunakan_by_month1($nik);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -197,16 +244,19 @@ class PenilaianKinerja extends CI_Controller
                     }
                     $numRow++;
                 }
-                $reader->close();
-                unlink('./dist/import/' . $file['file_name']);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diimport!</div>');
-                redirect('performances/penilaiankinerja');
+                if ($nik_digunakan) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIK telah digunakan</div>');
+                    redirect('performances/penilaiankinerja');
+                    return;
+                } else {
+                    $reader->close();
+                    unlink('./dist/import/' . $file['file_name']);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diimport!</div>');
+                    redirect('performances/penilaiankinerja');
+                }
             }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-            redirect('master/performances/penilaianknerja');
         }
-        ;
+
     }
 
     public function ajax_category()

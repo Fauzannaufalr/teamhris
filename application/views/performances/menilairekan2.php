@@ -58,11 +58,11 @@
                   <td>
                     <select required name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
                       <option disabled="" selected="">--Berikan Penilaian--</option>
-                      <option value="10">Sangat Baik</option>
-                      <option value="9">Baik</option>
-                      <option value="8">Cukup</option>
-                      <option value="7">Kurang Baik</option>
-                      <option value="6">Sangat Kurang Baik</option>
+                      <option value="5">Sangat Baik</option>
+                      <option value="4">Baik</option>
+                      <option value="3">Cukup</option>
+                      <option value="2">Kurang Baik</option>
+                      <option value="1">Sangat Kurang Baik</option>
                     </select>
                   </td>
                 </tr>

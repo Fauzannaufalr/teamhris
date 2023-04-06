@@ -92,11 +92,11 @@
             <td></td>
             <td width="200px">
                 <p>Bandung,
-                    <?= date("d M Y") ?> <br> Finance
+                    <?= date("d M Y") ?> <br>Human Capital
                 </p>
                 <br>
                 <br>
-                <p>Human Capital</p>
+                <p>Aisyiah Ummul Mutqinah S.Psi.M.Psi</p>
 
             </td>
         </tr>
