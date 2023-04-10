@@ -110,7 +110,16 @@ class DataKaryawan_model extends CI_Model
     {
         $jumlah = count($data);
         if ($jumlah > 0) {
-            $this->db->insert('data_karyawan', $data);
+
+            $this->db->select('*');
+            $this->db->from('data_karyawan');
+            $this->db->where('data_karyawan.nik', $data['nik']);
+            $dataExist =  $this->db->get()->result_array();
+            if (count($dataExist) == 0) {
+                return $this->db->insert('data_karyawan', $data);
+            } else {
+                return false;
+            }
         }
     }
 }

@@ -407,8 +407,14 @@
 
     let d2 = new Date();
     let m2 = d2.getMonth() + 1
+    let year = d2.getFullYear()
     let month = ('0' + m2).slice(-2);
     document.getElementById("bulan_type").value = month;
+    document.getElementById("bulan_status").value = month;
+    document.getElementById("bulan_mitra").value = month;
+    document.getElementById("tahun_type").value = year;
+    document.getElementById("tahun_status").value = year;
+    document.getElementById("tahun_mitra").value = year;
     // document.getElementById("bulan_status").value = month;
 </script>
 
@@ -483,7 +489,7 @@
         tahunStatus = document.getElementById('tahun_status').value;
         $.ajax({
             url: '<?= base_url() ?>hris/filter_per_status',
-            dataStatus: 'json',
+            dataType: 'json',
             type: "POST",
             data: {
                 bulanStatus,
@@ -514,6 +520,70 @@
                 new Chart(karyawan, {
                     type: 'pie',
                     data: d_karyawan,
+                    options: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                display: false,
+                                fontSize: 10
+                            }
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                                    if (parseInt(totalData) >= 1000) {
+                                        return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    } else {
+                                        return 'Rp ' + totalData;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+    // END TYPE
+
+    // START TYPE
+    $('#bulan_mitra,#tahun_mitra').change(function() {
+        bulanMitra = document.getElementById('bulan_mitra').value;
+        tahunMitra = document.getElementById('tahun_mitra').value;
+        $.ajax({
+            url: '<?= base_url() ?>hris/filter_per_mitra',
+            dataType: 'json',
+            type: "POST",
+            data: {
+                bulanMitra,
+                tahunMitra
+            },
+            success: function(result) {
+
+                const c2 = result[0]['Sudah'];
+                const d2 = result[0]['Belum'];
+
+                const mitra = document.getElementById('mitra');
+                const d_mitra = {
+                    labels: [
+                        'Sudah dibayar',
+                        'Belum dibayar'
+                    ],
+                    datasets: [{
+                        label: 'Rate Mitra',
+                        data: [c2, d2],
+                        backgroundColor: [
+                            '#28a745',
+                            'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+
+                new Chart(mitra, {
+                    type: 'pie',
+                    data: d_mitra,
                     options: {
                         legend: {
                             display: true,

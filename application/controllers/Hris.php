@@ -135,4 +135,14 @@ class Hris extends CI_Controller
         $data = $this->PengajuanGaji->laporan($bulantahun);
         echo json_encode($data);
     }
+
+    public function filter_per_mitra()
+    {
+        $bulan = $this->input->post('bulanMitra');
+        $tahun = $this->input->post('tahunMitra');
+        $bulantahun = $tahun . $bulan;
+
+        $data = $this->RateMitra->laporan($bulantahun);
+        echo json_encode($data);
+    }
 }

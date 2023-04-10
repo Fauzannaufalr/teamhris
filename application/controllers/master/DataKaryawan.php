@@ -204,7 +204,13 @@ class DataKaryawan extends CI_Controller
                             'password' => password_hash($row->getCellAtIndex(12), PASSWORD_DEFAULT),
                             'foto' => $row->getCellAtIndex(13)
                         );
-                        $this->DataKaryawan_model->import_data($data);
+                        $data = $this->DataKaryawan_model->import_data($data);
+                        if (!$data) {
+                            $reader->close();
+                            unlink('./dist/import/' . $file['file_name']);
+                            $this->session->set_flashdata('error', 'Data NIK sudah ada sebelumnya!');
+                            redirect('master/datakaryawan');
+                        }
                     }
                     $numRow++;
                 }
