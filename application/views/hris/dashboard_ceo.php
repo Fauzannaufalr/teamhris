@@ -104,30 +104,134 @@
             break;
     } ?>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card">
                 <div class="card-header" style="background-color: #cc0000;">
-                    <h3 class="card-title" style="color: white;">Laporan Gaji Karyawan</h3>
+                    <h3 class="card-title" style="color: white;">Laporan Gaji Bulan
+                        <?= $bulan; ?> (Office/Project Base)
+                    </h3>
                 </div>
                 <div class="card-body">
-                    <h5>Bulan
+                    <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_per_type'); ?>">
+                        <div class="card-body p-0">
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="bulan_type" name="bulan_type">
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="tahun_type" name="tahun_type">
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                            <option value="<?= $i ?>"><?= $i ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
+                    <div class="col-lg-12">
+                        <canvas id="type"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header" style="background-color: #cc0000;">
+                    <h3 class="card-title" style="color: white;">Laporan Gaji Karyawan Bulan
                         <?= $bulan; ?>
-                    </h5>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="post"
+                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
+                        <div class="card-body p-0">
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="bulan" name="bulan">
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="tahun" name="tahun">
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                            <option value="<?= $i ?>"><?= $i ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
                     <div class="col-lg-12">
                         <canvas id="karyawan"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card">
                 <div class="card-header" style="background-color: #cc0000;">
-                    <h3 class="card-title" style="color: white;">Laporan Rate Mitra</h3>
+                    <h3 class="card-title" style="color: white;">Laporan Rate Mitra Bulan
+                        <?= $bulan; ?>
+                    </h3>
                 </div>
                 <div class="card-body">
-                    <h5>Bulan
-                        <?= $bulan; ?>
-                    </h5>
+                    <form class="form-horizontal" method="post"
+                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
+                        <div class="card-body p-0">
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="bulan" name="bulan">
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="tahun" name="tahun">
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                            <option value="<?= $i ?>"><?= $i ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
                     <div class="col-lg-12">
                         <canvas id="mitra"></canvas>
                     </div>
@@ -189,6 +293,20 @@
                         </i>
                     </button>
 
+                    <?php if (count($akumulasi) > 0) { ?>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('Hris/cetakPdf?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('Hris/cetakExcelCEO?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Excel</a>
+                    <?php } else { ?>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
+                    <?php } ?>
+
                 </div>
         </form>
     </div>
@@ -238,7 +356,7 @@
                         $level = $this->session->userdata("level");
 
                         foreach ($akumulasi as $ak):
-                            if ($nik === $ak['nik'] && $level !== "hc")
+                            if ($nik === $ak['nik'] && $level !== "ceo")
                                 continue;
                             $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
                             <tr style="text-align: center;">
@@ -304,7 +422,8 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</script>
+
 <script>
     const a = <?= $laporan_gk[0]['Sudah'] ?>;
     const b = <?= $laporan_gk[0]['Belum'] ?>;
@@ -350,6 +469,8 @@
                 }
             }
         }
+    }
+        
     });
 
     const c = <?= $laporan_rm[0]['Sudah'] ?>;
@@ -396,4 +517,118 @@
             }
         }
     });
+
+    const e = <?= $laporan_type[0]['Office'] ?>;
+    const f = <?= $laporan_type[0]['Project'] ?>;
+    const type = document.getElementById('type');
+    const d_type = {
+        labels: [
+            'Office',
+            'Project Base'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [e, f],
+            backgroundColor: [
+                '#28a745',
+                'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+    new Chart(type, {
+        type: 'pie',
+        data: d_type,
+        options: {
+            // maintainAspectRatio: false,
+            legend: {
+                display: true,
+                labels: {
+                    display: false,
+                    fontSize: 10
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                        if (parseInt(totalData) >= 1000) {
+                            return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        } else {
+                            return 'Rp ' + totalData;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    // START TYPE
+    $('#bulan_type,#tahun_type').change(function () {
+        bulanType = document.getElementById('bulan_type').value;
+        tahunType = document.getElementById('tahun_type').value;
+        console.log(bulanType);
+        console.log(tahunType);
+        $.ajax({
+            url: '<?= base_url() ?>hris/filter_per_type',
+            dataType: 'json',
+            type: "POST",
+            data: {
+                bulanType,
+                tahunType
+            },
+            success: function (result) {
+
+                const e2 = result[0]['Office'];
+                const f2 = result[0]['Project'];
+                const type = document.getElementById('type');
+                const d_type = {
+                    labels: [
+                        'Office',
+                        'Project Base'
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [e2, f2],
+                        backgroundColor: [
+                            '#28a745',
+                            'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+
+                new Chart(type, {
+                    type: 'pie',
+                    data: d_type,
+                    options: {
+                        // maintainAspectRatio: false,
+                        legend: {
+                            display: true,
+                            labels: {
+                                display: false,
+                                fontSize: 10
+                            }
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (tooltipItem, data) {
+                                    var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                                    if (parseInt(totalData) >= 1000) {
+                                        return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    } else {
+                                        return 'Rp ' + totalData;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+            // END TYPE
 </script>

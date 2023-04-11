@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
     <div class="card">
-        <div class="card-header" style="color: white; background-color:#8b0000;">
+        <div class="card-header" style="color: white; background-color: #8b0000;">
             <h4> Filter Data Penilaian Kinerja</h4>
         </div>
 
@@ -54,7 +54,7 @@
                         </i>
                     </button>
                     <?php if (count($penilaiankinerja) > 0) { ?>
-                        <a class="btn btn-outline-success ml-2"
+                        <a class="btn btn-outline-success  ml-2"
                             href="<?= base_url('performances/PenilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak PDF</a>
                         <a class="btn btn-outline-success ml-2"
@@ -66,15 +66,16 @@
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
                             data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
-
                 </div>
+
+            </div>
         </form>
     </div>
 
-    <div class="alert alert" style="background-color:#8b0000 ; color: white;">
-        Menampilkan penilaian kinerja Bulan:<span class="font-weight-bold">
+    <div class="alert alert" style="background-color: #8b0000; color: white;">
+        Menampilkan penilaian kinerja Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
-        </span> Tahun:<span class="font-weight-bold">
+        </span> Tahun:<span class="fofnt-weight-bold">
             <?php echo $tahun ?>
     </div>
     <div class="card">
@@ -82,7 +83,7 @@
 
             <!-- validation crud -->
             <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-default" role="alert" style="background-color: #800000;">
                     <?= validation_errors(); ?>
                 </div>
             <?php endif; ?>
@@ -103,16 +104,15 @@
                     </button>
                 </div>
             </div>
-
+            <!-- perulangan -->
             <?php
 
             $jml_data = count($penilaiankinerja);
             if ($jml_data > 0) { ?>
-
-
+                <!-- jml data > 0 artinya jika nilai lebih dari nol maka data atau nilainya itu ada -->
 
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;  background-color: #8b0000; color: white;">
+                    <thead style="text-align: center; background-color: #8b0000; color: white;  ">
                         <tr>
                             <th>No</th>
                             <th>NIK & Nama Karyawan</th>
@@ -125,8 +125,12 @@
                     </thead>
                     <tbody>
                         <?php $no = 1 ?>
-                        <?php foreach ($penilaiankinerja as $pk):
+                        <?php
+
+                        foreach ($penilaiankinerja as $pk):
+
                             ?>
+
                             <tr style=" text-align: center;">
                                 <th>
                                     <?= $no++; ?>
@@ -164,12 +168,15 @@
                 </table>
             <?php } else { ?>
                 <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                    Data masih kosong, silahkan mengisi terlebih dahulu penilaian!</span>
+                    Data masih kosong, silahkan pilih bulan dan tahun terlebih dahulu!</span>
             <?php } ?>
         </div>
     </div>
     <!-- /.card-body -->
 </div>
+
+
+
 <!-- modal untuk impor excel -->
 
 <!-- Modal Hapus -->

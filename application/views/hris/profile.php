@@ -36,12 +36,8 @@
                 </div>
                 <div class="card-footer">
                     <div class="text-right">
-<<<<<<< Updated upstream
-                        <a href="<?= base_url('hris/ubahprofile'); ?>" class="btn btn-sm" style="background-color: #cc0000; color: white;">
-=======
                         <a href="<?= base_url('hris/ubahprofile'); ?>" class="btn btn-sm"
                             style="background-color: #8b0000; color: white;">
->>>>>>> Stashed changes
                             <i class="fas fa-user-edit"></i> Ubah Profile
                         </a>
                     </div>

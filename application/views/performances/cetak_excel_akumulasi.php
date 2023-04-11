@@ -50,7 +50,7 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
     <tbody>
         <?php $no = 1; ?>
         <?php foreach ($cetak_akumulasi_admin as $ck):
-            $akumulasi = ($ck['nilai'] + $ck['total_nilai']) / 2;
+            $akumulasi = ($ck['nilai_kinerja'] + $ck['nilai_kuesioner']) / 2;
             ?>
             <tr>
                 <td style="text-align: center;">
@@ -62,10 +62,10 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
                         $ck['nama_karyawan']; ?>
                 </td>
                 <td style="text-align: center;">
-                    <?= $ck['nilai'] ?>
+                    <?= $ck['nilai_kinerja'] ?>
                 </td>
                 <td style="text-align: center;">
-                    <?= $ck['total_nilai'] ?>
+                    <?= $ck['nilai_kuesioner'] ?>
                 </td>
                 <td style="text-align: center;">
                     <?= $akumulasi ?>

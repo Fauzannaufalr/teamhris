@@ -40,8 +40,7 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
     <thead>
         <tr>
             <th class="text-center">No</th>
-            <th class="text-center">NIK</th>
-            <th class="text-center">Nama Karyawan</th>
+            <th class="text-center">NIK & Nama Karyawan</th>
             <th class="text-center">Nilai</th>
             <th class="text-center">Kategorisasi</th>
         </tr>
@@ -52,8 +51,9 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
         $nik = $this->session->userdata("nik");
         $level = $this->session->userdata("level");
 
+
         foreach ($cetak_dashboard_excel as $ndk):
-            if ($nik !== $ndk['nik'] && $level !== "hc") {
+            if ($nik !== $ndk['nik'] && $level !== "ceo") {
                 continue;
             }
             $nilaiakumulasi = (($ndk['total_nilai_kuesioner']) + ($ndk['total_nilai_kinerja'])) / 2; ?>
@@ -64,11 +64,8 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
                 </td>
 
                 <td style="text-align: center;">
-                    <?= $ndk['nik']; ?>
-                </td>
-
-                <td>
-                    <?= $ndk['nama_karyawan']; ?>
+                    <?= $ndk['nik'] . "<br>" .
+                        $ndk['nama_karyawan']; ?>
                 </td>
 
                 <td style="text-align: center;">

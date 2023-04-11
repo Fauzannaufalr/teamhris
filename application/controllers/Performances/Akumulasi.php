@@ -23,10 +23,6 @@ class Akumulasi extends CI_Controller
         $data['title'] = "Akumulasi Penilaian";
         $data['user'] = $this->Hris_model->ambilUser();
 
-
-        // $data['penilaiankuesioner'] = $this->PenilaianKuesioner_model->tampilPenilaianKeusioner();
-        // $data['penilaiankinerja'] = $this->Akumulasi_model->tampilPenilaianKinejra();
-
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];
@@ -38,26 +34,38 @@ class Akumulasi extends CI_Controller
         }
 
         $data['akumulasi'] = $this->db->query("
-            SELECT 
-                dk.nik,
-                dk.nama_karyawan,
-                pkerja.tanggal, 
-                (
-                    SELECT SUM(pk.total_nilai) / 4
-                    FROM performances___penilaian_kuesioner pk 
-                    WHERE pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
-                ) AS total_nilai,
-                (
-                    SELECT (pkerja.nilai)
-                    FROM performances___penilaian_kinerja pkerja
-                    WHERE pkerja.nik = dk.nik AND pkerja.tanggal LIKE '%$bulantahun'
-                ) AS nilai
-            FROM data_karyawan dk
+        SELECT 
+            dk.nik,
+            dk.nama_karyawan,
+            pkerja.tanggal, 
+            (
+                SELECT 
+                    CASE 
+                        WHEN SUM(pk.total_nilai) > 4 THEN SUM(pk.total_nilai) / 4
+                        ELSE SUM(pk.total_nilai)
+                    END AS nilai_kuesioner
+                FROM 
+                    performances___penilaian_kuesioner pk 
+                WHERE 
+                    pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
+            ) AS nilai_kuesioner,
+            (
+                SELECT 
+                    pkerja.nilai
+                FROM 
+                    performances___penilaian_kinerja pkerja
+                WHERE 
+                    pkerja.nik = dk.nik AND pkerja.tanggal LIKE '%$bulantahun'
+            ) AS nilai_kinerja
+        FROM 
+            data_karyawan dk
             INNER JOIN performances___penilaian_kinerja pkerja ON pkerja.nik = dk.nik
-            WHERE pkerja.tanggal LIKE '%$bulantahun'
-        ")->result_array();
+        WHERE 
+            pkerja.tanggal LIKE '%$bulantahun'
+    ")->result_array();
 
 
+        // printr($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

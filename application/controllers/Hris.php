@@ -17,18 +17,42 @@ class Hris extends CI_Controller
 
     public function index()
     {
-        $periode = isset($_GET["periode"]) ? $_GET["periode"] : 0;
-        $tahun = isset($_GET["tahun"]) ? $_GET["tahun"] : 0;
-        $bulantahun = date("Y") . date("m");
+
+        $tahunbulan = date("Y") . date("m");
         $data['title'] = "Dashboard";
         $data['user'] = $this->Hris_model->ambilUser();
-        $data['laporan_gk'] = $this->PengajuanGaji->laporan($bulantahun);
-        $data['laporan_type'] = $this->PengajuanGaji->laporanType($bulantahun);
-        $data['laporan_rm'] = $this->RateMitra->laporan($bulantahun);
+        $data['laporan_gk'] = $this->PengajuanGaji->laporan($tahunbulan);
+        $data['laporan_type'] = $this->PengajuanGaji->laporanType($tahunbulan);
+        $data['laporan_rm'] = $this->RateMitra->laporan($tahunbulan);
         $data['bariskaryawan'] = $this->db->get('data_karyawan')->num_rows();
         $data['barisposisi'] = $this->db->get('data_posisi')->num_rows();
         $data['barismitra'] = $this->db->get('data_mitra')->num_rows();
         $data['barispelamar'] = $this->db->get('recruitment___pelamar')->num_rows();
+
+
+        $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+        $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
+        $bulantahun = $bulan . "/" . $tahun;
+
+        $data['akumulasi'] = $this->db->query("SELECT 
+        pk.tanggal, 
+        dk.nik,
+        dk.nama_karyawan,
+        (
+            SELECT SUM(pk2.total_nilai) / 4
+            FROM performances___penilaian_kuesioner pk2 
+            WHERE pk2.nik_menilai = dk.nik  AND pk.tanggal = '$bulantahun' GROUP BY pk.tanggal 
+        ) AS total_nilai_kuesioner,
+        (
+            SELECT SUM(pkerja.nilai) 
+            FROM performances___penilaian_kinerja pkerja  
+            WHERE pkerja.nik = dk.nik AND pkerja.tanggal = '$bulantahun' 
+        ) AS total_nilai_kinerja
+        FROM data_karyawan dk 
+        INNER JOIN performances___penilaian_kuesioner pk ON pk.nik_menilai=dk.nik
+        WHERE pk.tanggal = '$bulantahun '
+        GROUP BY pk.tanggal, pk.nik_menilai
+         ")->result_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
@@ -36,6 +60,98 @@ class Hris extends CI_Controller
         $this->load->view('hris/dashboard', $data);
         $this->load->view('templates/footer');
     }
+
+
+    public function cetakPdf() // ini dipakai untuk ceo dan hc
+    {
+        $data['title'] = "Nilai Perbulan Karyawan";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . "/" . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . "/" . $tahun;
+        }
+
+        $data['cetak_dashboard_pdf'] = $this->Hris_model->cetakNilaiDashboard($bulantahun);
+        // printr($data['cetak_akumulasi']);
+        $this->load->view('templates/header', $data);
+        $this->load->view('hris/cetak_pdf_dashboard', $data);
+    }
+    public function cetakPdfKaryawan()
+    {
+        $data['title'] = "Nilai Perbulan Karyawan";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . "/" . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . "/" . $tahun;
+        }
+
+        $data['cetak_dashboard_pdf'] = $this->Hris_model->cetakNilaiDashboard($bulantahun);
+        // printr($data['cetak_akumulasi']);
+        $this->load->view('templates/header', $data);
+        $this->load->view('hris/cetak_pdf_dashboard_karyawan', $data);
+    }
+
+    public function cetakExcelCEO()
+    {
+        $data['title'] = "Nilai Perbulan Karyawan";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . "/" . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . "/" . $tahun;
+        }
+
+        $data['cetak_dashboard_excel'] = $this->Hris_model->cetakNilaiDashboard($bulantahun);
+        // printr($data['cetak_akumulasi']);
+        $this->load->view('hris/cetak_excel_dashboard_ceo', $data);
+    }
+    public function cetakExcelHC()
+    {
+        $data['title'] = "Nilai Perbulan Karyawan";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . "/" . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . "/" . $tahun;
+        }
+
+        $data['cetak_dashboard_excel'] = $this->Hris_model->cetakNilaiDashboard($bulantahun);
+        // printr($data['cetak_akumulasi']);
+        $this->load->view('hris/cetak_excel_Dashboard', $data);
+    }
+
+    public function cetakExcelKaryawan()
+    {
+        $data['title'] = "Nilai Perbulan Karyawan";
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . "/" . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . "/" . $tahun;
+        }
+
+        $data['cetak_dashboard_excel'] = $this->Hris_model->cetakNilaiDashboard($bulantahun);
+        // printr($data['cetak_akumulasi']);
+        $this->load->view('hris/cetak_excel_dashboard_karyawan', $data);
+    }
+
 
     public function profile()
     {

@@ -77,7 +77,7 @@
                         <?= $pr['tanggal']; ?>
                     </td>
                     <td>
-                        <?= $pr['total_nilai']; ?>
+                        <?= $pr['nilai_kuesioner']; ?>
                     </td>
 
                 </tr>

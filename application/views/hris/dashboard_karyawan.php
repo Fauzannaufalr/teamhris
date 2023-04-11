@@ -20,10 +20,9 @@
                 </div>
                 <div class="card-body">
                     <h5>Bulan
-
                     </h5>
                     <div class="col-lg-12">
-                        <canvas id="penilaian"></canvas>
+                        <canvas id="nilai"></canvas>
                     </div>
                 </div>
             </div>
@@ -61,7 +60,7 @@
                             <option value="">--Pilih Tahun--</option>
                             <?php $tahun = date('Y');
                             for ($i = 2020; $i < $tahun + 3; $i++) { ?>
-                                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -84,17 +83,17 @@
                     </button>
 
                     <?php if (count($akumulasi) > 0) { ?>
-                            <a class="btn btn-outline-success ml-2"
-                                href="<?= base_url('Hris/cetakPdfKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                    class="fas fa-print"></i> Cetak PDF</a>
-                            <a class="btn btn-outline-success ml-2"
-                                href="<?= base_url('Hris/cetakExcelKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                    class="fas fa-print"></i> Cetak Excel</a>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('Hris/cetakPdfKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2"
+                            href="<?= base_url('Hris/cetakExcelKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                                class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
-                            <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                                data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
-                            <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                                data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
+                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
 
                 </div>
@@ -112,9 +111,9 @@
 
             <!-- validation crud -->
             <?php if (validation_errors()): ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= validation_errors(); ?>
-                    </div>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
             <?php endif; ?>
             <div class="row">
                 <div class="col-lg-4">
@@ -129,64 +128,64 @@
 
 
 
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead style="text-align: center;  background-color:#8b0000; color: white;">
-                            <tr>
-                                <th>No</th>
-                                <th>Bulan/Tahun</th>
-                                <th>Karyawan</th>
-                                <th>Nilai</th>
-                                <th>Kategorisasi</th>
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                        <tr>
+                            <th>No</th>
+                            <th>Bulan/Tahun</th>
+                            <th>Karyawan</th>
+                            <th>Nilai</th>
+                            <th>Kategorisasi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1 ?>
+                        <?php
+                        $nik = $this->session->userdata("nik");
+                        $level = $this->session->userdata("level");
+
+                        foreach ($akumulasi as $ak):
+                            if ($nik !== $ak['nik'] && $level !== "hc") {
+                                continue;
+                            }
+                            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                            <tr style="text-align: center;">
+                                <th>
+                                    <?= $no++; ?>
+                                </th>
+                                <td>
+                                    <?= $ak['tanggal'] ?>
+                                </td>
+                                <td>
+                                    <?= $ak['nik'], "<br>" .
+                                        $ak['nama_karyawan']; ?>
+                                </td>
+                                <td>
+                                    <?= $nilaiakumulasi ?>
+                                </td>
+                                <td style="text-align: center;">
+                                    <?php
+                                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                                        echo "Sangat Baik";
+                                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                                        echo "Baik";
+                                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                                        echo "Cukup";
+                                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                                        echo "Kurang";
+                                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                                        echo "Sangat Kurang";
+                                    }
+                                    ?>
+
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1 ?>
-                            <?php
-                            $nik = $this->session->userdata("nik");
-                            $level = $this->session->userdata("level");
-
-                            foreach ($akumulasi as $ak):
-                                if ($nik !== $ak['nik'] && $level !== "hc") {
-                                    continue;
-                                }
-                                $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
-                                    <tr style="text-align: center;">
-                                        <th>
-                                            <?= $no++; ?>
-                                        </th>
-                                        <td>
-                                            <?= $ak['tanggal'] ?>
-                                        </td>
-                                        <td>
-                                            <?= $ak['nik'], "<br>" .
-                                                $ak['nama_karyawan']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $nilaiakumulasi ?>
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <?php
-                                            if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
-                                                echo "Sangat Baik";
-                                            } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
-                                                echo "Baik";
-                                            } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
-                                                echo "Cukup";
-                                            } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
-                                                echo "Kurang";
-                                            } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
-                                                echo "Sangat Kurang";
-                                            }
-                                            ?>
-
-                                        </td>
-                                    </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             <?php } else { ?>
-                    <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                        Data masih kosong, silahkan memilih bulan dan tahun!</span>
+                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                    Data masih kosong, silahkan memilih bulan dan tahun!</span>
             <?php } ?>
         </div>
     </div>
@@ -244,35 +243,46 @@
         type: 'pie',
         data: d_karyawan
     });
-</script>
-<script>
-    const karyawan2 = document.getElementById('karyawan2');
-    const d_karyawan2 = {
-        labels: [
-            'Penilaian Kinerja : 55%',
-            'Penilaian Kuesioner : 45%'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [55, 45],
-            backgroundColor: [
-                '#28a745',
-                'rgb(255, 205, 86)',
-            ],
-            hoverOffset: 4
-        }]
-    };
+    const test = document.getElementById('nilai');
+    let nilai_kinerja = [80, 70, 85];
+    let nilai_kuesioner = [90, 85, 75];
+    let nilai_akumulasi = [];
 
+    for (let i = 0; i < nilai_kinerja.length; i++) {
+        nilai_akumulasi[i] = nilai_kinerja[i] + nilai_kuesioner[i];
+    }
 
-    const config = {
+    new Chart(test, {
         type: 'bar',
-        data: data,
+        data: {
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            datasets: [{
+                label: 'Nilai Akumulasi',
+                data: nilai_akumulasi,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)'
+                ],
+                borderWidth: 1
+            }]
+        },
         options: {
             scales: {
                 y: {
                     beginAtZero: true
                 }
             }
-        },
-    };
+        }
+    });
+</script>
+
+<script>
+
+
 </script>

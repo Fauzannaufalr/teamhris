@@ -2,7 +2,7 @@
 
     <div class="card">
         <div class="card-header" style="color: white; background-color: #8b0000;">
-            <h4> Filter Data Akumulasi Penilaian Karyawan</h4>
+            <h4> Filter Data Akumulasi Penilaian</h4>
         </div>
 
         <form class="form-horizontal">
@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2 ml-2">
+                    <div class="col-md-2 ">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
                             <?php $tahun = date('Y');
@@ -40,11 +40,11 @@
                     if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
                         $bulan = $_GET['bulan'];
                         $tahun = $_GET['tahun'];
-                        $bulantahun = $bulan . "/" . $tahun;
+                        $bulantahun = $bulan . $tahun;
                     } else {
                         $bulan = date('m');
                         $tahun = date('Y');
-                        $bulantahun = $bulan . "/" . $tahun;
+                        $bulantahun = $bulan . $tahun;
 
                     }
 
@@ -53,7 +53,6 @@
                             Data
                         </i>
                     </button>
-
                     <?php if (count($akumulasi) > 0) { ?>
                         <a class="btn btn-outline-success ml-2"
                             href="<?= base_url('performances/Akumulasi/cetakAkumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
@@ -70,13 +69,15 @@
                     <?php } ?>
 
                 </div>
+
+            </div>
         </form>
     </div>
 
     <div class="alert alert" style="background-color: #8b0000; color: white;">
-        Menampilkan Akumulasi Penilaian Bulan:<span class="font-weight-bold">
+        Menampilkan Akumulasi Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
-        </span> Tahun:<span class="font-weight-bold">
+        </span> Tahun:<span class="fofnt-weight-bold">
             <?php echo $tahun ?>
     </div>
     <div class="card">
@@ -84,7 +85,7 @@
 
             <!-- validation crud -->
             <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-default" role="alert" style="background-color: #800000;">
                     <?= validation_errors(); ?>
                 </div>
             <?php endif; ?>
@@ -94,15 +95,15 @@
                 </div>
             </div>
 
+            <!-- perulangan -->
             <?php
 
-            $jml_data = COUNT($akumulasi);
+            $jml_data = count($akumulasi);
             if ($jml_data > 0) { ?>
-
-
+                <!-- jml data > 0 artinya jika nilai lebih dari nol maka data atau nilainya itu ada -->
 
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                    <thead style="text-align: center; background-color: #8b0000; color: white;  ">
                         <tr>
                             <th>No</th>
                             <th>NIK & Nama Karyawan</th>
@@ -115,7 +116,7 @@
                     <tbody>
                         <?php $no = 1 ?>
                         <?php foreach ($akumulasi as $ak):
-                            $nilaiakumulasi = ($ak['nilai'] + $ak['total_nilai']) / 2; ?>
+                            $nilaiakumulasi = ($ak['nilai_kinerja'] + $ak['nilai_kuesioner']) / 2; ?>
                             <tr style="text-align: center;">
                                 <th>
                                     <?= $no++; ?>
@@ -126,11 +127,12 @@
                                         $ak['nama_karyawan']; ?>
                                 </td>
                                 <td>
-                                    <?= $ak['nilai']; ?>
+                                    <?= $ak['nilai_kinerja']; ?>
                                 </td>
                                 <td>
-                                    <?= $ak['total_nilai']; ?>
+                                    <?= $ak['nilai_kuesioner']; ?>
                                 </td>
+
                                 <td>
                                     <?= $nilaiakumulasi ?>
                                 </td>
@@ -156,14 +158,17 @@
                 </table>
             <?php } else { ?>
                 <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                    Data masih kosong, silahkan mengisi form kuesioner dan penilaian kinerja!</span>
+                    Data masih kosong, silahkan pilih bulan dan tahun terlebih dahulu!</span>
             <?php } ?>
         </div>
     </div>
     <!-- /.card-body -->
 </div>
 
-<!-- Modal cetak akumulasi keseluruhan -->
+
+
+
+<!-- Modal cetak Akumulasi -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -174,7 +179,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Data akumulasi masih kosong.
+                Data Akumulasi masih kosong.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -182,4 +187,23 @@
         </div>
     </div>
 </div>
-<!-- Akhir modal cetak akumulasi keseluruhan -->
+<!-- Akhir modal cetak penlilaian kinerja -->
+
+
+<script>
+    const nik_nama = document.getElementById("nik_nama");
+    const id_posisi = document.getElementById("id_posisi");
+    nik_nama.onchange = function (e) {
+        const nik = e.target.value;
+        fetch(`/teamhris/performances/penilaiankinerja/ajax_category?nik=${nik}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(response => response.json())
+            .then(response => {
+                id_posisi.value = response?.nama_posisi || ""
+            })
+    }
+</script>
