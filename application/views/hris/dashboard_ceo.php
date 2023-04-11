@@ -310,96 +310,96 @@
                 </div>
         </form>
     </div>
+</div>
+<div class="alert alert" style="background-color: #8b0000; color: white;">
+    Menampilkan Penilaian Karyawan Bulan:<span class="font-weight-bold">
+        <?php echo $bulan ?>
+    </span> Tahun:<span class="font-weight-bold">
+        <?php echo $tahun ?>
+</div>
+<div class="card">
+    <div class="card-body">
 
-    <div class="alert alert" style="background-color: #8b0000; color: white;">
-        Menampilkan Penilaian Karyawan Bulan:<span class="font-weight-bold">
-            <?php echo $bulan ?>
-        </span> Tahun:<span class="font-weight-bold">
-            <?php echo $tahun ?>
-    </div>
-    <div class="card">
-        <div class="card-body">
-
-            <!-- validation crud -->
-            <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
+        <!-- validation crud -->
+        <?php if (validation_errors()): ?>
+            <div class="alert alert-danger" role="alert">
+                <?= validation_errors(); ?>
             </div>
-
-            <?php
-
-            $jml_data = COUNT($akumulasi);
-            if ($jml_data > 0) { ?>
-
-
-
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;  background-color:#8b0000; color: white;">
-                        <tr>
-                            <th>No</th>
-                            <th>Bulan/Tahun</th>
-                            <th>Karyawan</th>
-                            <th>Nilai</th>
-                            <th>Kategorisasi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $no = 1 ?>
-                        <?php
-                        $nik = $this->session->userdata("nik");
-                        $level = $this->session->userdata("level");
-
-                        foreach ($akumulasi as $ak):
-                            if ($nik === $ak['nik'] && $level !== "ceo")
-                                continue;
-                            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
-                            <tr style="text-align: center;">
-                                <th>
-                                    <?= $no++; ?>
-                                </th>
-                                <td>
-                                    <?= $ak['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?= $ak['nik'], "<br>" .
-                                        $ak['nama_karyawan']; ?>
-                                </td>
-                                <td>
-                                    <?= $nilaiakumulasi ?>
-                                </td>
-                                <td style="text-align: center;">
-                                    <?php
-                                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
-                                        echo "Sangat Baik";
-                                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
-                                        echo "Baik";
-                                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
-                                        echo "Cukup";
-                                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
-                                        echo "Kurang";
-                                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
-                                        echo "Sangat Kurang";
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php } else { ?>
-                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                    Data masih kosong, silahkan memilih bulan dan tahun!</span>
-            <?php } ?>
+        <?php endif; ?>
+        <div class="row">
+            <div class="col-lg-4">
+                <?= $this->session->flashdata('message'); ?>
+            </div>
         </div>
+
+        <?php
+
+        $jml_data = COUNT($akumulasi);
+        if ($jml_data > 0) { ?>
+
+
+
+            <table id="example1" class="table table-bordered table-striped">
+                <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                    <tr>
+                        <th>No</th>
+                        <th>Bulan/Tahun</th>
+                        <th>Karyawan</th>
+                        <th>Nilai</th>
+                        <th>Kategorisasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $no = 1 ?>
+                    <?php
+                    $nik = $this->session->userdata("nik");
+                    $level = $this->session->userdata("level");
+
+                    foreach ($akumulasi as $ak):
+                        if ($nik === $ak['nik'] && $level !== "ceo")
+                            continue;
+                        $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                        <tr style="text-align: center;">
+                            <th>
+                                <?= $no++; ?>
+                            </th>
+                            <td>
+                                <?= $ak['tanggal'] ?>
+                            </td>
+                            <td>
+                                <?= $ak['nik'], "<br>" .
+                                    $ak['nama_karyawan']; ?>
+                            </td>
+                            <td>
+                                <?= $nilaiakumulasi ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <?php
+                                if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                                    echo "Sangat Baik";
+                                } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                                    echo "Baik";
+                                } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                                    echo "Cukup";
+                                } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                                    echo "Kurang";
+                                } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                                    echo "Sangat Kurang";
+                                }
+                                ?>
+
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                Data masih kosong, silahkan memilih bulan dan tahun!</span>
+        <?php } ?>
     </div>
-    <!-- /.card-body -->
+</div>
+<!-- /.card-body -->
 </div>
 
 <!-- Modal cetak akumulasi keseluruhan -->

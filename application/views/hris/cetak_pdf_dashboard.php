@@ -49,8 +49,7 @@
         <thead>
             <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">NIK</th>
-                <th class="text-center">Nama Karyawan</th>
+                <th class="text-center">NIK & Nama Karyawan</th>
                 <th class="text-center">Nilai</th>
                 <th class="text-center">Kategorisasi</th>
             </tr>
@@ -68,10 +67,8 @@
                     </td>
 
                     <td style="text-align: center;">
-                        <?= $nb['nik']; ?>
-                    </td>
-                    <td style="text-align: center;">
-                        <?= $nb['nama_karyawan']; ?>
+                        <?= $nb['nik'] . "<br>" .
+                            $nb['nama_karyawan']; ?>
                     </td>
 
                     <td style="text-align: center;">

@@ -55,14 +55,15 @@
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3>
-                        <?= $barispelamar;  ?>
+                        <?= $barispelamar; ?>
                     </h3>
                     <p>Jumlah Pelamar</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- /.card-body -->
@@ -150,6 +151,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header" style="background-color: #cc0000;">
@@ -158,12 +161,8 @@
                     </h3>
                 </div>
                 <div class="card-body">
-<<<<<<< Updated upstream
-                    <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_per_status'); ?>">
-=======
                     <form class="form-horizontal" method="post"
                         action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
->>>>>>> Stashed changes
                         <div class="card-body p-0">
                             <div class="form-group row">
                                 <div class="col-lg-6">
@@ -183,13 +182,8 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-6">
-<<<<<<< Updated upstream
                                     <select class="form-control select2" id="tahun_status" name="tahun_status">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-=======
-                                    <select class="form-control select2" id="tahun" name="tahun">
                                         <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
->>>>>>> Stashed changes
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -212,86 +206,20 @@
                     </h3>
                 </div>
                 <div class="card-body">
-<<<<<<< Updated upstream
                     <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_mitra'); ?>">
-=======
-                    <form class="form-horizontal" method="post"
-                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
->>>>>>> Stashed changes
-                        <div class="card-body p-0">
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <select class="form-control select2" id="bulan_mitra" name="bulan_mitra">
-                                        <option value="01">Januari</option>
-                                        <option value="02">Februari</option>
-                                        <option value="03">Maret</option>
-                                        <option value="04">April</option>
-                                        <option value="05">Mei</option>
-                                        <option value="06">Juni</option>
-                                        <option value="07">Juli</option>
-                                        <option value="08">Agustus</option>
-                                        <option value="09">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">Desember</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6">
-<<<<<<< Updated upstream
-                                    <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-=======
-                                    <select class="form-control select2" id="tahun" name="tahun">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
->>>>>>> Stashed changes
-                                            <option value="<?= $i ?>"><?= $i ?></option>
-                                        <?php endfor; ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                    </form>
-                    <div class="col-lg-12">
-                        <canvas id="mitra"></canvas>
-                    </div>
+
+                        <option value="<?= $i ?>"><?= $i ?></option>
+
+                        </select>
                 </div>
             </div>
         </div>
     </div>
 
-<<<<<<< Updated upstream
-    <div class="card">
-        <div class="card-body">
-            <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
-                <thead style="background-color: #cc0000;">
-                    <tr style="color: #ffffff;">
-                        <th rowspan="2" style="vertical-align: middle;">Nama Karyawan</th>
-                        <th colspan="7">Nilai</th>
-                    </tr>
-                    <tr style="color: #ffffff;">
-                        <th>Januari</th>
-                        <th>Februari</th>
-                        <th>Maret</th>
-                        <th>April</th>
-                        <th>Mei</th>
-                        <th>Juni</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr style="color: #ffffff;">
-                        <th>Karyawan A</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                        <th>B</th>
-                        <th>C</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                    </tr>
-                </thead>
-            </table>
-            <!-- /.card-body -->
-=======
+
+
+
+
     <div class="card">
         <div class="card-header" style="color: white; background-color: #8b0000;">
             <h4> Filter Data Penilaian Karyawan</h4>
@@ -362,97 +290,100 @@
                 </div>
         </form>
     </div>
+</div>
+<div class="alert alert" style="background-color: #8b0000; color: white;">
+    Menampilkan Penilaian Karyawan Bulan:<span class="font-weight-bold">
+        <?php echo $bulan ?>
+    </span> Tahun:<span class="font-weight-bold">
+        <?php echo $tahun ?>
+</div>
 
-    <div class="alert alert" style="background-color: #8b0000; color: white;">
-        Menampilkan Penilaian Karyawan Bulan:<span class="font-weight-bold">
-            <?php echo $bulan ?>
-        </span> Tahun:<span class="font-weight-bold">
-            <?php echo $tahun ?>
-    </div>
-    <div class="card">
-        <div class="card-body">
 
-            <!-- validation crud -->
-            <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
+<div class="card">
+    <div class="card-body">
+
+        <!-- validation crud -->
+        <?php if (validation_errors()): ?>
+            <div class="alert alert-danger" role="alert">
+                <?= validation_errors(); ?>
             </div>
-
-            <?php
-
-            $jml_data = COUNT($akumulasi);
-            if ($jml_data > 0) { ?>
-
-
-
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;  background-color:#8b0000; color: white;">
-                        <tr>
-                            <th>No</th>
-                            <th>Bulan/Tahun</th>
-                            <th>Karyawan</th>
-                            <th>Nilai</th>
-                            <th>Kategorisasi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $no = 1 ?>
-                        <?php
-                        $nik = $this->session->userdata("nik");
-                        $level = $this->session->userdata("level");
-
-                        foreach ($akumulasi as $ak):
-                            if ($nik === $ak['nik'] && $level !== "hc")
-                                continue;
-                            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
-                            <tr style="text-align: center;">
-                                <th>
-                                    <?= $no++; ?>
-                                </th>
-                                <td>
-                                    <?= $ak['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?= $ak['nik'], "<br>" .
-                                        $ak['nama_karyawan']; ?>
-                                </td>
-                                <td>
-                                    <?= $nilaiakumulasi ?>
-                                </td>
-                                <td style="text-align: center;">
-                                    <?php
-                                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
-                                        echo "Sangat Baik";
-                                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
-                                        echo "Baik";
-                                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
-                                        echo "Cukup";
-                                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
-                                        echo "Kurang";
-                                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
-                                        echo "Sangat Kurang";
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php } else { ?>
-                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                    Data masih kosong, silahkan memilih bulan dan tahun!</span>
-            <?php } ?>
->>>>>>> Stashed changes
+        <?php endif; ?>
+        <div class="row">
+            <div class="col-lg-4">
+                <?= $this->session->flashdata('message'); ?>
+            </div>
         </div>
+
+        <?php
+
+        $jml_data = COUNT($akumulasi);
+        if ($jml_data > 0) { ?>
+
+
+
+            <table id="example1" class="table table-bordered table-striped">
+                <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                    <tr>
+                        <th>No</th>
+                        <th>Bulan/Tahun</th>
+                        <th>Karyawan</th>
+                        <th>Nilai</th>
+                        <th>Kategorisasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $no = 1 ?>
+                    <?php
+                    $nik = $this->session->userdata("nik");
+                    $level = $this->session->userdata("level");
+
+                    foreach ($akumulasi as $ak):
+                        if ($nik === $ak['nik'] && $level !== "hc")
+                            continue;
+                        $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                        <tr style="text-align: center;">
+                            <th>
+                                <?= $no++; ?>
+                            </th>
+                            <td>
+                                <?= $ak['tanggal'] ?>
+                            </td>
+                            <td>
+                                <?= $ak['nik'], "<br>" .
+                                    $ak['nama_karyawan']; ?>
+                            </td>
+                            <td>
+                                <?= $nilaiakumulasi ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <?php
+                                if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                                    echo "Sangat Baik";
+                                } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                                    echo "Baik";
+                                } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                                    echo "Cukup";
+                                } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                                    echo "Kurang";
+                                } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                                    echo "Sangat Kurang";
+                                }
+                                ?>
+
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                Data masih kosong, silahkan memilih bulan dan tahun!</span>
+        <?php } ?>
     </div>
-    <!-- /.card-body -->
+</div>
+</div>
+</div>
+</div>
 </div>
 
 <!-- Modal cetak akumulasi keseluruhan -->
@@ -475,11 +406,7 @@
     </div>
 </div>
 
-<<<<<<< Updated upstream
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-=======
-</script>
->>>>>>> Stashed changes
 
 <script>
     const a = <?= $laporan_gk[0]['Sudah'] ?>;
@@ -515,11 +442,7 @@
             },
             tooltips: {
                 callbacks: {
-<<<<<<< Updated upstream
-                    label: function(tooltipItem, data) {
-=======
                     label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -530,11 +453,8 @@
                 }
             }
         }
-<<<<<<< Updated upstream
-=======
     }
         
->>>>>>> Stashed changes
     });
 
     const c = <?= $laporan_rm[0]['Sudah'] ?>;
@@ -569,11 +489,7 @@
             },
             tooltips: {
                 callbacks: {
-<<<<<<< Updated upstream
-                    label: function(tooltipItem, data) {
-=======
                     label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -619,11 +535,7 @@
             },
             tooltips: {
                 callbacks: {
-<<<<<<< Updated upstream
-                    label: function(tooltipItem, data) {
-=======
                     label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -635,56 +547,6 @@
             }
         }
     });
-<<<<<<< Updated upstream
-
-    let d2 = new Date();
-    let m2 = d2.getMonth() + 1
-    let year = d2.getFullYear()
-    let month = ('0' + m2).slice(-2);
-    document.getElementById("bulan_type").value = month;
-    document.getElementById("bulan_status").value = month;
-    document.getElementById("bulan_mitra").value = month;
-    document.getElementById("tahun_type").value = year;
-    document.getElementById("tahun_status").value = year;
-    document.getElementById("tahun_mitra").value = year;
-    // document.getElementById("bulan_status").value = month;
-</script>
-
-<script type="text/javascript">
-    // START TYPE
-    $('#bulan_type,#tahun_type').change(function() {
-        bulanType = document.getElementById('bulan_type').value;
-        tahunType = document.getElementById('tahun_type').value;
-        $.ajax({
-            url: '<?= base_url() ?>hris/filter_per_type',
-            dataType: 'json',
-            type: "POST",
-            data: {
-                bulanType,
-                tahunType
-            },
-            success: function(result) {
-
-                const e2 = result[0]['Office'];
-                const f2 = result[0]['Project'];
-                const type = document.getElementById('type');
-                const d_type = {
-                    labels: [
-                        'Office',
-                        'Project Base'
-                    ],
-                    datasets: [{
-                        label: 'My First Dataset',
-                        data: [e2, f2],
-                        backgroundColor: [
-                            '#28a745',
-                            'rgb(255, 205, 86)'
-                        ],
-                        hoverOffset: 4
-                    }]
-                };
-
-=======
 </script>
 
 <script type="text/javascript">
@@ -723,7 +585,6 @@
                     }]
                 };
 
->>>>>>> Stashed changes
                 new Chart(type, {
                     type: 'pie',
                     data: d_type,
@@ -738,11 +599,7 @@
                         },
                         tooltips: {
                             callbacks: {
-<<<<<<< Updated upstream
-                                label: function(tooltipItem, data) {
-=======
                                 label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                                     var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                                     if (parseInt(totalData) >= 1000) {
                                         return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -757,137 +614,5 @@
             }
         });
     });
-<<<<<<< Updated upstream
-    // END TYPE
 
-    // START TYPE
-    $('#bulan_status,#tahun_status').change(function() {
-        bulanStatus = document.getElementById('bulan_status').value;
-        tahunStatus = document.getElementById('tahun_status').value;
-        $.ajax({
-            url: '<?= base_url() ?>hris/filter_per_status',
-            dataType: 'json',
-            type: "POST",
-            data: {
-                bulanStatus,
-                tahunStatus
-            },
-            success: function(result) {
-
-                const a2 = result[0]['Sudah'];
-                const b2 = result[0]['Belum'];
-
-                const karyawan = document.getElementById('karyawan');
-                const d_karyawan = {
-                    labels: [
-                        'Sudah dibayar',
-                        'Belum dibayar'
-                    ],
-                    datasets: [{
-                        label: 'Gaji Karyawan',
-                        data: [a2, b2],
-                        backgroundColor: [
-                            '#28a745',
-                            'rgb(255, 205, 86)'
-                        ],
-                        hoverOffset: 4
-                    }]
-                };
-
-                new Chart(karyawan, {
-                    type: 'pie',
-                    data: d_karyawan,
-                    options: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                display: false,
-                                fontSize: 10
-                            }
-                        },
-                        tooltips: {
-                            callbacks: {
-                                label: function(tooltipItem, data) {
-                                    var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                                    if (parseInt(totalData) >= 1000) {
-                                        return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                    } else {
-                                        return 'Rp ' + totalData;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    });
-    // END TYPE
-
-    // START TYPE
-    $('#bulan_mitra,#tahun_mitra').change(function() {
-        bulanMitra = document.getElementById('bulan_mitra').value;
-        tahunMitra = document.getElementById('tahun_mitra').value;
-        $.ajax({
-            url: '<?= base_url() ?>hris/filter_per_mitra',
-            dataType: 'json',
-            type: "POST",
-            data: {
-                bulanMitra,
-                tahunMitra
-            },
-            success: function(result) {
-
-                const c2 = result[0]['Sudah'];
-                const d2 = result[0]['Belum'];
-
-                const mitra = document.getElementById('mitra');
-                const d_mitra = {
-                    labels: [
-                        'Sudah dibayar',
-                        'Belum dibayar'
-                    ],
-                    datasets: [{
-                        label: 'Rate Mitra',
-                        data: [c2, d2],
-                        backgroundColor: [
-                            '#28a745',
-                            'rgb(255, 205, 86)'
-                        ],
-                        hoverOffset: 4
-                    }]
-                };
-
-                new Chart(mitra, {
-                    type: 'pie',
-                    data: d_mitra,
-                    options: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                display: false,
-                                fontSize: 10
-                            }
-                        },
-                        tooltips: {
-                            callbacks: {
-                                label: function(tooltipItem, data) {
-                                    var totalData = data['datasets'][0]['data'][tooltipItem['index']];
-                                    if (parseInt(totalData) >= 1000) {
-                                        return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                    } else {
-                                        return 'Rp ' + totalData;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-        });
-    });
-    // END TYPE
-=======
-            // END TYPE
->>>>>>> Stashed changes
 </script>

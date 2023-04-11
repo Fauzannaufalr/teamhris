@@ -131,7 +131,7 @@ class Hris extends CI_Controller
 
         $data['cetak_dashboard_excel'] = $this->Hris_model->cetakNilaiDashboard($bulantahun);
         // printr($data['cetak_akumulasi']);
-        $this->load->view('hris/cetak_excel_Dashboard', $data);
+        $this->load->view('hris/cetak_excel_dashboard_hc', $data);
     }
 
     public function cetakExcelKaryawan()
