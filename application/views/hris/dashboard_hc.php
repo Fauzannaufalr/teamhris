@@ -12,8 +12,7 @@
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -28,8 +27,7 @@
                 <div class="icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
-                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -45,8 +43,7 @@
                 <div class="icon">
                     <i class="fas fa-user-lock"></i>
                 </div>
-                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -135,7 +132,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_type" name="tahun_type">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -158,12 +155,7 @@
                     </h3>
                 </div>
                 <div class="card-body">
-<<<<<<< Updated upstream
                     <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_per_status'); ?>">
-=======
-                    <form class="form-horizontal" method="post"
-                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
->>>>>>> Stashed changes
                         <div class="card-body p-0">
                             <div class="form-group row">
                                 <div class="col-lg-6">
@@ -183,13 +175,8 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-6">
-<<<<<<< Updated upstream
                                     <select class="form-control select2" id="tahun_status" name="tahun_status">
                                         <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-=======
-                                    <select class="form-control select2" id="tahun" name="tahun">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
->>>>>>> Stashed changes
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -212,12 +199,7 @@
                     </h3>
                 </div>
                 <div class="card-body">
-<<<<<<< Updated upstream
                     <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_mitra'); ?>">
-=======
-                    <form class="form-horizontal" method="post"
-                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
->>>>>>> Stashed changes
                         <div class="card-body p-0">
                             <div class="form-group row">
                                 <div class="col-lg-6">
@@ -237,13 +219,8 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-6">
-<<<<<<< Updated upstream
                                     <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
                                         <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-=======
-                                    <select class="form-control select2" id="tahun" name="tahun">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
->>>>>>> Stashed changes
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -260,38 +237,6 @@
         </div>
     </div>
 
-<<<<<<< Updated upstream
-    <div class="card">
-        <div class="card-body">
-            <table id="example2" class="table table-bordered table-striped" style="text-align: center;">
-                <thead style="background-color: #cc0000;">
-                    <tr style="color: #ffffff;">
-                        <th rowspan="2" style="vertical-align: middle;">Nama Karyawan</th>
-                        <th colspan="7">Nilai</th>
-                    </tr>
-                    <tr style="color: #ffffff;">
-                        <th>Januari</th>
-                        <th>Februari</th>
-                        <th>Maret</th>
-                        <th>April</th>
-                        <th>Mei</th>
-                        <th>Juni</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr style="color: #ffffff;">
-                        <th>Karyawan A</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                        <th>B</th>
-                        <th>C</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                        <th>SB</th>
-                    </tr>
-                </thead>
-            </table>
-            <!-- /.card-body -->
-=======
     <div class="card">
         <div class="card-header" style="color: white; background-color: #8b0000;">
             <h4> Filter Data Penilaian Karyawan</h4>
@@ -336,7 +281,6 @@
                         $bulan = date('m');
                         $tahun = date('Y');
                         $bulantahun = $bulan . "/" . $tahun;
-
                     }
 
                     ?>
@@ -346,17 +290,11 @@
                     </button>
 
                     <?php if (count($akumulasi) > 0) { ?>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakPdf?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak PDF</a>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakExcelHC?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak Excel</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakPdf?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakExcelHC?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
 
                 </div>
@@ -373,7 +311,7 @@
         <div class="card-body">
 
             <!-- validation crud -->
-            <?php if (validation_errors()): ?>
+            <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>
                 </div>
@@ -407,7 +345,7 @@
                         $nik = $this->session->userdata("nik");
                         $level = $this->session->userdata("level");
 
-                        foreach ($akumulasi as $ak):
+                        foreach ($akumulasi as $ak) :
                             if ($nik === $ak['nik'] && $level !== "hc")
                                 continue;
                             $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
@@ -449,7 +387,6 @@
                 <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
                     Data masih kosong, silahkan memilih bulan dan tahun!</span>
             <?php } ?>
->>>>>>> Stashed changes
         </div>
     </div>
     <!-- /.card-body -->
@@ -475,11 +412,7 @@
     </div>
 </div>
 
-<<<<<<< Updated upstream
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-=======
-</script>
->>>>>>> Stashed changes
 
 <script>
     const a = <?= $laporan_gk[0]['Sudah'] ?>;
@@ -515,11 +448,7 @@
             },
             tooltips: {
                 callbacks: {
-<<<<<<< Updated upstream
                     label: function(tooltipItem, data) {
-=======
-                    label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -530,11 +459,6 @@
                 }
             }
         }
-<<<<<<< Updated upstream
-=======
-    }
-        
->>>>>>> Stashed changes
     });
 
     const c = <?= $laporan_rm[0]['Sudah'] ?>;
@@ -569,11 +493,7 @@
             },
             tooltips: {
                 callbacks: {
-<<<<<<< Updated upstream
                     label: function(tooltipItem, data) {
-=======
-                    label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -619,11 +539,7 @@
             },
             tooltips: {
                 callbacks: {
-<<<<<<< Updated upstream
                     label: function(tooltipItem, data) {
-=======
-                    label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -635,7 +551,6 @@
             }
         }
     });
-<<<<<<< Updated upstream
 
     let d2 = new Date();
     let m2 = d2.getMonth() + 1
@@ -684,46 +599,6 @@
                     }]
                 };
 
-=======
-</script>
-
-<script type="text/javascript">
-    // START TYPE
-    $('#bulan_type,#tahun_type').change(function () {
-        bulanType = document.getElementById('bulan_type').value;
-        tahunType = document.getElementById('tahun_type').value;
-        console.log(bulanType);
-        console.log(tahunType);
-        $.ajax({
-            url: '<?= base_url() ?>hris/filter_per_type',
-            dataType: 'json',
-            type: "POST",
-            data: {
-                bulanType,
-                tahunType
-            },
-            success: function (result) {
-
-                const e2 = result[0]['Office'];
-                const f2 = result[0]['Project'];
-                const type = document.getElementById('type');
-                const d_type = {
-                    labels: [
-                        'Office',
-                        'Project Base'
-                    ],
-                    datasets: [{
-                        label: 'My First Dataset',
-                        data: [e2, f2],
-                        backgroundColor: [
-                            '#28a745',
-                            'rgb(255, 205, 86)'
-                        ],
-                        hoverOffset: 4
-                    }]
-                };
-
->>>>>>> Stashed changes
                 new Chart(type, {
                     type: 'pie',
                     data: d_type,
@@ -738,11 +613,7 @@
                         },
                         tooltips: {
                             callbacks: {
-<<<<<<< Updated upstream
                                 label: function(tooltipItem, data) {
-=======
-                                label: function (tooltipItem, data) {
->>>>>>> Stashed changes
                                     var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                                     if (parseInt(totalData) >= 1000) {
                                         return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -757,7 +628,6 @@
             }
         });
     });
-<<<<<<< Updated upstream
     // END TYPE
 
     // START TYPE
@@ -887,7 +757,4 @@
         });
     });
     // END TYPE
-=======
-            // END TYPE
->>>>>>> Stashed changes
 </script>
