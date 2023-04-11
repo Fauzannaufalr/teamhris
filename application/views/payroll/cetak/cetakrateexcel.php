@@ -31,7 +31,10 @@ header("Expires: 0")
         <th class="text-center">Tools</th>
         <th class="text-center">Rate Total</th>
     </tr>
-    <?php $no = 1; ?>
+    <?php
+    $no = 1;
+    $rate = 0;
+    ?>
     <?php foreach ($cetak_rate as $g) :
         $k1 = unserialize($g['keahlian']);
         $k2 = serialize($k1);
@@ -70,8 +73,11 @@ header("Expires: 0")
             <td class="text-center"><?= $data_t ?></td>
             <td class="text-center">Rp <?= number_format($g['rate_total'], 0, ',', '.'); ?></td>
         </tr>
-    <?php endforeach; ?>
+    <?php
+        $rate = $rate + $g['rate_total'];
+    endforeach; ?>
     <tr>
-        <th colspan="4" style="text-align: right;">Total : </th>
+        <th colspan="5" style="text-align: right;">Total : </th>
+        <th style="text-align: right;">Rp <?= number_format($rate, 0, ',', '.'); ?></th>
     </tr>
 </table>

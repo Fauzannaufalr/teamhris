@@ -1,0 +1,1815 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 11, 2023 at 06:19 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hris`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_akun`
+--
+
+CREATE TABLE `data_akun` (
+  `id` int(11) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `level` varchar(50) NOT NULL,
+  `nama` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_akun`
+--
+
+INSERT INTO `data_akun` (`id`, `username`, `password`, `level`, `nama`) VALUES
+(3, '0223023', 'sahaware', '1', 'burhan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_karyawan`
+--
+
+CREATE TABLE `data_karyawan` (
+  `id_karyawan` int(11) NOT NULL,
+  `nik` varchar(100) NOT NULL,
+  `nama_karyawan` varchar(200) NOT NULL,
+  `id_posisi` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telepon` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `gajipokok` decimal(10,0) NOT NULL,
+  `foto` varchar(50) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `nik_leader` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `level` enum('leader','hc','biasa','ceo') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_karyawan`
+--
+
+INSERT INTO `data_karyawan` (`id_karyawan`, `nik`, `nama_karyawan`, `id_posisi`, `id_kelas`, `email`, `telepon`, `alamat`, `status`, `gajipokok`, `foto`, `type`, `nik_leader`, `password`, `level`) VALUES
+(24, '0223001', 'Hasbi Ceo', 5, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Tidak Aktif', '500000', 'download_(1).png', 'Office', '', '$2y$10$EJnNLRQHgbT9X0In2BjLXu49zg4SymTKK.Z2ziNBHlDcugA07I2ba', 'ceo'),
+(25, '0223002', 'Hasbi HC', 5, 2, 'neymar@gmail.com', '54321', 'Jl. qwerty', 'Aktif', '5000000', 'default.jpg', 'Office', '', '$2y$10$oaI2q5EgZhYEEKfeeGx8/e.S5oZblAn/6uARbKTQUrVhYeARpriqK', 'hc'),
+(26, '0223003', 'Hasbi Karyawan', 10, 1, 'Hasbi@gmail.com', '081234', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Office', '02223004', '$2y$10$Od3nIlRZK1NgAJZ3LPwrAO/W6w7dbpDB02KWVqFqqlMqM0s136TAi', 'biasa'),
+(29, '0223005', 'Fauzan Naufal Ramadhani', 6, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '500000', 'default.jpg', 'Office', '', '$2y$10$LE6zEyPO.9ytFdtfzCnuOeVX1BCDrg6.3GK9oLAju8F5kRhsJiu/G', 'hc'),
+(32, '0223004', 'Hasbi Leader', 5, 1, 'fauzan@gmail.com', '0812344', 'Jl. Soekarno', 'Aktif', '5000000', 'ironman.png', 'Office', '', '$2y$10$vyR86e9xNQ.cutdtFfbLC.hCdk2HOwRsDOpplBGW6/kHCLtcZwoD.', 'leader'),
+(34, '0223009', 'Joni', 7, 2, 'jonijoniyesspapaa@gmail.com', '1124', 'Jl. apdas', 'Aktif', '5000000', 'default.jpg', 'Office', '123445', '$2y$10$PKGOpLBGgriabxpayNBB9ec/vK3kzHdIqSA8Z4a0.GCCTpDablKxO', 'biasa'),
+(35, '0223010', 'Pascal', 6, 1, 'fauzan@gmail.com', '081234556', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Office', '', '$2y$10$p/3B8ySdV65Y37JqSC6ztONhma6UtiFAyljv.msAlaJwCZgwDSPrK', 'biasa'),
+(37, '0223006', 'Lionel Messi', 6, 1, 'ronaldo@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '5000000', 'default.jpg', 'Office', '', '$2y$10$itvxC.kAnIX3WpupOu1YKu/pIhpfHLxEbHhqmmG.R7H8cncEf5EOq', 'leader'),
+(38, '0223007', 'Hanif', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Office', NULL, '$2y$10$sM97e445xLlbgQUZbxRTy.0WKbBXEp5aoFuNGMxfZWX7T.mqRl4pa', 'hc'),
+(39, '0223011', 'Rudy', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Office', NULL, '$2y$10$XYPpgxF9t1ub3yPcbRcEfeiH3XaK5MIMCVlTxNKAwpuc2/Vmf8bFO', 'hc'),
+(40, '0223012', 'Beni', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '', 'hc'),
+(41, '0223013', 'Fauzan Naufal', 5, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '500000', 'download_(1).png', 'Project Base', '', '$2y$10$EJnNLRQHgbT9X0In2BjLXu49zg4SymTKK.Z2ziNBHlDcugA07I2ba', 'hc'),
+(42, '0223014', 'Neymar Junior', 5, 2, 'neymar@gmail.com', '54321', 'Jl. qwerty', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$oaI2q5EgZhYEEKfeeGx8/e.S5oZblAn/6uARbKTQUrVhYeARpriqK', 'hc'),
+(43, '0223015', 'Rendy', 10, 1, 'fauzan@gmail.com', '081234', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$Od3nIlRZK1NgAJZ3LPwrAO/W6w7dbpDB02KWVqFqqlMqM0s136TAi', 'hc'),
+(44, '0223016', 'David ', 6, 2, 'fauzan@gmail.com', '0812345', 'Jl. Soekarno', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$h0xtSGL.mdS/tExigoSXmuvgAKwrtZP1XNCk6y0bTYMRN4xqO/t7y', 'hc'),
+(45, '0223017', 'Fauzan Naufal Ramadhani', 6, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '500000', 'default.jpg', 'Project Base', '', '$2y$10$LE6zEyPO.9ytFdtfzCnuOeVX1BCDrg6.3GK9oLAju8F5kRhsJiu/G', 'hc'),
+(46, '0223018', 'Killua', 5, 1, 'fauzan@gmail.com', '0812344', 'Jl. Soekarno', 'Aktif', '5000000', 'ironman.png', 'Project Base', '', '$2y$10$vyR86e9xNQ.cutdtFfbLC.hCdk2HOwRsDOpplBGW6/kHCLtcZwoD.', 'hc'),
+(47, '0223019', 'Joni', 7, 2, 'jonijoniyesspapaa@gmail.com', '1124', 'Jl. apdas', 'Aktif', '5000000', 'default.jpg', 'Project Base', '123445', '$2y$10$PKGOpLBGgriabxpayNBB9ec/vK3kzHdIqSA8Z4a0.GCCTpDablKxO', 'biasa'),
+(48, '0223020', 'Pascal', 6, 1, 'fauzan@gmail.com', '081234556', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$p/3B8ySdV65Y37JqSC6ztONhma6UtiFAyljv.msAlaJwCZgwDSPrK', 'biasa'),
+(49, '0223021', 'Lionel Messi', 6, 1, 'ronaldo@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$itvxC.kAnIX3WpupOu1YKu/pIhpfHLxEbHhqmmG.R7H8cncEf5EOq', 'hc'),
+(50, '0223022', 'Hanif', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '$2y$10$ynew2YJcR9d4eh5sRfkcz.VgxEGSrsIQyhkGsrvEeOGWXXHzDb9RK', 'hc'),
+(51, '0223023', 'Rudy', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '$2y$10$5EAGuo5YJ2RWSr4JaryEmOM.8N3fSjRdDh0zFQRgv4NEH/jfKhlN.', 'hc'),
+(52, '0223024', 'Beni', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '$2y$10$A298uAll9ZYcTlAK77oHjuva2nr2ltoxAtBmBt.t6/eK2Oc39Vs56', 'hc'),
+(54, '0223026', 'Pascal', 6, 1, 'fauzan@gmail.com', '081234556', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$p/3B8ySdV65Y37JqSC6ztONhma6UtiFAyljv.msAlaJwCZgwDSPrK', 'biasa'),
+(91, '0223025', 'Ahmad Kurniawan', 9, 1, 'Zidan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '5000000', 'default.jpg', 'Project Base', '123445', '$2y$10$7C/B9OjZyaGZL65pRAXCveODkwpNpIpB.YFx9A01H5Y.lEfBOy/le', 'biasa'),
+(92, '0223029', 'Maman', 7, 1, 'maman@gmail.com', '81234', 'Jl. Abc', 'Aktif', '500000', 'default.jpg', '', '', '$2y$10$.ooIlHkVGLXm7CdtVnbauenCp91qyBHR6afxyB6IpOl7SViA/034q', 'hc'),
+(93, '0223030', 'Supri', 7, 1, 'maman@gmail.com', '81234', 'Jl. Abc', 'Aktif', '500000', 'default.jpg', '', '', '$2y$10$jCe6XNC1udoCl1mdoEuPtOoVoaQ2bHTthY122miWP01KbjlacENKm', 'hc');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_keseluruhan`
+--
+
+CREATE TABLE `data_keseluruhan` (
+  `id_keseluruhan` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `kategori` varchar(30) NOT NULL,
+  `ulasan` text NOT NULL,
+  `file` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `data_keseluruhan`
+--
+
+INSERT INTO `data_keseluruhan` (`id_keseluruhan`, `nama`, `kategori`, `ulasan`, `file`) VALUES
+(8, 'jatmiko kuncoro', 'php,java,python', 'sdeec', ''),
+(9, 'bagus', 'php', 'ssss', ''),
+(10, 'jatmiko kuncoro', 'php', 'mkk', 'jawaban_tes_pelamar.pdf'),
+(11, 'jatmiki', 'php', 'mnjgu', 'jawaban_tes_pelamar_(4)1.pdf'),
+(12, 'hangus', 'php,java,python', 'jbdiyubdbbuchoi3 idn3ic3unec ', 'Soal_Kuis.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_mitra`
+--
+
+CREATE TABLE `data_mitra` (
+  `id` int(11) NOT NULL,
+  `nama_perusahaan` varchar(255) NOT NULL,
+  `nama_karyawan` varchar(255) NOT NULL,
+  `keahlian` varchar(255) NOT NULL,
+  `tools` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telepon` varchar(11) NOT NULL,
+  `alamat` text NOT NULL,
+  `rate_total` decimal(10,0) NOT NULL,
+  `dokumen_kerjasama` varchar(255) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `tanggal_masuk` date NOT NULL,
+  `tanggal_keluar` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `data_mitra`
+--
+
+INSERT INTO `data_mitra` (`id`, `nama_perusahaan`, `nama_karyawan`, `keahlian`, `tools`, `email`, `telepon`, `alamat`, `rate_total`, `dokumen_kerjasama`, `status`, `tanggal_masuk`, `tanggal_keluar`) VALUES
+(14, 'PT. ABC', 'Tango', 'a:2:{i:0;s:8:\"Contoh 1\";i:1;s:8:\"Contoh 2\";}', 'a:2:{i:0;s:8:\"Contoh 3\";i:1;s:8:\"Contoh 4\";}', 'fauzan@gmail.com', '08122358313', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', '50000', 'link', 'Aktif', '2023-03-26', '2023-04-19'),
+(15, 'PT. ABC', 'Fauzan Naufal Nur Ramadhani', 'a:1:{i:0;s:8:\"Contoh 1\";}', 'a:1:{i:0;s:8:\"Contoh 4\";}', 'kakang@gmail.com', '08122358313', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', '50000', 'link', 'Aktif', '0000-00-00', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_pelamar`
+--
+
+CREATE TABLE `data_pelamar` (
+  `id_pelamar` int(11) NOT NULL,
+  `nama_pekerjaan` varchar(255) NOT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
+  `pendidikan` varchar(255) NOT NULL,
+  `cv` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `telepon` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `submit_tanggal` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `data_pelamar`
+--
+
+INSERT INTO `data_pelamar` (`id_pelamar`, `nama_pekerjaan`, `nama_lengkap`, `pendidikan`, `cv`, `alamat`, `telepon`, `email`, `submit_tanggal`) VALUES
+(1, 'frontend', 'fredy', 'd3', 'cv.pdf', 'lembang', 877171959, 'fredygunawan@gmail.com', '01-09-2002');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_posisi`
+--
+
+CREATE TABLE `data_posisi` (
+  `id_posisi` int(11) NOT NULL,
+  `nama_posisi` varchar(100) NOT NULL,
+  `kode` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_posisi`
+--
+
+INSERT INTO `data_posisi` (`id_posisi`, `nama_posisi`, `kode`) VALUES
+(5, 'Front End Developer', '001'),
+(6, 'Back End Developer', '002'),
+(7, 'QA', '003'),
+(9, 'Fullstack Developer', '004'),
+(10, 'QC', '005');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kelola`
+--
+
+CREATE TABLE `kelola` (
+  `id` int(11) NOT NULL,
+  `nama_pekerjaan` varchar(225) NOT NULL,
+  `kualifikasi` varchar(225) NOT NULL,
+  `tanggal_berakhir` date NOT NULL,
+  `img` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kelola`
+--
+
+INSERT INTO `kelola` (`id`, `nama_pekerjaan`, `kualifikasi`, `tanggal_berakhir`, `img`) VALUES
+(2, 'frontend', 'menguasai vuejs', '2023-02-11', 'dd.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll___bpjs`
+--
+
+CREATE TABLE `payroll___bpjs` (
+  `id` int(11) NOT NULL,
+  `id_datakaryawan` int(11) NOT NULL,
+  `id_databpjs` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payroll___bpjs`
+--
+
+INSERT INTO `payroll___bpjs` (`id`, `id_datakaryawan`, `id_databpjs`, `jumlah`, `total`) VALUES
+(9, 25, 1, 2, 300000),
+(10, 32, 4, 1, 50000),
+(11, 26, 2, 2, 200000),
+(13, 27, 1, 5, 750000),
+(14, 29, 2, 4, 400000),
+(15, 24, 4, 3, 150000),
+(17, 34, 2, 5, 500000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll___databpjs`
+--
+
+CREATE TABLE `payroll___databpjs` (
+  `id` int(11) NOT NULL,
+  `kelas` varchar(255) NOT NULL,
+  `nilai` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payroll___databpjs`
+--
+
+INSERT INTO `payroll___databpjs` (`id`, `kelas`, `nilai`) VALUES
+(1, 'Kelas 1', '150000'),
+(2, 'Kelas 2', '100000'),
+(4, 'Kelas 3', '50000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll___datapajak`
+--
+
+CREATE TABLE `payroll___datapajak` (
+  `id` int(11) NOT NULL,
+  `golongan` varchar(255) NOT NULL,
+  `kode` varchar(255) NOT NULL,
+  `tarif` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payroll___datapajak`
+--
+
+INSERT INTO `payroll___datapajak` (`id`, `golongan`, `kode`, `tarif`) VALUES
+(1, 'Tidak Kawin (TK)', 'TK/0', 54000000),
+(2, 'Tidak Kawin (TK)', 'TK/1', 58500000),
+(9, 'Tidak Kawin (TK)', 'TK/2', 63000000),
+(10, 'Tidak Kawin (TK)', 'TK/3', 67500000),
+(11, 'Kawin (K)', 'K/0', 58500000),
+(12, 'Kawin (K)', 'K/1', 63000000),
+(13, 'Kawin (K)', 'K/2', 67500000),
+(14, 'Kawin (K)', 'K/3', 72000000),
+(15, 'Kawin + Istri (KI)', 'K/I/0', 112500000),
+(16, 'Kawin + Istri (KI)', 'K/I/1', 117000000),
+(17, 'Kawin + Istri (KI)', 'K/I/2', 121500000),
+(18, 'Kawin + Istri (KI)', 'K/I/3', 126000000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll___pajak`
+--
+
+CREATE TABLE `payroll___pajak` (
+  `id` int(11) NOT NULL,
+  `id_datakaryawan` int(11) NOT NULL,
+  `id_datapajak` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payroll___pajak`
+--
+
+INSERT INTO `payroll___pajak` (`id`, `id_datakaryawan`, `id_datapajak`) VALUES
+(2, 29, 12),
+(8, 32, 11),
+(10, 25, 12),
+(12, 35, 12),
+(13, 26, 12),
+(14, 24, 16),
+(15, 34, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll___pengajuangaji`
+--
+
+CREATE TABLE `payroll___pengajuangaji` (
+  `id` int(11) NOT NULL,
+  `bulan_tahun` varchar(255) NOT NULL,
+  `id_datakaryawan` int(11) NOT NULL,
+  `nama_posisi` varchar(155) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `gajipokok` decimal(20,0) NOT NULL,
+  `pajak` decimal(20,0) DEFAULT NULL,
+  `t_kinerja` decimal(20,0) DEFAULT NULL,
+  `t_fungsional` decimal(10,0) DEFAULT NULL,
+  `t_jabatan` decimal(10,0) DEFAULT NULL,
+  `t_bpjs` decimal(10,0) DEFAULT NULL,
+  `potongan` decimal(20,0) DEFAULT NULL,
+  `bonus` decimal(20,0) DEFAULT NULL,
+  `total` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payroll___pengajuangaji`
+--
+
+INSERT INTO `payroll___pengajuangaji` (`id`, `bulan_tahun`, `id_datakaryawan`, `nama_posisi`, `type`, `gajipokok`, `pajak`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`, `total`, `status`) VALUES
+(610, '202305', 34, 'QA', 'Office', '5000000', '10', '750001', '750002', '750003', '0', '5000004', '0', 2249992, 'Belum dibayar'),
+(611, '202305', 25, 'Front End Developer', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '5000', '1000', 5175988, 'Belum dibayar'),
+(612, '202305', 27, 'Back End Developer', 'Office', '5000000', NULL, '60000', '45', '45', '450000', '500', '1', 5509591, 'Belum dibayar'),
+(613, '202305', 26, 'QC', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '500000', '0', 4679988, 'Belum dibayar'),
+(614, '202305', 32, 'Front End Developer', 'Office', '5000000', '11', '75000', '75000', '75000', '0', '500000', '0', 4724989, 'Sudah dibayar'),
+(615, '202305', 29, 'Back End Developer', 'Office', '500000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 499988, 'Belum dibayar'),
+(616, '202305', 35, 'Back End Developer', 'Office', '5000000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 4999988, 'Belum dibayar'),
+(617, '202305', 37, 'Back End Developer', 'Office', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(618, '202305', 38, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(619, '202305', 39, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(620, '202305', 40, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(621, '202305', 41, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(622, '202305', 42, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(623, '202305', 43, 'QC', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(624, '202305', 44, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(625, '202305', 45, 'Back End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(626, '202305', 46, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(627, '202305', 47, 'QA', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(628, '202305', 48, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(629, '202305', 49, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(630, '202305', 50, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(631, '202305', 51, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(632, '202305', 52, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(633, '202305', 54, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(634, '202305', 91, 'Fullstack Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(635, '202304', 34, 'QA', 'Office', '5000000', '10', '750001', '750002', '750003', '0', '5000004', '0', 2249992, 'Belum dibayar'),
+(636, '202304', 25, 'Front End Developer', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '5000', '1000', 5175988, 'Sudah dibayar'),
+(637, '202304', 27, 'Back End Developer', 'Office', '5000000', NULL, '60000', '45', '45', '450000', '500', '1', 5509591, 'Belum dibayar'),
+(638, '202304', 26, 'QC', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '500000', '0', 4679988, 'Belum dibayar'),
+(639, '202304', 32, 'Front End Developer', 'Office', '5000000', '11', '75000', '75000', '75000', '0', '500000', '0', 4724989, 'Belum dibayar'),
+(640, '202304', 29, 'Back End Developer', 'Office', '500000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 499988, 'Belum dibayar'),
+(641, '202304', 35, 'Back End Developer', 'Office', '5000000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 4999988, 'Belum dibayar'),
+(642, '202304', 37, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(643, '202304', 38, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(644, '202304', 39, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(645, '202304', 40, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(646, '202304', 41, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(647, '202304', 42, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(648, '202304', 43, 'QC', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(649, '202304', 44, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(650, '202304', 45, 'Back End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(651, '202304', 46, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(652, '202304', 47, 'QA', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(653, '202304', 48, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(654, '202304', 49, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(655, '202304', 50, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(656, '202304', 51, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(657, '202304', 52, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
+(658, '202304', 54, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
+(659, '202304', 91, 'Fullstack Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll___pengajuanratemitra`
+--
+
+CREATE TABLE `payroll___pengajuanratemitra` (
+  `id` int(11) NOT NULL,
+  `bulan_tahun` varchar(30) NOT NULL,
+  `id_datamitra` int(11) NOT NULL,
+  `rate_total` decimal(10,0) DEFAULT NULL,
+  `status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payroll___pengajuanratemitra`
+--
+
+INSERT INTO `payroll___pengajuanratemitra` (`id`, `bulan_tahun`, `id_datamitra`, `rate_total`, `status`) VALUES
+(29, '202305', 14, '50000', 'Belum dibayar'),
+(30, '202305', 15, '50000', 'Sudah dibayar'),
+(31, '202304', 14, '50000', 'Sudah dibayar '),
+(32, '202304', 15, '50000', 'Belum dibayar');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll___perhitungan`
+--
+
+CREATE TABLE `payroll___perhitungan` (
+  `id` int(11) NOT NULL,
+  `id_datakaryawan` int(11) NOT NULL,
+  `t_kinerja` decimal(10,0) NOT NULL,
+  `t_fungsional` decimal(10,0) NOT NULL,
+  `t_jabatan` decimal(10,0) NOT NULL,
+  `t_bpjs` decimal(10,0) NOT NULL,
+  `potongan` int(11) NOT NULL,
+  `bonus` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payroll___perhitungan`
+--
+
+INSERT INTO `payroll___perhitungan` (`id`, `id_datakaryawan`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`) VALUES
+(1, 34, '750001', '750002', '750003', '0', 5000004, 0),
+(4, 24, '50000', '50000', '10000', '0', 45000, 100000),
+(5, 25, '60000', '60000', '60000', '0', 5000, 1000),
+(6, 27, '60000', '45', '45', '450000', 500, 1),
+(7, 26, '60000', '60000', '60000', '0', 500000, 0),
+(8, 32, '75000', '75000', '75000', '0', 500000, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `performances___detail_penilaian_kuesioner`
+--
+
+CREATE TABLE `performances___detail_penilaian_kuesioner` (
+  `id_detail_penilaian` int(11) NOT NULL,
+  `id_kuesioner` int(11) NOT NULL,
+  `id_penilaian_kuesioner` int(11) NOT NULL,
+  `nik_penilai` varchar(100) NOT NULL,
+  `nik_menilai` varchar(100) NOT NULL,
+  `tanggal` varchar(100) NOT NULL,
+  `nilai` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `performances___detail_penilaian_kuesioner`
+--
+
+INSERT INTO `performances___detail_penilaian_kuesioner` (`id_detail_penilaian`, `id_kuesioner`, `id_penilaian_kuesioner`, `nik_penilai`, `nik_menilai`, `tanggal`, `nilai`) VALUES
+(21, 1, 3, '0223002', '0223001', '04/2023', 4),
+(22, 2, 3, '0223002', '0223001', '04/2023', 5),
+(23, 3, 3, '0223002', '0223001', '04/2023', 5),
+(24, 4, 3, '0223002', '0223001', '04/2023', 5),
+(25, 5, 3, '0223002', '0223001', '04/2023', 5),
+(26, 6, 3, '0223002', '0223001', '04/2023', 5),
+(27, 7, 3, '0223002', '0223001', '04/2023', 5),
+(28, 8, 3, '0223002', '0223001', '04/2023', 5),
+(29, 9, 3, '0223002', '0223001', '04/2023', 5),
+(30, 10, 3, '0223002', '0223001', '04/2023', 4),
+(31, 11, 3, '0223002', '0223001', '04/2023', 5),
+(32, 12, 3, '0223002', '0223001', '04/2023', 5),
+(33, 13, 3, '0223002', '0223001', '04/2023', 5),
+(34, 14, 3, '0223002', '0223001', '04/2023', 5),
+(35, 15, 3, '0223002', '0223001', '04/2023', 5),
+(36, 16, 3, '0223002', '0223001', '04/2023', 5),
+(37, 17, 3, '0223002', '0223001', '04/2023', 5),
+(38, 18, 3, '0223002', '0223001', '04/2023', 5),
+(39, 19, 3, '0223002', '0223001', '04/2023', 4),
+(40, 20, 3, '0223002', '0223001', '04/2023', 5),
+(41, 1, 4, '0223003', '0223001', '04/2023', 4),
+(42, 2, 4, '0223003', '0223001', '04/2023', 5),
+(43, 3, 4, '0223003', '0223001', '04/2023', 5),
+(44, 4, 4, '0223003', '0223001', '04/2023', 5),
+(45, 5, 4, '0223003', '0223001', '04/2023', 5),
+(46, 6, 4, '0223003', '0223001', '04/2023', 4),
+(47, 7, 4, '0223003', '0223001', '04/2023', 5),
+(48, 8, 4, '0223003', '0223001', '04/2023', 5),
+(49, 9, 4, '0223003', '0223001', '04/2023', 5),
+(50, 10, 4, '0223003', '0223001', '04/2023', 5),
+(51, 11, 4, '0223003', '0223001', '04/2023', 5),
+(52, 12, 4, '0223003', '0223001', '04/2023', 5),
+(53, 13, 4, '0223003', '0223001', '04/2023', 5),
+(54, 14, 4, '0223003', '0223001', '04/2023', 5),
+(55, 15, 4, '0223003', '0223001', '04/2023', 4),
+(56, 16, 4, '0223003', '0223001', '04/2023', 5),
+(57, 17, 4, '0223003', '0223001', '04/2023', 5),
+(58, 18, 4, '0223003', '0223001', '04/2023', 5),
+(59, 19, 4, '0223003', '0223001', '04/2023', 5),
+(60, 20, 4, '0223003', '0223001', '04/2023', 5),
+(61, 1, 5, '0223009', '0223001', '04/2023', 4),
+(62, 2, 5, '0223009', '0223001', '04/2023', 5),
+(63, 3, 5, '0223009', '0223001', '04/2023', 5),
+(64, 4, 5, '0223009', '0223001', '04/2023', 4),
+(65, 5, 5, '0223009', '0223001', '04/2023', 5),
+(66, 6, 5, '0223009', '0223001', '04/2023', 5),
+(67, 7, 5, '0223009', '0223001', '04/2023', 5),
+(68, 8, 5, '0223009', '0223001', '04/2023', 5),
+(69, 9, 5, '0223009', '0223001', '04/2023', 5),
+(70, 10, 5, '0223009', '0223001', '04/2023', 3),
+(71, 11, 5, '0223009', '0223001', '04/2023', 5),
+(72, 12, 5, '0223009', '0223001', '04/2023', 5),
+(73, 13, 5, '0223009', '0223001', '04/2023', 4),
+(74, 14, 5, '0223009', '0223001', '04/2023', 5),
+(75, 15, 5, '0223009', '0223001', '04/2023', 5),
+(76, 16, 5, '0223009', '0223001', '04/2023', 5),
+(77, 17, 5, '0223009', '0223001', '04/2023', 5),
+(78, 18, 5, '0223009', '0223001', '04/2023', 4),
+(79, 19, 5, '0223009', '0223001', '04/2023', 5),
+(80, 20, 5, '0223009', '0223001', '04/2023', 5),
+(141, 1, 9, '0223002', '0223002', '04/2023', 4),
+(142, 2, 9, '0223002', '0223002', '04/2023', 5),
+(143, 3, 9, '0223002', '0223002', '04/2023', 4),
+(144, 4, 9, '0223002', '0223002', '04/2023', 5),
+(145, 5, 9, '0223002', '0223002', '04/2023', 5),
+(146, 6, 9, '0223002', '0223002', '04/2023', 5),
+(147, 7, 9, '0223002', '0223002', '04/2023', 5),
+(148, 8, 9, '0223002', '0223002', '04/2023', 5),
+(149, 9, 9, '0223002', '0223002', '04/2023', 5),
+(150, 10, 9, '0223002', '0223002', '04/2023', 5),
+(151, 11, 9, '0223002', '0223002', '04/2023', 5),
+(152, 12, 9, '0223002', '0223002', '04/2023', 5),
+(153, 14, 9, '0223002', '0223002', '04/2023', 5),
+(154, 15, 9, '0223002', '0223002', '04/2023', 4),
+(155, 16, 9, '0223002', '0223002', '04/2023', 5),
+(156, 17, 9, '0223002', '0223002', '04/2023', 5),
+(157, 18, 9, '0223002', '0223002', '04/2023', 5),
+(158, 19, 9, '0223002', '0223002', '04/2023', 5),
+(159, 20, 9, '0223002', '0223002', '04/2023', 5),
+(160, 1, 10, '0223001', '0223002', '04/2023', 4),
+(161, 2, 10, '0223001', '0223002', '04/2023', 5),
+(162, 3, 10, '0223001', '0223002', '04/2023', 4),
+(163, 4, 10, '0223001', '0223002', '04/2023', 4),
+(164, 5, 10, '0223001', '0223002', '04/2023', 5),
+(165, 6, 10, '0223001', '0223002', '04/2023', 5),
+(166, 7, 10, '0223001', '0223002', '04/2023', 4),
+(167, 8, 10, '0223001', '0223002', '04/2023', 5),
+(168, 9, 10, '0223001', '0223002', '04/2023', 5),
+(169, 10, 10, '0223001', '0223002', '04/2023', 5),
+(170, 11, 10, '0223001', '0223002', '04/2023', 5),
+(171, 12, 10, '0223001', '0223002', '04/2023', 4),
+(172, 13, 10, '0223001', '0223002', '04/2023', 5),
+(173, 14, 10, '0223001', '0223002', '04/2023', 3),
+(174, 15, 10, '0223001', '0223002', '04/2023', 4),
+(175, 16, 10, '0223001', '0223002', '04/2023', 5),
+(176, 17, 10, '0223001', '0223002', '04/2023', 5),
+(177, 18, 10, '0223001', '0223002', '04/2023', 5),
+(178, 19, 10, '0223001', '0223002', '04/2023', 1),
+(179, 20, 10, '0223001', '0223002', '04/2023', 5),
+(180, 1, 11, '0223003', '0223002', '04/2023', 4),
+(181, 2, 11, '0223003', '0223002', '04/2023', 5),
+(182, 3, 11, '0223003', '0223002', '04/2023', 5),
+(183, 4, 11, '0223003', '0223002', '04/2023', 5),
+(184, 5, 11, '0223003', '0223002', '04/2023', 5),
+(185, 6, 11, '0223003', '0223002', '04/2023', 5),
+(186, 7, 11, '0223003', '0223002', '04/2023', 5),
+(187, 8, 11, '0223003', '0223002', '04/2023', 5),
+(188, 9, 11, '0223003', '0223002', '04/2023', 5),
+(189, 10, 11, '0223003', '0223002', '04/2023', 5),
+(190, 11, 11, '0223003', '0223002', '04/2023', 4),
+(191, 12, 11, '0223003', '0223002', '04/2023', 5),
+(192, 13, 11, '0223003', '0223002', '04/2023', 5),
+(193, 14, 11, '0223003', '0223002', '04/2023', 5),
+(194, 15, 11, '0223003', '0223002', '04/2023', 5),
+(195, 16, 11, '0223003', '0223002', '04/2023', 5),
+(196, 17, 11, '0223003', '0223002', '04/2023', 5),
+(197, 18, 11, '0223003', '0223002', '04/2023', 5),
+(198, 19, 11, '0223003', '0223002', '04/2023', 5),
+(199, 20, 11, '0223003', '0223002', '04/2023', 5),
+(200, 1, 12, '0223006', '0223002', '04/2023', 5),
+(201, 2, 12, '0223006', '0223002', '04/2023', 5),
+(202, 3, 12, '0223006', '0223002', '04/2023', 5),
+(203, 4, 12, '0223006', '0223002', '04/2023', 5),
+(204, 5, 12, '0223006', '0223002', '04/2023', 5),
+(205, 6, 12, '0223006', '0223002', '04/2023', 5),
+(206, 7, 12, '0223006', '0223002', '04/2023', 5),
+(207, 8, 12, '0223006', '0223002', '04/2023', 5),
+(208, 9, 12, '0223006', '0223002', '04/2023', 5),
+(209, 10, 12, '0223006', '0223002', '04/2023', 5),
+(210, 11, 12, '0223006', '0223002', '04/2023', 5),
+(211, 12, 12, '0223006', '0223002', '04/2023', 5),
+(212, 13, 12, '0223006', '0223002', '04/2023', 5),
+(213, 14, 12, '0223006', '0223002', '04/2023', 4),
+(214, 16, 12, '0223006', '0223002', '04/2023', 4),
+(215, 17, 12, '0223006', '0223002', '04/2023', 5),
+(216, 19, 12, '0223006', '0223002', '04/2023', 4),
+(217, 20, 12, '0223006', '0223002', '04/2023', 5),
+(218, 1, 13, '0223001', '0223003', '04/2023', 4),
+(219, 2, 13, '0223001', '0223003', '04/2023', 5),
+(220, 3, 13, '0223001', '0223003', '04/2023', 5),
+(221, 4, 13, '0223001', '0223003', '04/2023', 5),
+(222, 5, 13, '0223001', '0223003', '04/2023', 5),
+(223, 6, 13, '0223001', '0223003', '04/2023', 5),
+(224, 7, 13, '0223001', '0223003', '04/2023', 5),
+(225, 8, 13, '0223001', '0223003', '04/2023', 5),
+(226, 9, 13, '0223001', '0223003', '04/2023', 5),
+(227, 10, 13, '0223001', '0223003', '04/2023', 5),
+(228, 11, 13, '0223001', '0223003', '04/2023', 5),
+(229, 12, 13, '0223001', '0223003', '04/2023', 5),
+(230, 13, 13, '0223001', '0223003', '04/2023', 5),
+(231, 14, 13, '0223001', '0223003', '04/2023', 5),
+(232, 15, 13, '0223001', '0223003', '04/2023', 5),
+(233, 16, 13, '0223001', '0223003', '04/2023', 5),
+(234, 17, 13, '0223001', '0223003', '04/2023', 5),
+(235, 18, 13, '0223001', '0223003', '04/2023', 5),
+(236, 19, 13, '0223001', '0223003', '04/2023', 5),
+(237, 20, 13, '0223001', '0223003', '04/2023', 5),
+(238, 1, 14, '0223002', '0223003', '04/2023', 4),
+(239, 2, 14, '0223002', '0223003', '04/2023', 5),
+(240, 3, 14, '0223002', '0223003', '04/2023', 5),
+(241, 4, 14, '0223002', '0223003', '04/2023', 5),
+(242, 5, 14, '0223002', '0223003', '04/2023', 5),
+(243, 6, 14, '0223002', '0223003', '04/2023', 5),
+(244, 7, 14, '0223002', '0223003', '04/2023', 5),
+(245, 8, 14, '0223002', '0223003', '04/2023', 5),
+(246, 9, 14, '0223002', '0223003', '04/2023', 4),
+(247, 10, 14, '0223002', '0223003', '04/2023', 5),
+(248, 11, 14, '0223002', '0223003', '04/2023', 5),
+(249, 12, 14, '0223002', '0223003', '04/2023', 5),
+(250, 13, 14, '0223002', '0223003', '04/2023', 5),
+(251, 14, 14, '0223002', '0223003', '04/2023', 5),
+(252, 15, 14, '0223002', '0223003', '04/2023', 5),
+(253, 16, 14, '0223002', '0223003', '04/2023', 5),
+(254, 17, 14, '0223002', '0223003', '04/2023', 5),
+(255, 18, 14, '0223002', '0223003', '04/2023', 5),
+(256, 19, 14, '0223002', '0223003', '04/2023', 5),
+(257, 20, 14, '0223002', '0223003', '04/2023', 5),
+(258, 1, 15, '0223003', '0223003', '04/2023', 4),
+(259, 2, 15, '0223003', '0223003', '04/2023', 5),
+(260, 3, 15, '0223003', '0223003', '04/2023', 5),
+(261, 4, 15, '0223003', '0223003', '04/2023', 5),
+(262, 5, 15, '0223003', '0223003', '04/2023', 4),
+(263, 6, 15, '0223003', '0223003', '04/2023', 5),
+(264, 7, 15, '0223003', '0223003', '04/2023', 5),
+(265, 8, 15, '0223003', '0223003', '04/2023', 5),
+(266, 9, 15, '0223003', '0223003', '04/2023', 5),
+(267, 10, 15, '0223003', '0223003', '04/2023', 5),
+(268, 11, 15, '0223003', '0223003', '04/2023', 5),
+(269, 12, 15, '0223003', '0223003', '04/2023', 5),
+(270, 13, 15, '0223003', '0223003', '04/2023', 5),
+(271, 14, 15, '0223003', '0223003', '04/2023', 5),
+(272, 15, 15, '0223003', '0223003', '04/2023', 5),
+(273, 16, 15, '0223003', '0223003', '04/2023', 5),
+(274, 17, 15, '0223003', '0223003', '04/2023', 5),
+(275, 18, 15, '0223003', '0223003', '04/2023', 5),
+(276, 19, 15, '0223003', '0223003', '04/2023', 5),
+(277, 20, 15, '0223003', '0223003', '04/2023', 4),
+(278, 1, 16, '0223006', '0223003', '04/2023', 4),
+(279, 2, 16, '0223006', '0223003', '04/2023', 5),
+(280, 3, 16, '0223006', '0223003', '04/2023', 5),
+(281, 4, 16, '0223006', '0223003', '04/2023', 5),
+(282, 5, 16, '0223006', '0223003', '04/2023', 5),
+(283, 6, 16, '0223006', '0223003', '04/2023', 5),
+(284, 7, 16, '0223006', '0223003', '04/2023', 5),
+(285, 8, 16, '0223006', '0223003', '04/2023', 5),
+(286, 9, 16, '0223006', '0223003', '04/2023', 5),
+(287, 10, 16, '0223006', '0223003', '04/2023', 5),
+(288, 11, 16, '0223006', '0223003', '04/2023', 4),
+(289, 12, 16, '0223006', '0223003', '04/2023', 5),
+(290, 13, 16, '0223006', '0223003', '04/2023', 5),
+(291, 14, 16, '0223006', '0223003', '04/2023', 5),
+(292, 15, 16, '0223006', '0223003', '04/2023', 5),
+(293, 16, 16, '0223006', '0223003', '04/2023', 5),
+(294, 17, 16, '0223006', '0223003', '04/2023', 5),
+(295, 18, 16, '0223006', '0223003', '04/2023', 5),
+(296, 19, 16, '0223006', '0223003', '04/2023', 5),
+(297, 1, 17, '0223003', '0223004', '04/2023', 4),
+(298, 2, 17, '0223003', '0223004', '04/2023', 5),
+(299, 3, 17, '0223003', '0223004', '04/2023', 5),
+(300, 4, 17, '0223003', '0223004', '04/2023', 5),
+(301, 5, 17, '0223003', '0223004', '04/2023', 5),
+(302, 6, 17, '0223003', '0223004', '04/2023', 5),
+(303, 7, 17, '0223003', '0223004', '04/2023', 5),
+(304, 8, 17, '0223003', '0223004', '04/2023', 5),
+(305, 9, 17, '0223003', '0223004', '04/2023', 5),
+(306, 10, 17, '0223003', '0223004', '04/2023', 5),
+(307, 11, 17, '0223003', '0223004', '04/2023', 5),
+(308, 12, 17, '0223003', '0223004', '04/2023', 5),
+(309, 13, 17, '0223003', '0223004', '04/2023', 5),
+(310, 14, 17, '0223003', '0223004', '04/2023', 5),
+(311, 15, 17, '0223003', '0223004', '04/2023', 5),
+(312, 16, 17, '0223003', '0223004', '04/2023', 5),
+(313, 17, 17, '0223003', '0223004', '04/2023', 5),
+(314, 18, 17, '0223003', '0223004', '04/2023', 4),
+(315, 19, 17, '0223003', '0223004', '04/2023', 5),
+(316, 1, 18, '0223004', '0223004', '04/2023', 4),
+(317, 2, 18, '0223004', '0223004', '04/2023', 5),
+(318, 3, 18, '0223004', '0223004', '04/2023', 5),
+(319, 4, 18, '0223004', '0223004', '04/2023', 5),
+(320, 5, 18, '0223004', '0223004', '04/2023', 5),
+(321, 6, 18, '0223004', '0223004', '04/2023', 5),
+(322, 7, 18, '0223004', '0223004', '04/2023', 5),
+(323, 8, 18, '0223004', '0223004', '04/2023', 5),
+(324, 9, 18, '0223004', '0223004', '04/2023', 5),
+(325, 10, 18, '0223004', '0223004', '04/2023', 5),
+(326, 11, 18, '0223004', '0223004', '04/2023', 5),
+(327, 13, 18, '0223004', '0223004', '04/2023', 5),
+(328, 14, 18, '0223004', '0223004', '04/2023', 5),
+(329, 15, 18, '0223004', '0223004', '04/2023', 5),
+(330, 16, 18, '0223004', '0223004', '04/2023', 5),
+(331, 17, 18, '0223004', '0223004', '04/2023', 5),
+(332, 18, 18, '0223004', '0223004', '04/2023', 5),
+(333, 19, 18, '0223004', '0223004', '04/2023', 5),
+(334, 1, 19, '0223006', '0223004', '04/2023', 4),
+(335, 3, 19, '0223006', '0223004', '04/2023', 4),
+(336, 5, 19, '0223006', '0223004', '04/2023', 4),
+(337, 6, 19, '0223006', '0223004', '04/2023', 5),
+(338, 8, 19, '0223006', '0223004', '04/2023', 5),
+(339, 9, 19, '0223006', '0223004', '04/2023', 5),
+(340, 10, 19, '0223006', '0223004', '04/2023', 5),
+(341, 11, 19, '0223006', '0223004', '04/2023', 5),
+(342, 12, 19, '0223006', '0223004', '04/2023', 5),
+(343, 13, 19, '0223006', '0223004', '04/2023', 5),
+(344, 14, 19, '0223006', '0223004', '04/2023', 5),
+(345, 15, 19, '0223006', '0223004', '04/2023', 5),
+(346, 16, 19, '0223006', '0223004', '04/2023', 5),
+(347, 17, 19, '0223006', '0223004', '04/2023', 5),
+(348, 18, 19, '0223006', '0223004', '04/2023', 5),
+(349, 19, 19, '0223006', '0223004', '04/2023', 5),
+(350, 20, 19, '0223006', '0223004', '04/2023', 5),
+(351, 1, 20, '0223002', '0223004', '04/2023', 4),
+(352, 2, 20, '0223002', '0223004', '04/2023', 4),
+(353, 3, 20, '0223002', '0223004', '04/2023', 5),
+(354, 4, 20, '0223002', '0223004', '04/2023', 5),
+(355, 5, 20, '0223002', '0223004', '04/2023', 4),
+(356, 6, 20, '0223002', '0223004', '04/2023', 5),
+(357, 7, 20, '0223002', '0223004', '04/2023', 5),
+(358, 8, 20, '0223002', '0223004', '04/2023', 5),
+(359, 9, 20, '0223002', '0223004', '04/2023', 5),
+(360, 10, 20, '0223002', '0223004', '04/2023', 5),
+(361, 11, 20, '0223002', '0223004', '04/2023', 5),
+(362, 12, 20, '0223002', '0223004', '04/2023', 5),
+(363, 13, 20, '0223002', '0223004', '04/2023', 5),
+(364, 14, 20, '0223002', '0223004', '04/2023', 5),
+(365, 15, 20, '0223002', '0223004', '04/2023', 5),
+(366, 16, 20, '0223002', '0223004', '04/2023', 5),
+(367, 17, 20, '0223002', '0223004', '04/2023', 5),
+(368, 18, 20, '0223002', '0223004', '04/2023', 5),
+(369, 19, 20, '0223002', '0223004', '04/2023', 5),
+(370, 20, 20, '0223002', '0223004', '04/2023', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `performances___penilaian_kinerja`
+--
+
+CREATE TABLE `performances___penilaian_kinerja` (
+  `id_penilaian_kinerja` int(11) NOT NULL,
+  `nik` varchar(100) NOT NULL,
+  `nilai` int(11) NOT NULL,
+  `tanggal` varchar(100) NOT NULL,
+  `total_kerja` varchar(50) NOT NULL,
+  `done_kerja` varchar(50) NOT NULL,
+  `kategorisasi` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `performances___penilaian_kinerja`
+--
+
+INSERT INTO `performances___penilaian_kinerja` (`id_penilaian_kinerja`, `nik`, `nilai`, `tanggal`, `total_kerja`, `done_kerja`, `kategorisasi`) VALUES
+(32, '0223001', 95, '04/2023', '20', '19', 'Sangat Baik'),
+(33, '0223002', 90, '04/2023', '20', '18', 'Sangat Baik'),
+(34, '0223003', 75, '04/2023', '20', '15', 'Baik');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `performances___penilaian_kuesioner`
+--
+
+CREATE TABLE `performances___penilaian_kuesioner` (
+  `id_penilaian_kuesioner` int(11) NOT NULL,
+  `nik_penilai` varchar(100) DEFAULT NULL,
+  `nik_menilai` varchar(100) DEFAULT NULL,
+  `tanggal` varchar(100) NOT NULL,
+  `total_nilai` int(11) NOT NULL,
+  `total_soal` int(11) DEFAULT 0,
+  `saran` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `performances___penilaian_kuesioner`
+--
+
+INSERT INTO `performances___penilaian_kuesioner` (`id_penilaian_kuesioner`, `nik_penilai`, `nik_menilai`, `tanggal`, `total_nilai`, `total_soal`, `saran`) VALUES
+(1, '0223001', '0223001', '04/2023', 98, 20, 'menilai diri sendiri'),
+(3, '0223002', '0223001', '04/2023', 97, 20, 'menilai ceo'),
+(4, '0223003', '0223001', '04/2023', 97, 20, 'menilai leader'),
+(5, '0223009', '0223001', '04/2023', 94, 20, 'menilai leader'),
+(9, '0223002', '0223002', '04/2023', 92, 19, 'semoga makin baik'),
+(10, '0223001', '0223002', '04/2023', 88, 20, 'mskkmes'),
+(11, '0223003', '0223002', '04/2023', 98, 20, 'kmdksnkds'),
+(12, '0223006', '0223002', '04/2023', 87, 18, 'menilai rekan 2'),
+(13, '0223001', '0223003', '04/2023', 99, 20, 'menilai hasbi karyawan'),
+(14, '0223002', '0223003', '04/2023', 98, 20, 'hasbi karyawan'),
+(15, '0223003', '0223003', '04/2023', 97, 20, 'jkdsdn'),
+(16, '0223006', '0223003', '04/2023', 93, 19, 'lsdlsdm'),
+(17, '0223003', '0223004', '03/2023', 93, 19, 'menilai leader'),
+(18, '0223004', '0223004', '03/2023', 89, 18, 'DNSIND'),
+(19, '0223006', '0223004', '03/2023', 82, 17, 'DSMJD'),
+(20, '0223002', '0223004', '03/2023', 96, 20, 'sds');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recruitment___hasiltes`
+--
+
+CREATE TABLE `recruitment___hasiltes` (
+  `id_hasiltes` int(11) NOT NULL,
+  `id_pekerjaan` int(11) NOT NULL,
+  `hasil_link` varchar(255) NOT NULL,
+  `hasil-file` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `nilai_pg` varchar(255) NOT NULL,
+  `nilai_tes` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recruitment___pekerjaan`
+--
+
+CREATE TABLE `recruitment___pekerjaan` (
+  `id_pekerjaan` int(11) NOT NULL,
+  `id_posisi` varchar(255) NOT NULL,
+  `kualifikasi` varchar(225) NOT NULL,
+  `tanggal_berakhir` date NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `deskripsi_pekerjaan` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recruitment___pelamar`
+--
+
+CREATE TABLE `recruitment___pelamar` (
+  `id_pelamar` int(11) NOT NULL,
+  `id_pekerjaan` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `file_cv` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `hasil_interview` varchar(255) NOT NULL,
+  `telepon` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `soal_kuesioner`
+--
+
+CREATE TABLE `soal_kuesioner` (
+  `id_kuesioner` int(11) NOT NULL,
+  `kuesioner` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `soal_kuesioner`
+--
+
+INSERT INTO `soal_kuesioner` (`id_kuesioner`, `kuesioner`) VALUES
+(1, 'Askfnsifbisfbsib'),
+(2, 'fauzan'),
+(3, 'Bagaimana Cara berkomunikasi karyawan tersebut?'),
+(4, 'Apakah Karyawan bekerja selama 8 jam'),
+(5, 'Apakah Karyawan Dapat bekerja tim?'),
+(6, 'Apakah Karyawan Dapat ber-adaptatsi dalam tim?'),
+(7, 'Memiliki tanggung jawab daam erkejaan dan task yang dikerjakan'),
+(8, 'mdbsjdbs'),
+(9, 'kdjbjbfjdbf'),
+(10, 'kdbfjdkbfkdbkdf'),
+(11, 'kbdbskdbskdbsbdks'),
+(12, 'skdksbdsbdkbsdkbskdbksbdksbkdbks'),
+(13, 'sdbdjasbdbakdbksa'),
+(14, ' ABDNSABDASBJDBASJDASDJ'),
+(15, 'skdnkdsnkdnsknds'),
+(16, 'Apakah Karyawan bekerja selama 8 jam'),
+(17, 'sds'),
+(18, 'Apakah Karyawan Dapat bekerja tim?'),
+(19, 'Apakah Karyawan Dapat ber-adaptatsi dalam tim?'),
+(20, 'Apakah Karyawan Dapat bekerja tim?');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jawaban`
+--
+
+CREATE TABLE `tb_jawaban` (
+  `id_jawaban` int(5) NOT NULL,
+  `id_peserta` int(5) NOT NULL,
+  `id_soal_ujian` int(5) NOT NULL,
+  `jawaban` varchar(15) NOT NULL,
+  `skor` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_jawaban`
+--
+
+INSERT INTO `tb_jawaban` (`id_jawaban`, `id_peserta`, `id_soal_ujian`, `jawaban`, `skor`) VALUES
+(26, 24, 16, 'C', '1'),
+(27, 25, 18, 'A', '0'),
+(28, 25, 16, 'C', '1'),
+(29, 25, 17, 'B', '0'),
+(30, 25, 19, 'C', '0'),
+(31, 25, 20, 'C', '1'),
+(32, 26, 19, 'B', '1'),
+(33, 26, 20, 'C', '1'),
+(34, 26, 18, 'B', '1'),
+(35, 26, 16, 'C', '1'),
+(36, 26, 17, 'D', '1'),
+(37, 0, 0, '', ''),
+(38, 0, 0, '', ''),
+(39, 0, 0, '', ''),
+(40, 0, 0, '', ''),
+(41, 0, 0, '', ''),
+(42, 0, 0, '', ''),
+(43, 0, 0, '', ''),
+(44, 0, 0, '', ''),
+(45, 0, 0, '', ''),
+(46, 0, 0, '', ''),
+(47, 0, 0, '', ''),
+(48, 0, 0, '', ''),
+(49, 52, 36, 'A', '0'),
+(50, 52, 35, 'B', '0'),
+(51, 52, 34, 'D', '0'),
+(52, 52, 32, 'C', '0'),
+(53, 53, 32, 'C', '0'),
+(54, 53, 36, 'E', '0'),
+(55, 53, 35, 'A', '1'),
+(56, 53, 34, 'C', '0'),
+(57, 53, 38, 'A', '1'),
+(58, 53, 39, 'B', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jenis_ujian`
+--
+
+CREATE TABLE `tb_jenis_ujian` (
+  `id_jenis_ujian` int(11) NOT NULL,
+  `jenis_ujian` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_jenis_ujian`
+--
+
+INSERT INTO `tb_jenis_ujian` (`id_jenis_ujian`, `jenis_ujian`) VALUES
+(8, 'Pre-test'),
+(9, 'Post-Test\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_kelas`
+--
+
+CREATE TABLE `tb_kelas` (
+  `id_kelas` int(11) NOT NULL,
+  `nama_kelas` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_kelas`
+--
+
+INSERT INTO `tb_kelas` (`id_kelas`, `nama_kelas`) VALUES
+(1, 'Senior'),
+(2, 'Junior');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_peserta`
+--
+
+CREATE TABLE `tb_peserta` (
+  `id_peserta` int(11) NOT NULL,
+  `id_posisi` int(11) NOT NULL,
+  `id_karyawan` int(11) NOT NULL,
+  `id_jenis_ujian` int(11) NOT NULL,
+  `tanggal_ujian` date NOT NULL,
+  `jam_ujian` time NOT NULL,
+  `deadline` time NOT NULL,
+  `durasi_ujian` int(11) NOT NULL,
+  `timer_ujian` int(11) NOT NULL,
+  `status_ujian` tinyint(1) NOT NULL,
+  `status_ujian_ujian` int(11) NOT NULL,
+  `benar` varchar(20) NOT NULL,
+  `salah` varchar(20) NOT NULL,
+  `nilai` varchar(10) NOT NULL,
+  `soal_file` varchar(50) NOT NULL,
+  `jawaban_file` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_peserta`
+--
+
+INSERT INTO `tb_peserta` (`id_peserta`, `id_posisi`, `id_karyawan`, `id_jenis_ujian`, `tanggal_ujian`, `jam_ujian`, `deadline`, `durasi_ujian`, `timer_ujian`, `status_ujian`, `status_ujian_ujian`, `benar`, `salah`, `nilai`, `soal_file`, `jawaban_file`) VALUES
+(8, 7, 2, 1, '2020-06-13', '15:46:00', '00:00:00', 5, 300, 2, 2, '0', '0', '0', '', ''),
+(52, 5, 30, 8, '2023-03-29', '15:15:00', '00:00:00', 120, 7200, 2, 2, '0', '4', '0', '', ''),
+(53, 5, 30, 8, '2023-03-30', '14:50:00', '00:00:00', 15, 900, 2, 2, '3', '3', '50', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_soal`
+--
+
+CREATE TABLE `tb_soal` (
+  `id_soal_ujian` int(11) NOT NULL,
+  `id_posisi` int(11) NOT NULL,
+  `pertanyaan` text NOT NULL,
+  `a` text NOT NULL,
+  `b` text NOT NULL,
+  `c` text NOT NULL,
+  `d` text NOT NULL,
+  `e` text NOT NULL,
+  `kunci_jawaban` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_soal`
+--
+
+INSERT INTO `tb_soal` (`id_soal_ujian`, `id_posisi`, `pertanyaan`, `a`, `b`, `c`, `d`, `e`, `kunci_jawaban`) VALUES
+(32, 5, 'aunbucis', ' wkjcnwi', 'kj ciwcixwj', 'dicwd', 'kjcijw', 'kn cw', 'E'),
+(33, 6, 'w', 'w', 'w', 'f', 'fw', 'fw', 'E'),
+(34, 5, 'sdg', 'vwdv', 'vwd', 'vw', 'vdwvwd', 'vdwvw', 'E'),
+(35, 5, 'ianccdniius', 'cce\r\n', 'cd3cd', 'cdc', 'c3c3cd', 'c3d3', 'A'),
+(36, 5, 'apa kepanjangan dari html', 'kjanec', 'ks cuw', ' ucscw', ' juschw', 'usc yh', 'B'),
+(38, 5, 'jika melakukan pengerjaan dalam kode php ketika tidak meggunakan titik koma eror atau tidak', 'ya', 'tidak', 'bisa jadi', 'kemungkinan bisa', 'tidak ada yang benar', 'A'),
+(39, 5, 'hjhjjhhj', 'ded', 'dee', 'feef', 'efded', 'dede', 'B'),
+(43, 5, 'kucing dan anj', 'y', 't', 'e', 'f', 'd', 'a'),
+(44, 5, 'kucing dan tikus bertengkar', 'y', 't', 'e', 'f', 'd', 'a'),
+(45, 5, 'jika ada yang bilang aku tak peduli padamu jangan pernah kau hiraukan', 'd', 'g', 'v', 'b', 'm', 'd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__dosen`
+--
+
+CREATE TABLE `training__dosen` (
+  `id_dosen` int(11) NOT NULL,
+  `nip` char(12) NOT NULL,
+  `nama_dosen` varchar(50) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `matkul_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `training__dosen`
+--
+
+INSERT INTO `training__dosen` (`id_dosen`, `nip`, `nama_dosen`, `email`, `matkul_id`) VALUES
+(1, '12345678', 'Koro Sensei', 'korosensei@gmail.com', 1),
+(3, '01234567', 'Tobirama Sensei', 'tobirama@gmail.com', 5);
+
+--
+-- Triggers `training__dosen`
+--
+DELIMITER $$
+CREATE TRIGGER `edit_user_dosen` BEFORE UPDATE ON `training__dosen` FOR EACH ROW UPDATE `users` SET `email` = NEW.email, `username` = NEW.nip WHERE `users`.`username` = OLD.nip
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `hapus_user_dosen` BEFORE DELETE ON `training__dosen` FOR EACH ROW DELETE FROM `users` WHERE `users`.`username` = OLD.nip
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__h_ujian`
+--
+
+CREATE TABLE `training__h_ujian` (
+  `id` int(11) NOT NULL,
+  `ujian_id` int(11) NOT NULL,
+  `mahasiswa_id` int(11) NOT NULL,
+  `list_soal` longtext NOT NULL,
+  `list_jawaban` longtext NOT NULL,
+  `jml_benar` int(11) NOT NULL,
+  `nilai` decimal(10,2) NOT NULL,
+  `nilai_bobot` decimal(10,2) NOT NULL,
+  `tgl_mulai` datetime NOT NULL,
+  `tgl_selesai` datetime NOT NULL,
+  `status` enum('Y','N') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training__h_ujian`
+--
+
+INSERT INTO `training__h_ujian` (`id`, `ujian_id`, `mahasiswa_id`, `list_soal`, `list_jawaban`, `jml_benar`, `nilai`, `nilai_bobot`, `tgl_mulai`, `tgl_selesai`, `status`) VALUES
+(1, 1, 1, '1,2,3', '1:B:N,2:A:N,3:D:N', 3, '100.00', '100.00', '2019-02-16 08:35:05', '2019-02-16 08:36:05', 'N'),
+(2, 2, 1, '3,2,1', '3:D:N,2:C:N,1:D:N', 1, '33.00', '100.00', '2019-02-16 10:11:14', '2019-02-16 10:12:14', 'N'),
+(3, 3, 1, '5,6', '5:C:N,6:D:N', 2, '100.00', '100.00', '2019-02-16 11:06:25', '2019-02-16 11:07:25', 'N');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__jurusan`
+--
+
+CREATE TABLE `training__jurusan` (
+  `id_jurusan` int(11) NOT NULL,
+  `nama_jurusan` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training__jurusan`
+--
+
+INSERT INTO `training__jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
+(1, 'Sistem Informasi'),
+(2, 'Teknik Informatika');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__jurusan_matkul`
+--
+
+CREATE TABLE `training__jurusan_matkul` (
+  `id` int(11) NOT NULL,
+  `matkul_id` int(11) NOT NULL,
+  `jurusan_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training__jurusan_matkul`
+--
+
+INSERT INTO `training__jurusan_matkul` (`id`, `matkul_id`, `jurusan_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 2),
+(6, 5, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__kelas`
+--
+
+CREATE TABLE `training__kelas` (
+  `id_kelas` int(11) NOT NULL,
+  `nama_kelas` varchar(30) NOT NULL,
+  `jurusan_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training__kelas`
+--
+
+INSERT INTO `training__kelas` (`id_kelas`, `nama_kelas`, `jurusan_id`) VALUES
+(1, '12.1E.13', 1),
+(2, '11.1A.13', 1),
+(3, '10.1D.13', 1),
+(7, '12.1A.10', 2),
+(8, '12.1B.10', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__matkul`
+--
+
+CREATE TABLE `training__matkul` (
+  `id_matkul` int(11) NOT NULL,
+  `nama_matkul` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training__matkul`
+--
+
+INSERT INTO `training__matkul` (`id_matkul`, `nama_matkul`) VALUES
+(1, 'Bahasa Inggris'),
+(2, 'Dasar Pemrograman'),
+(3, 'Enterpreneurship'),
+(5, 'Matematika Advanced');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__m_ujian`
+--
+
+CREATE TABLE `training__m_ujian` (
+  `id_ujian` int(11) NOT NULL,
+  `dosen_id` int(11) NOT NULL,
+  `matkul_id` int(11) NOT NULL,
+  `nama_ujian` varchar(200) NOT NULL,
+  `jumlah_soal` int(11) NOT NULL,
+  `waktu` int(11) NOT NULL,
+  `jenis` enum('acak','urut') NOT NULL,
+  `tgl_mulai` datetime NOT NULL,
+  `terlambat` datetime NOT NULL,
+  `token` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training__m_ujian`
+--
+
+INSERT INTO `training__m_ujian` (`id_ujian`, `dosen_id`, `matkul_id`, `nama_ujian`, `jumlah_soal`, `waktu`, `jenis`, `tgl_mulai`, `terlambat`, `token`) VALUES
+(1, 1, 1, 'First Test', 3, 1, 'acak', '2019-02-15 17:25:40', '2019-02-20 17:25:44', 'DPEHL'),
+(2, 1, 1, 'Second Test', 3, 1, 'acak', '2019-02-16 10:05:08', '2019-02-17 10:05:10', 'GOEMB'),
+(3, 3, 5, 'Try Out 01', 2, 1, 'acak', '2019-02-16 07:00:00', '2019-02-28 14:00:00', 'IFSDH');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training__tb_soal`
+--
+
+CREATE TABLE `training__tb_soal` (
+  `id_soal` int(11) NOT NULL,
+  `dosen_id` int(11) NOT NULL,
+  `matkul_id` int(11) NOT NULL,
+  `bobot` int(11) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `tipe_file` varchar(50) NOT NULL,
+  `soal` longtext NOT NULL,
+  `opsi_a` longtext NOT NULL,
+  `opsi_b` longtext NOT NULL,
+  `opsi_c` longtext NOT NULL,
+  `opsi_d` longtext NOT NULL,
+  `opsi_e` longtext NOT NULL,
+  `file_a` varchar(255) NOT NULL,
+  `file_b` varchar(255) NOT NULL,
+  `file_c` varchar(255) NOT NULL,
+  `file_d` varchar(255) NOT NULL,
+  `file_e` varchar(255) NOT NULL,
+  `jawaban` varchar(5) NOT NULL,
+  `created_on` int(11) NOT NULL,
+  `updated_on` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training__tb_soal`
+--
+
+INSERT INTO `training__tb_soal` (`id_soal`, `dosen_id`, `matkul_id`, `bobot`, `file`, `tipe_file`, `soal`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi_d`, `opsi_e`, `file_a`, `file_b`, `file_c`, `file_d`, `file_e`, `jawaban`, `created_on`, `updated_on`) VALUES
+(1, 1, 1, 1, '', '', '<p>Dian : The cake is scrumptious! I love i<br>Joni : … another piece?<br>Dian : Thank you. You should tell me the recipe.<br>Joni : I will.</p><p>Which of the following offering expressions best fill the blank?</p>', '<p>Do you mind if you have</p>', '<p>Would you like</p>', '<p>Shall you hav</p>', '<p>Can I have you</p>', '<p>I will bring you</p>', '', '', '', '', '', 'B', 1550225760, 1550225760),
+(2, 1, 1, 1, '', '', '<p>Fitri : The French homework is really hard. I don’t feel like to do it.<br>Rahmat : … to help you?<br>Fitri : It sounds great. Thanks, Rahmat!</p><p><br></p><p>Which of the following offering expressions best fill the blank?</p>', '<p>Would you like me</p>', '<p>Do you mind if I</p>', '<p>Shall I</p>', '<p>Can I</p>', '<p>I will</p>', '', '', '', '', '', 'A', 1550225952, 1550225952),
+(3, 1, 1, 1, 'd166959dabe9a81e4567dc44021ea503.jpg', 'image/jpeg', '<p>What is the picture describing?</p><p><small class=\"text-muted\">Sumber gambar: meros.jp</small></p>', '<p>The students are arguing with their lecturer.</p>', '<p>The students are watching their preacher.</p>', '<p>The teacher is angry with their students.</p>', '<p>The students are listening to their lecturer.</p>', '<p>The students detest the preacher.</p>', '', '', '', '', '', 'D', 1550226174, 1550226174),
+(5, 3, 5, 1, '', '', '<p>(2000 x 3) : 4 x 0 = ...</p>', '<p>NULL</p>', '<p>NaN</p>', '<p>0</p>', '<p>1</p>', '<p>-1</p>', '', '', '', '', '', 'C', 1550289702, 1550289724),
+(6, 3, 5, 1, '98a79c067fefca323c56ed0f8d1cac5f.png', 'image/png', '<p>Nomor berapakah ini?</p>', '<p>Sembilan</p>', '<p>Sepuluh</p>', '<p>Satu</p>', '<p>Tujuh</p>', '<p>Tiga</p>', '', '', '', '', '', 'D', 1550289774, 1550289774);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_token`
+--
+
+CREATE TABLE `user_token` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(128) NOT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_token`
+--
+
+INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
+(5, 'jonijoniyesspapaa@gmail.com', 'iOcuza62N9qaAwCOTtG4AbJvVwjq/35sZWSoACz4AI0=', 1677127473),
+(6, 'jonijoniyesspapaa@gmail.com', 'HOtF3cwTfe+/JdqPaeE8XLIh3w2LJ7DFaerRI1fCCaI=', 1677127480),
+(7, 'jonijoniyesspapaa@gmail.com', 'O2PGCXeKmkrui6b+9qeMEmKOjQ+vjI0/qQ7dM2qt5bw=', 1678330127),
+(8, 'fauzan@gmail.com', 'wlsgEN0n2uFSIZKfmlW9LOaY4ja56BN3U36NEyivjps=', 1678348592),
+(9, 'jonijoniyesspapaa@gmail.com', '8rv8WM3Am5VCrlKSdiuAS0R5NlXVDag2caxUXmCr3FI=', 1678883661),
+(10, 'jonijoniyesspapaa@gmail.com', 'PA2/Px4fpO9ZNScAB6lyJ/Lu0tUApN1nnQGbnwBW2K8=', 1678883858),
+(11, 'jonijoniyesspapaa@gmail.com', 'j8eftwnJriIKvq4JxQf1doKXL4jfbf2GKcDiDorfYO8=', 1678884000),
+(12, 'jonijoniyesspapaa@gmail.com', '232ASyubAVlhpPIcp2yBsdaI5mN2toi/djjUMt2mqgY=', 1678884353),
+(13, 'jonijoniyesspapaa@gmail.com', '70SQHqp2z852eHebWAjTjIjOEpcAa+UYuHcTNHt6z68=', 1678934226),
+(14, 'ronaldo@gmail.com', '8FkZo0Q/GCz7XlwwZ9nB+LuQt1T5B+fXee6nuBmHj9s=', 1679820161);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `data_akun`
+--
+ALTER TABLE `data_akun`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data_karyawan`
+--
+ALTER TABLE `data_karyawan`
+  ADD PRIMARY KEY (`id_karyawan`),
+  ADD UNIQUE KEY `nik` (`nik`),
+  ADD KEY `id_posisi` (`id_posisi`);
+
+--
+-- Indexes for table `data_keseluruhan`
+--
+ALTER TABLE `data_keseluruhan`
+  ADD PRIMARY KEY (`id_keseluruhan`);
+
+--
+-- Indexes for table `data_mitra`
+--
+ALTER TABLE `data_mitra`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data_pelamar`
+--
+ALTER TABLE `data_pelamar`
+  ADD PRIMARY KEY (`id_pelamar`);
+
+--
+-- Indexes for table `data_posisi`
+--
+ALTER TABLE `data_posisi`
+  ADD PRIMARY KEY (`id_posisi`);
+
+--
+-- Indexes for table `kelola`
+--
+ALTER TABLE `kelola`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payroll___bpjs`
+--
+ALTER TABLE `payroll___bpjs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payroll___databpjs`
+--
+ALTER TABLE `payroll___databpjs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payroll___datapajak`
+--
+ALTER TABLE `payroll___datapajak`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payroll___pajak`
+--
+ALTER TABLE `payroll___pajak`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_datakaryawan` (`id_datakaryawan`);
+
+--
+-- Indexes for table `payroll___pengajuangaji`
+--
+ALTER TABLE `payroll___pengajuangaji`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payroll___pengajuanratemitra`
+--
+ALTER TABLE `payroll___pengajuanratemitra`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payroll___perhitungan`
+--
+ALTER TABLE `payroll___perhitungan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `performances___detail_penilaian_kuesioner`
+--
+ALTER TABLE `performances___detail_penilaian_kuesioner`
+  ADD PRIMARY KEY (`id_detail_penilaian`),
+  ADD KEY `id_penilaian_kuesioner` (`id_penilaian_kuesioner`),
+  ADD KEY `id_kuesioer` (`id_kuesioner`);
+
+--
+-- Indexes for table `performances___penilaian_kinerja`
+--
+ALTER TABLE `performances___penilaian_kinerja`
+  ADD PRIMARY KEY (`id_penilaian_kinerja`),
+  ADD KEY `nik` (`nik`);
+
+--
+-- Indexes for table `performances___penilaian_kuesioner`
+--
+ALTER TABLE `performances___penilaian_kuesioner`
+  ADD PRIMARY KEY (`id_penilaian_kuesioner`),
+  ADD KEY `nik_penilai` (`nik_penilai`),
+  ADD KEY `menilai` (`nik_menilai`);
+
+--
+-- Indexes for table `recruitment___hasiltes`
+--
+ALTER TABLE `recruitment___hasiltes`
+  ADD PRIMARY KEY (`id_hasiltes`);
+
+--
+-- Indexes for table `recruitment___pekerjaan`
+--
+ALTER TABLE `recruitment___pekerjaan`
+  ADD PRIMARY KEY (`id_pekerjaan`);
+
+--
+-- Indexes for table `recruitment___pelamar`
+--
+ALTER TABLE `recruitment___pelamar`
+  ADD PRIMARY KEY (`id_pelamar`);
+
+--
+-- Indexes for table `soal_kuesioner`
+--
+ALTER TABLE `soal_kuesioner`
+  ADD PRIMARY KEY (`id_kuesioner`);
+
+--
+-- Indexes for table `tb_jawaban`
+--
+ALTER TABLE `tb_jawaban`
+  ADD PRIMARY KEY (`id_jawaban`),
+  ADD KEY `id_soal_ujian` (`id_soal_ujian`),
+  ADD KEY `id_peserta` (`id_peserta`);
+
+--
+-- Indexes for table `tb_jenis_ujian`
+--
+ALTER TABLE `tb_jenis_ujian`
+  ADD PRIMARY KEY (`id_jenis_ujian`);
+
+--
+-- Indexes for table `tb_kelas`
+--
+ALTER TABLE `tb_kelas`
+  ADD PRIMARY KEY (`id_kelas`);
+
+--
+-- Indexes for table `tb_peserta`
+--
+ALTER TABLE `tb_peserta`
+  ADD PRIMARY KEY (`id_peserta`),
+  ADD KEY `id_matakuliah` (`id_posisi`),
+  ADD KEY `id_mahasiswa` (`id_karyawan`),
+  ADD KEY `id_jenis_ujian` (`id_jenis_ujian`);
+
+--
+-- Indexes for table `tb_soal`
+--
+ALTER TABLE `tb_soal`
+  ADD PRIMARY KEY (`id_soal_ujian`),
+  ADD KEY `id_matakuliah` (`id_posisi`);
+
+--
+-- Indexes for table `training__dosen`
+--
+ALTER TABLE `training__dosen`
+  ADD PRIMARY KEY (`id_dosen`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `nip` (`nip`),
+  ADD KEY `matkul_id` (`matkul_id`);
+
+--
+-- Indexes for table `training__h_ujian`
+--
+ALTER TABLE `training__h_ujian`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ujian_id` (`ujian_id`),
+  ADD KEY `mahasiswa_id` (`mahasiswa_id`);
+
+--
+-- Indexes for table `training__jurusan`
+--
+ALTER TABLE `training__jurusan`
+  ADD PRIMARY KEY (`id_jurusan`);
+
+--
+-- Indexes for table `training__jurusan_matkul`
+--
+ALTER TABLE `training__jurusan_matkul`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jurusan_id` (`jurusan_id`),
+  ADD KEY `matkul_id` (`matkul_id`);
+
+--
+-- Indexes for table `training__kelas`
+--
+ALTER TABLE `training__kelas`
+  ADD PRIMARY KEY (`id_kelas`),
+  ADD KEY `jurusan_id` (`jurusan_id`);
+
+--
+-- Indexes for table `training__matkul`
+--
+ALTER TABLE `training__matkul`
+  ADD PRIMARY KEY (`id_matkul`);
+
+--
+-- Indexes for table `training__m_ujian`
+--
+ALTER TABLE `training__m_ujian`
+  ADD PRIMARY KEY (`id_ujian`),
+  ADD KEY `matkul_id` (`matkul_id`),
+  ADD KEY `dosen_id` (`dosen_id`);
+
+--
+-- Indexes for table `training__tb_soal`
+--
+ALTER TABLE `training__tb_soal`
+  ADD PRIMARY KEY (`id_soal`),
+  ADD KEY `matkul_id` (`matkul_id`),
+  ADD KEY `dosen_id` (`dosen_id`);
+
+--
+-- Indexes for table `user_token`
+--
+ALTER TABLE `user_token`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `data_akun`
+--
+ALTER TABLE `data_akun`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `data_karyawan`
+--
+ALTER TABLE `data_karyawan`
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
+--
+-- AUTO_INCREMENT for table `data_keseluruhan`
+--
+ALTER TABLE `data_keseluruhan`
+  MODIFY `id_keseluruhan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `data_mitra`
+--
+ALTER TABLE `data_mitra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `data_pelamar`
+--
+ALTER TABLE `data_pelamar`
+  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `data_posisi`
+--
+ALTER TABLE `data_posisi`
+  MODIFY `id_posisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `kelola`
+--
+ALTER TABLE `kelola`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `payroll___bpjs`
+--
+ALTER TABLE `payroll___bpjs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `payroll___databpjs`
+--
+ALTER TABLE `payroll___databpjs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `payroll___datapajak`
+--
+ALTER TABLE `payroll___datapajak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `payroll___pajak`
+--
+ALTER TABLE `payroll___pajak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `payroll___pengajuangaji`
+--
+ALTER TABLE `payroll___pengajuangaji`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=660;
+
+--
+-- AUTO_INCREMENT for table `payroll___pengajuanratemitra`
+--
+ALTER TABLE `payroll___pengajuanratemitra`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `payroll___perhitungan`
+--
+ALTER TABLE `payroll___perhitungan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `performances___detail_penilaian_kuesioner`
+--
+ALTER TABLE `performances___detail_penilaian_kuesioner`
+  MODIFY `id_detail_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=391;
+
+--
+-- AUTO_INCREMENT for table `performances___penilaian_kinerja`
+--
+ALTER TABLE `performances___penilaian_kinerja`
+  MODIFY `id_penilaian_kinerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `performances___penilaian_kuesioner`
+--
+ALTER TABLE `performances___penilaian_kuesioner`
+  MODIFY `id_penilaian_kuesioner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `recruitment___hasiltes`
+--
+ALTER TABLE `recruitment___hasiltes`
+  MODIFY `id_hasiltes` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `recruitment___pekerjaan`
+--
+ALTER TABLE `recruitment___pekerjaan`
+  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `recruitment___pelamar`
+--
+ALTER TABLE `recruitment___pelamar`
+  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `soal_kuesioner`
+--
+ALTER TABLE `soal_kuesioner`
+  MODIFY `id_kuesioner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `tb_jawaban`
+--
+ALTER TABLE `tb_jawaban`
+  MODIFY `id_jawaban` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT for table `tb_jenis_ujian`
+--
+ALTER TABLE `tb_jenis_ujian`
+  MODIFY `id_jenis_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `tb_kelas`
+--
+ALTER TABLE `tb_kelas`
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_peserta`
+--
+ALTER TABLE `tb_peserta`
+  MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `tb_soal`
+--
+ALTER TABLE `tb_soal`
+  MODIFY `id_soal_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `training__dosen`
+--
+ALTER TABLE `training__dosen`
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `training__h_ujian`
+--
+ALTER TABLE `training__h_ujian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `training__jurusan`
+--
+ALTER TABLE `training__jurusan`
+  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `training__jurusan_matkul`
+--
+ALTER TABLE `training__jurusan_matkul`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `training__kelas`
+--
+ALTER TABLE `training__kelas`
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `training__matkul`
+--
+ALTER TABLE `training__matkul`
+  MODIFY `id_matkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `training__m_ujian`
+--
+ALTER TABLE `training__m_ujian`
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `training__tb_soal`
+--
+ALTER TABLE `training__tb_soal`
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user_token`
+--
+ALTER TABLE `user_token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `data_karyawan`
+--
+ALTER TABLE `data_karyawan`
+  ADD CONSTRAINT `id_posisi_fk` FOREIGN KEY (`id_posisi`) REFERENCES `data_posisi` (`id_posisi`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `performances___detail_penilaian_kuesioner`
+--
+ALTER TABLE `performances___detail_penilaian_kuesioner`
+  ADD CONSTRAINT `performances___detail_penilaian_kuesioner_ibfk_1` FOREIGN KEY (`id_penilaian_kuesioner`) REFERENCES `performances___penilaian_kuesioner` (`id_penilaian_kuesioner`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `performances___detail_penilaian_kuesioner_ibfk_2` FOREIGN KEY (`id_kuesioner`) REFERENCES `soal_kuesioner` (`id_kuesioner`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `performances___penilaian_kinerja`
+--
+ALTER TABLE `performances___penilaian_kinerja`
+  ADD CONSTRAINT `performances___penilaian_kinerja_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `data_karyawan` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `performances___penilaian_kuesioner`
+--
+ALTER TABLE `performances___penilaian_kuesioner`
+  ADD CONSTRAINT `performances___penilaian_kuesioner_ibfk_1` FOREIGN KEY (`nik_penilai`) REFERENCES `data_karyawan` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `performances___penilaian_kuesioner_ibfk_2` FOREIGN KEY (`nik_menilai`) REFERENCES `data_karyawan` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
