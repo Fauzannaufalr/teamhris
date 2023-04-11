@@ -12,8 +12,7 @@
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -28,8 +27,7 @@
                 <div class="icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
-                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -45,8 +43,7 @@
                 <div class="icon">
                     <i class="fas fa-user-lock"></i>
                 </div>
-                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -136,7 +133,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_type" name="tahun_type">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -161,8 +158,7 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form class="form-horizontal" method="post"
-                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
+                    <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_per_status'); ?>">
                         <div class="card-body p-0">
                             <div class="form-group row">
                                 <div class="col-lg-6">
@@ -183,7 +179,11 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_status" name="tahun_status">
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
+=======
+                                    <select class="form-control select2" id="tahun" name="tahun">
                                         <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+>>>>>>> Stashed changes
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -208,17 +208,45 @@
                 <div class="card-body">
                     <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_mitra'); ?>">
 
-                        <option value="<?= $i ?>"><?= $i ?></option>
+                    <form class="form-horizontal" method="post"
+                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
 
-                        </select>
+                        <div class="card-body p-0">
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="bulan_mitra" name="bulan_mitra">
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
+                                            <option value="<?= $i ?>"><?= $i ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </form>
+                    <div class="col-lg-12">
+                        <canvas id="mitra"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
 
     <div class="card">
         <div class="card-header" style="color: white; background-color: #8b0000;">
@@ -264,7 +292,6 @@
                         $bulan = date('m');
                         $tahun = date('Y');
                         $bulantahun = $bulan . "/" . $tahun;
-
                     }
 
                     ?>
@@ -274,17 +301,11 @@
                     </button>
 
                     <?php if (count($akumulasi) > 0) { ?>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakPdf?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak PDF</a>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakExcelHC?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak Excel</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakPdf?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakExcelHC?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
 
                 </div>
@@ -302,17 +323,17 @@
 <div class="card">
     <div class="card-body">
 
-        <!-- validation crud -->
-        <?php if (validation_errors()): ?>
-            <div class="alert alert-danger" role="alert">
-                <?= validation_errors(); ?>
+            <!-- validation crud -->
+            <?php if (validation_errors()): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $this->session->flashdata('message'); ?>
+                </div>
             </div>
-        <?php endif; ?>
-        <div class="row">
-            <div class="col-lg-4">
-                <?= $this->session->flashdata('message'); ?>
-            </div>
-        </div>
 
         <?php
 
@@ -337,53 +358,52 @@
                     $nik = $this->session->userdata("nik");
                     $level = $this->session->userdata("level");
 
-                    foreach ($akumulasi as $ak):
-                        if ($nik === $ak['nik'] && $level !== "hc")
-                            continue;
-                        $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
-                        <tr style="text-align: center;">
-                            <th>
-                                <?= $no++; ?>
-                            </th>
-                            <td>
-                                <?= $ak['tanggal'] ?>
-                            </td>
-                            <td>
-                                <?= $ak['nik'], "<br>" .
-                                    $ak['nama_karyawan']; ?>
-                            </td>
-                            <td>
-                                <?= $nilaiakumulasi ?>
-                            </td>
-                            <td style="text-align: center;">
-                                <?php
-                                if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
-                                    echo "Sangat Baik";
-                                } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
-                                    echo "Baik";
-                                } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
-                                    echo "Cukup";
-                                } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
-                                    echo "Kurang";
-                                } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
-                                    echo "Sangat Kurang";
-                                }
-                                ?>
+                        foreach ($akumulasi as $ak):
+                            if ($nik === $ak['nik'] && $level !== "hc")
+                                continue;
+                            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                            <tr style="text-align: center;">
+                                <th>
+                                    <?= $no++; ?>
+                                </th>
+                                <td>
+                                    <?= $ak['tanggal'] ?>
+                                </td>
+                                <td>
+                                    <?= $ak['nik'], "<br>" .
+                                        $ak['nama_karyawan']; ?>
+                                </td>
+                                <td>
+                                    <?= $nilaiakumulasi ?>
+                                </td>
+                                <td style="text-align: center;">
+                                    <?php
+                                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                                        echo "Sangat Baik";
+                                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                                        echo "Baik";
+                                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                                        echo "Cukup";
+                                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                                        echo "Kurang";
+                                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                                        echo "Sangat Kurang";
+                                    }
+                                    ?>
 
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php } else { ?>
-            <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                Data masih kosong, silahkan memilih bulan dan tahun!</span>
-        <?php } ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                    Data masih kosong, silahkan memilih bulan dan tahun!</span>
+            <?php } ?>
+
+        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
+    <!-- /.card-body -->
 </div>
 
 <!-- Modal cetak akumulasi keseluruhan -->
@@ -442,7 +462,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
+                    label: function(tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -453,8 +473,6 @@
                 }
             }
         }
-    }
-        
     });
 
     const c = <?= $laporan_rm[0]['Sudah'] ?>;
@@ -489,7 +507,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
+                    label: function(tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -535,7 +553,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
+                    label: function(tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -547,15 +565,25 @@
             }
         }
     });
+
+    let d2 = new Date();
+    let m2 = d2.getMonth() + 1
+    let year = d2.getFullYear()
+    let month = ('0' + m2).slice(-2);
+    document.getElementById("bulan_type").value = month;
+    document.getElementById("bulan_status").value = month;
+    document.getElementById("bulan_mitra").value = month;
+    document.getElementById("tahun_type").value = year;
+    document.getElementById("tahun_status").value = year;
+    document.getElementById("tahun_mitra").value = year;
+    // document.getElementById("bulan_status").value = month;
 </script>
 
 <script type="text/javascript">
     // START TYPE
-    $('#bulan_type,#tahun_type').change(function () {
+    $('#bulan_type,#tahun_type').change(function() {
         bulanType = document.getElementById('bulan_type').value;
         tahunType = document.getElementById('tahun_type').value;
-        console.log(bulanType);
-        console.log(tahunType);
         $.ajax({
             url: '<?= base_url() ?>hris/filter_per_type',
             dataType: 'json',
@@ -564,7 +592,7 @@
                 bulanType,
                 tahunType
             },
-            success: function (result) {
+            success: function(result) {
 
                 const e2 = result[0]['Office'];
                 const f2 = result[0]['Project'];
@@ -599,7 +627,7 @@
                         },
                         tooltips: {
                             callbacks: {
-                                label: function (tooltipItem, data) {
+                                label: function(tooltipItem, data) {
                                     var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                                     if (parseInt(totalData) >= 1000) {
                                         return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -614,5 +642,133 @@
             }
         });
     });
+    // END TYPE
 
+    // START TYPE
+    $('#bulan_status,#tahun_status').change(function() {
+        bulanStatus = document.getElementById('bulan_status').value;
+        tahunStatus = document.getElementById('tahun_status').value;
+        $.ajax({
+            url: '<?= base_url() ?>hris/filter_per_status',
+            dataType: 'json',
+            type: "POST",
+            data: {
+                bulanStatus,
+                tahunStatus
+            },
+            success: function(result) {
+
+                const a2 = result[0]['Sudah'];
+                const b2 = result[0]['Belum'];
+
+                const karyawan = document.getElementById('karyawan');
+                const d_karyawan = {
+                    labels: [
+                        'Sudah dibayar',
+                        'Belum dibayar'
+                    ],
+                    datasets: [{
+                        label: 'Gaji Karyawan',
+                        data: [a2, b2],
+                        backgroundColor: [
+                            '#28a745',
+                            'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+
+                new Chart(karyawan, {
+                    type: 'pie',
+                    data: d_karyawan,
+                    options: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                display: false,
+                                fontSize: 10
+                            }
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                                    if (parseInt(totalData) >= 1000) {
+                                        return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    } else {
+                                        return 'Rp ' + totalData;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+    // END TYPE
+
+    // START TYPE
+    $('#bulan_mitra,#tahun_mitra').change(function() {
+        bulanMitra = document.getElementById('bulan_mitra').value;
+        tahunMitra = document.getElementById('tahun_mitra').value;
+        $.ajax({
+            url: '<?= base_url() ?>hris/filter_per_mitra',
+            dataType: 'json',
+            type: "POST",
+            data: {
+                bulanMitra,
+                tahunMitra
+            },
+            success: function(result) {
+
+                const c2 = result[0]['Sudah'];
+                const d2 = result[0]['Belum'];
+
+                const mitra = document.getElementById('mitra');
+                const d_mitra = {
+                    labels: [
+                        'Sudah dibayar',
+                        'Belum dibayar'
+                    ],
+                    datasets: [{
+                        label: 'Rate Mitra',
+                        data: [c2, d2],
+                        backgroundColor: [
+                            '#28a745',
+                            'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+
+                new Chart(mitra, {
+                    type: 'pie',
+                    data: d_mitra,
+                    options: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                display: false,
+                                fontSize: 10
+                            }
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var totalData = data['datasets'][0]['data'][tooltipItem['index']];
+                                    if (parseInt(totalData) >= 1000) {
+                                        return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                    } else {
+                                        return 'Rp ' + totalData;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+    // END TYPE
 </script>
