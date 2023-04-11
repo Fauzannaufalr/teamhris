@@ -25,6 +25,7 @@
                         <?php endif ?>
                     <?php endforeach ?>
 
+                    <button type="button" style="margin-left:50px; background-color: #d63638; font-family:Arial, Helvetica, sans-serif;" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv">Daftar Sekarang</button>
                 </div>
 
             </div>
@@ -32,7 +33,6 @@
     </section><br>
 
     <div class="job">
-        <button type="button" style="margin-left:50px; background-color: #d63638; font-family:Arial, Helvetica, sans-serif;" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv">Daftar Sekarang</button>
         <h3>Deskripsi Pekerjaan</h3>
         <ul>
             <?php foreach ($array_deskripsi as $deskripsi) : ?>

@@ -15,7 +15,8 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                         <h4>Link Soal PG</h4>
-                        <p><?php echo $pg; ?></p>
+
+                        <a href="<?= $pg . '?token=' . urlencode($token) . '&email=' . $email  ?> ">Link PG</a>
                         <h4>Link Upload Hasil</h4>
                         <p><?php echo $upload; ?></p>
                         <h4>Soal Essay</h4>

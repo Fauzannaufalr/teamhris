@@ -86,7 +86,7 @@ class Pelamar extends CI_Controller
             die;
         }
     }
-    private function _kirimSoal($id)
+    private function _kirimSoal($token, $id)
     {
         $file_data = $this->upload_file();
         if (is_array($file_data)) {
@@ -114,7 +114,9 @@ class Pelamar extends CI_Controller
                 'pg' => $this->input->post('pg'),
                 'essay' => $this->input->post('essay'),
                 'upload' => $this->input->post('linkuploadjawaban'),
-                'dataposisi' => $this->DataPosisi_model->getAllDataPosisi()
+                'dataposisi' => $this->DataPosisi_model->getAllDataPosisi(),
+                'token' => $token,
+                'email' => $this->input->post('email')
 
             ];
             $card = $this->load->view('email_soal', $data, TRUE);
@@ -135,7 +137,48 @@ class Pelamar extends CI_Controller
             redirect('recruitment/pelamar');
         }
     }
-    public function _kirimnilai($id)
+
+    public function pg()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('recruitment___pelamar', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
+
+            if ($user_token) {
+                if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
+                    $this->session->set_userdata('link_pg', $email);
+                    redirect('recruitment/linkpg');
+                    // linksoalpg
+                } else {
+                    $this->db->delete('user_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> link pg expired!</div>');
+                    redirect('recruitment/expired');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Reset password failed! Token invalid!</div>');
+                redirect('recruitment/expired');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Reset password failed! Wrong email!</div>');
+            redirect('recruitment/expired');
+        }
+    }
+    public function linkpg()
+    {
+        if (!$this->session->userdata('link_pg')) {
+            redirect('recruitment/expired');
+            $this->load->view('recruitment/linkpg'); //Tampilanlinkpg
+
+        }
+    }
+
+
+    public function _kirimnilai($id, $email, $data)
     {
         $file_data = $this->upload_berkas();
         if (is_array($file_data)) {
@@ -144,8 +187,8 @@ class Pelamar extends CI_Controller
                 'protocol' => 'smtp',
                 'smtp_host' => 'ssl://smtp.googlemail.com',
                 'smtp_port' => 465,
-                'smtp_user' => 'belajarcoding78@gmail.com',
-                'smtp_pass' => 'mxaghqdhdmsbcjmz',
+                'smtp_user' => 'hristeam13@gmail.com',
+                'smtp_pass' => 'riztsicgznvyhudn',
                 'mailtype' => 'html',
                 'charset' => 'utf-8',
                 'newline' => "\r\n",
@@ -157,18 +200,25 @@ class Pelamar extends CI_Controller
             $this->email->initialize($config);
 
             $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
-            $this->email->to($this->input->post('email'));
-            $data = [
-                'pg' => $this->input->post('pg'),
-                'essay' => $this->input->post('essay'),
-                'berkas' => $this->input->post('berkas'),
-                'jadwal' => $this->input->post('jadwal'),
-                'gmeet' => $this->input->post('gmeet'),
+            $this->email->to($email);
+            $status = $data['status'];
+            if ($status == 'diterima') {
+                $card = $this->load->view('email_nilai', $data, TRUE);
+                $data_update = array(
+                    'status' => 'lulus',
 
+                );
+                $where = array('id_pelamar' => $id);
+                $this->Pelamar_model->update_data($where, $data_update);
+            } else {
+                $card = $this->load->view('email_nilaitolak', $data, TRUE);
+                $data_update = array(
+                    'status' => 'ditolak',
 
-            ];
-            $card = $this->load->view('email_nilai', $data, TRUE);
-
+                );
+                $where = array('id_pelamar' => $id);
+                $this->Pelamar_model->update_data($where, $data_update);
+            }
             $this->email->subject('Diterima/ Ditolah');
             $this->email->message($card);
 
@@ -239,34 +289,44 @@ class Pelamar extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $email = $this->input->post('email');
-            $this->_kirimSoal($id);
+            $user = $this->db->get_where('recruitment___pelamar', ['email' => $email])->row_array();
+            if ($user) {
+                $token = base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time()
+                ];
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal Tes Recruitment berhasil diKirim!</div>');
-            redirect('recruitment/pelamar');
+                $this->db->insert('user_token', $user_token);
+                $this->_kirimSoal($token, $id);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">soal terkirim!</div>');
+                redirect('recruitment/pelamar');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> email tidak ditemukan!</div>');
+                redirect('recruitment/pelamar');
+            }
         }
     }
     public function nilai($id)
     {
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = "Data Pelamar";
-            $data['pelamar'] = $this->Pelamar_model->getAllPelamar();
-            $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-            $data['user'] = $this->Hris_model->ambilUser();
+        $data = [
+            'pg' => $this->input->post('nilaipg'),
+            'essay' => $this->input->post('nilaites'),
+            'berkas' => $this->input->post('berkas'),
+            'jadwal' => $this->input->post('jadwal'),
+            'gmeet' => $this->input->post('gmeet'),
+            'bertemu' => $this->input->post('bertemu'),
+            'status' => $this->input->post('status' . $id)
+        ];
+        // printr($data['status']);
+        $email = $this->input->post('email');
+        $this->_kirimnilai($id, $email, $data);
 
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('recruitment/pelamar', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $email = $this->input->post('email');
-            $this->_kirimnilai($id);
-
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
-            redirect('recruitment/pelamar');
-        }
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
+        redirect('recruitment/pelamar');
     }
 
     public function download_file($filename)

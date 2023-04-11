@@ -63,6 +63,14 @@ class Pelamar_model extends CI_Model
         $this->db->where('id_pelamar', $id_pelamar);
         $this->db->update('recruitment___pelamar', $data);
     }
+    public function nilai($id_pelamar, $nama_file)
+    {
+        $data = array(
+            'berkas' => $nama_file
+        );
+        $this->db->where('id_pelamar', $id_pelamar);
+        $this->db->update('recruitment___pelamar', $data);
+    }
     public function update_data($where, $data)
     {
         $this->db->where($where);

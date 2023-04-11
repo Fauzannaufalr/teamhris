@@ -68,7 +68,7 @@ class Hasiltes extends CI_Controller
 
         $this->db->where('id_hasiltes', $id);
         $this->db->update('recruitment___hasiltes', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> siap dinilai</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> siap dinilai</div>');
         redirect('recruitment/hasiltes');
     }
 }

@@ -28,6 +28,7 @@ class Hris extends CI_Controller
         $data['bariskaryawan'] = $this->db->get('data_karyawan')->num_rows();
         $data['barisposisi'] = $this->db->get('data_posisi')->num_rows();
         $data['barismitra'] = $this->db->get('data_mitra')->num_rows();
+        $data['barispelamar'] = $this->db->get('recruitment___pelamar')->num_rows();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);

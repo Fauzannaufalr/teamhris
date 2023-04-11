@@ -51,7 +51,7 @@
                                 <?php elseif ($ds['status'] == 'lulus') : ?>
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
-                                    <button class="badge badge-primary" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="far fa-calendar-alt"></i> Beri Nilai</button>
+                                    <button class="badge badge-primary" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"> Beri Nilai</button>
                                 <?php elseif ($ds['status'] == 'Diterima') : ?>
                                 <?php endif; ?>
                                 <button class="badge badge-danger" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar']; ?>">Hapus</button>
@@ -243,11 +243,12 @@
                 <form action="<?= base_url('recruitment/pelamar/nilai/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <input type="hidden" name="id" id="email" value="<?= $ds['id_pelamar']; ?>">
                         <div class="form-group">
                             <label for="status">Status:</label>
                             <select id="status<?= $ds['id_pelamar']; ?>" name="status<?= $ds['id_pelamar']; ?>" class="form-control" onchange="changeStatus<?= $ds['id_pelamar']; ?>()">
-                                <option value="Tidak Lulus">Tidak Lulus</option>
-                                <option value="Lulus" selected>Lulus</option>
+                                <option value="diterima">Diterima</option>
+                                <option value="ditolak" selected>Ditolak</option>
                             </select>
                         </div>
                         <div id="nilai<?= $ds['id_pelamar']; ?>">
@@ -263,42 +264,42 @@
                                 var e = document.getElementById('status<?= $ds['id_pelamar']; ?>');
                                 const nilai = document.getElementById('nilai<?= $ds['id_pelamar']; ?>');
                                 console.log(nilai);
-                                if (e.value == 'Tidak Lulus') {
+                                if (e.value == 'ditolak') {
                                     clear<?= $ds['id_pelamar']; ?>();
                                     const node = document.createElement('div');
                                     node.innerHTML = `
                                     <div class="form-group">
-                                        <label for="pg">Beri Nilai pg:</label>
-                                        <input type="text"  name="pg" class="form-control">
+                                        <label for="pg">Nilai pg:</label>
+                                        <input type="text"  name="nilaipg" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="essay">Beri Nilai :</label>
-                                        <input type="text"  name="essay" class="form-control">
+                                        <label for="nilaites">Nilai Tes :</label>
+                                        <input type="text"  name="nilaites" class="form-control">
                                     </div>
         
                                     <div class="form-group">
-                                        <label for="berkas">Upload Berkas (Ditolak):</label>
+                                        <label for="berkas">Upload Berkas (penolakan):</label>
                                         <input type="file" id="berkas" name="berkas" class="form-control">
                                     </div>`;
 
                                     nilai.appendChild(node);
-                                } else if (e.value == 'Lulus') {
+                                } else if (e.value == 'diterima') {
                                     var e = document.getElementById('status<?= $ds['id_pelamar']; ?>');
                                     clear<?= $ds['id_pelamar']; ?>();
                                     const node = document.createElement('div');
                                     node.innerHTML = `
                                     <div class="form-group">
-                                        <label for="nilai">Beri Nilai Pg:</label>
-                                        <input type="text" id="nilai" name="nilai" class="form-control">
+                                        <label for="nilaipg">Nilai Pg:</label>
+                                        <input type="text" id="nilaipg" name="nilaipg" class="form-control">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="nilai">Beri Nilai :</label>
-                                        <input type="text" id="nilai" name="nilai" class="form-control">
+                                        <label for="nilaites">Nilai Tes:</label>
+                                        <input type="text" id="nilaites" name="nilaites" class="form-control">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="berkas">Upload Berkas (Diterima):</label>
+                                        <label for="berkas">Upload Berkas (diterima):</label>
                                         <input type="file" id="berkas" name="berkas" class="form-control">
                                     </div>
 
@@ -306,11 +307,18 @@
                                         <label for="jadwal">Jadwalkan Interview Lanjutan:</label>
                                         <input type="date" id="jadwal" name="jadwal" class="form-control">
                                     </div>
+                                    
         
                                     <div class="form-group">
                                         <label for="gmeet">Link Google Meet</label>
                                         <input type="text" id="gmeet" name="gmeet" class="form-control">
-                                    </div>`;
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="bertemu">Bertemu dengan:</label>
+                                        <input type="text" id="bertemu" name="bertemu" class="form-control">
+                                    </div>
+                                    `;
                                     nilai.appendChild(node);
 
                                 }

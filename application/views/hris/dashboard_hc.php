@@ -51,13 +51,15 @@
 
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
+                    <h3>
+                        <?= $barispelamar;  ?>
+                    </h3>
                     <p>Jumlah Pelamar</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <a href="#" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- /.card-body -->

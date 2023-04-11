@@ -99,7 +99,7 @@
                         <div class="modal-body">
                             <input type="hidden" name="id_pekerjaan" value="<?= $nm['id_hasiltes']; ?>">
                             <div class="form-group">
-                                <label for="hasil_file">Nilai Tes (file)</label>
+                                <label for="hasil_file">Nilai Tes</label>
                                 <input type="text" class="form-control" id="hasil_file" name="hasil_file" placeholder="Masukan nilai">
                             </div>
 
