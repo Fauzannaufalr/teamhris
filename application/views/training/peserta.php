@@ -17,7 +17,9 @@
                 <a href="<?php echo base_url('training/jenis_ujian'); ?>"><button type="button"
                         class="btn btn-primary btn-flat" data-toggle="modal" data-target="#"><span></span>Data Jenis
                         Ujian</button></a>
-
+                <a href="<?php echo base_url('training/file_tambah'); ?>"><button type="button"
+                        class="btn btn-primary btn-flat" data-toggle="modal" data-target="#peserta_tambah"><span
+                            class="fa fa-plus"></span> Data soal file </button></a>
 
 
             </div>

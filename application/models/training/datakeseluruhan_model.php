@@ -10,13 +10,13 @@ class datakeseluruhan_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function tambahdatakeseluruhan()
+    public function tambahdatakeseluruhan($dokumen)
     {
         $data = [
             'nama' => htmlspecialchars($this->input->post('nama')),
             'kategori' => htmlspecialchars($this->input->post('kategori')),
             'ulasan' => htmlspecialchars($this->input->post('ulasan')),
-            'file' => htmlspecialchars($this->input->post('dokumen')),
+            'file' => $dokumen,
 
         ];
         $this->db->insert('data_keseluruhan', $data);

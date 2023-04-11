@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-lg-4">
                     <?php if (validation_errors()) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors(); ?>
-                        </div>
+                    <div class="alert alert-danger" role="alert">
+                        <?= validation_errors(); ?>
+                    </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -25,13 +25,14 @@
                 <tbody>
                     <?php $no = 1 ?>
                     <?php foreach ($dataadmin as $dk) : ?>
-                        <tr>
-                            <th><?= $no++; ?></th>
-                            <td><?= $dk['nama']; ?></td>
-                            <td><?= $dk['kategori']; ?></td>
-                            <td><?= $dk['ulasan']; ?></td>
-                            <td><a href="<?php echo base_url('training/dataadmin/download_file/' . $dk['file']); ?>"><span class="glyphicon glyphicon-download-alt">Download Dokumen</a></td>
-                        </tr>
+                    <tr>
+                        <th><?= $no++; ?></th>
+                        <td><?= $dk['nama']; ?></td>
+                        <td><?= $dk['kategori']; ?></td>
+                        <td><?= $dk['ulasan']; ?></td>
+                        <td><a href="<?php echo base_url('training/dataadmin/download_file/' . $dk['file']); ?>"><span
+                                    class="glyphicon glyphicon-download-alt">Download Dokumen</a></td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

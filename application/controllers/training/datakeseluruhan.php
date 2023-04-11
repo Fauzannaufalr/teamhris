@@ -47,9 +47,6 @@ class datakeseluruhan extends CI_Controller
         $this->form_validation->set_rules('ulasan', 'Ulasan', 'required', [
             'required' => 'Ulasan harus diisi !'
         ]);
-        $this->form_validation->set_rules('dokumen', 'Dokumen', 'required', [
-            'required' => 'Dokumen harus diisi !'
-        ]);
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
@@ -57,7 +54,9 @@ class datakeseluruhan extends CI_Controller
             $this->load->view('training/data_keseluruhan', $data);
             $this->load->view('templates/footer');
         } else {
-            $this->datakeseluruhan_model->tambahdatakeseluruhan();
+            $data = $this->upload_berkas();
+            $dokumen = $data['file_name'];
+            $this->datakeseluruhan_model->tambahdatakeseluruhan($dokumen);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
             redirect('training/datakeseluruhan');
         }
@@ -94,12 +93,12 @@ class datakeseluruhan extends CI_Controller
             redirect('training/datakeseluruhan');
         }
     }
-    public function download_file($filename)
+    public function download_hasil($filename)
     {
         // Menentukan path file yang akan didownload
-        $file_path = './dist/record/' . $filename;
+        $file_path = './dist/uplod/' . $filename;
         if (!file_exists($file_path)) {
-            redirect('training/datakeseluruhan');
+            redirect('training/data_keseluruhan');
         };
         header('Content-Type: application/octet-stream');
         header('Content-Length: ' . filesize($file_path));
@@ -107,51 +106,25 @@ class datakeseluruhan extends CI_Controller
 
         readfile($file_path);
     }
-    public function upload_hasiltes()
+    public function upload_berkas()
     {
-        // Load library untuk upload file
-        $this->load->library('upload');
-
-        // Konfigurasi upload file
         $config['upload_path'] = './dist/record';
-        $config['allowed_types'] = 'pdf|doc|docx';
-        $config['max_size'] = 2048; // dalam kilobita
-
-        $this->upload->initialize($config);
-
-        // Lakukan upload file
-        if ($this->upload->do_upload('uploadfile')) {
-            // Jika upload berhasil, simpan nama file ke database
-            $filename = $this->upload->data('file_name');
-            $data = [
-                'id_keseluruhan' => $this->input->post('id'),
-                'nama' => $this->input->post('nama'),
-                'kategori' => $this->input->post('kategori'),
-                'ulasan' => $this->input->post('ulasan'),
-                'file' => $filename,
-            ];
-
-            // Tampilkan pesan berhasil
-            $this->db->insert('data_keseluruhan', $data);
-            $this->session->set_flashdata('success', 'Berhasil Upload Data.');
+        $config['max_size'] = '4024';
+        $config['allowed_types'] = 'doc|docx|pdf';
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('dokumen')) {
+            return $this->upload->data();
         } else {
-            // Jika upload gagal, tampilkan pesan error
-            $this->session->set_flashdata('error', $this->upload->display_errors());
+            return $this->upload->display_errors();
         }
-
-        // Redirect kembali ke halaman profil
-        redirect('training/data_keseluruhan');
     }
-
-
-
     public function hapus($id_keseluruhan)
     {
         if ($this->datakeseluruhan_model->hapus($id_keseluruhan)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
-            $this->session->set_flashdata('message', 'Data gagal dihapus');
+            $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('training/data_keseluruhan');
+        redirect('training/datakeseluruhan');
     }
 }
