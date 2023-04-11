@@ -246,7 +246,7 @@
                         </div>
                         <div class="form-group">
                             <label for="rate_total">Rate total</label>
-                            <input type="text" class="form-control" id="rate_total" name="rate_total" value="<?= $dm['rate_total']; ?>">
+                            <input type="text" class="form-control" id="rate_total<?= $dm['rate_total']; ?>" name="rate_total" value="Rp <?= number_format($dm['rate_total'], 0, ',', '.'); ?>">
                         </div>
                         <div class="form-group">
                             <label for="dokumen_kerjasama">Dokumen Kerjasama</label>
@@ -277,6 +277,12 @@
         </div>
     </div>
 
+    <script>
+        var rate_total<?= $dm['rate_total']; ?> = document.getElementById('rate_total<?= $dm['rate_total']; ?>');
+        rate_total<?= $dm['rate_total']; ?>.addEventListener('keyup', function(e) {
+            rate_total<?= $dm['rate_total']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+    </script>
     <script>
         function myFunction<?= $dm['id'] ?>() {
 
@@ -459,7 +465,8 @@ foreach ($dataTools as $dt => $value) {
             datasets: [{
                 label: 'Keahlian',
                 data: <?= json_encode(array_values(array_count_values($allKeahlianCount))) ?>,
-                borderWidth: 1
+                borderWidth: 1,
+                barPercentage: 1,
             }]
         },
         options: {
@@ -589,5 +596,26 @@ foreach ($dataTools as $dt => $value) {
             $(this).closest("tr").remove();
             drcounter -= 1
         });
+    }
+
+    var rate_total = document.getElementById('rate_total');
+    rate_total.addEventListener('keyup', function(e) {
+        rate_total.value = formatRupiah(this.value, 'Rp ');
+    });
+
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp ' + rupiah : '');
     }
 </script>

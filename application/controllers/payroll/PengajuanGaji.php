@@ -90,6 +90,43 @@ class PengajuanGaji extends CI_Controller
             redirect('payroll/PengajuanGaji');
         }
     }
+    // private function _kirimEmail()
+    // {
+    //     $pdf = $this->dompdf->output();
+    //     $config = [
+    //         'protocol' => 'smtp',
+    //         'smtp_host' => 'ssl://smtp.googlemail.com',
+    //         'smtp_port' => 465,
+    //         'smtp_user' => 'belajarcoding78@gmail.com',
+    //         'smtp_pass' => 'mxaghqdhdmsbcjmz',
+    //         'mailtype' => 'html',
+    //         'charset' => 'utf-8',
+    //         'newline' => "\r\n",
+    //         'wordwrap'  => TRUE
+    //     ];
+
+    //     $this->load->library('email', $config);
+    //     $this->email->initialize($config);
+
+    //     $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+    //     $this->email->to($this->input->post('email'));
+
+    //     $this->email->subject('Slip Gaji');
+    //     $this->email->message('Kirim slip gaji');
+
+    //     $this->email->attach($pdf, 'application/pdf', "Slip Gaji" . ".pdf", false);
+
+    //     $r = $this->email->send();
+    //     if (!$r) {
+    //         // "Failed to send email:" . $this->email->print_debugger(array("header")));
+    //         $this->session->set_flashdata('error', 'Gagal kirim!');
+    //         redirect('payroll/PengajuanGaji');
+    //     } else {
+    //         // "Email sent"
+    //         $this->session->set_flashdata('message', 'Slip gaji berhasil dikirim!');
+    //         redirect('payroll/PengajuanGaji');
+    //     }
+    // }
 
     public function upload_file()
     {
@@ -106,9 +143,8 @@ class PengajuanGaji extends CI_Controller
 
     public function kirimSlip($id)
     {
-        $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
-        $this->load->view('payroll/cetak/cetakslipexcel', $data);
-        $this->_kirimEmail();
+        $data = $this->PengajuanGaji->ambilKaryawanById($id);
+        $this->_kirimEmail($data);
     }
 
     // public function kirimSlip($id)

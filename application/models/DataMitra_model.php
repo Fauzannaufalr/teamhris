@@ -33,7 +33,9 @@ class DataMitra_model extends CI_Model
             'tanggal_keluar' => $this->input->post('tanggal_keluar'),
             'status' => 'Aktif'
         ];
-        $this->db->insert('data_mitra', $data);
+        $data_replace = str_replace('Rp ', '', $data);
+        $data_replace = str_replace('.', '', $data_replace);
+        $this->db->insert('data_mitra', $data_replace);
     }
 
     public function ubahDataMitra()
@@ -52,8 +54,10 @@ class DataMitra_model extends CI_Model
             'tanggal_keluar' => $this->input->post('tanggal_keluar'),
             'status' => $this->input->post('status')
         ];
+        $data_replace = str_replace('Rp ', '', $data);
+        $data_replace = str_replace('.', '', $data_replace);
         $this->db->where('id', $this->input->post('id'));
-        $this->db->update('data_mitra', $data);
+        $this->db->update('data_mitra', $data_replace);
     }
 
     public function hapus($id)
@@ -146,7 +150,7 @@ class DataMitra_model extends CI_Model
                 "email" => $record->email,
                 "telepon" => $record->telepon,
                 "alamat" => $record->alamat,
-                "rate" => $record->rate_total,
+                "rate" => 'Rp ' . number_format($record->rate_total, 0, ', ', '.'),
                 "dokumen" => '<a href="' . $record->dokumen_kerjasama . '">Link Dokumen</a>',
                 "tgl_masuk" => $record->tanggal_masuk,
                 "tgl_keluar" => $record->tanggal_keluar,
