@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en"><head>
     <title>Slip Gaji</title>
-    <style type="text/css">
-        body {
-            font-family: Arial;
-            color: black;
+    <style>
+        .table1 {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table2 {
+            border-collapse: collapse;
+            width: 70%;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            text-align: center;
         }
     </style>
 </head><body>
@@ -12,92 +27,97 @@
         <h1>PT. Sahaware Teknologi Indonesia</h1>
         <h2>Slip Gaji Karyawan</h2>
         <hr style="color: black">
+        <br>
     </center>
 
 
     <?php foreach ($slipgaji as $sg) : ?>
 
-        <table style="width: 100%">
+        <table class="table2">
             <tr>
-                <td width="20%">Nama Pegawai</td>
-                <td width="2%">:</td>
-                <td><?= $sg['nama_karyawan'] ?></td>
+                <td width="20%">NIK & Nama :</td>
+                <td><?= $sg['nik'] ?> & <?= $sg['nama_karyawan'] ?></td>
             </tr>
             <tr>
-                <td>NIK</td>
-                <td>:</td>
-                <td><?= $sg['nik'] ?></td>
-            </tr>
-            <tr>
-                <td>Jabatan</td>
-                <td>:</td>
+                <td>Jabatan :</td>
                 <td><?= $sg['nama_posisi'] ?></td>
             </tr>
             <tr>
-                <td>Bulan Tahun</td>
-                <td>:</td>
+                <td>Periode :</td>
                 <td><?= $sg['bulan_tahun'] ?></td>
             </tr>
         </table>
-
-        <table>
+        <br><br>
+        <table class="table1">
             <tr>
-                <th class="text-center" width="5%">No</th>
-                <th class="text-center">Keterangan</th>
-                <th class="text-center">Jumlah</th>
+                <th colspan="4" style="background-color: #dddddd;">Slip Gaji</th>
             </tr>
             <tr>
-                <td>1</td>
+                <th colspan="2">Penerima</th>
+                <th colspan="2">Potongan</th>
+            </tr>
+            <tr>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+            </tr>
+            <tr>
                 <td>Gaji Pokok</td>
                 <td>Rp. <?= number_format($sg['gajipokok'], 0, ',', '.') ?></td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>BPJS Kesehatan</td>
-                <td>Rp. <?= number_format($sg['bpjs'], 0, ',', '.') ?></td>
-            </tr>
-
-            <tr>
-                <td>3</td>
-                <td>Pajak Karyawan</td>
-                <td>Rp. <?= number_format($sg['pajak'], 0, ',', '.') ?></td>
-            </tr>
-
-            <tr>
-                <td>4</td>
-                <td>Tunjangan Kinerja</td>
-                <td>Rp. <?= number_format($sg['t_kinerja'], 0, ',', '.') ?></td>
-            </tr>
-
-            <tr>
-                <td>5</td>
-                <td>Tunjangan Fungsional</td>
-                <td>Rp. <?= number_format($sg['t_fungsional'], 0, ',', '.') ?></td>
-            </tr>
-
-            <tr>
-                <td>6</td>
-                <td>Tunjangan Jabatan</td>
-                <td>Rp. <?= number_format($sg['t_jabatan'], 0, ',', '.') ?></td>
-            </tr>
-
-            <tr>
-                <td>6</td>
                 <td>Potongan</td>
                 <td>Rp. <?= number_format($sg['potongan'], 0, ',', '.') ?></td>
             </tr>
 
             <tr>
-                <td>7</td>
-                <td>Bonus</td>
-                <td>Rp. <?= number_format($sg['bonus'], 0, ',', '.') ?></td>
+                <td>Tunjangan Fungsional</td>
+                <td>Rp. <?= number_format($sg['t_fungsional'], 0, ',', '.') ?></td>
+                <td>Pajak</td>
+                <td>Rp. <?= number_format($sg['pajak'], 0, ',', '.') ?></td>
             </tr>
 
             <tr>
-                <th colspan="2" style="text-align: right;">Total Gaji : </th>
-                <th>Rp. <?= number_format($sg['total'], 0, ',', '.') ?></th>
+                <td>Tunjangan Kinerja</td>
+                <td>Rp. <?= number_format($sg['t_kinerja'], 0, ',', '.') ?></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Tunjangan Kesehatan</td>
+                <td>Rp. <?= number_format($sg['t_bpjs'], 0, ',', '.') ?></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Tunjangan Jabatan</td>
+                <td>Rp. <?= number_format($sg['t_jabatan'], 0, ',', '.') ?></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Intensif + Project (Bonus)</td>
+                <td>Rp. <?= number_format($sg['bonus'], 0, ',', '.') ?></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th colspan="1" style="text-align: left;">Total Penerimaan : </th>
+                <th style="text-align: left;">Rp. <?= number_format($sg['gajipokok']+$sg['t_fungsional']+$sg['t_kinerja']+$sg['t_bpjs']+$sg['t_jabatan']+$sg['bonus'], 0, ',', '.') ?></th>
+                <th colspan="1" style="text-align: left;">Total Potongan : </th>
+                <th style="text-align: left;">Rp. <?= number_format($sg['potongan']+$sg['pajak'], 0, ',', '.') ?></th>
+            </tr>
+            <tr>
+                <th colspan="1" style="text-align: left; background-color: #dddddd;">Gaji : </th>
+                <th colspan="3" style="text-align: left; background-color: #dddddd;">Rp. <?= number_format($sg['gajipokok']+$sg['t_fungsional']+$sg['t_kinerja']+$sg['t_bpjs']+$sg['t_jabatan']+$sg['bonus']-$sg['potongan']+$sg['pajak'], 0, ',', '.') ?></th>
             </tr>
         </table>
     <?php endforeach; ?>
 </body></html>
+
+<script type="text/javascript">
+    window.print();
+</script>

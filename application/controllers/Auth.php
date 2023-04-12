@@ -74,8 +74,8 @@ class Auth extends CI_Controller
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'gaming.risoless@gmail.com',
-            'smtp_pass' => 'gxwmwxojvvfixwyr',
+            'smtp_user' => 'hristeam13@gmail.com',
+            'smtp_pass' => 'riztsicgznvyhudn',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -126,10 +126,10 @@ class Auth extends CI_Controller
                 $this->db->insert('user_token', $user_token);
                 $this->_kirimEmail($token);
 
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Silahkan cek email anda untuk reset password!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" style="text-align: center;"> Silahkan cek email anda untuk reset password!</div>');
                 redirect('auth');
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Email anda tidak terdaftar!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> Email anda tidak terdaftar!</div>');
                 redirect('auth/lupapassword');
             }
         }
@@ -152,15 +152,15 @@ class Auth extends CI_Controller
                 } else {
                     $this->db->delete('user_token', ['email' => $email]);
 
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Reset password gagal! Reset password sudah expired!</div>');
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> Reset password gagal! Reset password sudah expired!</div>');
                     redirect('auth');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Reset password gagal! Token invalid!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> Reset password gagal! Token invalid!</div>');
                 redirect('auth');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Reset password gagal! Email salah!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert" style="text-align: center;"> Reset password gagal! Email salah!</div>');
             redirect('auth');
         }
     }

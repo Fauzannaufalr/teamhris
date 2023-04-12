@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Laporan Keahlian & Tools Mitra</h3>
                 </div>
                 <div class="card-body">

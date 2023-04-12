@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-8">
             <table class="table table-bordered">
-                <thead style="text-align: center; background-color: #cc0000; color: #ffffff;">
+                <thead style="text-align: center; background-color: #8b0000; color: #ffffff;">
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Golongan</th>

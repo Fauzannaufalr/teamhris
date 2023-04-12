@@ -60,8 +60,8 @@ class PengajuanGaji extends CI_Controller
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'belajarcoding78@gmail.com',
-            'smtp_pass' => 'mxaghqdhdmsbcjmz',
+            'smtp_user' => 'hristeam13@gmail.com',
+            'smtp_pass' => 'riztsicgznvyhudn',
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
@@ -75,7 +75,15 @@ class PengajuanGaji extends CI_Controller
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Slip Gaji');
-        $this->email->message('Kirim slip gaji');
+
+        $data = [
+            'nama' => $this->input->post('nama_karyawan2'),
+            'posisi' => $this->input->post('posisi2'),
+            'nik' => $this->input->post('nik2'),
+            'bulan_tahun' => $this->input->post('bulan_tahun'),
+        ];
+        $card = $this->load->view('payroll/pesan_email', $data, TRUE);
+        $this->email->message($card);
 
         $this->email->attach($pdf, 'application/pdf', "Slip Gaji" . ".pdf", false);
 
@@ -141,26 +149,26 @@ class PengajuanGaji extends CI_Controller
         }
     }
 
-    public function kirimSlip($id)
-    {
-        $data = $this->PengajuanGaji->ambilKaryawanById($id);
-        $this->_kirimEmail($data);
-    }
-
     // public function kirimSlip($id)
     // {
-    //     $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
-    //     $this->load->view('payroll/cetak/cetakslipdf', $data);
-
-    //     $paper_size = 'A4';
-    //     $orientation = 'potrait';
-    //     $html = $this->output->get_output();
-    //     $this->dompdf->set_paper($paper_size, $orientation);
-
-    //     $this->dompdf->load_html($html);
-    //     $this->dompdf->render();
-    //     $this->_kirimEmail();
+    //     $data = $this->PengajuanGaji->ambilKaryawanById($id);
+    //     $this->_kirimEmail($data);
     // }
+
+    public function kirimSlip($id)
+    {
+        $data['slipgaji'] = $this->PengajuanGaji->ambilKaryawanById($id);
+        $this->load->view('payroll/cetak/cetakslippdf', $data);
+
+        $paper_size = 'A4';
+        $orientation = 'potrait';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->_kirimEmail();
+    }
 
     public function cetakGaji()
     {

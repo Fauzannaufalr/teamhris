@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Cetak Data</h3>
                 </div>
                 <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
@@ -80,7 +80,7 @@
         } ?>
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Generate Data</h3>
                 </div>
                 <form class="form-horizontal">
@@ -165,20 +165,24 @@
                     <div class="modal-body">
                         <input type="hidden" name="id" value="<?= $pg['id']; ?>">
                         <input type="hidden" name="email" value="<?= $pg['email']; ?>">
+                        <input type="hidden" name="bulan_tahun" value="<?= $pg['bulan_tahun']; ?>">
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="nik" class="col-form-label">NIK</label>
                                 <input type="text" class="form-control" id="nik" name="nik" disabled value="<?= $pg['nik']; ?>">
+                                <input type="hidden" class="form-control" id="nik" name="nik2" value="<?= $pg['nik']; ?>">
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Nama</label>
                                 <input type="text" class="form-control" id="nama" name="nama_karyawan" disabled value="<?= $pg['nama_karyawan']; ?>">
+                                <input type="hidden" class="form-control" id="nama" name="nama_karyawan2" value="<?= $pg['nama_karyawan']; ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="posisi" class="col-form-label">Posisi</label>
                                 <input type="text" class="form-control" id="posisi" name="posisi" disabled value="<?= $pg['nama_posisi']; ?>">
+                                <input type="hidden" class="form-control" id="posisi" name="posisi2" value="<?= $pg['nama_posisi']; ?>">
                             </div>
                             <div class="col-md-6">
                                 <label for="gaji" class="col-form-label">Gaji Pokok</label>
@@ -198,11 +202,11 @@
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Tunjangan Jabatan</label>
-                                <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?>">
+                                <input type="text" class="form-control" id="nama" name="jabatan" disabled value="Rp <?= number_format($pg['t_jabatan'], 0, ',', '.'); ?>">
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Tunjangan Fungsional</label>
-                                <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['t_fungsional'], 0, ',', '.'); ?>">
+                                <input type="text" class="form-control" id="nama" name="fungsional" disabled value="Rp <?= number_format($pg['t_fungsional'], 0, ',', '.'); ?>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -212,17 +216,17 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Potongan</label>
-                                <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?>">
+                                <input type="text" class="form-control" id="nama" name="potongan" disabled value="Rp <?= number_format($pg['potongan'], 0, ',', '.'); ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Bonus</label>
-                                <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['bonus'], 0, ',', '.'); ?>">
+                                <input type="text" class="form-control" id="nama" name="bonus" disabled value="Rp <?= number_format($pg['bonus'], 0, ',', '.'); ?>">
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="col-form-label">Total</label>
-                                <input type="text" class="form-control" id="nama" name="nama" disabled value="Rp <?= number_format($pg['total'], 0, ',', '.'); ?>">
+                                <input type="text" class="form-control" id="nama" name="total" disabled value="Rp <?= number_format($pg['total'], 0, ',', '.'); ?>">
                             </div>
                         </div>
                     </div>

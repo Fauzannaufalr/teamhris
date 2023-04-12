@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Cetak Data</h3>
                 </div>
                 <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuanratemitra/cetakrateexcel'); ?>">
@@ -80,7 +80,7 @@
         } ?>
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Generate Data</h3>
                 </div>
                 <form class="form-horizontal">

@@ -24,6 +24,7 @@ class PengajuanGaji_model extends CI_Model
     {
         $date = date("Y") . date("m", strtotime('+1 month'));
         $this->db->where('status', 'Belum dibayar');
+        $this->db->where('bulan_tahun', $date);
         $this->db->delete('payroll___pengajuangaji');
         $this->db->affected_rows();
 
@@ -34,7 +35,7 @@ class PengajuanGaji_model extends CI_Model
         $this->db->join('data_posisi dp', 'dp.id_posisi = dk.id_posisi', 'left');
         $this->db->join('payroll___perhitungan pg', 'pg.id_datakaryawan = dk.id_karyawan', 'left');
         $this->db->where('dk.status !=', 'Tidak Aktif');
-        $this->db->where('dk.id_karyawan NOT IN (SELECT id_datakaryawan FROM payroll___pengajuangaji WHERE bulan_tahun =' . $date . ' AND status = "Sudah dibayar")');
+        $this->db->where('dk.id_karyawan NOT IN (SELECT id_datakaryawan FROM payroll___pengajuangaji WHERE bulan_tahun ="' . $date . '" AND status = "Sudah dibayar")');
         $nextGaji = $this->db->get()->result_array();
         foreach ($nextGaji as $ng) {
             $data = [

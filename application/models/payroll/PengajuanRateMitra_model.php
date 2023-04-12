@@ -20,7 +20,7 @@ class PengajuanRateMitra_model extends CI_Model
         $this->db->select($date . ' as bulan_tahun, dm.id, dm.rate_total');
         $this->db->from('data_mitra dm ');
         $this->db->where('dm.status !=', 'Tidak Aktif');
-        $this->db->where('dm.id NOT IN (SELECT id_datamitra FROM payroll___pengajuanratemitra WHERE bulan_tahun =' . $date . ' AND status = "Sudah dibayar")');
+        $this->db->where('dm.id NOT IN (SELECT id_datamitra FROM payroll___pengajuanratemitra WHERE bulan_tahun ="' . $date . '" AND status = "Sudah dibayar")');
         $nextRate = $this->db->get()->result_array();
         foreach ($nextRate as $nr) {
             $data = [
