@@ -3,16 +3,6 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr style="text-align: center;">
@@ -52,7 +42,6 @@
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
                                     <button class="badge badge-primary" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"> Beri Nilai</button>
-                                <?php elseif ($ds['status'] == 'Diterima') : ?>
                                 <?php endif; ?>
                                 <button class="badge badge-danger" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar']; ?>">Hapus</button>
                             </td>
@@ -112,17 +101,22 @@
                 <form action="<?= base_url('recruitment/pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <input type="hidden" name="id_pekerjaan" value="<?= $ds['id_pekerjaan']; ?>">
                         <div class="form-group">
                             <label for="tanggal">Tanggal Interview</label>
-                            <input type="datetime-local" class="form-control" id="tanggal" name="tanggal">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        </div>
+                        <div class="form-group">
+                            <label for="mulai">Mulai:</label>
+                            <input type="time" id="mulai" name="mulai" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="akhir">Berakhir:</label>
+                            <input type="time" id="akhir" name="akhir" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="gmeet">Link Google Meet</label>
                             <input type="text" class="form-control" id="gmeet" name="gmeet">
-                        </div>
-                        <div class="form-group">
-                            <label for="bertemu">Bertemu dengan</label>
-                            <input type="text" class="form-control" id="bertemu" name="bertemu">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -398,3 +392,36 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
+</script>

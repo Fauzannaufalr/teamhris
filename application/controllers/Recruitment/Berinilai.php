@@ -55,13 +55,13 @@ class Berinilai extends CI_Controller
     {
         $data = [
             'status' => 'sudah dinilai ',
-            'nilai_pg' => htmlspecialchars($this->input->post('hasil_link')),
-            'nilai_tes' => htmlspecialchars($this->input->post('hasil_file')),
+            'nilai_pg' => htmlspecialchars($this->input->post('nilai_pg')),
+            'nilai_tes' => htmlspecialchars($this->input->post('nilai_tes')),
         ];
 
         $this->db->where('id_hasiltes', $id);
         $this->db->update('recruitment___hasiltes', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> siap dinilai</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> sudah di nilaii</div>');
         redirect('recruitment/berinilai');
     }
 }
