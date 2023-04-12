@@ -61,7 +61,8 @@
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i
+                        class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- /.card-body -->
@@ -180,11 +181,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_status" name="tahun_status">
-<<<<<<< Updated upstream
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-=======
                                         <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
->>>>>>> Stashed changes
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -209,49 +206,38 @@
                 <div class="card-body">
                     <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_mitra'); ?>">
 
-<<<<<<< Updated upstream
-                        <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
-=======
-                        <form class="form-horizontal" method="post"
-                            action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
->>>>>>> Stashed changes
-
-                            <div class="card-body p-0">
-                                <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <select class="form-control select2" id="bulan_mitra" name="bulan_mitra">
-                                            <option value="01">Januari</option>
-                                            <option value="02">Februari</option>
-                                            <option value="03">Maret</option>
-                                            <option value="04">April</option>
-                                            <option value="05">Mei</option>
-                                            <option value="06">Juni</option>
-                                            <option value="07">Juli</option>
-                                            <option value="08">Agustus</option>
-                                            <option value="09">September</option>
-                                            <option value="10">Oktober</option>
-                                            <option value="11">November</option>
-                                            <option value="12">Desember</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
-<<<<<<< Updated upstream
-                                            <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-=======
-                                            <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
->>>>>>> Stashed changes
-                                                <option value="<?= $i ?>"><?= $i ?></option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
+                        <div class="card-body p-0">
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="bulan_mitra" name="bulan_mitra">
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                            <option value="<?= $i ?>"><?= $i ?></option>
+                                        <?php endfor; ?>
+                                    </select>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
-                        </form>
-                        <div class="col-lg-12">
-                            <canvas id="mitra"></canvas>
                         </div>
+                        <!-- /.card-body -->
+                    </form>
+                    <div class="col-lg-12">
+                        <canvas id="mitra"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -338,22 +324,6 @@
 <div class="card">
     <div class="card-body">
 
-        <!-- validation crud -->
-<<<<<<< Updated upstream
-        <?php if (validation_errors()) : ?>
-=======
-        <?php if (validation_errors()): ?>
->>>>>>> Stashed changes
-            <div class="alert alert-danger" role="alert">
-                <?= validation_errors(); ?>
-            </div>
-        <?php endif; ?>
-        <div class="row">
-            <div class="col-lg-4">
-                <?= $this->session->flashdata('message'); ?>
-            </div>
-        </div>
-
         <?php
 
         $jml_data = COUNT($akumulasi);
@@ -377,11 +347,7 @@
                     $nik = $this->session->userdata("nik");
                     $level = $this->session->userdata("level");
 
-<<<<<<< Updated upstream
-                    foreach ($akumulasi as $ak) :
-=======
                     foreach ($akumulasi as $ak):
->>>>>>> Stashed changes
                         if ($nik === $ak['nik'] && $level !== "hc")
                             continue;
                         $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
@@ -396,14 +362,9 @@
                                 <?= $ak['nik'], "<br>" .
                                     $ak['nama_karyawan']; ?>
                             </td>
-<<<<<<< Updated upstream
+
                             <td>
-                                <?= $nilaiakumulasi ?>
-=======
-                         
-                            <td>
-                                <?=  number_format((float) $nilaiakumulasi,2,'.','')?>
->>>>>>> Stashed changes
+                                <?= number_format((float) $nilaiakumulasi, 2, '.', '') ?>
                             </td>
                             <td style="text-align: center;">
                                 <?php

@@ -32,10 +32,9 @@ class Akumulasi extends CI_Controller
             $tahun = date('Y');
             $bulantahun = $bulan . "/" . $tahun;
         }
-
         $data['akumulasi'] = $this->db->query("
         SELECT 
-        pk.tanggal,
+        pkerja.tanggal,
         dk.nik,
         dk.nama_karyawan,
         (
@@ -58,8 +57,9 @@ class Akumulasi extends CI_Controller
             pkerja.tanggal LIKE '%$bulantahun'
     ")->result_array();
 
+   
 
-        // printr($data);
+    printr($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
