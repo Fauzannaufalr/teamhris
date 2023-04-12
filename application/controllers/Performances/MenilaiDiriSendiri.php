@@ -39,6 +39,8 @@ class MenilaiDiriSendiri extends CI_Controller
         $id_penilaian_kuesioner = $this->insert_tabel_penilaian_kuesioner();
         $this->insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner);
         redirect("performances/menilaidirisendiri");
+        $this->session->set_flashdata('message', ' Data berhasil disimpan!');
+        redirect('performances/menilaidirisendiri');
     }
 
     private function insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner)
@@ -62,7 +64,7 @@ class MenilaiDiriSendiri extends CI_Controller
             ); //
             // echo "<pre>" . print_r($data_insert_tabel_performances__detail_penilaian_kuesioner, true) . "</pre>";
         endforeach;
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil disimpan!</div>');
+        $this->session->set_flashdata('message', ' Data berhasil disimpan!');
         redirect('performances/menilaidirisendiri');
     }
 
@@ -84,6 +86,8 @@ class MenilaiDiriSendiri extends CI_Controller
         ];
         $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
         return $this->db->insert_id();
+        $this->session->set_flashdata('message', ' Data berhasil disimpan!');
+        redirect('performances/menilaidirisendiri');
     }
 
 }

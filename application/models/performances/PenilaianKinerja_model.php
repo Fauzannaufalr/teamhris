@@ -95,7 +95,6 @@ class PenilaianKinerja_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-
     public function import_data($data)
     {
         $jumlah = count($data);
@@ -103,6 +102,8 @@ class PenilaianKinerja_model extends CI_Model
             $this->db->insert('performances___penilaian_kinerja', $data);
         }
     }
+
+
     public function checkPenilaianKinerjaExists($nik, $bulan, $tahun)
     {
         $this->db->where('nik', $nik);

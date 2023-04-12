@@ -161,7 +161,7 @@
                                         $ak['nama_karyawan']; ?>
                                 </td>
                                 <td>
-                                    <?= $nilaiakumulasi ?>
+                                    <?= number_format((float) $nilaiakumulasi, 2, '.', '') ?>
                                 </td>
                                 <td style="text-align: center;">
                                     <?php
@@ -244,21 +244,15 @@
         data: d_karyawan
     });
     const test = document.getElementById('nilai');
-    let nilai_kinerja = [80, 70, 85];
-    let nilai_kuesioner = [90, 85, 75];
-    let nilai_akumulasi = [];
-
-    for (let i = 0; i < nilai_kinerja.length; i++) {
-        nilai_akumulasi[i] = nilai_kinerja[i] + nilai_kuesioner[i];
-    }
-
+    const a = <?= $nilai ?>
+    // data nilai kalo bisa berskan data bulan, / nilai bentuk array, nilainya berdsaarkan bulan kalo bisa berurutan
     new Chart(test, {
         type: 'bar',
         data: {
             labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
                 label: 'Nilai Akumulasi',
-                data: nilai_akumulasi,
+                data: [a, 87, 86, 82],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 159, 64, 0.2)',

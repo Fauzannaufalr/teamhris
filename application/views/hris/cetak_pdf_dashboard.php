@@ -30,20 +30,21 @@
         $bulantahun = $bulan . "/" . $tahun;
     }
     ?>
-    <table>
-        <tr>
-            <td>Bulan</td>
-            <td>:</td>
-            <td>
-                <?= $bulan ?>
-            </td>
-        </tr>
-        <tr>
-            <td>Tahun</td>
-            <td>:</td>
-            <td>
-                <?= $tahun ?>
-        </tr>
+    <table class="table table-bordered table-triped">
+        <thead>
+            <tr>
+                <th>Bulan :</th>
+                <th>
+                    <?= $bulan ?>
+                </th>
+            </tr>
+            <tr>
+                <th>Tahun :</th>
+                <th>
+                    <?= $tahun ?>
+                </th>
+            </tr>
+        </thead>
     </table>
     <table class="table table-bordered table-triped">
         <thead>

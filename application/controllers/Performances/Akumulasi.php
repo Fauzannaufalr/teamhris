@@ -35,20 +35,14 @@ class Akumulasi extends CI_Controller
 
         $data['akumulasi'] = $this->db->query("
         SELECT 
-            dk.nik,
-            dk.nama_karyawan,
-            pkerja.tanggal, 
-            (
-                SELECT 
-                    CASE 
-                        WHEN SUM(pk.total_nilai) > 4 THEN SUM(pk.total_nilai) / 4
-                        ELSE SUM(pk.total_nilai)
-                    END AS nilai_kuesioner
-                FROM 
-                    performances___penilaian_kuesioner pk 
-                WHERE 
-                    pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
-            ) AS nilai_kuesioner,
+        pk.tanggal,
+        dk.nik,
+        dk.nama_karyawan,
+        (
+            SELECT SUM(pk2.total_nilai) / 4
+            FROM performances___penilaian_kuesioner pk2 
+            WHERE pk2.nik_menilai = dk.nik  AND pk.tanggal = '$bulantahun' GROUP BY pk.tanggal 
+        ) AS total_nilai_kuesioner,
             (
                 SELECT 
                     pkerja.nilai
@@ -89,7 +83,7 @@ class Akumulasi extends CI_Controller
         }
 
         $data['cetak_akumulasi_admin'] = $this->Akumulasi_model->cetakAkumulasi($bulantahun);
-        // printr($data['cetak_akumulasi']);
+        // printr($data['cetak_akumulasi_admin']);
         $this->load->view('templates/header', $data);
         $this->load->view('performances/cetak_pdf_akumulasi', $data);
     }
@@ -108,7 +102,7 @@ class Akumulasi extends CI_Controller
         }
 
         $data['cetak_akumulasi_admin'] = $this->Akumulasi_model->cetakAkumulasi($bulantahun);
-        // printr($data['cetak_akumulasi']);
+        // printr($data['cetak_akumulasi_admin']);
         $this->load->view('performances/cetak_excel_akumulasi', $data);
     }
 

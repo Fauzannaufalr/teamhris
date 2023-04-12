@@ -33,7 +33,11 @@ class Hris extends CI_Controller
         $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
         $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
         $bulantahun = $bulan . "/" . $tahun;
+        $data['akumulasi'] = $this->Hris_model->laporan($bulantahun);
+        // $nik = $this->session->userdata("nik");
+        // $level = $this->session->userdata("level");
 
+        // printr($data['akumulasi']);
         $data['akumulasi'] = $this->db->query("SELECT 
         pk.tanggal, 
         dk.nik,
@@ -53,7 +57,7 @@ class Hris extends CI_Controller
         WHERE pk.tanggal = '$bulantahun '
         GROUP BY pk.tanggal, pk.nik_menilai
          ")->result_array();
-
+        // printr($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

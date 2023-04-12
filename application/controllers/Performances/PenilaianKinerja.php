@@ -96,14 +96,14 @@ class PenilaianKinerja extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             if ($nik_digunakan) {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIK telah digunakan</div>');
+                $this->session->set_flashdata('error', 'NIK telah digunakan');
                 redirect('performances/penilaiankinerja');
                 return;
             }
 
             $this->PenilaianKinerja_model->tambahPenilaianKinerja();
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
             redirect('performances/penilaiankinerja');
         }
     }
@@ -136,7 +136,7 @@ class PenilaianKinerja extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->PenilaianKinerja_model->ubahPenilaianKinerja();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diUbah!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil diUbah!');
             redirect('performances/penilaiankinerja');
         }
     }
@@ -145,9 +145,9 @@ class PenilaianKinerja extends CI_Controller
     public function hapus($id)
     {
         if ($this->PenilaianKinerja_model->hapus($id)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
-            $this->session->set_flashdata('message', 'Data gagal dihapus');
+            $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
         redirect('performances/penilaiankinerja');
     }
@@ -170,6 +170,7 @@ class PenilaianKinerja extends CI_Controller
         // printr($data['cetak_kinerja']);
         $this->load->view('templates/header', $data);
         $this->load->view('performances/cetak_kinerja', $data);
+
     }
 
     public function cetakExcel()
@@ -187,30 +188,26 @@ class PenilaianKinerja extends CI_Controller
 
         $data['cetak_kinerja'] = $this->PenilaianKinerja_model->cetakKinerja($bulantahun);
         // printr($data['cetak_kinerja']);
+
         $this->load->view('performances/cetak_excel_kinerja', $data);
+
     }
 
 
     // Fungsi untuk memeriksa apakah NIK sudah digunakan pada bulan yang sama sebelumnya
-    private function nik_sudah_digunakan_by_month1($nik, $tanggal)
+    function import()
     {
-        $bulantahun = date('m/Y', strtotime($tanggal));
-        $query = $this->db->query("SELECT * FROM performances___penilaian_kinerja WHERE nik = '$nik' AND DATE_FORMAT(tanggal, '%m/%Y') = '$bulantahun'");
-        return $query->num_rows() > 0;
-    }
-
-    // Fungsi untuk mengimpor data penilaian kinerja
-    public function import()
-    {
-        $nik = $this->input->post("nik_nama");
         $data['title'] = "Penilaian Kinerja";
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $nik_digunakan = $this->nik_sudah_digunakan_by_month1("nik_nama", $nik);
-
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/penilaiankinerja', $data);
+        $this->load->view('templates/footer');
         $config['allowed_types'] = 'xlsx|xls';
         $config['upload_path'] = './dist/import';
         $config['file_name'] = 'doc' . time();
@@ -225,6 +222,7 @@ class PenilaianKinerja extends CI_Controller
             foreach ($reader->getSheetIterator() as $sheet) {
                 $numRow = 1;
                 foreach ($sheet->getRowIterator() as $row) {
+
                     if ($numRow > 1) {
                         $data = array(
                             'nik' => htmlspecialchars($row->getCellAtIndex(1)),
@@ -234,28 +232,22 @@ class PenilaianKinerja extends CI_Controller
                             'nilai' => $row->getCellAtIndex(5),
                             'kategorisasi' => htmlspecialchars($row->getCellAtIndex(6)),
                         );
-                        $tanggal = date('Y-m-d', strtotime($data['tanggal']));
-                        $nik_digunakan = $this->nik_sudah_digunakan_by_month1($data['nik'], $tanggal);
-                        if ($nik_digunakan) {
-                            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIK telah digunakan pada bulan yang sama sebelumnya</div>');
-                            redirect('performances/penilaiankinerja');
-                            return;
-                        } else {
-                            $this->PenilaianKinerja_model->import_data($data);
-                        }
+                        $this->PenilaianKinerja_model->import_data($data);
                     }
                     $numRow++;
                 }
                 $reader->close();
                 unlink('./dist/import/' . $file['file_name']);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diimport!</div>');
+                $this->session->set_flashdata('message', ' Data berhasil diimport!');
                 redirect('performances/penilaiankinerja');
             }
+        } else {
+            $this->session->set_flashdata('error', 'data import gagal!' . $this->upload->display_errors());
+            redirect('performances/penilaianknerja');
         }
 
 
     }
-
     public function ajax_category()
     {
         $nik = $_GET["nik"];

@@ -78,4 +78,29 @@ class Hris_model extends CI_Model
         return $query->result_array();
 
     }
+    public function laporan($bulantahun)
+    {
+        $query = $this->db->query("SELECT 
+        pk.tanggal,
+        dk.nik,
+        dk.nama_karyawan,
+        (
+            SELECT SUM(pk2.total_nilai) / 4
+            FROM performances___penilaian_kuesioner pk2 
+            WHERE pk2.nik_menilai = dk.nik  AND pk.tanggal = '$bulantahun' GROUP BY pk.tanggal 
+        ) AS total_nilai_kuesioner,
+        (
+            SELECT SUM(pkerja.nilai) 
+            FROM performances___penilaian_kinerja pkerja  
+            WHERE pkerja.nik = dk.nik AND pkerja.tanggal = '$bulantahun' 
+        ) AS total_nilai_kinerja
+        FROM data_karyawan dk 
+        INNER JOIN performances___penilaian_kuesioner pk ON pk.nik_menilai=dk.nik
+        WHERE pk.tanggal = '$bulantahun '
+        GROUP BY pk.tanggal, pk.nik_menilai
+         ");
+        return $query->result_array();
+
+
+    }
 }

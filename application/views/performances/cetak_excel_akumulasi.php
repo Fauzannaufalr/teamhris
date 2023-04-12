@@ -65,7 +65,7 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
                     <?= $ck['nilai_kinerja'] ?>
                 </td>
                 <td style="text-align: center;">
-                    <?= $ck['nilai_kuesioner'] ?>
+                    <?= number_format((float) $ck['nilai_kuesioner'], 2, '.', ''); ?>
                 </td>
                 <td style="text-align: center;">
                     <?= $akumulasi ?>

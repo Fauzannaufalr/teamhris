@@ -21,21 +21,16 @@
       </div>
 
       <form method="POST" action="<?= base_url('performances/MenilaiRekan1/simpan') ?>">
-
         <div class=" form-group col-md-4">
-
           <label>Menilai</label>
           <select required class=" form-control" name="nik_menilai" id="nik_menilai">
             <option value="">-- Pilih Karyawan --</option>
             <?php foreach ($datakaryawan as $dk):
-              if (in_array($dk['nik'], $sudah_menilai))
-                continue;
               ?>
               <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
             <?php endforeach; ?>
           </select>
         </div>
-
 
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
@@ -78,3 +73,37 @@
         </div>
       </form>
     </div>
+
+
+
+    <script>
+      $(function () {
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000
+        });
+        <?php if ($this->session->flashdata('message')): ?>
+          const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+          Toast.fire({
+            icon: 'success',
+            title: flashData
+          })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')): ?>
+          const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+          Toast.fire({
+            icon: 'error',
+            title: flashData
+          })
+        <?php endif; ?>
+        <?php if (validation_errors()): ?>
+          const flashData = <?= json_encode(validation_errors()) ?>;
+          Toast.fire({
+            icon: 'error',
+            title: flashData
+          })
+        <?php endif; ?>
+      });
+    </script>

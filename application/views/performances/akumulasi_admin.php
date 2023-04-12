@@ -130,7 +130,7 @@
                                     <?= $ak['nilai_kinerja']; ?>
                                 </td>
                                 <td>
-                                    <?= $ak['nilai_kuesioner']; ?>
+                                    <?= number_format((float) $ak['nilai_kuesioner'], 2, '.', ''); ?>
                                 </td>
 
                                 <td>
