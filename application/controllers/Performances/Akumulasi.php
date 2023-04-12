@@ -32,16 +32,23 @@ class Akumulasi extends CI_Controller
             $tahun = date('Y');
             $bulantahun = $bulan . "/" . $tahun;
         }
+
         $data['akumulasi'] = $this->db->query("
         SELECT 
-        pkerja.tanggal,
-        dk.nik,
-        dk.nama_karyawan,
-        (
-            SELECT SUM(pk2.total_nilai) / 4
-            FROM performances___penilaian_kuesioner pk2 
-            WHERE pk2.nik_menilai = dk.nik  AND pk.tanggal = '$bulantahun' GROUP BY pk.tanggal 
-        ) AS total_nilai_kuesioner,
+            dk.nik,
+            dk.nama_karyawan,
+            pkerja.tanggal, 
+            (
+                SELECT 
+                    CASE 
+                        WHEN SUM(pk.total_nilai) > 4 THEN SUM(pk.total_nilai) / 4
+                        ELSE SUM(pk.total_nilai)
+                    END AS nilai_kuesioner
+                FROM 
+                    performances___penilaian_kuesioner pk 
+                WHERE 
+                    pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
+            ) AS nilai_kuesioner,
             (
                 SELECT 
                     pkerja.nilai
@@ -57,9 +64,8 @@ class Akumulasi extends CI_Controller
             pkerja.tanggal LIKE '%$bulantahun'
     ")->result_array();
 
-   
 
-    printr($data);
+        // printr($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

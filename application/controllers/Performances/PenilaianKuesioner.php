@@ -118,8 +118,8 @@ class PenilaianKuesioner extends CI_Controller
         $data['cetak_kuesioner'] = $this->PenilaianKuesioner_model->cetakKuesioner($bulantahun);
         $this->load->view('templates/header', $data);
         $this->load->view('performances/cetak_kuesioner', $data);
-        $this->session->set_flashdata('message', ' Berhasil Cetak PDF!');
-        redirect('performances/penilaiankinerja');
+        // $this->session->set_flashdata('message', ' Berhasil Cetak PDF!');
+        // redirect('performances/penilaiankinerja');
     }
 
 

@@ -34,9 +34,11 @@ class Hris extends CI_Controller
         $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
         $bulantahun = $bulan . "/" . $tahun;
         $data['akumulasi'] = $this->Hris_model->laporan($bulantahun);
-        // $nik = $this->session->userdata("nik");
-        // $level = $this->session->userdata("level");
-
+        $nik = $this->session->userdata("nik");
+        foreach ($data['akumulasi'] as $ak) {
+            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2;
+        }
+        $data['nilai'] = $nilaiakumulasi;
         // printr($data['akumulasi']);
         $data['akumulasi'] = $this->db->query("SELECT 
         pk.tanggal, 

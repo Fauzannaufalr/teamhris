@@ -32,7 +32,7 @@ class PenilaianKuesioner_model extends CI_Model
         $this->db->delete('performances___penilaian_kuesioner');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
-    public function cetakKuesioner()
+    public function cetakKuesioner($bulantahun)
     {
         $query = $this->db->query("SELECT 
         pk.id_penilaian_kuesioner,
@@ -47,7 +47,8 @@ class PenilaianKuesioner_model extends CI_Model
         FROM performances___penilaian_kuesioner pk
         INNER JOIN data_karyawan dk_a ON pk.nik_penilai = dk_a.nik 
         INNER JOIN data_karyawan dk_b ON pk.nik_menilai = dk_b.nik 
-        ");
+        WHERE 
+        pk.tanggal LIKE '%$bulantahun'");
         return $query->result_array();
     }
 

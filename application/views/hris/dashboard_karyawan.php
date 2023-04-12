@@ -143,7 +143,7 @@
                         <?php
                         $nik = $this->session->userdata("nik");
                         $level = $this->session->userdata("level");
-
+                        $arr_char = [];
                         foreach ($akumulasi as $ak):
                             if ($nik !== $ak['nik'] && $level !== "hc") {
                                 continue;
@@ -155,6 +155,72 @@
                                 </th>
                                 <td>
                                     <?= $ak['tanggal'] ?>
+                                    <?php
+                                    $arr_tgl = explode('/', $ak['tanggal']);
+                                    if ($arr_tgl[0] == '01') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '02') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '03') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '04') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '05') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '06') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '07') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '08') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '09') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '10') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '11') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+                                    if ($arr_tgl[0] == '12') {
+                                        array_push($arr_char, $nilaiakumulasi);
+                                    } else {
+                                        array_push($arr_char, 0);
+                                    }
+
+                                    ?>
+
+
                                 </td>
                                 <td>
                                     <?= $ak['nik'], "<br>" .
@@ -245,14 +311,20 @@
     });
     const test = document.getElementById('nilai');
     const a = <?= $nilai ?>
-    // data nilai kalo bisa berskan data bulan, / nilai bentuk array, nilainya berdsaarkan bulan kalo bisa berurutan
+    <?php
+    $text = '';
+    for ($i = 0; $i < count($arr_char); $i++) {
+        $text .= $arr_char[$i] . ',';
+    }
+    ?>
+    // data nilai kalo bisa berskan data bulan, / nilai bentuk array, nilainya berdsaarkan bulan kalo bisa
     new Chart(test, {
         type: 'bar',
         data: {
             labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
                 label: 'Nilai Akumulasi',
-                data: [a, 87, 86, 82],
+                data: [<?= $text; ?>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
