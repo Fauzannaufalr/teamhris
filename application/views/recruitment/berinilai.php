@@ -90,17 +90,21 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="ubahpekerjaanLabel">Beri Nilai</h5>
+                        <h5 class="modal-title" id="nilaiLabel">Beri Nilai</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url('recruitment/berinilai/sudahnilai/' . $nm['id_pekerjaan']) ?>" method="POST">
+                    <form action="<?= base_url('recruitment/berinilai/sudahnilai/' . $nm['id_hasiltes']) ?>" method="POST">
                         <div class="modal-body">
-                            <input type="hidden" name="id_pekerjaan" value="<?= $nm['id_hasiltes']; ?>">
+                            <input type="hidden" name="id_hasiltes" value="<?= $nm['id_hasiltes']; ?>">
                             <div class="form-group">
-                                <label for="hasil_file">Nilai Tes</label>
-                                <input type="text" class="form-control" id="hasil_file" name="hasil_file" placeholder="Masukan nilai">
+                                <label for="nilai_pg">Nilai Tes</label>
+                                <input type="text" class="form-control" id="nilai_pg" name="nilai_pg" placeholder="Masukan nilai">
+                            </div>
+                            <div class="form-group">
+                                <label for="nilai_tes">Nilai Tes</label>
+                                <input type="text" class="form-control" id="nilai_tes" name="nilai_tes" placeholder="Masukan nilai">
                             </div>
 
                             <!-- modal footer  -->

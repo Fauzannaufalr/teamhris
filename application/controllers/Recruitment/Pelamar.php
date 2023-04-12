@@ -40,7 +40,7 @@ class Pelamar extends CI_Controller
     public function hapus($id_pelamar)
     {
         if ($this->Pelamar_model->hapus($id_pelamar)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil dihapus');
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
@@ -69,14 +69,17 @@ class Pelamar extends CI_Controller
         $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
         $this->email->to($this->input->post('email'));
         $data = [
+            'id_posisi' => $this->input->post('id_pekerjaan'),
             'gmeet' => $this->input->post('gmeet'),
             'tanggal' => $this->input->post('tanggal'),
-            'bertemu' => $this->input->post('bertemu'),
+            'mulai' => $this->input->post('mulai'),
+            'akhir' => $this->input->post('akhir'),
+            'dataposisi' => $this->DataPosisi_model->getAllDataPosisi(),
 
         ];
         $card = $this->load->view('email_card', $data, TRUE);
 
-        $this->email->subject('Undangan Interview');
+        $this->email->subject('Interview Talent Hunt');
         $this->email->message($card);
 
         if ($this->email->send()) {
@@ -129,11 +132,12 @@ class Pelamar extends CI_Controller
 
             if (!$this->email->send()) {
                 $this->Pelamar_model->statushasilinterview($id);
+                $this->session->set_flashdata('message', 'Soal berhasil dikirim');
                 redirect('recruitment/pelamar');
             } else {
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
+            $this->session->set_flashdata('message', 'Soal harus di input');
             redirect('recruitment/pelamar');
         }
     }
@@ -205,7 +209,7 @@ class Pelamar extends CI_Controller
             if ($status == 'diterima') {
                 $card = $this->load->view('email_nilai', $data, TRUE);
                 $data_update = array(
-                    'status' => 'lulus',
+                    'status' => 'diterima',
 
                 );
                 $where = array('id_pelamar' => $id);
@@ -227,12 +231,12 @@ class Pelamar extends CI_Controller
             if ($this->email->send()) {
                 if (delete_files($file_data['file_path'])) {
                     $this->Pelamar_model->statussoal($id);
-                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal berhasil dikirim!</div>');
+                    $this->session->set_flashdata('message', 'penilaian & surat penerimaan/penolakan berhasil dikirim dikirim');
                     redirect('recruitment/pelamar');
                 }
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
+            $this->session->set_flashdata('message', 'soal belum lengkap');
             redirect('recruitment/pelamar');
         }
     }
@@ -259,7 +263,7 @@ class Pelamar extends CI_Controller
             $email = $this->input->post('email');
             $this->_kirimEmail();
             $this->Pelamar_model->statuspelamar($id);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
+            $this->session->set_flashdata('message', 'Jadwal interview berhasil dikirim ');
             redirect('recruitment/pelamar');
         }
     }
@@ -301,7 +305,7 @@ class Pelamar extends CI_Controller
                 $this->db->insert('user_token', $user_token);
                 $this->_kirimSoal($token, $id);
 
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">soal terkirim!</div>');
+                $this->session->set_flashdata('message', 'Soal berhasil dikirim');
                 redirect('recruitment/pelamar');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> email tidak ditemukan!</div>');
@@ -325,7 +329,7 @@ class Pelamar extends CI_Controller
         $email = $this->input->post('email');
         $this->_kirimnilai($id, $email, $data);
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diKirim!</div>');
+        $this->session->set_flashdata('message', 'Surat penerimaan/penolakan berhasil dikirim');
         redirect('recruitment/pelamar');
     }
 
@@ -430,14 +434,14 @@ class Pelamar extends CI_Controller
 
             if ($this->email->send()) {
                 if (delete_files($file_data['file_path'])) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hasil Interview berhasil dikirim!</div>');
+                    $this->session->set_flashdata('message', 'Hasil interview berhasil upload');
                     redirect('recruitment/pelamar');
                 }
             } else {
                 "";
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Slip gaji harus diinput!</div>');
+            $this->session->set_flashdata('message', 'Hasil interview belum di upload');
             redirect('recruitment/pelamar');
         }
     }
@@ -473,6 +477,7 @@ class Pelamar extends CI_Controller
                 );
                 $where = array('id_pelamar' => $id);
                 $this->Pelamar_model->update_data($where, $data_update);
+                $this->session->set_flashdata('message', 'Hasil interview Lulus berhasil dikirim');
             } else {
                 $data_update = array(
                     'status' => 'Tidak Lulus',
@@ -480,6 +485,7 @@ class Pelamar extends CI_Controller
                 );
                 $where = array('id_pelamar' => $id);
                 $this->Pelamar_model->update_data($where, $data_update);
+                $this->session->set_flashdata('message', 'Hasil interview tidak lulus berhasil dikirim');
             }
 
             redirect('recruitment/pelamar');

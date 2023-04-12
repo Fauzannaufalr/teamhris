@@ -44,7 +44,7 @@ class Tampilan extends CI_Controller
 
             $this->db->insert('recruitment___pelamar', $data);
             // Tampilkan pesan berhasil
-            $this->session->set_flashdata('success', 'CV berhasil diupload.');
+            $this->session->set_flashdata('message', 'Data Berhasil Dikirim.');
         } else {
             // Jika upload gagal, tampilkan pesan error
             $this->session->set_flashdata('error', $this->upload->display_errors());

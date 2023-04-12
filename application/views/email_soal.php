@@ -4,11 +4,8 @@
             <table cellpadding="0" cellspacing="0" border="0" width="600" style="border-collapse: collapse;">
                 <tr>
                     <td>
-                        <h4>Tes Soal Recruitment</h4>
-                        <p>Kepada Yth...</p>
-                        <br>
-                        <p>Kami dari PT. SAHAWARE TEKNOLOGI INDONESIA mengundang Anda untuk mengikuti proses Tes Soal Recruitment, informasi sebagai berikut : </p>
-                        <h4>Posisi</h4>
+                        <p>Selamat, Terima kasih anda sudah mengikuti tahap interview untuk bergabung pada posisi *jobrole* PT. Sahaware Teknologi Indonesia, dengan ini kami mengundang Saudara untuk mengikuti sesi tes pelamar, informasi sebagai berikut:
+                        </p>
                         <?php foreach ($dataposisi as $dp) : ?>
                             <?php if ($dp['id_posisi'] == $id_posisi) : ?>
                                 <p><?= $dp['nama_posisi']; ?></p>
