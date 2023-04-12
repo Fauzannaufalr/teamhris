@@ -48,7 +48,6 @@
         </div>
 
         <div class="col-lg-3 col-6">
-
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3>
@@ -59,8 +58,7 @@
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- /.card-body -->
@@ -106,7 +104,7 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Laporan Gaji Bulan
                         <?= $bulan; ?> (Office/Project Base)
                     </h3>
@@ -152,7 +150,7 @@
 
         <div class="col-lg-4">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Laporan Gaji Karyawan Bulan
                         <?= $bulan; ?>
                     </h3>
@@ -180,10 +178,6 @@
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_status" name="tahun_status">
                                         <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-=======
-                                    <select class="form-control select2" id="tahun" name="tahun">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
->>>>>>> Stashed changes
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -200,7 +194,7 @@
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <div class="card-header" style="background-color: #cc0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Laporan Rate Mitra Bulan
                         <?= $bulan; ?>
                     </h3>
@@ -208,41 +202,40 @@
                 <div class="card-body">
                     <form class="form-horizontal" method="get" action="<?= base_url('hris/filter_mitra'); ?>">
 
-                    <form class="form-horizontal" method="post"
-                        action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
+                        <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
 
-                        <div class="card-body p-0">
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <select class="form-control select2" id="bulan_mitra" name="bulan_mitra">
-                                        <option value="01">Januari</option>
-                                        <option value="02">Februari</option>
-                                        <option value="03">Maret</option>
-                                        <option value="04">April</option>
-                                        <option value="05">Mei</option>
-                                        <option value="06">Juni</option>
-                                        <option value="07">Juli</option>
-                                        <option value="08">Agustus</option>
-                                        <option value="09">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">Desember</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6">
-                                    <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
-                                            <option value="<?= $i ?>"><?= $i ?></option>
-                                        <?php endfor; ?>
-                                    </select>
+                            <div class="card-body p-0">
+                                <div class="form-group row">
+                                    <div class="col-lg-6">
+                                        <select class="form-control select2" id="bulan_mitra" name="bulan_mitra">
+                                            <option value="01">Januari</option>
+                                            <option value="02">Februari</option>
+                                            <option value="03">Maret</option>
+                                            <option value="04">April</option>
+                                            <option value="05">Mei</option>
+                                            <option value="06">Juni</option>
+                                            <option value="07">Juli</option>
+                                            <option value="08">Agustus</option>
+                                            <option value="09">September</option>
+                                            <option value="10">Oktober</option>
+                                            <option value="11">November</option>
+                                            <option value="12">Desember</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
+                                            <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
+                                                <option value="<?= $i ?>"><?= $i ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- /.card-body -->
+                        </form>
+                        <div class="col-lg-12">
+                            <canvas id="mitra"></canvas>
                         </div>
-                        <!-- /.card-body -->
-                    </form>
-                    <div class="col-lg-12">
-                        <canvas id="mitra"></canvas>
-                    </div>
                 </div>
             </div>
         </div>
@@ -323,17 +316,17 @@
 <div class="card">
     <div class="card-body">
 
-            <!-- validation crud -->
-            <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
+        <!-- validation crud -->
+        <?php if (validation_errors()) : ?>
+            <div class="alert alert-danger" role="alert">
+                <?= validation_errors(); ?>
             </div>
+        <?php endif; ?>
+        <div class="row">
+            <div class="col-lg-4">
+                <?= $this->session->flashdata('message'); ?>
+            </div>
+        </div>
 
         <?php
 
@@ -358,52 +351,52 @@
                     $nik = $this->session->userdata("nik");
                     $level = $this->session->userdata("level");
 
-                        foreach ($akumulasi as $ak):
-                            if ($nik === $ak['nik'] && $level !== "hc")
-                                continue;
-                            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
-                            <tr style="text-align: center;">
-                                <th>
-                                    <?= $no++; ?>
-                                </th>
-                                <td>
-                                    <?= $ak['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?= $ak['nik'], "<br>" .
-                                        $ak['nama_karyawan']; ?>
-                                </td>
-                                <td>
-                                    <?= $nilaiakumulasi ?>
-                                </td>
-                                <td style="text-align: center;">
-                                    <?php
-                                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
-                                        echo "Sangat Baik";
-                                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
-                                        echo "Baik";
-                                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
-                                        echo "Cukup";
-                                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
-                                        echo "Kurang";
-                                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
-                                        echo "Sangat Kurang";
-                                    }
-                                    ?>
+                    foreach ($akumulasi as $ak) :
+                        if ($nik === $ak['nik'] && $level !== "hc")
+                            continue;
+                        $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                        <tr style="text-align: center;">
+                            <th>
+                                <?= $no++; ?>
+                            </th>
+                            <td>
+                                <?= $ak['tanggal'] ?>
+                            </td>
+                            <td>
+                                <?= $ak['nik'], "<br>" .
+                                    $ak['nama_karyawan']; ?>
+                            </td>
+                            <td>
+                                <?= $nilaiakumulasi ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <?php
+                                if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                                    echo "Sangat Baik";
+                                } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                                    echo "Baik";
+                                } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                                    echo "Cukup";
+                                } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                                    echo "Kurang";
+                                } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                                    echo "Sangat Kurang";
+                                }
+                                ?>
 
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php } else { ?>
-                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                    Data masih kosong, silahkan memilih bulan dan tahun!</span>
-            <?php } ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                Data masih kosong, silahkan memilih bulan dan tahun!</span>
+        <?php } ?>
 
-        </div>
     </div>
-    <!-- /.card-body -->
+</div>
+<!-- /.card-body -->
 </div>
 
 <!-- Modal cetak akumulasi keseluruhan -->
