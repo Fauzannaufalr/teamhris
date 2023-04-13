@@ -8,8 +8,8 @@ class Hris extends CI_Controller
         parent::__construct();
         $this->load->model('Hris_model');
         $this->load->model('DataPosisi_model', 'DataPosisi');
-        $this->load->model('payroll/pengajuangaji_model', 'PengajuanGaji');
-        $this->load->model('payroll/pengajuanratemitra_model', 'RateMitra');
+        $this->load->model('payroll/PengajuanGaji_model', 'PengajuanGaji');
+        $this->load->model('payroll/PengajuanRateMitra_model', 'RateMitra');
         if (!$this->session->userdata('nik')) {
             redirect('auth');
         }
