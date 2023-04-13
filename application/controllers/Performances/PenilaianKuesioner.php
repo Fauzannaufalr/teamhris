@@ -7,7 +7,7 @@ class PenilaianKuesioner extends CI_Controller
     {
         parent::__construct();
         $this->load->library('dompdf_gen');
-        $this->load->model('performances/PenilaianKuesioner_model');
+        $this->load->model('Performances/PenilaianKuesioner_model');
         $this->load->model('SoalKuesioner_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
@@ -99,7 +99,7 @@ class PenilaianKuesioner extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('performances/PenilaianKuesioner');
+        redirect('Performances/PenilaianKuesioner');
     }
 
     public function cetakKuesioner()

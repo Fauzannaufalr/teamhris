@@ -10,7 +10,7 @@
         <input type="text" readonly value="<?= $user['nama_karyawan']; ?>" class="form-control" />
       </div>
 
-      <form method="POST" action="<?= base_url('performances/MenilaiLeader/simpan') ?>">
+      <form method="POST" action="<?= base_url('Performances/MenilaiLeader/simpan') ?>">
         <div class=" form-group col-md-4">
           <label>Menilai</label>
           <select required class=" form-control" name="nik_menilai" id="nik_menilai">

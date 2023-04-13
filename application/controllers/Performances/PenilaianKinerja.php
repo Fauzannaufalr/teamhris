@@ -10,7 +10,7 @@ class PenilaianKinerja extends CI_Controller
     {
         parent::__construct();
         $this->load->library('dompdf_gen');
-        $this->load->model('performances/PenilaianKinerja_model');
+        $this->load->model('Performances/PenilaianKinerja_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('Hris_model');
@@ -97,14 +97,14 @@ class PenilaianKinerja extends CI_Controller
         } else {
             if ($nik_digunakan) {
                 $this->session->set_flashdata('error', 'NIK telah digunakan');
-                redirect('performances/PenilaianKinerja');
+                redirect('Performances/PenilaianKinerja');
                 return;
             }
 
             $this->PenilaianKinerja_model->tambahPenilaianKinerja();
 
             $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
-            redirect('performances/PenilaianKinerja');
+            redirect('Performances/PenilaianKinerja');
         }
     }
     public function ubah()
@@ -137,7 +137,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->PenilaianKinerja_model->ubahPenilaianKinerja();
             $this->session->set_flashdata('message', 'Data berhasil diUbah!');
-            redirect('performances/PenilaianKinerja');
+            redirect('Performances/PenilaianKinerja');
         }
     }
 
@@ -149,7 +149,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('performances/Penilaiankinerja');
+        redirect('Performances/PenilaianKinerja');
     }
 
 
@@ -244,7 +244,7 @@ class PenilaianKinerja extends CI_Controller
                 $reader->close();
                 unlink('./dist/import/' . $file['file_name']);
                 $this->session->set_flashdata('message', ' Data berhasil diimport!');
-                redirect('performances/Penilaiankinerja');
+                redirect('Performances/PenilaianKinerja');
             }
         }
 

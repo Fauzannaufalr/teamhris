@@ -55,7 +55,7 @@
                     </button>
                     <?php if (count($penilaiankuesioner) > 0) { ?>
                         <a class="btn btn-outline-success  ml-2"
-                            href="<?= base_url('performances/PenilaianKuesioner/cetakkuesioner?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('Performances/PenilaianKuesioner/cetakkuesioner?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Laporan</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
@@ -175,7 +175,7 @@
     const id_posisi = document.getElementById("id_posisi");
     nik_nama.onchange = function (e) {
         const nik = e.target.value;
-        fetch(`/teamhris/performances/penilaiankinerja/ajax_category?nik=${nik}`, {
+        fetch(`/teamhris/Performances/PenilaianKinerja/ajax_category?nik=${nik}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

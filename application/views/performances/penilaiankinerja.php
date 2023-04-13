@@ -55,10 +55,10 @@
                     </button>
                     <?php if (count($penilaiankinerja) > 0) { ?>
                         <a class="btn btn-outline-success  ml-2"
-                            href="<?= base_url('performances/penilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('Performances/penilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak PDF</a>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('performances/PenilaianKinerja/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('Performances/PenilaianKinerja/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
@@ -179,7 +179,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/Penilaiankinerja/import') ?>" method="POST"
+            <form action="<?= base_url('Performances/Penilaiankinerja/import') ?>" method="POST"
                 enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
@@ -214,7 +214,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/Penilaiankinerja/tambah') ?>" method="POST">
+            <form action="<?= base_url('Performances/Penilaiankinerja/tambah') ?>" method="POST">
                 <div class="modal-body">
                     <div class=" form-group">
 
@@ -266,7 +266,7 @@
                     </button>
                 </div>
 
-                <form action="<?= base_url('performances/Penilaiankinerja/ubah') ?>" method="POST">
+                <form action="<?= base_url('Performances/Penilaiankinerja/ubah') ?>" method="POST">
                     <div class="modal-body">
                         <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
                         </h6>
@@ -341,7 +341,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>performances/Penilaiankinerja/hapus/<?= $pk['id_penilaian_kinerja'] ?>"
+                    <a href="<?= base_url() ?>Performances/Penilaiankinerja/hapus/<?= $pk['id_penilaian_kinerja'] ?>"
                         type="submit" class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
                 </div>
             </div>
