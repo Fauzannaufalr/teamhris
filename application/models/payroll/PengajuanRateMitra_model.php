@@ -14,6 +14,7 @@ class PengajuanRateMitra_model extends CI_Model
     {
         $date = date("Y") . date("m", strtotime('+1 month'));
         $this->db->where('status', 'Belum dibayar');
+        $this->db->where('bulan_tahun', $date);
         $this->db->delete('payroll___pengajuanratemitra');
         $this->db->affected_rows();
 
