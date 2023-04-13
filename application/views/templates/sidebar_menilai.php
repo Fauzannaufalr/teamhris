@@ -111,6 +111,14 @@
     </ul>
     <ul class="nav nav-treeview">
         <li class="nav-item">
+            <a href="<?= base_url('training/file_soal') ?>" class="nav-link "
+                style="background-color: #ffffff; color: black;">
+                <p>Ujian file</p>
+            </a>
+        </li>
+    </ul>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
             <a href="<?= base_url('training/dataadmin') ?>" class="nav-link "
                 style="background-color: #ffffff; color: black;">
                 <p>Track Record</p>

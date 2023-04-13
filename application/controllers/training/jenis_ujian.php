@@ -73,7 +73,7 @@ class jenis_ujian extends CI_Controller
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('training/jenis_ujian', $data);
 		$this->load->view('templates/footer');
-		redirect('training/jenis_ujian');
+		redirect('training/Jenis_ujian');
 	}
 
 	public function hapus($id)
@@ -85,6 +85,6 @@ class jenis_ujian extends CI_Controller
 		);
 		$this->m_data->delete_data($where, 'tb_jenis_ujian');
 		$this->session->set_flashdata('message', '<div class="alert alert-danger alert-message"><i class="icon fa fa-check"></i><b>Selamat !<br></b> Anda telah berhasil menghapus data Jenis Ujian</div>');
-		redirect('training/jenis_ujian');
+		redirect('training/Jenis_ujian');
 	}
 }

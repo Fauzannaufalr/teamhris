@@ -7,7 +7,7 @@ class Soal extends CI_Controller
         $this->load->model('training/Soal_model');
         $this->load->model('Hris_model');
         $this->load->model('DataPosisi_model');
-        $this->load->model('training/m_data');
+        $this->load->model('training/M_data');
     }
 
     public function index()
@@ -58,6 +58,6 @@ class Soal extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('training/soal', $data);
         $this->load->view('templates/footer');
-        redirect('training/soal_ujian');
+        redirect('training/Soal_ujian');
     }
 }

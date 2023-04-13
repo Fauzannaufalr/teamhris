@@ -66,7 +66,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('training/datakeseluruhan/tambah') ?>" method="POST"
+            <form action="<?= base_url('training/Datakeseluruhan/tambah') ?>" method="POST"
                 enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
@@ -117,7 +117,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                <a href="<?= base_url() ?>training/datakeseluruhan/hapus/<?= $dk['id_keseluruhan'] ?>" type="submit"
+                <a href="<?= base_url() ?>training/Datakeseluruhan/hapus/<?= $dk['id_keseluruhan'] ?>" type="submit"
                     class="btn" style="background-color: #ff0000; color: white;">Ya</a>
             </div>
         </div>

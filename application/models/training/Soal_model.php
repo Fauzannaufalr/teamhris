@@ -29,7 +29,7 @@ class Soal_model extends CI_Model
                 return $this->db->insert_id();
             }
             fclose($handle);
-            redirect('training/soal_ujian');
+            redirect('training/Soal_ujian');
         }
     }
 

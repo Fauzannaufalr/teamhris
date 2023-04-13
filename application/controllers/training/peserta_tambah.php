@@ -56,7 +56,7 @@ class peserta_tambah extends CI_Controller
         } else {
             $this->m_data->insert_multiple();
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-message"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Peserta Ujian berhasil dibuat !</h4></div>');
-            redirect('training/peserta', $data);
+            redirect('training/Peserta', $data);
         }
 
         $this->load->view('templates/header', $data);

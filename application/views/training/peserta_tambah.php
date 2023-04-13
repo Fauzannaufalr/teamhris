@@ -92,7 +92,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Durasi Ujian</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="durasi_ujian"
+                            <input type="time" class="form-control" name="durasi_ujian"
                                 placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                             <tr>
                                 <th width="1%">No</th>
                                 <th>Nama karyawan</th>
-                                <th>NIK</th>
+                                <th>Nik</th>
                                 <th>Kelas</th>
                                 <th width="13%">
                                     <input type="checkbox" class="check-all" id="cek-semua" /> Pilih Semua
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="box-footer">
-                    <a href="<?= base_url('training/peserta') ?>" class="btn btn-default btn-flat"><span
+                    <a href="<?= base_url('training/Peserta') ?>" class="btn btn-default btn-flat"><span
                             class="fa fa-arrow-left"></span>
                         Kembali</a>
                     <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>

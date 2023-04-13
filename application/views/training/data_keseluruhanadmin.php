@@ -30,7 +30,7 @@
                         <td><?= $dk['nama']; ?></td>
                         <td><?= $dk['kategori']; ?></td>
                         <td><?= $dk['ulasan']; ?></td>
-                        <td><a href="<?php echo base_url('training/dataadmin/download_file/' . $dk['file']); ?>"><span
+                        <td><a href="<?php echo base_url('training/Dataadmin/download_file/' . $dk['file']); ?>"><span
                                     class="glyphicon glyphicon-download-alt">Download Dokumen</a></td>
                     </tr>
                     <?php endforeach; ?>

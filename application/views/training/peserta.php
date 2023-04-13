@@ -17,9 +17,7 @@
                 <a href="<?php echo base_url('training/jenis_ujian'); ?>"><button type="button"
                         class="btn btn-primary btn-flat" data-toggle="modal" data-target="#"><span></span>Data Jenis
                         Ujian</button></a>
-                <a href="<?php echo base_url('training/file_tambah'); ?>"><button type="button"
-                        class="btn btn-primary btn-flat" data-toggle="modal" data-target="#peserta_tambah"><span
-                            class="fa fa-plus"></span> Data soal file </button></a>
+
 
 
             </div>
@@ -51,7 +49,7 @@
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $d->nama_karyawan; ?></td>
-                            <td><?php echo $d->id_kelas; ?></td>
+                            <td><?php echo $d->nama_kelas; ?></td>
                             <td><?php echo $d->nama_posisi; ?></td>
                             <td><?php echo $d->jenis_ujian; ?></td>
                             <td><?php echo date('d-m-Y', strtotime($d->tanggal_ujian)); ?> |
@@ -67,9 +65,9 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="<?= base_url() . 'training/peserta/edit/' . $d->id_peserta; ?>">Edit
+                                        <li><a href="<?= base_url() . 'training/Peserta/edit/' . $d->id_peserta; ?>">Edit
                                                 Data</a></li>
-                                        <li><a href="<?= base_url() . 'training/peserta/hapus/' . $d->id_peserta; ?>"
+                                        <li><a href="<?= base_url() . 'training/Peserta/hapus/' . $d->id_peserta; ?>"
                                                 onclick="return confirm('Apakah yakin data peserta ini di hapus?')">Hapus
                                                 Data</a></li>
                                     </ul>
@@ -96,9 +94,6 @@
             </div>
         </div>
         <!-- /.col-->
-
-
-
         <!-- MODAL CETAK DAFTAR HADIR -->
     </div>
 </div>

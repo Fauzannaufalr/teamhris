@@ -11,7 +11,7 @@
                 </center>
                 <p>
                 <h3 class="box-title"></h3>
-                <a href="<?= base_url('training/peserta') ?>" class="btn btn-default btn-flat"><span
+                <a href="<?= base_url('training/Peserta') ?>" class="btn btn-default btn-flat"><span
                         class="fa fa-arrow-left"></span> Kembali</a>
                 <?php echo '<button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#modal-data" onclick="$(\'#modal-data-body\').load(\'' . base_url('training/jenis_ujian/create') . '\')"><span class="fa fa-plus"></span> Jenis Ujian</button>' ?>
             </div>
@@ -43,9 +43,9 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a
-                                                href="<?= base_url('training/jenis_ujian/edit/') . $m->id_jenis_ujian; ?>">Edit
+                                                href="<?= base_url('training/Jenis_ujian/edit/') . $m->id_jenis_ujian; ?>">Edit
                                                 Data</a></li>
-                                        <li><a href="<?= base_url('training/jenis_ujian/hapus/') . $m->id_jenis_ujian; ?>"
+                                        <li><a href="<?= base_url('training/Jenis_ujian/hapus/') . $m->id_jenis_ujian; ?>"
                                                 onclick="return confirm('Apakah yakin data peserta ini di hapus?')">Hapus
                                                 Data</a></li>
                                     </ul>
@@ -82,53 +82,18 @@
 <!-- /.modal -->
 
 <!-- /. modal import data siswa  -->
-<div class="modal fade" id="modal-import">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Import Data siswa</h4>
-            </div>
-            <!-- /.form dengan modal -->
-            <form action="<?= base_url('siswa/import'); ?>" method="post" class="form-horizontal">
-                <div class="box-body">
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <a href="<?= base_url('format/format-import-data-siswa.xlsx') ?>" class="pull-right"
-                                download><i class="fa fa-download"></i> Download Format Data Import siswa</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">File</label>
-                        <div class="col-sm-10">
-                            <input type="file" name="file" required accept=".xls, .xlsx">
-                            <p class="help-block">File harus bertipe <b>.xls, .xlsx</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Kelas</label>
-                        <div class="col-sm-10">
-                            <select class="select2 form-control" name="kelas" required="">
-                                <option selected="selected" disabled="">- Pilih Kelas</option>
-                                <?php foreach ($kelas as $a) { ?>
-                                <option value="<?= $a->id_kelas ?>"><?= $a->nama_kelas; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">TUTUP</button>
-                    <button type="submit" class="btn btn-primary pull-right" title="Import Data siswa">Import</button>
-                </div>
-                <!-- /.box-footer -->
-            </form>
-            <!-- /.tutup form dengan modal  -->
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
+
+
+<!-- /.box-body -->
+<div class="box-footer">
+    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">TUTUP</button>
+    <button type="submit" class="btn btn-primary pull-right" title="Import Data siswa">Import</button>
+</div>
+<!-- /.box-footer -->
+</form>
+<!-- /.tutup form dengan modal  -->
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
 </div>
