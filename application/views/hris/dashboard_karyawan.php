@@ -65,16 +65,6 @@
                         </select>
                     </div>
                     <?php
-                    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
-                        $bulan = $_GET['bulan'];
-                        $tahun = $_GET['tahun'];
-                        $bulantahun = $bulan . "/" . $tahun;
-                    } else {
-                        $bulan = date('m');
-                        $tahun = date('Y');
-                        $bulantahun = $bulan . "/" . $tahun;
-
-                    }
 
                     ?>
                     <button type="submit" class="btn btn-outline-success ml-auto"><i class="fas fa-eye"> Tampilkan
@@ -121,29 +111,28 @@
                 </div>
             </div>
 
-            <?php
-
-            $jml_data = COUNT($akumulasi);
-            if ($jml_data > 0) { ?>
 
 
-
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead style="text-align: center;  background-color:#8b0000; color: white;">
-                        <tr>
-                            <th>No</th>
-                            <th>Bulan/Tahun</th>
-                            <th>Karyawan</th>
-                            <th>Nilai</th>
-                            <th>Kategorisasi</th>
-                        </tr>
-                    </thead>
+            <table id="example1" class="table table-bordered table-striped">
+                <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                    <tr>
+                        <th>No</th>
+                        <th>Bulan/Tahun</th>
+                        <th>Karyawan</th>
+                        <th>Nilai</th>
+                        <th>Kategorisasi</th>
+                    </tr>
+                </thead>
+                <?php
+                $jml_data = COUNT($akumulasi);
+                $arr_char = [];
+                if ($jml_data > 0) { ?>
                     <tbody>
                         <?php $no = 1 ?>
                         <?php
                         $nik = $this->session->userdata("nik");
                         $level = $this->session->userdata("level");
-                        $arr_char = [];
+
                         foreach ($akumulasi as $ak):
                             if ($nik !== $ak['nik'] && $level !== "hc") {
                                 continue;
@@ -219,9 +208,8 @@
                                     }
 
                                     ?>
-
-
                                 </td>
+
                                 <td>
                                     <?= $ak['nik'], "<br>" .
                                         $ak['nama_karyawan']; ?>
@@ -248,11 +236,8 @@
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
-                </table>
-            <?php } else { ?>
-                <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                    Data masih kosong, silahkan memilih bulan dan tahun!</span>
-            <?php } ?>
+                <?php } ?>
+            </table>
         </div>
     </div>
     <!-- /.card-body -->

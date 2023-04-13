@@ -30,45 +30,17 @@ class Hris extends CI_Controller
         $data['barispelamar'] = $this->db->get('recruitment___pelamar')->num_rows();
 
 
-        $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
-        $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
-        $bulantahun = $bulan . "/" . $tahun;
+        $data['bulan'] = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+        $data['tahun'] = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
+        $bulantahun = $data['bulan'] . "/" . $data['tahun'];
         $data['akumulasi'] = $this->Hris_model->laporan($bulantahun);
-        // $nik = $this->session->userdata("nik");
+        $nilaiakumulasi = 0;
         foreach ($data['akumulasi'] as $ak) {
             $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2;
         }
         $data['nilai'] = $nilaiakumulasi;
         // printr($data['akumulasi']);
-        $data['akumulasi'] = $this->db->query(" SELECT 
-        dk.nik,
-        dk.nama_karyawan,
-        pkerja.tanggal, 
-        (
-            SELECT 
-                CASE 
-                    WHEN SUM(pk.total_nilai) > 4 THEN SUM(pk.total_nilai) / 4
-                    ELSE SUM(pk.total_nilai)
-                END AS nilai_kuesioner
-            FROM 
-                performances___penilaian_kuesioner pk 
-            WHERE 
-                pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
-        ) AS total_nilai_kuesioner,
-        (
-            SELECT 
-                pkerja.nilai
-            FROM 
-                performances___penilaian_kinerja pkerja
-            WHERE 
-                pkerja.nik = dk.nik AND pkerja.tanggal LIKE '%$bulantahun'
-        ) AS total_nilai_kinerja
-    FROM 
-        data_karyawan dk
-        INNER JOIN performances___penilaian_kinerja pkerja ON pkerja.nik = dk.nik
-    WHERE 
-        pkerja.tanggal LIKE '%$bulantahun'
-")->result_array();
+
         // printr($data);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
