@@ -139,7 +139,7 @@
                     <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                        <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -252,7 +252,7 @@
                         <!-- modal footer  -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-danger">Simpan</button>
+                            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -277,8 +277,8 @@
                     <p>Apakah anda yakin untuk menghapus data ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -309,7 +309,7 @@
                     <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn" style="background-color: #cc0000; color: antiquewhite;">Import</button>
+                        <button type="submit" class="btn" style="background-color: #8b0000; color:white;">Import</button>
                     </div>
                 </div>
             </form>

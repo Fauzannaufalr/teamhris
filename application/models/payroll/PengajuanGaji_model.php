@@ -195,7 +195,6 @@ class PengajuanGaji_model extends CI_Model
                 "nik_nama" => $record->nik . ' - ' . $record->nama_karyawan,
                 "posisi" => $record->nama_posisi,
                 "gaji" => 'Rp ' . number_format($record->gajipokok, 0, ', ', '.'),
-                // "bpjs" => 'Rp ' . number_format($record->bpjs, 0, ', ', '.'),
                 "pajak" => 'Rp ' . number_format($record->pajak, 0, ', ', '.'),
                 "kinerja" => 'Rp ' . number_format($record->t_kinerja, 0, ', ', '.'),
                 "fungsional" => 'Rp ' . number_format($record->t_fungsional, 0, ', ', '.'),

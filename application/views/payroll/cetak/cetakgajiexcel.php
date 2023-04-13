@@ -62,7 +62,7 @@ header("Expires: 0")
                 <td class="text-center"><?= $g['nik']; ?></td>
                 <td class="text-center"><?= $g['nama_karyawan']; ?></td>
                 <td class="text-center"><?= $g['nama_posisi']; ?></td>
-                <td class="text-center">Rp <?= number_format($g['gajipokok'], 0, ',', '.'); ?></td>
+                <td class="text-center" style="padding: 5px;">Rp <?= number_format($g['gajipokok'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['pajak'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['t_kinerja'], 0, ',', '.'); ?></td>
                 <td class="text-center">Rp <?= number_format($g['t_fungsional'], 0, ',', '.'); ?></td>
@@ -85,15 +85,39 @@ header("Expires: 0")
         endforeach; ?>
         <tr>
             <th colspan="4" style="text-align: right;">Total : </th>
-            <th style="text-align: right;">Rp <?= number_format($totalGajiPokok, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalPajak, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalTk, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalTf, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalTj, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalTb, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalPotongan, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalBonus, 0, ',', '.'); ?></th>
-            <th style="text-align: right;">Rp <?= number_format($totalKeseluruhan, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalGajiPokok, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalPajak, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalTk, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalTf, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalTj, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalTb, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalPotongan, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalBonus, 0, ',', '.'); ?></th>
+            <th style="text-align: left;">Rp <?= number_format($totalKeseluruhan, 0, ',', '.'); ?></th>
         </tr>
     </tbody>
 </table>
+<br>
+<table width="100%" class="table3">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td width="200px" style="text-align: center;">
+                <p>Bandung, <?= date("d M Y") ?> <br> PT Sahaware Teknologi Indonesia</p>
+                <br>
+                <br>
+                <p>_____________________</p>
+                <p>Finance</p>
+            </td>
+        </tr>
+    </table>

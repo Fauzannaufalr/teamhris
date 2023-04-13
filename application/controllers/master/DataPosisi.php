@@ -47,7 +47,7 @@ class DataPosisi extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->DataPosisi_model->tambahDataPosisi();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
             redirect('master/dataposisi');
         }
     }
@@ -72,7 +72,7 @@ class DataPosisi extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->DataPosisi_model->ubahDataPosisi();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil diedit!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil diedit!');
             redirect('master/dataposisi');
         }
     }
@@ -82,9 +82,9 @@ class DataPosisi extends CI_Controller
     public function hapus($id_posisi)
     {
         if ($this->DataPosisi_model->hapus($id_posisi)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data gagal dihapus!</div>');
+            $this->session->set_flashdata('error', 'Data gagal dihapus!');
         }
         redirect('master/dataposisi');
     }

@@ -21,6 +21,9 @@
         th {
             text-align: center;
         }
+        .table3 td{
+            border: 0;
+        }
     </style>
 </head><body>
     <center>
@@ -112,10 +115,23 @@
             </tr>
             <tr>
                 <th colspan="1" style="text-align: left; background-color: #dddddd;">Gaji : </th>
-                <th colspan="3" style="text-align: left; background-color: #dddddd;">Rp. <?= number_format($sg['gajipokok']+$sg['t_fungsional']+$sg['t_kinerja']+$sg['t_bpjs']+$sg['t_jabatan']+$sg['bonus']-$sg['potongan']+$sg['pajak'], 0, ',', '.') ?></th>
+                <th colspan="3" style="text-align: right; background-color: #dddddd;">Rp. <?= number_format($sg['gajipokok']+$sg['t_fungsional']+$sg['t_kinerja']+$sg['t_bpjs']+$sg['t_jabatan']+$sg['bonus']-$sg['potongan']-$sg['pajak'], 0, ',', '.') ?></th>
             </tr>
         </table>
     <?php endforeach; ?>
+
+    <table width="100%" class="table3">
+        <tr>
+            <td></td>
+            <td width="200px" style="text-align: center;">
+                <p>Bandung, <?= date("d M Y") ?> <br> PT Sahaware Teknologi Indonesia</p>
+                <br>
+                <br>
+                <p>_____________________</p>
+                <p>Finance</p>
+            </td>
+        </tr>
+    </table>
 </body></html>
 
 <script type="text/javascript">

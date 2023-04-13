@@ -110,7 +110,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-danger">Simpan</button>
+                            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -134,8 +134,8 @@
                     <p>Apakah anda yakin untuk menghapus data ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                    <a href="<?= base_url() ?>payroll/datapajak/hapus/<?= $dp['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="<?= base_url() ?>payroll/datapajak/hapus/<?= $dp['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

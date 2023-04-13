@@ -156,5 +156,74 @@ class DataKaryawan extends CI_Controller
         redirect('master/datakaryawan');
     }
 
+    function import()
+    {
+        $data['title'] = "Data Karyawan";
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Hris_model->ambilUser();
+        $data['kelas'] = $this->m_data->get_data('tb_kelas')->result_array();
+
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['upload_path'] = './dist/import';
+        $config['file_name'] = 'doc' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('import')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('./dist/import/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+                    foreach ($data['dataposisi'] as $dp) {
+                        if ($dp['nama_posisi'] == $row->getCellAtIndex(3)) {
+                            $posisi = $dp['id_posisi'];
+                        }
+                    }
+                    foreach ($data['kelas'] as $dk) {
+                        if ($dk['nama_kelas'] == $row->getCellAtIndex(4)) {
+                            $kelas = $dk['id_kelas'];
+                        }
+                    }
+                    if ($numRow > 1) {
+                        $data = array(
+                            'nik' => htmlspecialchars($row->getCellAtIndex(1)),
+                            'nama_karyawan' => htmlspecialchars($row->getCellAtIndex(2)),
+                            'id_posisi' => htmlspecialchars($posisi),
+                            'id_kelas' => htmlspecialchars($kelas),
+                            'email' => htmlspecialchars($row->getCellAtIndex(5)),
+                            'status' => $row->getCellAtIndex(6),
+                            'gajipokok' => htmlspecialchars($row->getCellAtIndex(7)),
+                            'nik_leader' => htmlspecialchars($row->getCellAtIndex(8)),
+                            'level' => htmlspecialchars($row->getCellAtIndex(9)),
+                            'alamat' => htmlspecialchars($row->getCellAtIndex(10)),
+                            'telepon' => htmlspecialchars($row->getCellAtIndex(11)),
+                            'password' => password_hash($row->getCellAtIndex(12), PASSWORD_DEFAULT),
+                            'foto' => $row->getCellAtIndex(13)
+                        );
+                        $this->DataKaryawan_model->import_data($data);
+                        $data = $this->DataKaryawan_model->import_data($data);
+                        if (!$data) {
+                            $reader->close();
+                            unlink('./dist/import/' . $file['file_name']);
+                            $this->session->set_flashdata('error', 'Data NIK sudah ada sebelumnya!');
+                            redirect('master/datakaryawan');
+                        }
+                    }
+                    $numRow++;
+                }
+                $reader->close();
+                unlink('./dist/import/' . $file['file_name']);
+                $this->session->set_flashdata('message', 'Data berhasil diimport!');
+                redirect('master/datakaryawan');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'File import harus diisi');
+            redirect('master/datakaryawan');
+        };
+    }
 
 }

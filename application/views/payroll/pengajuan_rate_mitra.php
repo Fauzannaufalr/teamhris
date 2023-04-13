@@ -134,8 +134,8 @@
                     <p>Apakah anda yakin untuk ubah status bayar <b><?= $rm['nama_karyawan']; ?></b>?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                    <a href="<?= base_url() ?>payroll/pengajuanratemitra/status/<?= $rm['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="<?= base_url() ?>payroll/pengajuanratemitra/status/<?= $rm['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
