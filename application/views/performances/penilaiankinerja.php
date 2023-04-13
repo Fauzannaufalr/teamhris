@@ -149,7 +149,7 @@
                                         data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>"><i
                                             class="fas fa-edit"></i> Edit</button>
                                     <button class="badge" style="background-color: #8b0000; color: antiquewhite"
-                                        data-toggle="modal" data-target="#modal-sm<?= $pk['id_penilaian_kinerja'] ?>"><i
+                                        data-toggle="modal" data-target="#modal-sm<?= $pk['id_penilaian_kinerja']; ?>"><i
                                             class="fas fa-trash-alt"></i> Hapus</button>
 
                                 </td>
@@ -192,7 +192,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn"
-                            style="background-color: #cc0000; color: antiquewhite;">Import</button>
+                            style="background-color: #8b0000; color:#ffffff;">Import</button>
                     </div>
                 </div>
             </form>
@@ -232,7 +232,7 @@
                         <input type="text" readonly id="id_posisi" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="total_kerja">Total kerja</label>
+                        <label for="total_kerja">Total Kerja</label>
                         <input type="text" class="form-control" id="total_kerja" name="total_kerja">
                     </div>
                     <div class="form-group">
@@ -243,7 +243,8 @@
                     <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                        <button type="submit" class="btn"
+                            style="background-color: #8b0000; color:#ffffff;">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -313,7 +314,8 @@
                         <!-- modal footer  -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-danger">Simpan</button>
+                            <button type="submit" class="btn"
+                                style="background-color: #8b0000; color:#ffffff;">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -340,7 +342,7 @@
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
                     <a href="<?= base_url() ?>performances/penilaiankinerja/hapus/<?= $pk['id_penilaian_kinerja'] ?>"
-                        type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                        type="submit" class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -365,7 +367,8 @@
                 Data Penilaian Kinerja masih kosong.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn" style="background-color: #8b0000; color:#ffffff;"
+                    data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
