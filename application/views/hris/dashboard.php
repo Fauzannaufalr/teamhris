@@ -1,14 +1,8 @@
 <!-- ngeload berdasarkan level -->
-<!-- level ceo -->
+<!-- level ceo dan Level hc -->
 <?php
-if ($this->session->userdata('level') === 'ceo') {
-  $this->load->view('hris/dashboard_ceo');
-
-} ?>
-<!-- level hc -->
-<?php
-if ($this->session->userdata('level') === 'hc') {
-  $this->load->view('hris/dashboard_hc');
+if ($this->session->userdata('level') === 'hc' || $this->session->userdata('level') === 'ceo')
+  $this->load->view('hris/dashboard_hc'); {
 
 } ?>
 <!-- level karyawan dan leader -->

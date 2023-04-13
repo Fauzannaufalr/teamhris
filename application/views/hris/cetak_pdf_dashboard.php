@@ -34,14 +34,14 @@
         <thead>
             <tr>
                 <th>Bulan </th>
-                <th>:</th>
+                <td>:</td>
                 <th>
                     <?= $bulan ?>
                 </th>
             </tr>
             <tr>
                 <th>Tahun</th>
-                <th>:</th>
+                <td>:</td>
                 <th>
                     <?= $tahun ?>
                 </th>
