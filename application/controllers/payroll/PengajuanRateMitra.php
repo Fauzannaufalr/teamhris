@@ -11,7 +11,7 @@ class PengajuanRateMitra extends CI_Controller
         $this->load->model('payroll/PengajuanRateMitra_model', 'RateMitra');
         $this->load->model('Hris_model', 'Hris');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -40,14 +40,14 @@ class PengajuanRateMitra extends CI_Controller
         $this->load->view('templates/footer');
 
         $this->session->set_flashdata('message', 'Generate data berhasil!');
-        redirect('payroll/pengajuanratemitra');
+        redirect('payroll/PengajuanRateMitra');
     }
 
     public function status($id)
     {
         $this->RateMitra->statusBayar($id);
         $this->session->set_flashdata('message', 'Status bayar berhasil diubah!');
-        redirect('payroll/pengajuanratemitra');
+        redirect('payroll/PengajuanRateMitra');
     }
 
     public function list()
@@ -82,7 +82,7 @@ class PengajuanRateMitra extends CI_Controller
             $this->dompdf->stream('pengajuan_rate_mitra.pdf', array('Attachment' => 0));
         } else {
             $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
-            redirect('payroll/Pengajuanratemitra');
+            redirect('payroll/PengajuanRateMitra');
         }
     }
 
@@ -98,7 +98,7 @@ class PengajuanRateMitra extends CI_Controller
             $this->load->view('payroll/cetak/cetakrateexcel', $data);
         } else {
             $this->session->set_flashdata('error', 'Tidak ada data untuk dicetak!');
-            redirect('payroll/Pengajuanratemitra');
+            redirect('payroll/PengajuanRateMitra');
         }
     }
 }

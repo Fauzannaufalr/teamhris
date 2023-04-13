@@ -5,7 +5,7 @@
                 <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Cetak Data</h3>
                 </div>
-                <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuangaji/excel'); ?>">
+                <form class="form-horizontal" method="post" action="<?= base_url('payroll/PengajuanGaji/excel'); ?>">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="bulan" class="col-form-label">Bulan</label>
@@ -86,7 +86,7 @@
                 <form class="form-horizontal">
                     <div class="card-body">
                         <div class="form-group row">
-                            <a class="btn btn-outline-success" href="<?= base_url('payroll/pengajuangaji/generate'); ?>"><i class="fas fa-archive"></i> Generate Data <?= $bulan; ?></a>
+                            <a class="btn btn-outline-success" href="<?= base_url('payroll/PengajuanGaji/generate'); ?>"><i class="fas fa-archive"></i> Generate Data <?= $bulan; ?></a>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -143,7 +143,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= base_url() ?>payroll/pengajuangaji/status/<?= $pg['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
+                    <a href="<?= base_url() ?>payroll/PengajuanGaji/status/<?= $pg['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
         </div>
@@ -161,7 +161,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="form-horizontal" action="<?= base_url() ?>payroll/pengajuangaji/kirimslip/<?= $pg['id']  ?>" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="<?= base_url() ?>payroll/PengajuanGaji/kirimSlip/<?= $pg['id']  ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="id" value="<?= $pg['id']; ?>">
                         <input type="hidden" name="email" value="<?= $pg['email']; ?>">
@@ -255,7 +255,7 @@
             'serverMethod': 'post',
             'searching': true, // Remove default Search Control
             'ajax': {
-                'url': '<?= base_url() ?>payroll/pengajuangaji/list',
+                'url': '<?= base_url() ?>payroll/PengajuanGaji/list',
                 'data': function(data) {
                     data.searchBulan = $('#bulan').val();
                     data.searchTahun = $('#tahun').val();

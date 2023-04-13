@@ -9,7 +9,7 @@ class SoalKuesioner extends CI_Controller
         $this->load->model('SoalKuesioner_model');
         $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -44,7 +44,7 @@ class SoalKuesioner extends CI_Controller
         } else {
             $this->SoalKuesioner_model->tambahSoalKuesioner();
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('master/soalkuesioner');
+            redirect('master/SoalKuesioner');
         }
     }
 
@@ -67,7 +67,7 @@ class SoalKuesioner extends CI_Controller
         } else {
             $this->SoalKuesioner_model->ubahSoalKuesioner();
             $this->session->set_flashdata('message', 'Data berhasil diedit!');
-            redirect('master/soalkuesioner');
+            redirect('master/SoalKuesioner');
         }
     }
 
@@ -78,6 +78,6 @@ class SoalKuesioner extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus!');
         }
-        redirect('master/soalkuesioner');
+        redirect('master/SoalKuesioner');
     }
 }

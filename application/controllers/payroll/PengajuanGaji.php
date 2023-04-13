@@ -7,14 +7,14 @@ class PengajuanGaji extends CI_Controller
     {
         parent::__construct();
         $this->load->library('dompdf_gen');
-        $this->load->model('payroll/pengajuangaji_model', 'PengajuanGaji');
-        $this->load->model('payroll/perhitungan_model', 'Perhitungan');
+        $this->load->model('payroll/PengajuanGaji_model', 'PengajuanGaji');
+        $this->load->model('payroll/Perhitungan_model', 'Perhitungan');
         $this->load->model('payroll/DataPajak_model', 'DataPajak');
         $this->load->model('payroll/Pajak_model', 'Pajak');
         $this->load->model('DataKaryawan_model', 'DataKaryawan');
         $this->load->model('Hris_model', 'Hris');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 

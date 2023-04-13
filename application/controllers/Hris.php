@@ -11,7 +11,7 @@ class Hris extends CI_Controller
         $this->load->model('payroll/PengajuanGaji_model', 'PengajuanGaji');
         $this->load->model('payroll/PengajuanRateMitra_model', 'RateMitra');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -183,16 +183,16 @@ class Hris extends CI_Controller
 
             if (!password_verify($password_lama, $data['user']['password'])) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password lama salah!</div>');
-                redirect('hris/ubahpassword');
+                redirect('Hris/ubahPassword');
             } else {
                 if ($password_lama == $password_baru) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Password baru tidak boleh dengan password lama!</div>');
-                    redirect('hris/ubahpassword');
+                    redirect('Hris/ubahPassword');
                 } else {
                     // jika password sudah ok
                     $this->Hris_model->ubahPassword($password_baru);
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Password berhasil diubah!</div>');
-                    redirect('hris/ubahpassword');
+                    redirect('Hris/ubahPassword');
                 }
             }
         }
@@ -217,7 +217,7 @@ class Hris extends CI_Controller
         } else {
             $this->Hris_model->ubahProfile($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Profile anda berhasil diubah!</div>');
-            redirect('hris/profile');
+            redirect('Hris/profile');
         }
     }
 

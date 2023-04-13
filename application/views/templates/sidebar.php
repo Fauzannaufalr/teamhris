@@ -32,21 +32,21 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= base_url('master/datakaryawan') ?>" class="nav-link" style="background-color: #ffffff; color: black;">
+                                <a href="<?= base_url('master/DataKaryawan') ?>" class="nav-link" style="background-color: #ffffff; color: black;">
                                     <p>Data Karyawan</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= base_url('master/dataposisi') ?>" class="nav-link" style="background-color: #ffffff; color: black;">
+                                <a href="<?= base_url('master/DataPosisi') ?>" class="nav-link" style="background-color: #ffffff; color: black;">
                                     <p>Data Posisi</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= base_url('master/soalkuesioner') ?>" class="nav-link" style="background-color: #ffffff;color: black;">
+                                <a href="<?= base_url('master/SoalKuesioner') ?>" class="nav-link" style="background-color: #ffffff;color: black;">
                                     <p>Soal Kuesioner</p>
                                 </a>
                             </li>

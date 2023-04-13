@@ -48,7 +48,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('payroll/datapajak/tambah'); ?>" method="POST">
+            <form action="<?= base_url('payroll/DataPajak/tambah'); ?>" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="golongan">Golongan</label>
@@ -88,7 +88,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('payroll/datapajak/ubah'); ?>" method="POST">
+                <form action="<?= base_url('payroll/DataPajak/ubah'); ?>" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="id" value="<?= $dp['id']; ?>">
                         <div class="form-group">
@@ -135,7 +135,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= base_url() ?>payroll/datapajak/hapus/<?= $dp['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
+                    <a href="<?= base_url() ?>payroll/DataPajak/hapus/<?= $dp['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

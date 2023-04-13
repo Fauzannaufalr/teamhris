@@ -10,7 +10,7 @@ class DataPosisi extends CI_Controller
         $this->load->model('Hris_model');
 
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -48,7 +48,7 @@ class DataPosisi extends CI_Controller
         } else {
             $this->DataPosisi_model->tambahDataPosisi();
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('master/dataposisi');
+            redirect('master/DataPosisi');
         }
     }
 
@@ -73,7 +73,7 @@ class DataPosisi extends CI_Controller
         } else {
             $this->DataPosisi_model->ubahDataPosisi();
             $this->session->set_flashdata('message', 'Data berhasil diedit!');
-            redirect('master/dataposisi');
+            redirect('master/DataPosisi');
         }
     }
 
@@ -86,6 +86,6 @@ class DataPosisi extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus!');
         }
-        redirect('master/dataposisi');
+        redirect('master/DataPosisi');
     }
 }

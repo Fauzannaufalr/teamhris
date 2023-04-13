@@ -65,7 +65,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('master/datamitra/tambah'); ?>" method="POST">
+            <form action="<?= base_url('master/DataMitra/tambah'); ?>" method="POST">
                 <div class="modal-body">
 
                     <div class="form-group">
@@ -159,7 +159,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('master/datamitra/ubah'); ?>" method="POST">
+                <form action="<?= base_url('master/DataMitra/ubah'); ?>" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="id" value="<?= $dm['id']; ?>">
                         <div class="form-group">
@@ -360,7 +360,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                    <a href="<?= base_url() ?>master/datamitra/hapus/<?= $dm['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
+                    <a href="<?= base_url() ?>master/DataMitra/hapus/<?= $dm['id']  ?>" type="submit" class="btn btn-primary">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -512,7 +512,7 @@ foreach ($dataTools as $dt => $value) {
             'serverMethod': 'post',
             'searching': true, // Remove default Search Control
             'ajax': {
-                'url': '<?= base_url() ?>master/datamitra/tabel'
+                'url': '<?= base_url() ?>master/DataMitra/tabel'
             },
             'columns': [{
                     data: 'no'

@@ -64,7 +64,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('master/datakaryawan/tambah') ?>" method="POST">
+            <form action="<?= base_url('master/DataKaryawan/tambah') ?>" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nik">NIK</label>
@@ -159,7 +159,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('master/datakaryawan/ubah') ?>" method="POST">
+                <form action="<?= base_url('master/DataKaryawan/ubah') ?>" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="id_karyawan" value="<?= $dk['id_karyawan']; ?>">
                         <div class="form-group">
@@ -278,7 +278,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= base_url() ?>master/datakaryawan/hapus/<?= $dk['id_karyawan'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>master/DataKaryawan/hapus/<?= $dk['id_karyawan'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -298,7 +298,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('master/datakaryawan/import') ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?= base_url('master/DataKaryawan/import') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="custom-file">

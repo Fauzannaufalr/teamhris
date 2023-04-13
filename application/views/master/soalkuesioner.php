@@ -132,7 +132,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= base_url() ?>master/soalkuesioner/hapus/<?= $sk['id_kuesioner'] ?>" type="submit"
+                    <a href="<?= base_url() ?>master/SoalKuesioner/hapus/<?= $sk['id_kuesioner'] ?>" type="submit"
                         class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
                 </div>
             </div>

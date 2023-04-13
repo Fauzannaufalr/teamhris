@@ -36,7 +36,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('payroll/perhitungan/tambah'); ?>" method="POST">
+            <form action="<?= base_url('payroll/Perhitungan/tambah'); ?>" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nik_nama">NIK & Nama Karyawan</label>
@@ -92,7 +92,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('payroll/perhitungan/ubah'); ?>" method="POST">
+                <form action="<?= base_url('payroll/Perhitungan/ubah'); ?>" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="id" value="<?= $pg['id_perhitungan']; ?>">
                         <div class="form-group">
@@ -190,7 +190,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= base_url() ?>payroll/perhitungan/hapus/<?= $pg['id_perhitungan']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
+                    <a href="<?= base_url() ?>payroll/Perhitungan/hapus/<?= $pg['id_perhitungan']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -291,7 +291,7 @@
             'serverMethod': 'post',
             'searching': true, // Remove default Search Control
             'ajax': {
-                'url': '<?= base_url() ?>payroll/perhitungan/tabel'
+                'url': '<?= base_url() ?>payroll/Perhitungan/tabel'
             },
             'columns': [{
                     data: 'no'

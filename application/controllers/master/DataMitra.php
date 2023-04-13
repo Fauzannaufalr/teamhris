@@ -11,7 +11,7 @@ class DataMitra extends CI_Controller
         $this->load->model('Hris_model');
 
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -68,7 +68,7 @@ class DataMitra extends CI_Controller
         } else {
             $this->DataMitra_model->tambahDataMitra();
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('master/datamitra');
+            redirect('master/DataMitra');
         }
     }
 
@@ -111,7 +111,7 @@ class DataMitra extends CI_Controller
         } else {
             $this->DataMitra_model->ubahDataMitra();
             $this->session->set_flashdata('message', 'Data berhasil diubah!');
-            redirect('master/datamitra');
+            redirect('master/DataMitra');
         }
     }
 
@@ -122,7 +122,7 @@ class DataMitra extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus!');
         }
-        redirect('master/datamitra');
+        redirect('master/DataMitra');
     }
 
     public function tabel()

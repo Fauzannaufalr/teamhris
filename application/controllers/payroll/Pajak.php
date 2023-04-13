@@ -11,7 +11,7 @@ class Pajak extends CI_Controller
         $this->load->model('DataKaryawan_model', 'DataKaryawan');
         $this->load->model('payroll/DataPajak_model', 'DataPajak');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -54,7 +54,7 @@ class Pajak extends CI_Controller
         } else {
             $this->Pajak->tambahPajakKaryawan();
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('payroll/pajak');
+            redirect('payroll/Pajak');
         }
     }
 
@@ -82,7 +82,7 @@ class Pajak extends CI_Controller
         } else {
             $this->Pajak->ubahPajakKaryawan();
             $this->session->set_flashdata('message', 'Data berhasil diubah!');
-            redirect('payroll/pajak');
+            redirect('payroll/Pajak');
         }
     }
 
@@ -93,7 +93,7 @@ class Pajak extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('payroll/pajak');
+        redirect('payroll/Pajak');
     }
 
     public function tabel()

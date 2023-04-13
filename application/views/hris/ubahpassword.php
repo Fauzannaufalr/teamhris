@@ -11,7 +11,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="<?= base_url('hris/ubahpassword') ?>" method="post">
+                <form action="<?= base_url('hris/ubahPassword') ?>" method="post">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="password_lama">Password Lama</label>

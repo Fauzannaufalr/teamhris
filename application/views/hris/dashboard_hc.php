@@ -12,7 +12,7 @@
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="<?= base_url('master/datakaryawan'); ?>" class="small-box-footer">Info Lengkap <i
+                <a href="<?= base_url('master/DataKaryawan'); ?>" class="small-box-footer">Info Lengkap <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <div class="icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
-                <a href="<?= base_url('master/dataposisi'); ?>" class="small-box-footer">Info Lengkap <i
+                <a href="<?= base_url('master/DataPosisi'); ?>" class="small-box-footer">Info Lengkap <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 <div class="icon">
                     <i class="fas fa-user-lock"></i>
                 </div>
-                <a href="<?= base_url('master/datamitra'); ?>" class="small-box-footer">Info Lengkap <i
+                <a href="<?= base_url('master/DataMitra'); ?>" class="small-box-footer">Info Lengkap <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>

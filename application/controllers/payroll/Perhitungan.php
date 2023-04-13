@@ -10,7 +10,7 @@ class Perhitungan extends CI_Controller
         $this->load->model('Hris_model', 'Hris');
         $this->load->model('DataKaryawan_model', 'Datakaryawan');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -49,7 +49,7 @@ class Perhitungan extends CI_Controller
         } else {
             $this->Perhitungan->tambahPerhitungan();
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('payroll/perhitungan');
+            redirect('payroll/Perhitungan');
         }
     }
 
@@ -73,7 +73,7 @@ class Perhitungan extends CI_Controller
         } else {
             $this->Perhitungan->ubahPerhitungan();
             $this->session->set_flashdata('message', 'Data berhasil diubah!');
-            redirect('payroll/perhitungan');
+            redirect('payroll/Perhitungan');
         }
     }
 
@@ -84,7 +84,7 @@ class Perhitungan extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('payroll/perhitungan');
+        redirect('payroll/Perhitungan');
     }
 
     public function tabel()

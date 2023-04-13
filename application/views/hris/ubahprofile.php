@@ -11,7 +11,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="<?= base_url('hris/ubahprofile') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('hris/ubahProfile') ?>" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>

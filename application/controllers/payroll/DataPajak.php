@@ -10,7 +10,7 @@ class DataPajak extends CI_Controller
         $this->load->model('Hris_model', 'Hris');
 
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -51,7 +51,7 @@ class DataPajak extends CI_Controller
         } else {
             $this->DataPajak->tambahDataPajak();
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('payroll/datapajak');
+            redirect('payroll/DataPajak');
         }
     }
 
@@ -80,7 +80,7 @@ class DataPajak extends CI_Controller
         } else {
             $this->DataPajak->ubahDataPajak();
             $this->session->set_flashdata('message', 'Data berhasil diubah!');
-            redirect('payroll/datapajak');
+            redirect('payroll/DataPajak');
         }
     }
 
@@ -91,6 +91,6 @@ class DataPajak extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('payroll/datapajak');
+        redirect('payroll/DataPajak');
     }
 }

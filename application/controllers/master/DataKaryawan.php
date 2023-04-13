@@ -15,7 +15,7 @@ class DataKaryawan extends CI_Controller
         $this->load->model('training/m_data');
 
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -89,7 +89,7 @@ class DataKaryawan extends CI_Controller
         } else {
             $this->DataKaryawan_model->tambahDataKaryawan();
             $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-            redirect('master/datakaryawan');
+            redirect('master/DataKaryawan');
         }
     }
 
@@ -141,7 +141,7 @@ class DataKaryawan extends CI_Controller
         } else {
             $this->DataKaryawan_model->ubahDataKaryawan();
             $this->session->set_flashdata('message', 'Data berhasil diedit!');
-            redirect('master/datakaryawan');
+            redirect('master/DataKaryawan');
         }
     }
 
@@ -153,7 +153,7 @@ class DataKaryawan extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('master/datakaryawan');
+        redirect('master/DataKaryawan');
     }
 
     function import()
@@ -210,7 +210,7 @@ class DataKaryawan extends CI_Controller
                             $reader->close();
                             unlink('./dist/import/' . $file['file_name']);
                             $this->session->set_flashdata('error', 'Data NIK sudah ada sebelumnya!');
-                            redirect('master/datakaryawan');
+                            redirect('master/DataKaryawan');
                         }
                     }
                     $numRow++;
@@ -218,11 +218,11 @@ class DataKaryawan extends CI_Controller
                 $reader->close();
                 unlink('./dist/import/' . $file['file_name']);
                 $this->session->set_flashdata('message', 'Data berhasil diimport!');
-                redirect('master/datakaryawan');
+                redirect('master/DataKaryawan');
             }
         } else {
             $this->session->set_flashdata('error', 'File import harus diisi');
-            redirect('master/datakaryawan');
+            redirect('master/DataKaryawan');
         };
     }
 

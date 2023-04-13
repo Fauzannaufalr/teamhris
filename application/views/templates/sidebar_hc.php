@@ -16,14 +16,14 @@
                               </a>
                               <ul class="nav nav-treeview">
                                   <li class="nav-item">
-                                      <a href="<?= base_url('payroll/datapajak') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                      <a href="<?= base_url('payroll/DataPajak') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                           <p>Data Pajak</p>
                                       </a>
                                   </li>
                               </ul>
                               <ul class="nav nav-treeview">
                                   <li class="nav-item">
-                                      <a href="<?= base_url('payroll/pajak') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                                      <a href="<?= base_url('payroll/Pajak') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                           <p>Pajak Karyawan</p>
                                       </a>
                                   </li>
@@ -56,14 +56,14 @@
                       </ul> -->
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('payroll/perhitungan') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('payroll/Perhitungan') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Perhitungan Gaji</p>
                               </a>
                           </li>
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('payroll/pengajuangaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('payroll/PengajuanGaji') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Pengajuan Gaji Karyawan</p>
                               </a>
                           </li>
@@ -79,7 +79,7 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('Recruitment/pekerjaan') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('Recruitment/Pekerjaan') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Pekerjaan</p>
                               </a>
                           </li>
@@ -109,14 +109,14 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('master/datamitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('master/DataMitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Data Mitra</p>
                               </a>
                           </li>
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="<?= base_url('payroll/pengajuanratemitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
+                              <a href="<?= base_url('payroll/PengajuanRateMitra') ?>" class="nav-link " style="background-color: #ffffff; color: black;">
                                   <p>Pengajuan Rate Mitra</p>
                               </a>
                           </li>

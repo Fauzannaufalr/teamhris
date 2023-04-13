@@ -5,7 +5,7 @@
                 <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Cetak Data</h3>
                 </div>
-                <form class="form-horizontal" method="post" action="<?= base_url('payroll/pengajuanratemitra/cetakrateexcel'); ?>">
+                <form class="form-horizontal" method="post" action="<?= base_url('payroll/PengajuanRateMitra/cetakRateExcel'); ?>">
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="bulan" class="col-form-label">Bulan</label>
@@ -86,7 +86,7 @@
                 <form class="form-horizontal">
                     <div class="card-body">
                         <div class="form-group row">
-                            <a class="btn btn-outline-success" href="<?= base_url('payroll/pengajuanratemitra/generate'); ?>"><i class="fas fa-archive"></i> Generate Data <?= $bulan; ?></a>
+                            <a class="btn btn-outline-success" href="<?= base_url('payroll/PengajuanRateMitra/generate'); ?>"><i class="fas fa-archive"></i> Generate Data <?= $bulan; ?></a>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -135,7 +135,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= base_url() ?>payroll/pengajuanratemitra/status/<?= $rm['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
+                    <a href="<?= base_url() ?>payroll/PengajuanRateMitra/status/<?= $rm['id']  ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -155,7 +155,7 @@
             'serverMethod': 'post',
             'searching': true, // Remove default Search Control
             'ajax': {
-                'url': '<?= base_url() ?>payroll/pengajuanratemitra/list',
+                'url': '<?= base_url() ?>payroll/PengajuanRateMitra/list',
                 'data': function(data) {
                     data.searchBulan = $('#bulan').val();
                     data.searchTahun = $('#tahun').val();
