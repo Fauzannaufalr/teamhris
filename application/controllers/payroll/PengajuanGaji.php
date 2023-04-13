@@ -167,7 +167,8 @@ class PengajuanGaji extends CI_Controller
 
         $this->dompdf->load_html($html);
         $this->dompdf->render();
-        $this->_kirimEmail();
+        $this->dompdf->output();
+        // $this->_kirimEmail();
     }
 
     public function cetakGaji()

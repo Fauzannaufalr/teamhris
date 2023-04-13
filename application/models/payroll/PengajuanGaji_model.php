@@ -28,30 +28,73 @@ class PengajuanGaji_model extends CI_Model
         $this->db->delete('payroll___pengajuangaji');
         $this->db->affected_rows();
 
-        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, dk.type, pp.id_datapajak as pajak, pg.t_kinerja, pg.t_fungsional, pg.t_jabatan, pg.t_bpjs, pg.potongan, pg.bonus');
+        $this->db->select($date . ' as bulan_tahun, dk.id_karyawan, dp.nama_posisi, dk.gajipokok, dk.type, pp.id_datapajak as pajak, pg.t_kinerja, pg.t_fungsional, pg.t_jabatan, pg.t_bpjs, pg.potongan, pg.bonus, pdp.tarif');
         $this->db->from('data_karyawan dk ');
         // $this->db->join('payroll___bpjs pb', 'pb.id_datakaryawan = dk.id_karyawan', 'left');
         $this->db->join('payroll___pajak pp', 'pp.id_datakaryawan = dk.id_karyawan', 'left');
+        $this->db->join('payroll___datapajak pdp', 'pdp.id = pp.id_datapajak', 'left');
         $this->db->join('data_posisi dp', 'dp.id_posisi = dk.id_posisi', 'left');
         $this->db->join('payroll___perhitungan pg', 'pg.id_datakaryawan = dk.id_karyawan', 'left');
+        // $this->db->where('dk.id_karyawan =', '34');
         $this->db->where('dk.status !=', 'Tidak Aktif');
         $this->db->where('dk.id_karyawan NOT IN (SELECT id_datakaryawan FROM payroll___pengajuangaji WHERE bulan_tahun ="' . $date . '" AND status = "Sudah dibayar")');
         $nextGaji = $this->db->get()->result_array();
+
+
         foreach ($nextGaji as $ng) {
+
+            // start pajak
+            $gajiPokokSetahun = $ng['gajipokok'] * 12;
+            $biayaJabatanSetahun = ((5 / 100) * $ng['gajipokok']) * 12;
+            $penghasilanNetoSetahun = $gajiPokokSetahun - $biayaJabatanSetahun;
+            $ptkp = $ng['tarif'];
+            $penghasilanKenaPajak = $penghasilanNetoSetahun - $ptkp;
+            $pph21 = 0;
+            $totalpph21 = 0;
+            $lapisan1Max = 60000000;
+            $lapisan2Max = 250000000;
+            $lapisan3Max = 500000000;
+            $lapisan4Max = 5000000000;
+            echo $penghasilanKenaPajak . 'tanda' . '<br>';
+            if ($penghasilanKenaPajak >= $lapisan1Max) {
+                $totalpph21 = $pph21 + ((5 / 100) * $lapisan1Max);
+            }
+            if ($penghasilanKenaPajak >= $lapisan2Max) {
+                $totalpph21 = $pph21 + ((15 / 100) * ($penghasilanKenaPajak - $lapisan1Max));
+            }
+            if ($penghasilanKenaPajak >= $lapisan3Max) {
+                $totalpph21 = $pph21 + ((25 / 100) * ($penghasilanKenaPajak - $lapisan2Max));
+            }
+            if ($penghasilanKenaPajak >= $lapisan4Max) {
+                $totalpph21 = $pph21 + ((30 / 100) * ($penghasilanKenaPajak - $lapisan3Max));
+            }
+            if ($penghasilanKenaPajak > $lapisan4Max) {
+                $totalpph21 = $pph21 + ((35 / 100) * ($penghasilanKenaPajak - $lapisan4Max));
+            }
+            $pajakKaryawan = $totalpph21 / 12;
+            // echo $gajiPokokSetahun . '<br>';
+            // echo $biayaJabatanSetahun . '<br>';
+            // echo $penghasilanNetoSetahun . '<br>';
+            // echo $ptkp . '<br>';
+            // echo $pph21 . '<br>';
+            // echo $pajakKaryawan . '<br>';
+            // die;
+            // end pajak
+
             $data = [
                 'bulan_tahun' => $ng['bulan_tahun'],
                 'id_datakaryawan' => $ng['id_karyawan'],
                 'nama_posisi' => $ng['nama_posisi'],
                 'type' => $ng['type'],
                 'gajipokok' => $ng['gajipokok'],
-                'pajak' => $ng['pajak'],
+                'pajak' => $pajakKaryawan,
                 't_kinerja' => $ng['t_kinerja'],
                 't_fungsional' => $ng['t_fungsional'],
                 't_jabatan' => $ng['t_jabatan'],
                 't_bpjs' => $ng['t_bpjs'],
                 'potongan' => $ng['potongan'],
                 'bonus' => $ng['bonus'],
-                'total' => $ng['gajipokok'] + $ng['t_bpjs'] - $ng['pajak'] + $ng['t_kinerja'] + $ng['t_fungsional'] + $ng['t_jabatan'] - $ng['potongan'] + $ng['bonus'],
+                'total' => $ng['gajipokok'] + $ng['t_bpjs'] + $ng['t_kinerja'] + $ng['t_fungsional'] + $ng['t_jabatan'] + $ng['bonus'] - $ng['potongan'] - $pajakKaryawan,
                 'status' => 'Belum dibayar'
             ];
             $this->db->insert('payroll___pengajuangaji', $data);

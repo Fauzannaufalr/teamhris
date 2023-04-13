@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td>Periode :</td>
-                <td><?= $sg['bulan_tahun'] ?></td>
+                <td><?= substr($sg['bulan_tahun'],4,2) ?> / <?= substr($sg['bulan_tahun'],0,4) ?></td>
             </tr>
         </table>
         <br><br>
