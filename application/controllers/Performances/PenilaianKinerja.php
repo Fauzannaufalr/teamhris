@@ -236,14 +236,16 @@ class PenilaianKinerja extends CI_Controller
                     }
                     $numRow++;
                 }
+                $nikExist = $this->PenilaianKinerja_model->cekNikExist($data['nik']);
+
+                if ($nikExist) {
+                    $this->session->set_flashdata('warning', 'NIK ' . $data['nik'] . ' sudah digunakan! Data berhasil diupdate');
+                }
                 $reader->close();
                 unlink('./dist/import/' . $file['file_name']);
                 $this->session->set_flashdata('message', ' Data berhasil diimport!');
                 redirect('performances/penilaiankinerja');
             }
-        } else {
-            $this->session->set_flashdata('error', 'data import gagal!' . $this->upload->display_errors());
-            redirect('performances/penilaianknerja');
         }
 
 

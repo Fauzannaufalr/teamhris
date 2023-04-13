@@ -95,15 +95,28 @@ class PenilaianKinerja_model extends CI_Model
         $this->db->where('tanggal', $bulantahun);
         return $this->db->get()->result_array();
     }
-
     public function import_data($data)
     {
-        $jumlah = count($data);
-        if ($jumlah > 0) {
+        // Mengecek apakah data dengan nik tersebut sudah ada atau belum
+        $this->db->where('nik', $data['nik']);
+        $query = $this->db->get('
+        performances___penilaian_kinerja');
+        if ($query->num_rows() > 0) {
+            // Jika data sudah ada, maka lakukan update data
+            $this->db->where('nik', $data['nik']);
+            $this->db->update('performances___penilaian_kinerja', $data);
+        } else {
+            // Jika data belum ada, maka lakukan insert data
             $this->db->insert('performances___penilaian_kinerja', $data);
         }
     }
 
+    public function cekNikExist($nik)
+    {
+        $this->db->where('nik', $nik);
+        $query = $this->db->get('performances___penilaian_kinerja');
+        return $query->num_rows() > 0;
+    }
 
     public function checkPenilaianKinerjaExists($nik, $bulan, $tahun)
     {
