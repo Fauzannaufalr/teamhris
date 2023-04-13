@@ -128,7 +128,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Durasi Ujian</label>
                         <div class="col-sm-10">
-                            <input type="time" class="form-control" name="durasi_ujian"
+                            <input type="text" class="form-control" name="durasi_ujian"
                                 placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
                         </div>
                     </div>
@@ -215,7 +215,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Durasi Ujian</label>
                         <div class="col-sm-10">
-                            <input type="time" class="form-control" name="durasi_ujian"
+                            <input type="text" class="form-control" name="durasi_ujian"
                                 placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
                         </div>
                     </div>
