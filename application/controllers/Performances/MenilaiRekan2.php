@@ -60,7 +60,7 @@ class MenilaiRekan2 extends CI_Controller
         $this->insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner);
         redirect("performances/menilairekan2");
         $this->session->set_flashdata('message', ' Data berhasil disimpan!');
-        redirect('performances/menilaidirirekan2');
+        redirect('performances/menilairekan2');
     }
 
     private function insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner)
@@ -85,7 +85,7 @@ class MenilaiRekan2 extends CI_Controller
             // echo "<pre>" . print_r($data_insert_tabel_performances__detail_penilaian_kuesioner, true) . "</pre>";
         endforeach;
         $this->session->set_flashdata('message', ' Data berhasil disimpan!');
-        redirect('performances/menilaidirirekan2');
+        redirect('performances/menilairekan2');
     }
 
     private function insert_tabel_penilaian_kuesioner()
@@ -107,7 +107,7 @@ class MenilaiRekan2 extends CI_Controller
         $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
         return $this->db->insert_id();
         $this->session->set_flashdata('message', ' Data berhasil disimpan!');
-        redirect('performances/menilaidirirekan2');
+        redirect('performances/menilairekan2');
     }
 
 }
