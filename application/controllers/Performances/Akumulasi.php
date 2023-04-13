@@ -14,7 +14,7 @@ class Akumulasi extends CI_Controller
         $this->load->model('Hris_model');
 
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 

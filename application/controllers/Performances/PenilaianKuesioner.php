@@ -13,7 +13,7 @@ class PenilaianKuesioner extends CI_Controller
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -99,7 +99,7 @@ class PenilaianKuesioner extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('performances/penilaiankuesioner');
+        redirect('Performances/PenilaianKuesioner');
     }
 
     public function cetakKuesioner()

@@ -58,7 +58,7 @@
 
                     <?php if (count($akumulasi) > 0) { ?>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('performances/Akumulasi/cetakakumulasikaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('Performances/Akumulasi/cetakakumulasikaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Laporan</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"

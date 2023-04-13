@@ -12,7 +12,7 @@ class MenilaiLeader extends CI_Controller
         $this->load->model('SoalKuesioner_model');
         $this->load->model('Hris_model');
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
     private function extract_nik_penilai()
@@ -61,9 +61,9 @@ class MenilaiLeader extends CI_Controller
     {
         $id_penilaian_kuesioner = $this->insert_tabel_penilaian_kuesioner();
         $this->insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner);
-        redirect("performances/menilaileader");
+        redirect('Performances/MenilaiLeader');
         $this->session->set_flashdata('message', ' Data berhasil disimpan!');
-        redirect('performances/menilaileader');
+        redirect('Performances/MenilaiLeader');
     }
 
 
@@ -88,8 +88,8 @@ class MenilaiLeader extends CI_Controller
             );
             // echo "<pre>" . print_r($data_insert_tabel_performances__detail_penilaian_kuesioner, true) . "</pre>";
         endforeach;
-             $this->session->set_flashdata('message', ' Data berhasil disimpan!');
-        redirect('performances/menilaileader');
+        $this->session->set_flashdata('message', ' Data berhasil disimpan!');
+        redirect('Performances/MenilaiLeader');
     }
 
     private function insert_tabel_penilaian_kuesioner()
@@ -111,7 +111,7 @@ class MenilaiLeader extends CI_Controller
         $this->db->insert("performances___penilaian_kuesioner", $data_insert_tabel_performances___penilaian_kuesioner);
         return $this->db->insert_id();
         $this->session->set_flashdata('message', ' Data berhasil disimpan!');
-        redirect('performances/menilaileader');
+        redirect('Performances/MenilaiLeader');
     }
 
 }

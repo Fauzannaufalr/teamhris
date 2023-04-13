@@ -55,7 +55,7 @@
                         </select>
                     </div>
                     <label for="tahun" class="col-form-label">Tahun: </label>
-                    <div class="col-md-2 ml-2">
+                    <div class="col-md-2">
                         <select class="form-control" name="tahun">
                             <option value="">--Pilih Tahun--</option>
                             <?php $tahun = date('Y');

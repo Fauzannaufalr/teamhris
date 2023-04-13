@@ -16,7 +16,7 @@ class PenilaianKinerja extends CI_Controller
         $this->load->model('Hris_model');
 
         if (!$this->session->userdata('nik')) {
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -92,19 +92,19 @@ class PenilaianKinerja extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('performance__s/penilaiankinerja', $data);
+            $this->load->view('performances/penilaiankinerja', $data);
             $this->load->view('templates/footer');
         } else {
             if ($nik_digunakan) {
                 $this->session->set_flashdata('error', 'NIK telah digunakan');
-                redirect('performances/penilaiankinerja');
+                redirect('Performances/PenilaianKinerja');
                 return;
             }
 
             $this->PenilaianKinerja_model->tambahPenilaianKinerja();
 
             $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
-            redirect('performances/penilaiankinerja');
+            redirect('Performances/PenilaianKinerja');
         }
     }
     public function ubah()
@@ -137,7 +137,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->PenilaianKinerja_model->ubahPenilaianKinerja();
             $this->session->set_flashdata('message', 'Data berhasil diUbah!');
-            redirect('performances/penilaiankinerja');
+            redirect('Performances/PenilaianKinerja');
         }
     }
 
@@ -149,7 +149,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('performances/penilaiankinerja');
+        redirect('Performances/Penilaiankinerja');
     }
 
 
@@ -244,7 +244,7 @@ class PenilaianKinerja extends CI_Controller
                 $reader->close();
                 unlink('./dist/import/' . $file['file_name']);
                 $this->session->set_flashdata('message', ' Data berhasil diimport!');
-                redirect('performances/penilaiankinerja');
+                redirect('Performances/Penilaiankinerja');
             }
         }
 
