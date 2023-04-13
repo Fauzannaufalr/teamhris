@@ -97,14 +97,14 @@ class PenilaianKinerja extends CI_Controller
         } else {
             if ($nik_digunakan) {
                 $this->session->set_flashdata('error', 'NIK telah digunakan');
-                redirect('Performances/PenilaianKinerja');
+                redirect('performances/PenilaianKinerja');
                 return;
             }
 
             $this->PenilaianKinerja_model->tambahPenilaianKinerja();
 
             $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
-            redirect('Performances/PenilaianKinerja');
+            redirect('performances/PenilaianKinerja');
         }
     }
     public function ubah()
@@ -137,7 +137,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->PenilaianKinerja_model->ubahPenilaianKinerja();
             $this->session->set_flashdata('message', 'Data berhasil diUbah!');
-            redirect('Performances/PenilaianKinerja');
+            redirect('performances/PenilaianKinerja');
         }
     }
 
@@ -149,7 +149,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('Performances/Penilaiankinerja');
+        redirect('performances/Penilaiankinerja');
     }
 
 
@@ -244,7 +244,7 @@ class PenilaianKinerja extends CI_Controller
                 $reader->close();
                 unlink('./dist/import/' . $file['file_name']);
                 $this->session->set_flashdata('message', ' Data berhasil diimport!');
-                redirect('Performances/Penilaiankinerja');
+                redirect('performances/Penilaiankinerja');
             }
         }
 

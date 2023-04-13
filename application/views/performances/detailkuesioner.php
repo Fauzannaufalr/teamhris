@@ -59,7 +59,7 @@
                         </tbody>
 
                     </table>
-                    <a class="badge" href=<?= base_url("performances/penilaiankuesioner") ?> type="button"
+                    <a class="badge" href=<?= base_url("performances/PenilaianKuesioner") ?> type="button"
                         style="background-color: #d4d4d4" ;><i class="fas fa-reply"></i>
                         Kembali
                     </a>

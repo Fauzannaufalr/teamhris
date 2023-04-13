@@ -55,10 +55,10 @@
                     </button>
                     <?php if (count($akumulasi) > 0) { ?>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Performances/Akumulasi/cetakAkumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/Akumulasi/cetakAkumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak PDF</a>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Performances/Akumulasi/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/Akumulasi/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"

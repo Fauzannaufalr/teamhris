@@ -55,7 +55,7 @@
                     </button>
                     <?php if (count($penilaiankuesioner) > 0) { ?>
                         <a class="btn btn-outline-success  ml-2"
-                            href="<?= base_url('Performances/PenilaianKuesioner/cetakkuesioner?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/PenilaianKuesioner/cetakkuesioner?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Laporan</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"

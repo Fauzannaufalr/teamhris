@@ -10,7 +10,7 @@
         if ($this->session->userdata('level') !== 'biasa') { ?>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="<?= base_url('Performances/Penilaiankinerja') ?>" class="nav-link "
+                    <a href="<?= base_url('performances/Penilaiankinerja') ?>" class="nav-link "
                         style="background-color: #ffffff; color: black;">
                         <p>Penilaian Kinerja</p>
                     </a>
@@ -41,7 +41,7 @@
 
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('Performances/MenilaiLeader') ?>" class="nav-link "
+            <a href="<?= base_url('performances/MenilaiLeader') ?>" class="nav-link "
                 style="background-color: #ffffff; color: black;">
                 <p>Menilai Leader</p>
             </a>
@@ -93,40 +93,6 @@
             </li>
         </ul>
 
-<<<<<<< Updated upstream
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="<?= base_url('training/peserta') ?>" class=" nav-link "
-                style=" background-color: #ffffff; color: black;">
-                <p>Kelola Peserta Ujian</p>
-            </a>
-        </li>
-    </ul>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="<?= base_url('training/hasil_ujian') ?>" class="nav-link "
-                style="background-color: #ffffff; color: black;">
-                <p>Hasil Ujian</p>
-            </a>
-        </li>
-    </ul>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="<?= base_url('training/file_soal') ?>" class="nav-link "
-                style="background-color: #ffffff; color: black;">
-                <p>Ujian file</p>
-            </a>
-        </li>
-    </ul>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="<?= base_url('training/dataadmin') ?>" class="nav-link "
-                style="background-color: #ffffff; color: black;">
-                <p>Track Record</p>
-            </a>
-        </li>
-    </ul>
-=======
         <ul class="nav nav-treeview">
             <li class="nav-item">
                 <a href="<?= base_url('training/peserta') ?>" class=" nav-link "
@@ -145,13 +111,20 @@
         </ul>
         <ul class="nav nav-treeview">
             <li class="nav-item">
+                <a href="<?= base_url('training/file_soal') ?>" class="nav-link "
+                    style="background-color: #ffffff; color: black;">
+                    <p>Ujian file</p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
                 <a href="<?= base_url('training/dataadmin') ?>" class="nav-link "
                     style="background-color: #ffffff; color: black;">
                     <p>Track Record</p>
                 </a>
             </li>
         </ul>
->>>>>>> Stashed changes
     <?php } ?>
     <?php if ($this->session->userdata('level') !== 'hc') { ?>
         <ul class="nav nav-treeview">
