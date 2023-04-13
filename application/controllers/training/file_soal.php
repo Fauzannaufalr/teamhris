@@ -25,7 +25,7 @@ class file_soal extends CI_Controller
         $data['filesoal'] = $this->filesoal_model->getAllfilesoal();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['jenis_ujian'] = $this->m_data->get_data('tb_jenis_ujian');
+        // $data['jenis_ujian'] = $this->m_data->get_data('tb_jenis_ujian')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
