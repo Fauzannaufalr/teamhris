@@ -88,8 +88,8 @@
                         data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
                         Tambah Penilaian
                     </button>
-                    <a class="btn btn-outline-success" href=<?= base_url("Performances/inputjamkerja") ?> type="button"
-                        ;><i class="fas fa-plus"></i>
+                    <a class="btn btn-outline-success" href=<?= base_url("Performances/PenilaianKinerja/Inputjamkerja") ?>
+                        type="button";><i class="fas fa-plus"></i>
                         Input Jam Kerja
                     </a> <br>
                     <button type="button" class="btn btn-outline-success mt-2" data-toggle="modal"
