@@ -127,7 +127,7 @@
                                 </td>
                                 <td>
                                     <a class="badge"
-                                        href="<?= base_url() ?>Performances/PenilaianKuesioner/detail2/<?= $pr['id_penilaian_kuesioner'] ?>"
+                                        href="<?= base_url() ?>Performances/PenilaianKuesioner/detail/<?= $pr['id_penilaian_kuesioner'] ?>"
                                         type="button" style="background-color: #d4d4d4" ;><i class="fas fa-share"></i>
                                         Detail
                                     </a>

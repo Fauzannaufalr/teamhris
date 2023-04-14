@@ -63,7 +63,7 @@ class PenilaianKuesioner extends CI_Controller
     }
 
 
-    public function detail2($id)
+    public function detail($id)
     {
         $data['title'] = 'Detail Kuesioner';
         $data['saran'] = $this->db->query("SELECT pk.saran FROM performances___penilaian_kuesioner pk

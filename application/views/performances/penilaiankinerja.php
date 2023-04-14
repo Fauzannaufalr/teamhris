@@ -83,15 +83,20 @@
 
 
             <div class="form-group row">
-                <div class="col-mb-1">
+                <div class="col-mb-auto">
                     <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
                         Tambah Penilaian
                     </button>
-                    <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                    <a class="btn btn-outline-success" href=<?= base_url("Performances/inputjamkerja") ?> type="button"
+                        ;><i class="fas fa-plus"></i>
+                        Input Jam Kerja
+                    </a> <br>
+                    <button type="button" class="btn btn-outline-success mt-2" data-toggle="modal"
                         data-target="#importPenilaianKinerja"><i class="fas fa-plus"></i>
                         Import
                     </button>
+
                 </div>
             </div>
             <!-- perulangan -->
