@@ -51,25 +51,25 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
         <?php $no = 1; ?>
         <?php foreach ($cetak_kinerja as $ck): ?>
             <tr>
-                <td class="text-center">
+                <td style="text-align: center;">
                     <?= $no++ ?>
                 </td>
-                <td class="text-center">
+                <td style="text-align: center;">
                     <?= $ck['nik'] . " <br> " .
                         $ck['nama_karyawan']; ?>
                 </td>
 
-                <td class="text-center">
+                <td style="text-align: center;">
                     <?= $ck['total_kerja']; ?>
                 </td>
 
-                <td class="text-center">
+                <td style="text-align: center;">
                     <?= $ck['done_kerja']; ?>
                 </td>
-                <td class="text-center">
+                <td style="text-align: center;">
                     <?= $ck['nilai']; ?>
                 </td>
-                <td class="text-center">
+                <td style="text-align: center;">
                     <?= $ck['kategorisasi']; ?>
                 </td>
 
