@@ -6,7 +6,6 @@ class MenilaiRekan1 extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Performances/MenilaiRekan1_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('SoalKuesioner_model');

@@ -6,7 +6,6 @@ class MenilaiDiriSendiri extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Performances/MenilaiDiriSendiri_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('SoalKuesioner_model');
