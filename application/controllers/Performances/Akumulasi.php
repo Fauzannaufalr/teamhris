@@ -7,9 +7,9 @@ class Akumulasi extends CI_Controller
     {
         parent::__construct();
         $this->load->library('dompdf_gen');
-        $this->load->model('Performances/Akumulasi_model');
-        $this->load->model('Performances/PenilaianKuesioner_model');
-        $this->load->model('Performances/PenilaianKinerja_model');
+        $this->load->model('performances/Akumulasi_model');
+        $this->load->model('performances/PenilaianKuesioner_model');
+        $this->load->model('performances/PenilaianKinerja_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('Hris_model');
 
