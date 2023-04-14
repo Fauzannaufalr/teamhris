@@ -309,7 +309,7 @@
         data: {
             labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
-                label: 'Nilai Akumulasi',
+                label: 'Nilai',
                 data: [<?= $text; ?>],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

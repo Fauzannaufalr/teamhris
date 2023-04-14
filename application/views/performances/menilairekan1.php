@@ -67,7 +67,8 @@
             </tbody>
 
           </table>
-          <input required type="text" name="saran" placeholder="Masukan Saran Anda" class="form-control">
+          <input autocomplete="off" required type="text" name="saran" placeholder="Masukan Saran Anda"
+            class="form-control">
           <br>
           <button name="simpan" value="kirim" type="submit" class="btn btn-info">Simpan Penilaian</button>
         </div>
