@@ -277,8 +277,8 @@
             'Sangat Kurang : 0 - 19'
         ],
         datasets: [{
-            label: 'My First Dataset',
-            data: [50, 50, 50, 50, 50],
+            label: 'Nilai Maximum',
+            data: [100, 79, 59, 39, 19],
             backgroundColor: [
                 '#28a745',
                 'rgb(255, 205, 86)',
