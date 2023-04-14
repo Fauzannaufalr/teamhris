@@ -37,7 +37,7 @@ class MenilaiDiriSendiri extends CI_Controller
     {
         $id_penilaian_kuesioner = $this->insert_tabel_penilaian_kuesioner();
         $this->insert_tabel_detail_penilaian_kuesioner($id_penilaian_kuesioner);
-        redirect("Performances/MenilaidiriSendiri");
+        redirect("Performances/MenilaiDiriSendiri");
         $this->session->set_flashdata('message', ' Data berhasil disimpan!');
         redirect('Performances/MenilaiDiriSendiri');
     }
