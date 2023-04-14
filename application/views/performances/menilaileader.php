@@ -3,7 +3,17 @@
   <div class="card">
     <!-- /.card-header -->
     <div class="card-body">
+      <?php if (validation_errors()): ?>
+        <div class="alert alert-danger" role="alert">
+          <?= validation_errors(); ?>
+        </div>
+      <?php endif; ?>
 
+      <?php if ($this->session->flashdata('success')): ?>
+        <div style="color: green;">
+          <?php echo $this->session->flashdata('success'); ?>
+        </div>
+      <?php endif; ?>
       <div class="form-group col-md-4">
         <label>Penilai</label>
         <input type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan" class="form-control" />
@@ -14,14 +24,13 @@
         <div class=" form-group col-md-4">
           <label>Menilai</label>
           <select required class=" form-control" name="nik_menilai" id="nik_menilai">
-            <option>-- Pilih Karyawan --</option>
+            <option value="">-- Pilih Karyawan --</option>
             <?php foreach ($datakaryawan as $dk):
               ?>
               <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
             <?php endforeach; ?>
           </select>
         </div>
-
 
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
@@ -43,9 +52,8 @@
                     <?= $sk['kuesioner'] ?>
                   </td>
                   <td>
-                    <!-- pr -->
                     <select required name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
-                      <option disabled="" selected="">--Berikan Penilaian--</option>
+                      <option value="" selected>--Berikan Penilaian--</option>
                       <option value="5">Sangat Baik</option>
                       <option value="4">Baik</option>
                       <option value="3">Cukup</option>
@@ -65,6 +73,7 @@
         </div>
       </form>
     </div>
+
 
 
     <script>

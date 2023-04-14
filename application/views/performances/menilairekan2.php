@@ -21,19 +21,16 @@
       </div>
 
       <form method="POST" action="<?= base_url('Performances/MenilaiRekan2/simpan') ?>">
-
         <div class=" form-group col-md-4">
-
           <label>Menilai</label>
           <select required class=" form-control" name="nik_menilai" id="nik_menilai">
-            <option>-- Pilih Karyawan --</option>
+            <option value="">-- Pilih Karyawan --</option>
             <?php foreach ($datakaryawan as $dk):
               ?>
               <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?></option>
             <?php endforeach; ?>
           </select>
         </div>
-
 
         <div class="table-responsive">
           <table id="" class="table table-bordered table-striped">
@@ -56,7 +53,7 @@
                   </td>
                   <td>
                     <select required name="nilai[<?= $sk['id_kuesioner']; ?>]" class="form-control">
-                      <option disabled="" selected="">--Berikan Penilaian--</option>
+                      <option value="" selected>--Berikan Penilaian--</option>
                       <option value="5">Sangat Baik</option>
                       <option value="4">Baik</option>
                       <option value="3">Cukup</option>
@@ -76,6 +73,8 @@
         </div>
       </form>
     </div>
+
+
 
     <script>
       $(function () {
