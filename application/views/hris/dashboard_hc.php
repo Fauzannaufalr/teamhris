@@ -410,7 +410,8 @@
                 Data penilaian masih kosong.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn" style="background-color: #8b0000; color: white;"
+                    data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
