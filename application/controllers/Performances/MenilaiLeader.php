@@ -32,7 +32,7 @@ class MenilaiLeader extends CI_Controller
     public function index()
     {
         $nik = $this->session->userdata("nik");
-        $data['title'] = "Menilai Rekan1";
+        $data['title'] = "Menilai Leader";
         $data['user'] = $this->Hris_model->ambilUser();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getDataKaryawanExcept($nik);
