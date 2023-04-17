@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2023 at 06:19 AM
+-- Generation Time: Apr 17, 2023 at 08:18 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -71,33 +71,14 @@ CREATE TABLE `data_karyawan` (
 --
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nik`, `nama_karyawan`, `id_posisi`, `id_kelas`, `email`, `telepon`, `alamat`, `status`, `gajipokok`, `foto`, `type`, `nik_leader`, `password`, `level`) VALUES
-(24, '0223001', 'Hasbi Ceo', 5, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Tidak Aktif', '500000', 'download_(1).png', 'Office', '', '$2y$10$EJnNLRQHgbT9X0In2BjLXu49zg4SymTKK.Z2ziNBHlDcugA07I2ba', 'ceo'),
-(25, '0223002', 'Hasbi HC', 5, 2, 'neymar@gmail.com', '54321', 'Jl. qwerty', 'Aktif', '5000000', 'default.jpg', 'Office', '', '$2y$10$oaI2q5EgZhYEEKfeeGx8/e.S5oZblAn/6uARbKTQUrVhYeARpriqK', 'hc'),
-(26, '0223003', 'Hasbi Karyawan', 10, 1, 'Hasbi@gmail.com', '081234', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Office', '02223004', '$2y$10$Od3nIlRZK1NgAJZ3LPwrAO/W6w7dbpDB02KWVqFqqlMqM0s136TAi', 'biasa'),
-(29, '0223005', 'Fauzan Naufal Ramadhani', 6, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '500000', 'default.jpg', 'Office', '', '$2y$10$LE6zEyPO.9ytFdtfzCnuOeVX1BCDrg6.3GK9oLAju8F5kRhsJiu/G', 'hc'),
-(32, '0223004', 'Hasbi Leader', 5, 1, 'fauzan@gmail.com', '0812344', 'Jl. Soekarno', 'Aktif', '5000000', 'ironman.png', 'Office', '', '$2y$10$vyR86e9xNQ.cutdtFfbLC.hCdk2HOwRsDOpplBGW6/kHCLtcZwoD.', 'leader'),
-(34, '0223009', 'Joni', 7, 2, 'jonijoniyesspapaa@gmail.com', '1124', 'Jl. apdas', 'Aktif', '5000000', 'default.jpg', 'Office', '123445', '$2y$10$PKGOpLBGgriabxpayNBB9ec/vK3kzHdIqSA8Z4a0.GCCTpDablKxO', 'biasa'),
-(35, '0223010', 'Pascal', 6, 1, 'fauzan@gmail.com', '081234556', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Office', '', '$2y$10$p/3B8ySdV65Y37JqSC6ztONhma6UtiFAyljv.msAlaJwCZgwDSPrK', 'biasa'),
-(37, '0223006', 'Lionel Messi', 6, 1, 'ronaldo@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '5000000', 'default.jpg', 'Office', '', '$2y$10$itvxC.kAnIX3WpupOu1YKu/pIhpfHLxEbHhqmmG.R7H8cncEf5EOq', 'leader'),
-(38, '0223007', 'Hanif', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Office', NULL, '$2y$10$sM97e445xLlbgQUZbxRTy.0WKbBXEp5aoFuNGMxfZWX7T.mqRl4pa', 'hc'),
-(39, '0223011', 'Rudy', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Office', NULL, '$2y$10$XYPpgxF9t1ub3yPcbRcEfeiH3XaK5MIMCVlTxNKAwpuc2/Vmf8bFO', 'hc'),
-(40, '0223012', 'Beni', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '', 'hc'),
-(41, '0223013', 'Fauzan Naufal', 5, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '500000', 'download_(1).png', 'Project Base', '', '$2y$10$EJnNLRQHgbT9X0In2BjLXu49zg4SymTKK.Z2ziNBHlDcugA07I2ba', 'hc'),
-(42, '0223014', 'Neymar Junior', 5, 2, 'neymar@gmail.com', '54321', 'Jl. qwerty', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$oaI2q5EgZhYEEKfeeGx8/e.S5oZblAn/6uARbKTQUrVhYeARpriqK', 'hc'),
-(43, '0223015', 'Rendy', 10, 1, 'fauzan@gmail.com', '081234', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$Od3nIlRZK1NgAJZ3LPwrAO/W6w7dbpDB02KWVqFqqlMqM0s136TAi', 'hc'),
-(44, '0223016', 'David ', 6, 2, 'fauzan@gmail.com', '0812345', 'Jl. Soekarno', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$h0xtSGL.mdS/tExigoSXmuvgAKwrtZP1XNCk6y0bTYMRN4xqO/t7y', 'hc'),
-(45, '0223017', 'Fauzan Naufal Ramadhani', 6, 1, 'fauzan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '500000', 'default.jpg', 'Project Base', '', '$2y$10$LE6zEyPO.9ytFdtfzCnuOeVX1BCDrg6.3GK9oLAju8F5kRhsJiu/G', 'hc'),
-(46, '0223018', 'Killua', 5, 1, 'fauzan@gmail.com', '0812344', 'Jl. Soekarno', 'Aktif', '5000000', 'ironman.png', 'Project Base', '', '$2y$10$vyR86e9xNQ.cutdtFfbLC.hCdk2HOwRsDOpplBGW6/kHCLtcZwoD.', 'hc'),
-(47, '0223019', 'Joni', 7, 2, 'jonijoniyesspapaa@gmail.com', '1124', 'Jl. apdas', 'Aktif', '5000000', 'default.jpg', 'Project Base', '123445', '$2y$10$PKGOpLBGgriabxpayNBB9ec/vK3kzHdIqSA8Z4a0.GCCTpDablKxO', 'biasa'),
-(48, '0223020', 'Pascal', 6, 1, 'fauzan@gmail.com', '081234556', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$p/3B8ySdV65Y37JqSC6ztONhma6UtiFAyljv.msAlaJwCZgwDSPrK', 'biasa'),
-(49, '0223021', 'Lionel Messi', 6, 1, 'ronaldo@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$itvxC.kAnIX3WpupOu1YKu/pIhpfHLxEbHhqmmG.R7H8cncEf5EOq', 'hc'),
-(50, '0223022', 'Hanif', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '$2y$10$ynew2YJcR9d4eh5sRfkcz.VgxEGSrsIQyhkGsrvEeOGWXXHzDb9RK', 'hc'),
-(51, '0223023', 'Rudy', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '$2y$10$5EAGuo5YJ2RWSr4JaryEmOM.8N3fSjRdDh0zFQRgv4NEH/jfKhlN.', 'hc'),
-(52, '0223024', 'Beni', 5, 1, 'fauzan@gmail.com', '0927421', 'Jl. Amerika', 'Aktif', '500000', 'default.jpg', 'Project Base', NULL, '$2y$10$A298uAll9ZYcTlAK77oHjuva2nr2ltoxAtBmBt.t6/eK2Oc39Vs56', 'hc'),
-(54, '0223026', 'Pascal', 6, 1, 'fauzan@gmail.com', '081234556', 'Jl. Ahmad Yani', 'Aktif', '5000000', 'default.jpg', 'Project Base', '', '$2y$10$p/3B8ySdV65Y37JqSC6ztONhma6UtiFAyljv.msAlaJwCZgwDSPrK', 'biasa'),
-(91, '0223025', 'Ahmad Kurniawan', 9, 1, 'Zidan@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '5000000', 'default.jpg', 'Project Base', '123445', '$2y$10$7C/B9OjZyaGZL65pRAXCveODkwpNpIpB.YFx9A01H5Y.lEfBOy/le', 'biasa'),
-(92, '0223029', 'Maman', 7, 1, 'maman@gmail.com', '81234', 'Jl. Abc', 'Aktif', '500000', 'default.jpg', '', '', '$2y$10$.ooIlHkVGLXm7CdtVnbauenCp91qyBHR6afxyB6IpOl7SViA/034q', 'hc'),
-(93, '0223030', 'Supri', 7, 1, 'maman@gmail.com', '81234', 'Jl. Abc', 'Aktif', '500000', 'default.jpg', '', '', '$2y$10$jCe6XNC1udoCl1mdoEuPtOoVoaQ2bHTthY122miWP01KbjlacENKm', 'hc');
+(24, '0223001', 'Hasbi Ceo', 5, 1, 'jonijoniyesspapaa@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '10000000', 'download_(1).png', 'Office', '', '$2y$10$EJnNLRQHgbT9X0In2BjLXu49zg4SymTKK.Z2ziNBHlDcugA07I2ba', 'ceo'),
+(25, '0223002', 'Hasbi Radifan', 5, 2, 'jonijoniyesspapaa@gmail.com', '54321', 'Jl. qwerty', 'Aktif', '12000000', 'default.jpg', 'Project Base', '', '$2y$10$oaI2q5EgZhYEEKfeeGx8/e.S5oZblAn/6uARbKTQUrVhYeARpriqK', 'hc'),
+(26, '0223003', 'Hasbi Karyawan', 10, 1, 'jonijoniyesspapaa@gmail.com', '081234', 'Jl. Ahmad Yani', 'Aktif', '12000000', 'default.jpg', 'Project Base', '02223004', '$2y$10$Od3nIlRZK1NgAJZ3LPwrAO/W6w7dbpDB02KWVqFqqlMqM0s136TAi', 'biasa'),
+(29, '0223005', 'Fauzan Naufal Ramadhani', 6, 1, 'jonijoniyesspapaa@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '12000000', 'default.jpg', 'Office', '', '$2y$10$LE6zEyPO.9ytFdtfzCnuOeVX1BCDrg6.3GK9oLAju8F5kRhsJiu/G', 'hc'),
+(32, '0223004', 'Hasbi Leader', 5, 1, 'jonijoniyesspapaa@gmail.com', '0812344', 'Jl. Soekarno', 'Aktif', '12000000', 'ironman.png', 'Office', '', '$2y$10$vyR86e9xNQ.cutdtFfbLC.hCdk2HOwRsDOpplBGW6/kHCLtcZwoD.', 'leader'),
+(34, '0223007', 'Joni', 7, 2, 'jonijoniyesspapaa@gmail.com', '1124', 'Jl. apdas', 'Aktif', '10000000', 'default.jpg', 'Office', '123445', '$2y$10$K8Df1cd4yz8de7vnzhUH0./wCDQqaPLOWYn66EPuU.leC2/db0BMS', 'biasa'),
+(37, '0223006', 'Lionel Messi', 6, 1, 'jonijoniyesspapaa@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '12000000', 'default.jpg', 'Office', '', '$2y$10$itvxC.kAnIX3WpupOu1YKu/pIhpfHLxEbHhqmmG.R7H8cncEf5EOq', 'leader'),
+(47, '022308', 'Joni', 7, 2, 'jonijoniyesspapaa@gmail.com', '1124', 'Jl. apdas', 'Aktif', '10000000', 'default.jpg', 'Project Base', '123445', '$2y$10$K8Df1cd4yz8de7vnzhUH0./wCDQqaPLOWYn66EPuU.leC2/db0BMS', 'biasa');
 
 -- --------------------------------------------------------
 
@@ -319,13 +300,14 @@ CREATE TABLE `payroll___pajak` (
 --
 
 INSERT INTO `payroll___pajak` (`id`, `id_datakaryawan`, `id_datapajak`) VALUES
-(2, 29, 12),
-(8, 32, 11),
-(10, 25, 12),
-(12, 35, 12),
-(13, 26, 12),
-(14, 24, 16),
-(15, 34, 10);
+(2, 29, 1),
+(8, 32, 1),
+(10, 25, 1),
+(13, 26, 1),
+(14, 24, 1),
+(16, 37, 1),
+(17, 34, 1),
+(18, 47, 1);
 
 -- --------------------------------------------------------
 
@@ -356,56 +338,22 @@ CREATE TABLE `payroll___pengajuangaji` (
 --
 
 INSERT INTO `payroll___pengajuangaji` (`id`, `bulan_tahun`, `id_datakaryawan`, `nama_posisi`, `type`, `gajipokok`, `pajak`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`, `total`, `status`) VALUES
-(610, '202305', 34, 'QA', 'Office', '5000000', '10', '750001', '750002', '750003', '0', '5000004', '0', 2249992, 'Belum dibayar'),
-(611, '202305', 25, 'Front End Developer', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '5000', '1000', 5175988, 'Belum dibayar'),
-(612, '202305', 27, 'Back End Developer', 'Office', '5000000', NULL, '60000', '45', '45', '450000', '500', '1', 5509591, 'Belum dibayar'),
-(613, '202305', 26, 'QC', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '500000', '0', 4679988, 'Belum dibayar'),
-(614, '202305', 32, 'Front End Developer', 'Office', '5000000', '11', '75000', '75000', '75000', '0', '500000', '0', 4724989, 'Sudah dibayar'),
-(615, '202305', 29, 'Back End Developer', 'Office', '500000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 499988, 'Belum dibayar'),
-(616, '202305', 35, 'Back End Developer', 'Office', '5000000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 4999988, 'Belum dibayar'),
-(617, '202305', 37, 'Back End Developer', 'Office', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(618, '202305', 38, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(619, '202305', 39, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(620, '202305', 40, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(621, '202305', 41, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(622, '202305', 42, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(623, '202305', 43, 'QC', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(624, '202305', 44, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(625, '202305', 45, 'Back End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(626, '202305', 46, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(627, '202305', 47, 'QA', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(628, '202305', 48, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(629, '202305', 49, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(630, '202305', 50, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(631, '202305', 51, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(632, '202305', 52, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(633, '202305', 54, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(634, '202305', 91, 'Fullstack Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(635, '202304', 34, 'QA', 'Office', '5000000', '10', '750001', '750002', '750003', '0', '5000004', '0', 2249992, 'Belum dibayar'),
-(636, '202304', 25, 'Front End Developer', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '5000', '1000', 5175988, 'Sudah dibayar'),
-(637, '202304', 27, 'Back End Developer', 'Office', '5000000', NULL, '60000', '45', '45', '450000', '500', '1', 5509591, 'Belum dibayar'),
-(638, '202304', 26, 'QC', 'Office', '5000000', '12', '60000', '60000', '60000', '0', '500000', '0', 4679988, 'Belum dibayar'),
-(639, '202304', 32, 'Front End Developer', 'Office', '5000000', '11', '75000', '75000', '75000', '0', '500000', '0', 4724989, 'Belum dibayar'),
-(640, '202304', 29, 'Back End Developer', 'Office', '500000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 499988, 'Belum dibayar'),
-(641, '202304', 35, 'Back End Developer', 'Office', '5000000', '12', NULL, NULL, NULL, NULL, NULL, NULL, 4999988, 'Belum dibayar'),
-(642, '202304', 37, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(643, '202304', 38, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(644, '202304', 39, 'Front End Developer', 'Office', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(645, '202304', 40, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(646, '202304', 41, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(647, '202304', 42, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(648, '202304', 43, 'QC', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(649, '202304', 44, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(650, '202304', 45, 'Back End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(651, '202304', 46, 'Front End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(652, '202304', 47, 'QA', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(653, '202304', 48, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(654, '202304', 49, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(655, '202304', 50, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(656, '202304', 51, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(657, '202304', 52, 'Front End Developer', 'Project Base', '500000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 500000, 'Belum dibayar'),
-(658, '202304', 54, 'Back End Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar'),
-(659, '202304', 91, 'Fullstack Developer', 'Project Base', '5000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5000000, 'Belum dibayar');
+(994, '202304', 24, 'Front End Developer', 'Office', '10000000', '250000', '500000', '700000', '1000000', '400000', '100000', '200000', 12450000, 'Belum dibayar'),
+(995, '202304', 25, 'Front End Developer', 'Office', '12000000', '250000', '1200000', '500000', '250000', '450000', '250000', '300000', 14200000, 'Belum dibayar'),
+(996, '202304', 26, 'QC', 'Office', '12000000', '250000', '1000000', '1000000', '200000', '300000', '150000', '0', 14100000, 'Belum dibayar'),
+(997, '202304', 29, 'Back End Developer', 'Office', '12000000', '250000', '500000', '500000', '1000000', '300000', '350000', '500000', 14200000, 'Belum dibayar'),
+(998, '202304', 32, 'Front End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '500000', '1000000', 16250000, 'Belum dibayar'),
+(999, '202304', 37, 'Back End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 15750000, 'Belum dibayar'),
+(1000, '202304', 34, 'QA', 'Office', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar'),
+(1001, '202304', 47, 'QA', 'Project Base', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar'),
+(1002, '202305', 24, 'Front End Developer', 'Office', '10000000', '250000', '500000', '700000', '1000000', '400000', '100000', '200000', 12450000, 'Belum dibayar'),
+(1003, '202305', 25, 'Front End Developer', 'Project Base', '12000000', '250000', '1200000', '500000', '250000', '450000', '250000', '300000', 14200000, 'Belum dibayar'),
+(1004, '202305', 26, 'QC', 'Project Base', '12000000', '250000', '1000000', '1000000', '200000', '300000', '150000', '0', 14100000, 'Belum dibayar'),
+(1005, '202305', 29, 'Back End Developer', 'Office', '12000000', '250000', '500000', '500000', '1000000', '300000', '350000', '500000', 14200000, 'Belum dibayar'),
+(1006, '202305', 32, 'Front End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '500000', '1000000', 16250000, 'Belum dibayar'),
+(1007, '202305', 37, 'Back End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 15750000, 'Belum dibayar'),
+(1008, '202305', 34, 'QA', 'Office', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar'),
+(1009, '202305', 47, 'QA', 'Project Base', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar');
 
 -- --------------------------------------------------------
 
@@ -426,10 +374,10 @@ CREATE TABLE `payroll___pengajuanratemitra` (
 --
 
 INSERT INTO `payroll___pengajuanratemitra` (`id`, `bulan_tahun`, `id_datamitra`, `rate_total`, `status`) VALUES
-(29, '202305', 14, '50000', 'Belum dibayar'),
-(30, '202305', 15, '50000', 'Sudah dibayar'),
-(31, '202304', 14, '50000', 'Sudah dibayar '),
-(32, '202304', 15, '50000', 'Belum dibayar');
+(29, '202305', 14, '50000', 'Sudah dibayar'),
+(33, '202304', 15, '50000', 'Sudah dibayar'),
+(37, '202304', 14, '50000', 'Belum dibayar'),
+(39, '202305', 15, '50000', 'Belum dibayar');
 
 -- --------------------------------------------------------
 
@@ -453,12 +401,15 @@ CREATE TABLE `payroll___perhitungan` (
 --
 
 INSERT INTO `payroll___perhitungan` (`id`, `id_datakaryawan`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`) VALUES
-(1, 34, '750001', '750002', '750003', '0', 5000004, 0),
-(4, 24, '50000', '50000', '10000', '0', 45000, 100000),
-(5, 25, '60000', '60000', '60000', '0', 5000, 1000),
+(4, 24, '500000', '700000', '1000000', '400000', 100000, 200000),
+(5, 25, '1200000', '500000', '250000', '450000', 250000, 300000),
 (6, 27, '60000', '45', '45', '450000', 500, 1),
-(7, 26, '60000', '60000', '60000', '0', 500000, 0),
-(8, 32, '75000', '75000', '75000', '0', 500000, 0);
+(7, 26, '1000000', '1000000', '200000', '300000', 150000, 0),
+(12, 29, '500000', '500000', '1000000', '300000', 350000, 500000),
+(13, 32, '1000000', '1000000', '1000000', '1000000', 500000, 1000000),
+(14, 37, '1000000', '1000000', '1000000', '1000000', 1000000, 1000000),
+(15, 34, '1000000', '1000000', '1000000', '1000000', 1000000, 1000000),
+(16, 47, '1000000', '1000000', '1000000', '1000000', 1000000, 1000000);
 
 -- --------------------------------------------------------
 
@@ -821,7 +772,7 @@ INSERT INTO `performances___penilaian_kuesioner` (`id_penilaian_kuesioner`, `nik
 (1, '0223001', '0223001', '04/2023', 98, 20, 'menilai diri sendiri'),
 (3, '0223002', '0223001', '04/2023', 97, 20, 'menilai ceo'),
 (4, '0223003', '0223001', '04/2023', 97, 20, 'menilai leader'),
-(5, '0223009', '0223001', '04/2023', 94, 20, 'menilai leader'),
+(5, '0223007', '0223001', '04/2023', 94, 20, 'menilai leader'),
 (9, '0223002', '0223002', '04/2023', 92, 19, 'semoga makin baik'),
 (10, '0223001', '0223002', '04/2023', 88, 20, 'mskkmes'),
 (11, '0223003', '0223002', '04/2023', 98, 20, 'kmdksnkds'),
@@ -866,6 +817,13 @@ CREATE TABLE `recruitment___pekerjaan` (
   `foto` varchar(255) NOT NULL,
   `deskripsi_pekerjaan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recruitment___pekerjaan`
+--
+
+INSERT INTO `recruitment___pekerjaan` (`id_pekerjaan`, `id_posisi`, `kualifikasi`, `tanggal_berakhir`, `foto`, `deskripsi_pekerjaan`) VALUES
+(3, '5', 'bhbhjv', '2023-04-22', 'default.jpg', 'bkjbk');
 
 -- --------------------------------------------------------
 
@@ -1314,15 +1272,7 @@ CREATE TABLE `user_token` (
 --
 
 INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
-(5, 'jonijoniyesspapaa@gmail.com', 'iOcuza62N9qaAwCOTtG4AbJvVwjq/35sZWSoACz4AI0=', 1677127473),
-(6, 'jonijoniyesspapaa@gmail.com', 'HOtF3cwTfe+/JdqPaeE8XLIh3w2LJ7DFaerRI1fCCaI=', 1677127480),
-(7, 'jonijoniyesspapaa@gmail.com', 'O2PGCXeKmkrui6b+9qeMEmKOjQ+vjI0/qQ7dM2qt5bw=', 1678330127),
 (8, 'fauzan@gmail.com', 'wlsgEN0n2uFSIZKfmlW9LOaY4ja56BN3U36NEyivjps=', 1678348592),
-(9, 'jonijoniyesspapaa@gmail.com', '8rv8WM3Am5VCrlKSdiuAS0R5NlXVDag2caxUXmCr3FI=', 1678883661),
-(10, 'jonijoniyesspapaa@gmail.com', 'PA2/Px4fpO9ZNScAB6lyJ/Lu0tUApN1nnQGbnwBW2K8=', 1678883858),
-(11, 'jonijoniyesspapaa@gmail.com', 'j8eftwnJriIKvq4JxQf1doKXL4jfbf2GKcDiDorfYO8=', 1678884000),
-(12, 'jonijoniyesspapaa@gmail.com', '232ASyubAVlhpPIcp2yBsdaI5mN2toi/djjUMt2mqgY=', 1678884353),
-(13, 'jonijoniyesspapaa@gmail.com', '70SQHqp2z852eHebWAjTjIjOEpcAa+UYuHcTNHt6z68=', 1678934226),
 (14, 'ronaldo@gmail.com', '8FkZo0Q/GCz7XlwwZ9nB+LuQt1T5B+fXee6nuBmHj9s=', 1679820161);
 
 --
@@ -1633,25 +1583,25 @@ ALTER TABLE `payroll___datapajak`
 -- AUTO_INCREMENT for table `payroll___pajak`
 --
 ALTER TABLE `payroll___pajak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `payroll___pengajuangaji`
 --
 ALTER TABLE `payroll___pengajuangaji`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=660;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1010;
 
 --
 -- AUTO_INCREMENT for table `payroll___pengajuanratemitra`
 --
 ALTER TABLE `payroll___pengajuanratemitra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `payroll___perhitungan`
 --
 ALTER TABLE `payroll___perhitungan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `performances___detail_penilaian_kuesioner`
@@ -1681,7 +1631,7 @@ ALTER TABLE `recruitment___hasiltes`
 -- AUTO_INCREMENT for table `recruitment___pekerjaan`
 --
 ALTER TABLE `recruitment___pekerjaan`
-  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `recruitment___pelamar`
@@ -1777,7 +1727,7 @@ ALTER TABLE `training__tb_soal`
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
