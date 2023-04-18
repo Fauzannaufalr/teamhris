@@ -154,7 +154,7 @@
                                     <button class="badge" style="background-color: gold; color: black;" data-toggle="modal"
                                         data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>"><i
                                             class="fas fa-edit"></i> Edit</button>
-                                    <button class="badge" style="background-color: #8b0000; color: antiquewhite"
+                                    <button class="badge" style="background-color: #cc0000; color: antiquewhite"
                                         data-toggle="modal" data-target="#modal-sm<?= $pk['id_penilaian_kinerja']; ?>"><i
                                             class="fas fa-trash-alt"></i> Hapus</button>
 
