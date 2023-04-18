@@ -6,7 +6,7 @@
             <!-- general form elements -->
             <div class="card">
                 <?= $this->session->flashdata('message'); ?>
-                <div class="card-header" style="background-color: #ff0000;">
+                <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: #ffffff;">Password</h3>
                 </div>
                 <!-- /.card-header -->
@@ -34,7 +34,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-danger" style="background-color: #ff0000;">Simpan</button>
+                        <button type="submit" class="btn btn-danger" style="background-color: #8b0000;">Simpan</button>
                     </div>
                 </form>
             </div>

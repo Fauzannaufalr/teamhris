@@ -65,7 +65,7 @@
                         <button type="button" class="btn" data-dismiss="modal"
                             style="background-color: #d4d4d4;">Tidak</button>
                         <a href="<?= base_url('auth/logout') ?>" type="submit" class="btn"
-                            style="background-color: #ff0000; color:white">Ya</a>
+                            style="background-color: #8b0000; color:white">Ya</a>
                     </div>
                 </div>
                 <!-- /.modal-content -->
