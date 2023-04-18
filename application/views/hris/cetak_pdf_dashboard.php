@@ -35,16 +35,14 @@
             <tr>
                 <th>Bulan </th>
                 <td>:</td>
-                <th>
-                    <?= $bulan ?>
-                </th>
+
+                <?= $bulan ?>
             </tr>
             <tr>
                 <th>Tahun</th>
                 <td>:</td>
-                <th>
-                    <?= $tahun ?>
-                </th>
+                <?= $tahun ?>
+
             </tr>
         </thead>
     </table>

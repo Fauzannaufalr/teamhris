@@ -99,7 +99,7 @@ class PenilaianKuesioner extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('Performances/PenilaianKuesioner');
+        redirect('performances/PenilaianKuesioner');
     }
 
     public function cetakKuesioner()

@@ -55,10 +55,10 @@
                     </button>
                     <?php if (count($akumulasi) > 0) { ?>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Performances/Akumulasi/cetakAkumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/Akumulasi/cetakAkumulasi?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak PDF</a>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Performances/Akumulasi/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/Akumulasi/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
@@ -189,22 +189,3 @@
     </div>
 </div>
 <!-- Akhir modal cetak penlilaian kinerja -->
-
-
-<script>
-    const nik_nama = document.getElementById("nik_nama");
-    const id_posisi = document.getElementById("id_posisi");
-    nik_nama.onchange = function (e) {
-        const nik = e.target.value;
-        fetch(`/teamhris/performances/penilaiankinerja/ajax_category?nik=${nik}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(response => response.json())
-            .then(response => {
-                id_posisi.value = response?.nama_posisi || ""
-            })
-    }
-</script>

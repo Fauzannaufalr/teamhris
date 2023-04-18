@@ -55,10 +55,10 @@
                     </button>
                     <?php if (count($penilaiankinerja) > 0) { ?>
                         <a class="btn btn-outline-success  ml-2"
-                            href="<?= base_url('Performances/penilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/PenilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak PDF</a>
                         <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Performances/PenilaianKinerja/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
+                            href="<?= base_url('performances/PenilaianKinerja/cetakExcel?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
                         <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
@@ -88,10 +88,10 @@
                         data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
                         Tambah Penilaian
                     </button>
-                    <a class="btn btn-outline-success" href=<?= base_url("Performances/PenilaianKinerja/Inputjamkerja") ?>
+                    <!-- <a class="btn btn-outline-success" href=
                         type="button";><i class="fas fa-plus"></i>
                         Input Jam Kerja
-                    </a> <br>
+                    </a> <br> -->
                     <button type="button" class="btn btn-outline-success mt-2" data-toggle="modal"
                         data-target="#importPenilaianKinerja"><i class="fas fa-plus"></i>
                         Import
@@ -184,7 +184,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('Performances/Penilaiankinerja/import') ?>" method="POST"
+            <form action="<?= base_url('performances/PenilaianKinerja/import') ?>" method="POST"
                 enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
@@ -219,7 +219,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('Performances/Penilaiankinerja/tambah') ?>" method="POST">
+            <form action="<?= base_url('performances/PenilaianKinerja/tambah') ?>" method="POST">
                 <div class="modal-body">
                     <div class=" form-group">
 
@@ -271,7 +271,7 @@
                     </button>
                 </div>
 
-                <form action="<?= base_url('Performances/Penilaiankinerja/ubah') ?>" method="POST">
+                <form action="<?= base_url('performances/PenilaianKinerja/ubah') ?>" method="POST">
                     <div class="modal-body">
                         <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
                         </h6>
@@ -346,7 +346,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>Performances/Penilaiankinerja/hapus/<?= $pk['id_penilaian_kinerja'] ?>"
+                    <a href="<?= base_url() ?>performances/PenilaianKinerja/hapus/<?= $pk['id_penilaian_kinerja'] ?>"
                         type="submit" class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
                 </div>
             </div>
@@ -386,7 +386,7 @@
     const id_posisi = document.getElementById("id_posisi");
     nik_nama.onchange = function (e) {
         const nik = e.target.value;
-        fetch(`/teamhris/Performances/PenilaianKinerja/ajax_category?nik=${nik}`, {
+        fetch(`/teamhris/performances/PenilaianKinerja/ajax_category?nik=${nik}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
