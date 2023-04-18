@@ -64,7 +64,8 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
                 </td>
 
                 <td style="text-align: center;">
-                    <?= $ndk['nik']; ?>
+                    <?= $ndk['nik'] . "<br>" .
+                        $ndk['nama_karyawan']; ?> ?>
                 </td>
 
                 <td>
