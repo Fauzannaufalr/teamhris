@@ -252,21 +252,21 @@ class PenilaianKinerja extends CI_Controller
     }
 
 
-    // public function Inputjamkerja()
-    // {
-    //     $data['title'] = "Jam Kerja";
-    //     $data['inputjamkerja'] = $this->PenilaianKinerja_Model->InputJamKerja();
+    public function Inputjamkerja()
+    {
+        $data['title'] = "Jam Kerja";
+        $data['inputjamkerja'] = $this->PenilaianKinerja_Model->InputJamKerja();
 
 
-    //     $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-    //     $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-    //     $data['user'] = $this->Hris_model->ambilUser();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['user'] = $this->Hris_model->ambilUser();
 
-    //     $this->load->view('templates/header', $data);
-    //     $this->load->view('templates/navbar', $data);
-    //     $this->load->view('templates/sidebar', $data);
-    //     $this->load->view('performances/inputjamkerja', $data);
-    // }
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/penilaiankinerja/inputjamkerja', $data);
+    }
 
     public function ajax_category()
     {
