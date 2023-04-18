@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 04:50 AM
+-- Generation Time: Apr 18, 2023 at 05:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -74,7 +74,7 @@ INSERT INTO `data_karyawan` (`id_karyawan`, `nik`, `nama_karyawan`, `id_posisi`,
 (24, '0223001', 'Hasbi Ceo', 5, 1, 'jonijoniyesspapaa@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '10000000', 'download_(1).png', 'Office', '', '$2y$10$EJnNLRQHgbT9X0In2BjLXu49zg4SymTKK.Z2ziNBHlDcugA07I2ba', 'ceo'),
 (25, '0223002', 'Hasbi Radifan', 5, 2, 'jonijoniyesspapaa@gmail.com', '54321', 'Jl. qwerty', 'Aktif', '12000000', 'default.jpg', 'Project Base', '', '$2y$10$oaI2q5EgZhYEEKfeeGx8/e.S5oZblAn/6uARbKTQUrVhYeARpriqK', 'hc'),
 (26, '0223003', 'Hasbi Karyawan', 10, 1, 'jonijoniyesspapaa@gmail.com', '081234', 'Jl. Ahmad Yani', 'Aktif', '12000000', 'default.jpg', 'Project Base', '02223004', '$2y$10$Od3nIlRZK1NgAJZ3LPwrAO/W6w7dbpDB02KWVqFqqlMqM0s136TAi', 'biasa'),
-(29, '0223005', 'Fauzan Naufal Ramadhani', 6, 1, 'jonijoniyesspapaa@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '12000000', 'default.jpg', 'Office', '', '$2y$10$LE6zEyPO.9ytFdtfzCnuOeVX1BCDrg6.3GK9oLAju8F5kRhsJiu/G', 'hc'),
+(29, '0223005', 'Fauzan Naufal Ramadhani', 6, 1, 'jonijoniyesspapaa@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '12000000', 'default.jpg', 'Office', '', '$2y$10$LE6zEyPO.9ytFdtfzCnuOeVX1BCDrg6.3GK9oLAju8F5kRhsJiu/G', 'biasa'),
 (32, '0223004', 'Hasbi Leader', 5, 1, 'jonijoniyesspapaa@gmail.com', '0812344', 'Jl. Soekarno', 'Aktif', '12000000', 'ironman.png', 'Office', '', '$2y$10$vyR86e9xNQ.cutdtFfbLC.hCdk2HOwRsDOpplBGW6/kHCLtcZwoD.', 'leader'),
 (34, '0223007', 'Joni', 7, 2, 'jonijoniyesspapaa@gmail.com', '1124', 'Jl. apdas', 'Aktif', '10000000', 'default.jpg', 'Office', '123445', '$2y$10$K8Df1cd4yz8de7vnzhUH0./wCDQqaPLOWYn66EPuU.leC2/db0BMS', 'biasa'),
 (37, '0223006', 'Lionel Messi', 6, 1, 'jonijoniyesspapaa@gmail.com', '081223583131', 'Jl. Pagarsih Barat, Gg. Madrasah No 255', 'Aktif', '12000000', 'default.jpg', 'Office', '', '$2y$10$itvxC.kAnIX3WpupOu1YKu/pIhpfHLxEbHhqmmG.R7H8cncEf5EOq', 'leader'),
@@ -839,7 +839,11 @@ CREATE TABLE `recruitment___pelamar` (
   `status` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `hasil_interview` varchar(255) NOT NULL,
-  `telepon` int(11) NOT NULL
+  `telepon` int(11) NOT NULL,
+  `tanggal_interview` date NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_berakhir` time NOT NULL,
+  `link_interview` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1000,9 +1004,9 @@ CREATE TABLE `tb_peserta` (
 --
 
 INSERT INTO `tb_peserta` (`id_peserta`, `id_posisi`, `id_karyawan`, `id_jenis_ujian`, `tanggal_ujian`, `jam_ujian`, `deadline`, `durasi_ujian`, `timer_ujian`, `status_ujian`, `status_ujian_ujian`, `benar`, `salah`, `nilai`, `soal_file`, `jawaban_file`) VALUES
-(8, 7, 2, 1, '2020-06-13', '15:46:00', '00:00:00', 5, 300, 2, 2, '0', '0', '0', '', ''),
-(52, 5, 30, 8, '2023-03-29', '15:15:00', '00:00:00', 120, 7200, 2, 2, '0', '4', '0', '', ''),
-(53, 5, 30, 8, '2023-03-30', '14:50:00', '00:00:00', 15, 900, 2, 2, '3', '3', '50', '', '');
+(8, 7, 47, 1, '2020-06-13', '15:46:00', '00:00:00', 5, 300, 2, 2, '0', '0', '0', '', ''),
+(52, 5, 29, 8, '2023-03-29', '15:15:00', '00:00:00', 120, 7200, 2, 2, '0', '4', '0', '', ''),
+(53, 5, 32, 8, '2023-03-30', '14:50:00', '00:00:00', 15, 900, 2, 2, '3', '3', '50', '', '');
 
 -- --------------------------------------------------------
 
