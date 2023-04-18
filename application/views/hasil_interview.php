@@ -4,12 +4,7 @@
             <table cellpadding="0" cellspacing="0" border="0" width="600" style="border-collapse: collapse;">
                 <tr>
                     <td>
-                        <h4>diterima/ditolak</h4>
-                        <p>Kepada Yth...</p>
-                        <br>
-                        <p>Kami dari PT. SAHAWARE TEKNOLOGI INDONESIA menerima/menolak </p>
-                        <h4>diterima/ditolak</h4>
-                        <p><?php echo $hasil_interview ?></p </td>
+                        <p> PT. Sahaware Teknologi Indonesia, dengan ini kami memberitahu Saudara bahwa anda <?php echo $hasil_interview ?> untuk tahap sesi Interview.</p>
 
                 </tr>
 

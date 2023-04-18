@@ -104,7 +104,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('detailpekerjaan/upload_cv') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('Detailpekerjaan/upload_cv') ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id_posisi" value="<?= $pekerjaan['id_posisi'] ?>">
                     <input type="hidden" name="id" value="<?= $pekerjaan['id_pekerjaan'] ?>">
                     <div class="modal-body">

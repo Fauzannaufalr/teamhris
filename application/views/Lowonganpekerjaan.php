@@ -2,54 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= base_url('dist/css/stylehalaman.css') ?>" type="text/css" />
-    <link rel="stylesheet" href="<?= base_url() ?>plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>plugins/fontawesome-free/css/all.min.css" />
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="<?= base_url() ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" />
     <!-- Toastr -->
-    <link rel="stylesheet" href="<?= base_url() ?>plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>plugins/toastr/toastr.min.css" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
     <title>Tampilan Awal</title>
 </head>
 
 <body>
-
-
     <section class="foto">
         <div class="foto-carve">
             <div class="overlay">
                 <div class="lowongan">
-
                     <h3>PT. Sahaware Teknologi Indonesia</h3>
-                    <p>Membuka kesempatan berkarir <br> bersama kami</p>
+                    <p>Membuka kesempatan berkarir <br /> bersama kami</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-
+    <div style="text-align: center; margin-top: 2rem;">
+        <h4>Lowongan Tersedia</h4>
+    </div>
     <div class="container" style="margin: auto; max-width: fit-content; padding: 10px;">
-        <div class="row" style="margin-top: 100px;">
+        <div class="row justify-content-center">
             <?php foreach ($pekerjaan as $pk) : ?>
-                <div class="card" style="width: 18rem; margin-left: 5px; margin-right: 5px;">
+                <div class="card mx-2 mb-4" style="width: 18rem;">
                     <center>
                         <h3><?= $pk['nama_posisi']; ?></h3>
                     </center>
-                    <img src="<?= base_url('dist/img/profile/') . $pk['foto']; ?>" class="card-img-top" alt="...">
+                    <img src="<?= base_url('dist/img/lowongan/') . $pk['foto']; ?>" class="card-img-top" alt="..." />
                     <div class="card-body">
-                        <div class="row">
-
-                            <a href="<?= base_url() ?>detailpekerjaan/index/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4" ; class="btn btn-">
-                                Info Lengkap
-                            </a>
-                            <a type="button" style="margin-left:50px; background-color: #d63638" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv<?= $pk['id_pekerjaan'] ?>">
-                                Upload CV
-                            </a>
+                        <div class="row justify-content-center">
+                            <a href="<?= base_url() ?>detailpekerjaan/index/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4; margin-right: 1rem;" ; class="btn btn-sm">Info Lengkap</a>
+                            <a type="button" style="background-color: #d63638;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#uploadcv<?= $pk['id_pekerjaan'] ?>">Upload CV</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +62,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="<?= base_url('tampilan/upload_cv') ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?= base_url('Lowonganpekerjaan/upload_cv') ?>" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="id_posisi" value="<?= $pk['id_posisi'] ?>">
                         <div class="modal-body">
                             <div class="form-group">

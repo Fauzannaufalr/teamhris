@@ -6,7 +6,7 @@ class Hasiltes extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Recruitment/Hasiltes_model');
+        $this->load->model('recruitment/Hasiltes_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
         $this->load->helper(array('url', 'download'));
@@ -43,7 +43,7 @@ class Hasiltes extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/Berinilai');
+        redirect('recruitment/Hasiltes');
     }
 
     public function download_file($filename)
@@ -69,6 +69,6 @@ class Hasiltes extends CI_Controller
         $this->db->where('id_hasiltes', $id);
         $this->db->update('recruitment___hasiltes', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> siap dinilai</div>');
-        redirect('recruitment/hasiltes');
+        redirect('recruitment/Hasiltes');
     }
 }

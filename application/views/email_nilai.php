@@ -4,25 +4,19 @@
             <table cellpadding="0" cellspacing="0" border="0" width="600" style="border-collapse: collapse;">
                 <tr>
                     <td>
-                        <h4>diterima/ditolak</h4>
-                        <p>Kepada Yth...</p>
-                        <br>
-                        <p>Kami dari PT. SAHAWARE TEKNOLOGI INDONESIA menerima/menolak </p>
-                        <h4>Status</h4>
-                        <p><?php echo $status ?></p>
-                        <h4>Beri Nilai</h4>
-                        <p><?php echo $nilai; ?></p>
-                        <h4>SUrat diterima/ ditolak</h4>
-                        <p><?php echo $berkas; ?></p>
-                        <h4>jadwalkan interview lanjutan</h4>
-                        <p><?php echo $jadwal; ?></p>
+                        < <?php foreach ($dataposisi as $dp) : ?> <?php if ($dp['id_posisi'] == $id_posisi) : ?> <p>Terima kasih sudah mengikuti rangkaian seleksi untuk posisi <?= $dp['nama_posisi']; ?>, di PT. Sahaware Teknologi Indonesia, dengan ini kami mengumumkan bahwa Saudara Terpilih sebagai kandidat <?= $dp['nama_posisi']; ?>. Untuk tahap selanjutnya apakah bisa datang ke kantor sahaware untuk diskusi kompensasi lebih lanjut, informasi sebagai berikut</p>
+                            </p>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <h4>Tanggal</h4>
+                    <p><?php echo $tanggal; ?></p>
+                    <h4>Jam</h4>
+                    <p><?php echo $jam; ?></p>
+                    <h4>Bertemu dengan</h4>
+                    <p><?php echo $bertemu; ?></p>
+                    <h4>Anda lulus dengan nilai tes </h4>
+                    <p><?php echo $nilai; ?></p>
 
-                    </td>
-
-                </tr>
-                <tr>
-                    <td bgcolor="#ffffff" align="center" style="padding: 20px;">
-                        <a href="<?php echo $gmeet; ?>" target="_blank" style="color: #000000; text-decoration: none; font-size: 18px; font-weight: bold;">Klik Join With Google Meet </a>
                     </td>
                 </tr>
             </table>

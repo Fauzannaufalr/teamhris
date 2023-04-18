@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-class DetailPekerjaan extends CI_Controller
+class Detailpekerjaan extends CI_Controller
 {
     public function __construct()
     {
@@ -36,7 +36,7 @@ class DetailPekerjaan extends CI_Controller
             }
         }
         $data['array_kualifikasi'] = $array_kualifikasi;
-        $this->load->view('detailpekerjaan', $data);
+        $this->load->view('Detailpekerjaan', $data);
     }
 
     public function upload_cv()
@@ -74,6 +74,6 @@ class DetailPekerjaan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('detailpekerjaan/index/' . $id);
+        redirect('Detailpekerjaan/index/' . $id);
     }
 }

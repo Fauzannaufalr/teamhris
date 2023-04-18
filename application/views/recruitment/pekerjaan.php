@@ -63,7 +63,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('recruitment/pekerjaan/tambah') ?>" method="POST">
+            <form action="<?= base_url('recruitment/Pekerjaan/tambah_pekerjaan') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Posisi</label>
@@ -114,7 +114,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/pekerjaan/ubah') ?>" method="POST">
+                <form action="<?= base_url('recruitment/pekerjaan/ubah_pekerjaan') ?>" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="id_pekerjaan" value="<?= $it['id_pekerjaan']; ?>">
                         <div class="form-group">
@@ -122,7 +122,11 @@
                             <select class="form-control" name="posisi">
                                 <option value="">-- Pilih Posisi --</option>
                                 <?php foreach ($dataposisi as $dp) : ?>
-                                    <option value="<?= $dp['id_posisi']; ?>"><?= $it['nama_posisi']; ?></option>
+                                    <?php if ($dp['id_posisi'] == $dk['id_posisi']) : ?>
+                                        <option value="<?= $dp['id_posisi']; ?>" selected><?= $dp['nama_posisi'] ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $dp['id_posisi']; ?>"><?= $dp['nama_posisi'] ?></option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
