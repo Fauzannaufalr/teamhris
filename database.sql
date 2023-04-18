@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2023 at 08:18 AM
+-- Generation Time: Apr 18, 2023 at 04:50 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -58,7 +58,7 @@ CREATE TABLE `data_karyawan` (
   `telepon` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `status` varchar(100) NOT NULL,
-  `gajipokok` decimal(10,0) NOT NULL,
+  `gajipokok` decimal(10,0) NOT NULL DEFAULT 0,
   `foto` varchar(50) NOT NULL,
   `type` varchar(255) NOT NULL,
   `nik_leader` varchar(100) DEFAULT NULL,
@@ -321,15 +321,15 @@ CREATE TABLE `payroll___pengajuangaji` (
   `id_datakaryawan` int(11) NOT NULL,
   `nama_posisi` varchar(155) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `gajipokok` decimal(20,0) NOT NULL,
-  `pajak` decimal(20,0) DEFAULT NULL,
-  `t_kinerja` decimal(20,0) DEFAULT NULL,
-  `t_fungsional` decimal(10,0) DEFAULT NULL,
-  `t_jabatan` decimal(10,0) DEFAULT NULL,
-  `t_bpjs` decimal(10,0) DEFAULT NULL,
-  `potongan` decimal(20,0) DEFAULT NULL,
-  `bonus` decimal(20,0) DEFAULT NULL,
-  `total` int(11) NOT NULL,
+  `gajipokok` decimal(20,0) NOT NULL DEFAULT 0,
+  `pajak` decimal(20,0) DEFAULT 0,
+  `t_kinerja` decimal(20,0) DEFAULT 0,
+  `t_fungsional` decimal(10,0) DEFAULT 0,
+  `t_jabatan` decimal(10,0) DEFAULT 0,
+  `t_bpjs` decimal(10,0) DEFAULT 0,
+  `potongan` decimal(20,0) DEFAULT 0,
+  `bonus` decimal(20,0) DEFAULT 0,
+  `total` decimal(10,0) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -338,22 +338,22 @@ CREATE TABLE `payroll___pengajuangaji` (
 --
 
 INSERT INTO `payroll___pengajuangaji` (`id`, `bulan_tahun`, `id_datakaryawan`, `nama_posisi`, `type`, `gajipokok`, `pajak`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`, `total`, `status`) VALUES
-(994, '202304', 24, 'Front End Developer', 'Office', '10000000', '250000', '500000', '700000', '1000000', '400000', '100000', '200000', 12450000, 'Belum dibayar'),
-(995, '202304', 25, 'Front End Developer', 'Office', '12000000', '250000', '1200000', '500000', '250000', '450000', '250000', '300000', 14200000, 'Belum dibayar'),
-(996, '202304', 26, 'QC', 'Office', '12000000', '250000', '1000000', '1000000', '200000', '300000', '150000', '0', 14100000, 'Belum dibayar'),
-(997, '202304', 29, 'Back End Developer', 'Office', '12000000', '250000', '500000', '500000', '1000000', '300000', '350000', '500000', 14200000, 'Belum dibayar'),
-(998, '202304', 32, 'Front End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '500000', '1000000', 16250000, 'Belum dibayar'),
-(999, '202304', 37, 'Back End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 15750000, 'Belum dibayar'),
-(1000, '202304', 34, 'QA', 'Office', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar'),
-(1001, '202304', 47, 'QA', 'Project Base', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar'),
-(1002, '202305', 24, 'Front End Developer', 'Office', '10000000', '250000', '500000', '700000', '1000000', '400000', '100000', '200000', 12450000, 'Belum dibayar'),
-(1003, '202305', 25, 'Front End Developer', 'Project Base', '12000000', '250000', '1200000', '500000', '250000', '450000', '250000', '300000', 14200000, 'Belum dibayar'),
-(1004, '202305', 26, 'QC', 'Project Base', '12000000', '250000', '1000000', '1000000', '200000', '300000', '150000', '0', 14100000, 'Belum dibayar'),
-(1005, '202305', 29, 'Back End Developer', 'Office', '12000000', '250000', '500000', '500000', '1000000', '300000', '350000', '500000', 14200000, 'Belum dibayar'),
-(1006, '202305', 32, 'Front End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '500000', '1000000', 16250000, 'Belum dibayar'),
-(1007, '202305', 37, 'Back End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 15750000, 'Belum dibayar'),
-(1008, '202305', 34, 'QA', 'Office', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar'),
-(1009, '202305', 47, 'QA', 'Project Base', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', 13750000, 'Belum dibayar');
+(994, '202304', 24, 'Front End Developer', 'Office', '10000000', '250000', '500000', '700000', '1000000', '400000', '100000', '200000', '12450000', 'Belum dibayar'),
+(995, '202304', 25, 'Front End Developer', 'Office', '12000000', '250000', '1200000', '500000', '250000', '450000', '250000', '300000', '14200000', 'Belum dibayar'),
+(996, '202304', 26, 'QC', 'Office', '12000000', '250000', '1000000', '1000000', '200000', '300000', '150000', '0', '14100000', 'Belum dibayar'),
+(997, '202304', 29, 'Back End Developer', 'Office', '12000000', '250000', '500000', '500000', '1000000', '300000', '350000', '500000', '14200000', 'Belum dibayar'),
+(998, '202304', 32, 'Front End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '500000', '1000000', '16250000', 'Belum dibayar'),
+(999, '202304', 37, 'Back End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', '15750000', 'Belum dibayar'),
+(1000, '202304', 34, 'QA', 'Office', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', '13750000', 'Belum dibayar'),
+(1001, '202304', 47, 'QA', 'Project Base', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', '13750000', 'Belum dibayar'),
+(1010, '202305', 24, 'Front End Developer', 'Office', '10000000', '250000', '500000', '700000', '1000000', '400000', '100000', '200000', '12450000', 'Belum dibayar'),
+(1011, '202305', 25, 'Front End Developer', 'Project Base', '12000000', '250000', '1200000', '500000', '250000', '450000', '250000', '300000', '14200000', 'Belum dibayar'),
+(1012, '202305', 26, 'QC', 'Project Base', '12000000', '250000', '1000000', '1000000', '200000', '300000', '150000', '0', '14100000', 'Belum dibayar'),
+(1013, '202305', 29, 'Back End Developer', 'Office', '12000000', '250000', '500000', '500000', '1000000', '300000', '350000', '500000', '14200000', 'Belum dibayar'),
+(1014, '202305', 32, 'Front End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '500000', '1000000', '16250000', 'Belum dibayar'),
+(1015, '202305', 37, 'Back End Developer', 'Office', '12000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', '15750000', 'Belum dibayar'),
+(1016, '202305', 34, 'QA', 'Office', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', '13750000', 'Belum dibayar'),
+(1017, '202305', 47, 'QA', 'Project Base', '10000000', '250000', '1000000', '1000000', '1000000', '1000000', '1000000', '1000000', '13750000', 'Belum dibayar');
 
 -- --------------------------------------------------------
 
@@ -365,7 +365,7 @@ CREATE TABLE `payroll___pengajuanratemitra` (
   `id` int(11) NOT NULL,
   `bulan_tahun` varchar(30) NOT NULL,
   `id_datamitra` int(11) NOT NULL,
-  `rate_total` decimal(10,0) DEFAULT NULL,
+  `rate_total` decimal(10,0) DEFAULT 0,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -388,12 +388,12 @@ INSERT INTO `payroll___pengajuanratemitra` (`id`, `bulan_tahun`, `id_datamitra`,
 CREATE TABLE `payroll___perhitungan` (
   `id` int(11) NOT NULL,
   `id_datakaryawan` int(11) NOT NULL,
-  `t_kinerja` decimal(10,0) NOT NULL,
-  `t_fungsional` decimal(10,0) NOT NULL,
-  `t_jabatan` decimal(10,0) NOT NULL,
-  `t_bpjs` decimal(10,0) NOT NULL,
-  `potongan` int(11) NOT NULL,
-  `bonus` int(11) NOT NULL
+  `t_kinerja` decimal(10,0) NOT NULL DEFAULT 0,
+  `t_fungsional` decimal(10,0) NOT NULL DEFAULT 0,
+  `t_jabatan` decimal(10,0) NOT NULL DEFAULT 0,
+  `t_bpjs` decimal(10,0) NOT NULL DEFAULT 0,
+  `potongan` decimal(10,0) NOT NULL DEFAULT 0,
+  `bonus` decimal(10,0) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -401,15 +401,15 @@ CREATE TABLE `payroll___perhitungan` (
 --
 
 INSERT INTO `payroll___perhitungan` (`id`, `id_datakaryawan`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`) VALUES
-(4, 24, '500000', '700000', '1000000', '400000', 100000, 200000),
-(5, 25, '1200000', '500000', '250000', '450000', 250000, 300000),
-(6, 27, '60000', '45', '45', '450000', 500, 1),
-(7, 26, '1000000', '1000000', '200000', '300000', 150000, 0),
-(12, 29, '500000', '500000', '1000000', '300000', 350000, 500000),
-(13, 32, '1000000', '1000000', '1000000', '1000000', 500000, 1000000),
-(14, 37, '1000000', '1000000', '1000000', '1000000', 1000000, 1000000),
-(15, 34, '1000000', '1000000', '1000000', '1000000', 1000000, 1000000),
-(16, 47, '1000000', '1000000', '1000000', '1000000', 1000000, 1000000);
+(4, 24, '500000', '700000', '1000000', '400000', '100000', '200000'),
+(5, 25, '1200000', '500000', '250000', '450000', '250000', '300000'),
+(6, 27, '60000', '45', '45', '450000', '500', '1'),
+(7, 26, '1000000', '1000000', '200000', '300000', '150000', '0'),
+(12, 29, '500000', '500000', '1000000', '300000', '350000', '500000'),
+(13, 32, '1000000', '1000000', '1000000', '1000000', '500000', '1000000'),
+(14, 37, '1000000', '1000000', '1000000', '1000000', '1000000', '1000000'),
+(15, 34, '1000000', '1000000', '1000000', '1000000', '1000000', '1000000'),
+(16, 47, '1000000', '1000000', '1000000', '1000000', '1000000', '1000000');
 
 -- --------------------------------------------------------
 
@@ -732,10 +732,10 @@ INSERT INTO `performances___detail_penilaian_kuesioner` (`id_detail_penilaian`, 
 CREATE TABLE `performances___penilaian_kinerja` (
   `id_penilaian_kinerja` int(11) NOT NULL,
   `nik` varchar(100) NOT NULL,
-  `nilai` int(11) NOT NULL,
   `tanggal` varchar(100) NOT NULL,
   `total_kerja` varchar(50) NOT NULL,
   `done_kerja` varchar(50) NOT NULL,
+  `nilai` int(11) NOT NULL,
   `kategorisasi` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -743,10 +743,10 @@ CREATE TABLE `performances___penilaian_kinerja` (
 -- Dumping data for table `performances___penilaian_kinerja`
 --
 
-INSERT INTO `performances___penilaian_kinerja` (`id_penilaian_kinerja`, `nik`, `nilai`, `tanggal`, `total_kerja`, `done_kerja`, `kategorisasi`) VALUES
-(32, '0223001', 95, '04/2023', '20', '19', 'Sangat Baik'),
-(33, '0223002', 90, '04/2023', '20', '18', 'Sangat Baik'),
-(34, '0223003', 75, '04/2023', '20', '15', 'Baik');
+INSERT INTO `performances___penilaian_kinerja` (`id_penilaian_kinerja`, `nik`, `tanggal`, `total_kerja`, `done_kerja`, `nilai`, `kategorisasi`) VALUES
+(32, '0223001', '04/2023', '20', '19', 95, 'Sangat Baik'),
+(33, '0223002', '04/2023', '20', '18', 90, 'Sangat Baik'),
+(34, '0223003', '04/2023', '20', '15', 75, 'Baik');
 
 -- --------------------------------------------------------
 
@@ -1529,7 +1529,7 @@ ALTER TABLE `data_akun`
 -- AUTO_INCREMENT for table `data_karyawan`
 --
 ALTER TABLE `data_karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `data_keseluruhan`
@@ -1589,7 +1589,7 @@ ALTER TABLE `payroll___pajak`
 -- AUTO_INCREMENT for table `payroll___pengajuangaji`
 --
 ALTER TABLE `payroll___pengajuangaji`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1010;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1018;
 
 --
 -- AUTO_INCREMENT for table `payroll___pengajuanratemitra`
