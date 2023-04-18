@@ -10,7 +10,7 @@
         if ($this->session->userdata('level') !== 'biasa') { ?>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="<?= base_url('Performances/PenilaianKinerja') ?>" class="nav-link "
+                    <a href="<?= base_url('performances/PenilaianKinerja') ?>" class="nav-link "
                         style="background-color: #ffffff; color: black;">
                         <p>Penilaian Kinerja</p>
                     </a>
@@ -22,7 +22,7 @@
         if ($this->session->userdata('level') !== 'biasa') { ?>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="<?= base_url('Performances/PenilaianKuesioner') ?>" class="nav-link "
+                    <a href="<?= base_url('performances/PenilaianKuesioner') ?>" class="nav-link "
                         style="background-color: #ffffff; color: black;">
                         <p>Penilaian Kuesioner</p>
                     </a>
@@ -31,7 +31,7 @@
         <?php } ?>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('Performances/MenilaidiriSendiri') ?>" class="nav-link "
+            <a href="<?= base_url('performances/MenilaiDiriSendiri') ?>" class="nav-link "
                 style="background-color: #ffffff; color: black;">
                 <p>Menilai Diri Sendiri</p>
             </a>
@@ -41,7 +41,7 @@
 
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('Performances/MenilaiLeader') ?>" class="nav-link "
+            <a href="<?= base_url('performances/MenilaiLeader') ?>" class="nav-link "
                 style="background-color: #ffffff; color: black;">
                 <p>Menilai Leader</p>
             </a>
@@ -50,7 +50,7 @@
 
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('Performances/MenilaiRekan1') ?>" class="nav-link "
+            <a href="<?= base_url('performances/MenilaiRekan1') ?>" class="nav-link "
                 style="background-color: #ffffff; color: black;">
                 <p>Menilai Rekan 1</p>
             </a>
@@ -58,7 +58,7 @@
     </ul>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="<?= base_url('Performances/MenilaiRekan2') ?>" class="nav-link "
+            <a href="<?= base_url('performances/MenilaiRekan2') ?>" class="nav-link "
                 style="background-color: #ffffff; color: black;">
                 <p>Menilai Rekan 2</p>
             </a>
