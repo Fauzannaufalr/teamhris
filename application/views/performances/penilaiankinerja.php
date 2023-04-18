@@ -386,7 +386,7 @@
     const id_posisi = document.getElementById("id_posisi");
     nik_nama.onchange = function (e) {
         const nik = e.target.value;
-        fetch(`/teamhris/performances/PenilaianKinerja/ajax_category?nik=${nik}`, {
+        fetch(`/teamhris/performances/penilaiankinerja/ajax_category?nik=${nik}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
