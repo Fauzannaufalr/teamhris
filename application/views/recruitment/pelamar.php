@@ -29,21 +29,22 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                             <td><?= $ds['email']; ?></td>
-                            <td><a href="<?php echo base_url('recruitment/pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
+                            <td><a href="<?php echo base_url('recruitment/Pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
                             <td><?= $ds['telepon']  ?></td>
-                            <td><a href="<?php echo base_url('recruitment/pelamar/download_hasil/' . $ds['hasil_interview']); ?>"><span class="glyphicon glyphicon-download-alt">Hasil Interview</a></td>
+                            <td><a href="<?php echo base_url('recruitment/Pelamar/download_hasil/' . $ds['hasil_interview']); ?>"><span class="glyphicon glyphicon-download-alt">Hasil Interview</a></td>
                             <td><?= $ds['status']; ?></td>
                             <td>
                                 <?php if ($ds['status'] == 'pelamar') : ?>
                                     <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                                 <?php elseif ($ds['status'] == 'Proses Interview') : ?>
+                                    <button class="badge" data-toggle="modal" style="background-color: 	#000080; color: antiquewhite" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-calendar-alt"></i>Jadwal Interview</button>
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#hasilModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i>Hasil Interiview</button>
                                 <?php elseif ($ds['status'] == 'lulus') : ?>
-                                    <button class="badge badge-warning" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
+                                    <button class="badge" style="background-color: 	#6B8E23; color: antiquewhite" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
-                                    <button class="badge badge-primary" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"> Beri Nilai</button>
+                                    <button class="badge" style="background-color: 	#2F4F4F; color: antiquewhite" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-pen"></i> Beri Nilai</button>
                                 <?php endif; ?>
-                                <button class="badge badge-danger" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar']; ?>">Hapus</button>
+                                <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar'] ?>"><i class="fas fa-trash-alt"></i>hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -72,7 +73,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>recruitment/pelamar/hapus/<?= $ds['id_pelamar'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>recruitment/pelamar/hapus/<?= $ds['id_pelamar'] ?>" type="submit" class="btn" style="background-color: #cc0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -98,7 +99,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('recruitment/Pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <input type="hidden" name="id_pekerjaan" value="<?= $ds['id_pekerjaan']; ?>">
@@ -107,11 +108,11 @@
                             <input type="date" class="form-control" id="tanggal" name="tanggal">
                         </div>
                         <div class="form-group">
-                            <label for="mulai">Mulai:</label>
+                            <label for="mulai">Jam Mulai:</label>
                             <input type="time" id="mulai" name="mulai" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="akhir">Berakhir:</label>
+                            <label for="akhir">Jam Berakhir:</label>
                             <input type="time" id="akhir" name="akhir" class="form-control">
                         </div>
                         <div class="form-group">
@@ -121,7 +122,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Kirim</button>
+                        <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
 
                     </div>
                 </form>
@@ -132,7 +133,7 @@
 
 
 <?php foreach ($pelamar as $ds) : ?>
-    <!-- Modal kirim slip -->
+    <!-- Modal jadwal -->
     <div class="modal fade" id="jadwalModal<?= $ds['id_pelamar']; ?>" tabindex="-1" aria-labelledby="jadwalModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -142,25 +143,29 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('recruitment/Pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <div class="form-group">
                             <label for="tanggal">Tanggal Interview</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= $ds['tanggal_interview']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="mulai">Jam Mulai:</label>
+                            <input type="time" id="mulai" name="mulai" class="form-control" value="<?= $ds['jam_mulai']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="akhir">Jam Berakhir:</label>
+                            <input type="time" id="akhir" name="akhir" class="form-control" value="<?= $ds['jam_berakhir']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="gmeet">Link Google Meet</label>
-                            <input type="text" class="form-control" id="gmeet" name="gmeet">
-                        </div>
-                        <div class="form-group">
-                            <label for="bertemu">Bertemu dengan</label>
-                            <input type="text" class="form-control" id="bertemu" name="bertemu">
+                            <input type="text" class="form-control" id="gmeet" name="gmeet" value="<?= $ds['link_interview']; ?>">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Kirim</button>
+
 
                     </div>
                 </form>
@@ -181,9 +186,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/pelamar/soal/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('recruitment/Pelamar/soal/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
+                        <input type="hidden" name="id_pekerjaan" value="<?= $ds['id_pekerjaan']; ?>">
                         <div class="form-group">
                             <label>Posisi</label>
                             <select class="form-control" id="posisi" name="posisi">
@@ -208,7 +214,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Kirim</button>
+                        <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
 
                     </div>
                 </form>
@@ -234,10 +240,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/pelamar/nilai/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('recruitment/Pelamar/nilai/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <input type="hidden" name="id" id="email" value="<?= $ds['id_pelamar']; ?>">
+                        <input type="hidden" name="id_pekerjaan" value="<?= $ds['id_pekerjaan']; ?>">
                         <div class="form-group">
                             <label for="status">Status:</label>
                             <select id="status<?= $ds['id_pelamar']; ?>" name="status<?= $ds['id_pelamar']; ?>" class="form-control" onchange="changeStatus<?= $ds['id_pelamar']; ?>()">
@@ -322,7 +329,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-danger">Kirim</button>
+                            <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
 
                         </div>
                     </div>
@@ -343,7 +350,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/pelamar/tambah_hasil_interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('recruitment/Pelamar/tambah_hasil_interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <input type="hidden" name="id" id="email" value="<?= $ds['id_pelamar']; ?>">
@@ -357,7 +364,7 @@
                         <div id="form<?= $ds['id_pelamar']; ?>"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-danger">Kirim</button>
+                            <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
                         </div>
                     </div>
                 </form>

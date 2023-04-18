@@ -6,7 +6,7 @@
                     <td>
                         <?php foreach ($dataposisi as $dp) : ?>
                             <?php if ($dp['id_posisi'] == $id_posisi) : ?>
-                                <p>Selamat, Terima kasih sudah tertarik untuk bergabung pada posisi <?= $dp['nama_posisi']; ?> PT. Sahaware Teknologi Indonesia, dengan ini kami mengundang Saudara untuk mengikuti sesi Interview lanjutan, pada:
+                                <p>Terima kasih sudah tertarik untuk bergabung pada posisi <?= $dp['nama_posisi']; ?> PT. Sahaware Teknologi Indonesia, dengan ini kami mengundang Saudara untuk mengikuti sesi Interview, pada:
                                 </p>
                             <?php endif; ?>
                         <?php endforeach; ?>

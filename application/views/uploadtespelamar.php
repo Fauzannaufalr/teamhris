@@ -16,7 +16,7 @@
 
     <section class="container">
         <header>Upload Hasil Tes</header>
-        <form action="<?= base_url('uploadtes/upload_hasiltes') ?>" method="POST" enctype="multipart/form-data" class="form">
+        <form action="<?= base_url('Uploadtes/upload_hasiltes') ?>" method="POST" enctype="multipart/form-data" class="form">
             <div class="input-box">
                 <label>Nama</label>
                 <input type="text" placeholder="Masukan Nama Anda" name="nama" required />

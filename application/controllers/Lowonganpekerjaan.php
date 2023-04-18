@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-class Tampilan extends CI_Controller
+class Lowonganpekerjaan extends CI_Controller
 {
     public function __construct()
     {
@@ -12,9 +12,9 @@ class Tampilan extends CI_Controller
     }
     public function index()
     {
-        $data['title'] = 'Tampilan';
+        $data['title'] = 'Lowonganpekerjaan';
         $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
-        $this->load->view('tampilan', $data);
+        $this->load->view('Lowonganpekerjaan', $data);
     }
 
     public function upload_cv()
@@ -51,7 +51,7 @@ class Tampilan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('tampilan');
+        redirect('Lowonganpekerjaan');
     }
     public function tambah()
     {
@@ -76,7 +76,7 @@ class Tampilan extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('tampilan', $data);
+            $this->load->view('Lowonganpekerjaan', $data);
             $this->load->view('templates/footer');
         } else {
             $this->Pekerjaan_model->tambahPekerjaan();

@@ -99,10 +99,6 @@
                         <div class="modal-body">
                             <input type="hidden" name="id_hasiltes" value="<?= $nm['id_hasiltes']; ?>">
                             <div class="form-group">
-                                <label for="nilai_pg">Nilai Tes</label>
-                                <input type="text" class="form-control" id="nilai_pg" name="nilai_pg" placeholder="Masukan nilai">
-                            </div>
-                            <div class="form-group">
                                 <label for="nilai_tes">Nilai Tes</label>
                                 <input type="text" class="form-control" id="nilai_tes" name="nilai_tes" placeholder="Masukan nilai">
                             </div>
