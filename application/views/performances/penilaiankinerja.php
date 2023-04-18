@@ -88,7 +88,7 @@
                         data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
                         Tambah Penilaian
                     </button>
-                    <button type="button" class="btn btn-outline-success mt-2" data-toggle="modal"
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#importPenilaianKinerja"><i class="fas fa-plus"></i>
                         Import
                     </button>
@@ -96,8 +96,6 @@
                         type="button" ;><i class="fas fa-plus"></i>
                         Input Jam Kerja
                     </a> <br> -->
-
-
                 </div>
             </div>
             <!-- perulangan -->
