@@ -92,7 +92,7 @@
                         data-target="#importPenilaianKinerja"><i class="fas fa-plus"></i>
                         Import
                     </button>
-                    <!-- <a class="btn btn-outline-success" href=<?= base_url("performances/PenilaianKinerja/inputjamkerja") ?>
+                    <!-- <a class="btn btn-outline-success" href=
                         type="button" ;><i class="fas fa-plus"></i>
                         Input Jam Kerja
                     </a> <br> -->
