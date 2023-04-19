@@ -33,16 +33,17 @@
     <table class="table table-bordered table-triped">
         <thead>
             <tr>
-                <th>Bulan </th>
+                <td>Bulan</td>
                 <td>:</td>
-
-                <?= $bulan ?>
+                <td>
+                    <?= $bulan ?>
+                </td>
             </tr>
             <tr>
-                <th>Tahun</th>
+                <td>Tahun</td>
                 <td>:</td>
-                <?= $tahun ?>
-
+                <td>
+                    <?= $tahun ?>
             </tr>
         </thead>
     </table>
