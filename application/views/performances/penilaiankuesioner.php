@@ -100,7 +100,7 @@
                         <tr>
                             <th>No</th>
                             <th>NIK & Nama Penilai</th>
-                            <th>NIK & Nama M enilai</th>
+                            <th>NIK & Nama Menilai</th>
                             <th>Total Nilai</th>
                             <th>Aksi</th>
                         </tr>
