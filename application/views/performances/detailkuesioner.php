@@ -10,13 +10,11 @@
                 <?php } ?>
 
             <div class="card">
-                <div class="card-header" style="background:#8b0000; color: #ffffff;">
+                <div class="card-header" style="background: #8b0000; color: #ffffff;">
                     <b>Saran</b>
                 </div>
                 <div class="card-body">
-
                     <?= $saran ?>
-
                 </div>
             </div>
             <form method=" POST">
