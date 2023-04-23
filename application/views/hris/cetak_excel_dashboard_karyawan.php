@@ -40,8 +40,7 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
     <thead>
         <tr>
             <th class="text-center">No</th>
-            <th class="text-center">NIK</th>
-            <th class="text-center">Nama Karyawan</th>
+            <th class="text-center">NIK & Nama Karyawan</th>
             <th class="text-center">Nilai</th>
             <th class="text-center">Kategorisasi</th>
         </tr>
@@ -68,9 +67,6 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
                         $ndk['nama_karyawan']; ?>
                 </td>
 
-                <td>
-                    <?= $ndk['nama_karyawan']; ?>
-                </td>
 
                 <td style="text-align: center;">
                     <?= $nilaiakumulasi ?>

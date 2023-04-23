@@ -10,16 +10,16 @@
                 <?php } ?>
 
             <div class="card">
-                <div class="card-header" style="background-color: 8b0000;">
-                    Saran
+                <div class="card-header" style="background:#8b0000; color: #ffffff;">
+                    <b>Saran</b>
                 </div>
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <?= $saran ?>
-                    </blockquote>
+
+                    <?= $saran ?>
+
                 </div>
             </div>
-            <form method="POST">
+            <form method=" POST">
                 <div class=" table-responsive">
                     <table id="" class="table table-bordered table-striped">
                         <thead style="background-color: #8b0000; color: white;">
@@ -63,7 +63,6 @@
                         style="background-color: #d4d4d4" ;><i class="fas fa-reply"></i>
                         Kembali
                     </a>
-
                 </div>
             </form>
         </div>
