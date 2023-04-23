@@ -55,8 +55,9 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
                     <?= $no++ ?>
                 </td>
                 <td style="text-align: center;">
-                    <?= $ck['nik'] . " <br> " .
-                        $ck['nama_karyawan']; ?>
+
+                    <?= "'" . $ck['nik'] . "' <br> " . $ck['nama_karyawan']; ?>
+
                 </td>
 
                 <td style="text-align: center;">
