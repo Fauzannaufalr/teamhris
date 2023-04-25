@@ -3,17 +3,6 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-body">
-            <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
-            </div>
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal"
                 data-target="#exampleModal"><i class="fas fa-plus"></i>
                 Tambah Soal
