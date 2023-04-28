@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= base_url('dist/css/styledetail.css') ?>" type="text/css" />
+    <link rel="stylesheet" href="<?= base_url('dist/css/detail.css') ?>" type="text/css" />
     <link rel="stylesheet" href="<?= base_url() ?>plugins/fontawesome-free/css/all.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -40,7 +40,7 @@
     <br><br>
     <div class="job">
 
-        <button type="button" style="margin-left:50px; float: right; margin-right: 7vw; background-color: #d63638" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv<?= $pekerjaan['id_pekerjaan'] ?>">
+        <button type="button" style="margin-left:50px; float: right; margin-right: 7vw; background-color: #d63638; font-family: Arial, Helvetica, sans-serif;" class="btn btn-primary" data-toggle="modal" data-target="#uploadcv<?= $pekerjaan['id_pekerjaan'] ?>">
             Upload CV
         </button>
         <h3>Deskripsi Pekerjaan</h3>
@@ -72,7 +72,7 @@
         <div class="footer-center">
 
             <div>
-                <i>Information</i><br><br>
+                <i style="font-family: Arial, Helvetica, sans-serif;">Information</i><br><br>
                 <p><i class="fas fa-map-marker-alt"></i><a href="https://goo.gl/maps/QP4dvUvw1e3TRaMd9">Jl. Terusan Jakarta Utara, Komplek Daichi No. 69 Antapani - Bandung 40282</a></p><br><br>
                 <p><i class="fas fa-phone-alt"></i><a href="">0811-1244-040</a></p><br><br>
                 <p><i class="fas fa-envelope"></i><a href="">office@sahaware.co.id</a></p>

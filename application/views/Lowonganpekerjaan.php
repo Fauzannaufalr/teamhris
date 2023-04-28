@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?= base_url('dist/css/stylehalaman.css') ?>" type="text/css" />
+    <link rel="stylesheet" href="<?= base_url('dist/css/lowongan.css') ?>" type="text/css" />
     <link rel="stylesheet" href="<?= base_url() ?>plugins/fontawesome-free/css/all.min.css" />
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="<?= base_url() ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" />
@@ -22,27 +22,27 @@
             <div class="overlay">
                 <div class="lowongan">
                     <h3>PT. Sahaware Teknologi Indonesia</h3>
-                    <p>Membuka kesempatan berkarir <br /> bersama kami</p>
+                    <h2>Membuka kesempatan berkarir <br>bersama kami</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <div style="text-align: center; margin-top: 2rem;">
-        <h4>Lowongan Tersedia</h4>
+    <div>
+        <h4 style="font-family: Arial, Helvetica, sans-serif; text-align: center; margin-top: 2rem;">Lowongan Tersedia</h4>
     </div>
     <div class="container" style="margin: auto; max-width: fit-content; padding: 10px;">
         <div class="row justify-content-center">
             <?php foreach ($pekerjaan as $pk) : ?>
-                <div class="card mx-2 mb-4" style="width: 18rem;">
+                <div class="card mx-2 mb-4" style="width: 18rem; font-family: Arial, Helvetica, sans-serif;">
                     <center>
-                        <h3><?= $pk['nama_posisi']; ?></h3>
+                        <h3 style="font-family: Arial, Helvetica, sans-serif;"><?= $pk['nama_posisi']; ?></h3>
                     </center>
                     <img src="<?= base_url('dist/img/lowongan/') . $pk['foto']; ?>" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <a href="<?= base_url() ?>detailpekerjaan/index/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4; margin-right: 1rem;" ; class="btn btn-sm">Info Lengkap</a>
-                            <a type="button" style="background-color: #d63638;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#uploadcv<?= $pk['id_pekerjaan'] ?>">Upload CV</a>
+                            <a href="<?= base_url() ?>detailpekerjaan/index/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4; margin-right: 1rem;font-family: Arial, Helvetica, sans-serif; " ; class="btn btn-sm">Info Lengkap</a>
+                            <a type="button" style="background-color: #d63638; font-family: Arial, Helvetica, sans-serif;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#uploadcv<?= $pk['id_pekerjaan'] ?>">Upload CV</a>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
         <div class="footer-center">
 
             <div>
-                <i>Information</i><br><br>
+                <i style="font-family: Arial, Helvetica, sans-serif;">Information</i><br><br>
                 <p><i class="fas fa-map-marker-alt"></i><a href="https://goo.gl/maps/QP4dvUvw1e3TRaMd9">Jl. Terusan Jakarta Utara, Komplek Daichi No. 69 Antapani - Bandung 40282</a></p><br><br>
                 <p><i class="fas fa-phone-alt"></i><a href="">0811-1244-040</a></p><br><br>
                 <p><i class="fas fa-envelope"></i><a href="">office@sahaware.co.id</a></p>

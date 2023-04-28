@@ -16,7 +16,7 @@
                         <p><?php echo $status ?></p>
                         <h4>Nilai Tes</h4>
                         <p><?php echo $pg; ?></p><br>
-                        <p><?php echo $essay; ?></p><br>
+                        <p><?php echo $essay; ?></p>
                         <p>Best wishes for a successful job search. Thank you, again, for your interest in our company.</p><br>
                         <p> Human Capital,<br>
                             PT. Sahaware Teknologi Indonesia</p>

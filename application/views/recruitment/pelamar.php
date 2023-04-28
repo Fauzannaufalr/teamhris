@@ -37,10 +37,10 @@
                                 <?php if ($ds['status'] == 'pelamar') : ?>
                                     <button class="badge badge-success" data-toggle="modal" data-target="#interviewModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Jadwalkan Interview</button>
                                 <?php elseif ($ds['status'] == 'Proses Interview') : ?>
-                                    <button class="badge" data-toggle="modal" style="background-color: 	#000080; color: antiquewhite" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-calendar-alt"></i>Jadwal Interview</button>
+                                    <button class="badge" data-toggle="modal" style="background-color: 	#000080; color: antiquewhite" data-target="#jadwalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-calendar-alt"></i>Lihat Jadwal Interview</button>
                                     <button class="badge badge-warning" data-toggle="modal" data-target="#hasilModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i>Hasil Interiview</button>
                                 <?php elseif ($ds['status'] == 'lulus') : ?>
-                                    <button class="badge" style="background-color: 	#6B8E23; color: antiquewhite" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
+                                    <button class="badge" style="background-color: 	#353a57; color: antiquewhite" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
                                     <button class="badge" style="background-color: 	#2F4F4F; color: antiquewhite" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-pen"></i> Beri Nilai</button>
                                 <?php endif; ?>
@@ -116,7 +116,7 @@
                             <input type="time" id="akhir" name="akhir" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="gmeet">Link Google Meet</label>
+                            <label for="gmeet">Link Interview</label>
                             <input type="text" class="form-control" id="gmeet" name="gmeet">
                         </div>
                     </div>
@@ -305,15 +305,17 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="jadwal">Jadwalkan Interview Lanjutan:</label>
+                                        <label for="jadwal">Jadwal Bertemu</label>
                                         <input type="date" id="jadwal" name="jadwal" class="form-control">
                                     </div>
-                                    
-        
-                                    <div class="form-group">
-                                        <label for="gmeet">Link Google Meet</label>
-                                        <input type="text" id="gmeet" name="gmeet" class="form-control">
-                                    </div>
+                                     <div class="form-group">
+                                    <label for="mulai">Jam Mulai:</label>
+                                    <input type="time" id="mulai" name="mulai" class="form-control">
+                                     </div>
+                                     <div class="form-group">
+                                    <label for="akhir">Jam Berakhir:</label>
+                                    <input type="time" id="akhir" name="akhir" class="form-control">
+                                      </div>
                                     
                                     <div class="form-group">
                                         <label for="bertemu">Bertemu dengan:</label>

@@ -45,8 +45,12 @@
                                 <td><?= $ko['nilai_pg']; ?></td>
                                 <td><?= $ko['nilai_tes']; ?></td>
                                 <td>
-                                    <button type="button" class="badge badge-success" color: antiquewhite" data-toggle="modal" data-target="#modal-nilai<?= $ko['id_hasiltes'] ?>"><i class="fas fa-pen-square"></i>Nilai</button>
-                                    <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ko['id_hasiltes'] ?>"><i class="fas fa-trash-alt"></i>Hapus</button>
+                                    <?php if ($ko['status'] == 'sudah dinilai ') : ?>
+                                        <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ko['id_hasiltes'] ?>"><i class="fas fa-trash-alt"></i>Hapus</button>
+                                    <?php else : ?>
+                                        <button type="button" class="badge badge-success" color: antiquewhite" data-toggle="modal" data-target="#modal-nilai<?= $ko['id_hasiltes'] ?>"><i class="fas fa-pen-square"></i>Nilai</button>
+                                        <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ko['id_hasiltes'] ?>"><i class="fas fa-trash-alt"></i>Hapus</button>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endif ?>

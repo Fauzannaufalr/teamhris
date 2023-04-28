@@ -5,7 +5,9 @@
                 <tr>
                     <td>
                         <p> PT. Sahaware Teknologi Indonesia, dengan ini kami memberitahu Saudara bahwa anda <?php echo $hasil_interview ?> untuk tahap sesi Interview.</p>
-
+                        <br>
+                        <p> Human Capital,<br>
+                            PT. Sahaware Teknologi Indonesia</p>
                 </tr>
 
             </table>

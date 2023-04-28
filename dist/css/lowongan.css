@@ -41,12 +41,21 @@ body{
   text-align: center;
 }
 .overlay h3{
-  margin: 0;
-  color: #ffffff;
-  font-size: 40vw;
-  padding-top: 250px;
-  text-shadow: 2px 2px 8px #000;
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    color: #ffffff;
+    font-size: 2vw;
+    padding-top: 250px;
+    text-shadow: 2px 2px 8px #000;
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+.overlay h2{
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.5vw;
+    text-shadow: 2px 2px 8px #000;
+	font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .overlay p{
@@ -56,6 +65,11 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   text-shadow: 2px 2px 8px #000;
 }
+
+
+
+
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
 * {
@@ -217,8 +231,7 @@ section {
 
 .footer-distributed .footer-right p{
 	color:  rgb(177, 175, 175);
-	text-decoration: none;;
-	font-family: sans-serif;
+	font-family:Arial, Helvetica, sans-serif;
 	font-size: 15px;
 }
 
