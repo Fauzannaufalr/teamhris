@@ -78,24 +78,25 @@
         </span> Tahun:<span class="fofnt-weight-bold">
             <?php echo $tahun ?>
     </div>
+
     <div class="card">
         <div class="card-body">
-
-
             <div class="form-group row">
                 <div class="col-mb-auto">
                     <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
                         Tambah Penilaian
                     </button>
-                    <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                    <a class="btn btn-outline-success"
+                        href="<?= base_url('performances/Inputjamkerja/input_jamkerja') ?>" ;><i
+                            class="fas fa-plus"></i>
+                        Input Jam Kerja
+                    </a> <br>
+                    <button type="button" class="btn btn-outline-success mt-2" data-toggle="modal"
                         data-target="#importPenilaianKinerja"><i class="fas fa-plus"></i>
                         Import
                     </button>
-                    <!-- <a class="btn btn-outline-success" href=
-                        type="button" ;><i class="fas fa-plus"></i>
-                        Input Jam Kerja
-                    </a> <br> -->
+
                 </div>
             </div>
             <!-- perulangan -->
@@ -140,8 +141,9 @@
                                 <td>
                                     <?= $pk['done_kerja']; ?>
                                 </td>
+
                                 <td>
-                                    <?= $pk['nilai']; ?>
+                                    <?= number_format((float) $pk['nilai'], 2, '.', ''); ?>
                                 </td>
                                 <td>
                                     <?= $pk['kategorisasi']; ?>
@@ -173,7 +175,6 @@
 
 <!-- modal untuk impor excel -->
 
-<!-- Modal Hapus -->
 <div class="modal fade" id="importPenilaianKinerja" tabindek="-1" role+dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">

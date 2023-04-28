@@ -127,7 +127,7 @@
                                         $ak['nama_karyawan']; ?>
                                 </td>
                                 <td>
-                                    <?= $ak['nilai_kinerja']; ?>
+                                    <?= number_format((float) $ak['nilai_kinerja'], 2, '.', ''); ?>
                                 </td>
                                 <td>
                                     <?= number_format((float) $ak['nilai_kuesioner'], 2, '.', ''); ?>

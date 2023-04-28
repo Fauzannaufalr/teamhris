@@ -201,23 +201,23 @@ class PenilaianKinerja extends CI_Controller
         $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
-    
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('performances/penilaiankinerja', $data);
         $this->load->view('templates/footer');
-    
+
         $config['allowed_types'] = 'xlsx|xls';
         $config['upload_path'] = './dist/import';
         $config['file_name'] = 'doc' . time();
-    
+
         $this->load->library('upload', $config);
-    
+
         if ($this->upload->do_upload('import')) {
             $file = $this->upload->data();
             $reader = ReaderEntityFactory::createXLSXReader();
-    
+
             $reader->open('./dist/import/' . $file['file_name']);
             foreach ($reader->getSheetIterator() as $sheet) {
                 $numRow = 1;
@@ -231,7 +231,7 @@ class PenilaianKinerja extends CI_Controller
                             'nilai' => $row->getCellAtIndex(5),
                             'kategorisasi' => htmlspecialchars($row->getCellAtIndex(6)),
                         );
-    
+
                         // cek apakah data dengan nik, tanggal, dan nilai yang sama sudah ada di database
                         $isDataExist = $this->PenilaianKinerja_model->checkPenilaianKinerjaExists(
                             $data['nik'],
@@ -239,112 +239,95 @@ class PenilaianKinerja extends CI_Controller
                             date('Y', strtotime($data['tanggal'])),
                             $data['nilai']
                         );
-    
+
                         if (!$isDataExist) {
                             // jika data belum ada di database, maka insert data
                             $this->PenilaianKinerja_model->import_data($data);
                         }
                     }
-    
+
                     $numRow++;
                 }
             }
-    
+
             $reader->close();
             unlink('./dist/import/' . $file['file_name']);
             $this->session->set_flashdata('message', ' Data berhasil diimport!');
             redirect('performances/PenilaianKinerja');
         }
     }
-    
-    
+
+
     // Fungsi untuk memeriksa apakah NIK sudah digunakan pada bulan yang sama sebelumnya
-        // function import()
-        // {
-        //     $data['title'] = "Penilaian Kinerja";
-        //     $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        //     $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
-        //     $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        //     $data['user'] = $this->Hris_model->ambilUser();
+    // function import()
+    // {
+    //     $data['title'] = "Penilaian Kinerja";
+    //     $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+    //     $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
+    //     $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+    //     $data['user'] = $this->Hris_model->ambilUser();
 
 
 
 
-        //     $this->load->view('templates/header', $data);
-        //     $this->load->view('templates/navbar', $data);
-        //     $this->load->view('templates/sidebar', $data);
-        //     $this->load->view('performances/penilaiankinerja', $data);
-        //     $this->load->view('templates/footer');
-        //     $config['allowed_types'] = 'xlsx|xls';
-        //     $config['upload_path'] = './dist/import';
-        //     $config['file_name'] = 'doc' . time();
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/navbar', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('performances/penilaiankinerja', $data);
+    //     $this->load->view('templates/footer');
+    //     $config['allowed_types'] = 'xlsx|xls';
+    //     $config['upload_path'] = './dist/import';
+    //     $config['file_name'] = 'doc' . time();
 
-        //     $this->load->library('upload', $config);
+    //     $this->load->library('upload', $config);
 
-        //     if ($this->upload->do_upload('import')) {
-        //         $file = $this->upload->data();
-        //         $reader = ReaderEntityFactory::createXLSXReader();
+    //     if ($this->upload->do_upload('import')) {
+    //         $file = $this->upload->data();
+    //         $reader = ReaderEntityFactory::createXLSXReader();
 
-        //         $reader->open('./dist/import/' . $file['file_name']);
-        //         foreach ($reader->getSheetIterator() as $sheet) {
-        //             $numRow = 1;
-        //             foreach ($sheet->getRowIterator() as $row) {
+    //         $reader->open('./dist/import/' . $file['file_name']);
+    //         foreach ($reader->getSheetIterator() as $sheet) {
+    //             $numRow = 1;
+    //             foreach ($sheet->getRowIterator() as $row) {
 
-        //                 if ($numRow > 1) {
-        //                     $data = array(
-        //                         'nik' => htmlspecialchars($row->getCellAtIndex(1)),
-        //                         'tanggal' => htmlspecialchars($row->getCellAtIndex(2)),
-        //                         'total_kerja' => htmlspecialchars($row->getCellAtIndex(3)),
-        //                         'done_kerja' => htmlspecialchars($row->getCellAtIndex(4)),
-        //                         'nilai' => $row->getCellAtIndex(5),
-        //                         'kategorisasi' => htmlspecialchars($row->getCellAtIndex(6)),
-        //                     );
+    //                 if ($numRow > 1) {
+    //                     $data = array(
+    //                         'nik' => htmlspecialchars($row->getCellAtIndex(1)),
+    //                         'tanggal' => htmlspecialchars($row->getCellAtIndex(2)),
+    //                         'total_kerja' => htmlspecialchars($row->getCellAtIndex(3)),
+    //                         'done_kerja' => htmlspecialchars($row->getCellAtIndex(4)),
+    //                         'nilai' => $row->getCellAtIndex(5),
+    //                         'kategorisasi' => htmlspecialchars($row->getCellAtIndex(6)),
+    //                     );
 
-        //                     // cek apakah data dengan nik, tanggal, dan nilai yang sama sudah ada di database
-        //                     $isDataExist = $this->PenilaianKinerja_model->checkPenilaianKinerjaExists(
-        //                         $data['nik'],
-        //                         date('m', strtotime($data['tanggal'])),
-        //                         date('Y', strtotime($data['tanggal']))
-        //                     );
+    //                     // cek apakah data dengan nik, tanggal, dan nilai yang sama sudah ada di database
+    //                     $isDataExist = $this->PenilaianKinerja_model->checkPenilaianKinerjaExists(
+    //                         $data['nik'],
+    //                         date('m', strtotime($data['tanggal'])),
+    //                         date('Y', strtotime($data['tanggal']))
+    //                     );
 
-        //                     if (!$isDataExist) {
-        //                         // jika data belum ada di database, maka insert data
-        //                         $this->PenilaianKinerja_model->import_data($data);
-        //                     }
-        //                 }
+    //                     if (!$isDataExist) {
+    //                         // jika data belum ada di database, maka insert data
+    //                         $this->PenilaianKinerja_model->import_data($data);
+    //                     }
+    //                 }
 
-        //                 $numRow++;
-        //             }
-        //             $nikExist = $this->PenilaianKinerja_model->cekNikExist($data['nik']);
+    //                 $numRow++;
+    //             }
+    //             $nikExist = $this->PenilaianKinerja_model->cekNikExist($data['nik']);
 
-        //             if ($nikExist) {
-        //                 $this->session->set_flashdata('warning', 'NIK ' . $data['nik'] . ' sudah digunakan! Data berhasil diupdate');
-        //             }
-        //             $reader->close();
-        //             unlink('./dist/import/' . $file['file_name']);
-        //             $this->session->set_flashdata('message', ' Data berhasil diimport!');
-        //             redirect('performances/PenilaianKinerja');
-        //         }
-        //     }
+    //             if ($nikExist) {
+    //                 $this->session->set_flashdata('warning', 'NIK ' . $data['nik'] . ' sudah digunakan! Data berhasil diupdate');
+    //             }
+    //             $reader->close();
+    //             unlink('./dist/import/' . $file['file_name']);
+    //             $this->session->set_flashdata('message', ' Data berhasil diimport!');
+    //             redirect('performances/PenilaianKinerja');
+    //         }
+    //     }
 
     // }
-
-
-    public function Inputjamkerja()
-    {
-        $data['title'] = "Jam Kerja";
-        $data['inputjamkerja'] = $this->PenilaianKinerja_Model->InputJamKerja();
-
-
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        $data['user'] = $this->Hris_model->ambilUser();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('performances/penilaiankinerja/inputjamkerja', $data);
-    }
 
     public function ajax_category()
     {
