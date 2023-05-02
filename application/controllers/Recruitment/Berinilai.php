@@ -22,11 +22,6 @@ class Berinilai extends CI_Controller
 
         $this->load->view('recruitment/Berinilai', $data);
     }
-
-
-
-
-
     public function hapus($id_hasiltes)
     {
         if ($this->Hasiltes_model->hapus($id_hasiltes)) {
@@ -61,7 +56,7 @@ class Berinilai extends CI_Controller
 
         $this->db->where('id_hasiltes', $id);
         $this->db->update('recruitment___hasiltes', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> sudah di nilaii</div>');
+        $this->session->set_flashdata('message', 'Berhasil dinilai.');
         redirect('recruitment/berinilai');
     }
 }

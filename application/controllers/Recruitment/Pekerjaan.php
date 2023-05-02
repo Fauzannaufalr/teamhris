@@ -30,52 +30,6 @@ class Pekerjaan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambah()
-    {
-
-        $data['title'] = "Pekerjaan";
-        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Hris_model->ambilUser();
-        $deskripsi_pekerjaan = $this->input->post('deskripsi_pekerjaan');
-        $kualifikasi = $this->input->post('kualifikasi');
-        $array_deskripsi = [];
-        if (!is_null($deskripsi_pekerjaan)) {
-            $array_deskripsi = explode("\n", $deskripsi_pekerjaan);
-        }
-        $data['array_deskripsi'] = $array_deskripsi;
-
-        $array_kualifikasi = [];
-        if (!is_null($kualifikasi)) {
-            $array_kualifikasi = explode("\n", $kualifikasi);
-        }
-        $data['array_kualifikasi'] = $array_kualifikasi;
-        $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required', [
-            'required' => 'Nama harus diisi !'
-        ]);
-        $this->form_validation->set_rules('deskripsi_pekerjaan', 'Deskripsi', 'required', [
-            'required' => 'Deskripsi harus diisi !'
-        ]);
-        $this->form_validation->set_rules('kualifikasi', 'Kualifikasi', 'required', [
-            'required' => 'Kualifikasi harus diisi !'
-        ]);
-        $this->form_validation->set_rules('tanggal_berakhir', 'Tanggal Berakhir', 'required', [
-            'required' => 'Tanggal Berakhir harus diisi !'
-        ]);
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('recruitment/pekerjaan', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $this->Pekerjaan_model->tambahPekerjaan();
-            $this->session->set_flashdata('message', 'Data berhasil ditambahkan');
-            redirect('recruitment/Pekerjaan');
-        }
-    }
-
 
     public function tambah_pekerjaan()
     {
@@ -130,59 +84,34 @@ class Pekerjaan extends CI_Controller
 
         $this->upload->initialize($config);
 
-        // Lakukan upload file
+        // Ambil ID pekerjaan dari form input
+        $id_pekerjaan = $this->input->post('id_pekerjaan');
+
+        // Ambil data pekerjaan dari database berdasarkan ID
+        $data_pekerjaan = $this->db->get_where('recruitment___pekerjaan', ['id_pekerjaan' => $id_pekerjaan])->row_array();
+
+        // Lakukan upload file jika ada perubahan pada gambar
         if ($this->upload->do_upload('foto')) {
             // Jika upload berhasil, simpan nama file ke database
             $filename = $this->upload->data('file_name');
-            $data = [
-                'id_posisi' => htmlspecialchars($this->input->post('posisi')),
-                'deskripsi_pekerjaan' => htmlspecialchars($this->input->post('deskripsi_pekerjaan')),
-                'kualifikasi' => htmlspecialchars($this->input->post('kualifikasi')),
-                'tanggal_berakhir' => htmlspecialchars($this->input->post('tanggal_berakhir')),
-                'foto' => $filename,
-            ];
-
-            $this->db->where('id_pekerjaan', $this->input->post('id_pekerjaan'));
-            $this->db->update('recruitment___pekerjaan', $data);
-            // Tampilkan pesan berhasil
-            $this->session->set_flashdata('message', 'Data Berhasil Ditambah.');
-        } else {
-            // Jika upload gagal, tampilkan pesan error
-            $this->session->set_flashdata('error', $this->upload->display_errors());
+            $data_pekerjaan['foto'] = $filename;
         }
+
+        // Update data pekerjaan dengan data yang diambil dari form input atau hasil upload file
+        $data_pekerjaan['id_posisi'] = htmlspecialchars($this->input->post('posisi'));
+        $data_pekerjaan['deskripsi_pekerjaan'] = htmlspecialchars($this->input->post('deskripsi_pekerjaan'));
+        $data_pekerjaan['kualifikasi'] = htmlspecialchars($this->input->post('kualifikasi'));
+        $data_pekerjaan['tanggal_berakhir'] = htmlspecialchars($this->input->post('tanggal_berakhir'));
+
+        // Simpan data pekerjaan yang sudah diupdate ke database
+        $this->db->where('id_pekerjaan', $id_pekerjaan);
+        $this->db->update('recruitment___pekerjaan', $data_pekerjaan);
+
+        // Tampilkan pesan berhasil
+        $this->session->set_flashdata('message', 'Data Berhasil Diubah.');
 
         // Redirect kembali ke halaman profil
         redirect('recruitment/Pekerjaan');
-    }
-
-    public function ubah()
-    {
-        $data['title'] = "Pekerjaan";
-        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Hris_model->ambilUser();
-
-        $this->form_validation->set_rules('deskripsi_pekerjaan', 'Deskripsi', 'required', [
-            'required' => 'Deskripsi harus diisi !'
-        ]);
-        $this->form_validation->set_rules('kualifikasi', 'Kualifikasi', 'required', [
-            'required' => 'Kualifikasi harus diisi !'
-        ]);
-        $this->form_validation->set_rules('tanggal_berakhir', 'Tanggal Berakhir', 'required', [
-            'required' => 'Tanggal Berakhir harus diisi !'
-        ]);
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('recruitment/Pekerjaan', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $this->Pekerjaan_model->ubahPekerjaan();
-            $this->session->set_flashdata('message', 'Data berhasil diubah');
-            redirect('recruitment/Pekerjaan');
-        }
     }
 
     public function hapus($id_pekerjaan)

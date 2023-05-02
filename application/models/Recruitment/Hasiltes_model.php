@@ -20,13 +20,6 @@ class Hasiltes_model extends CI_Model
         $this->db->delete('recruitment___hasiltes');
         return ($this->db->affected_rows() > 0) ? true : false;
     }
-
-    public function download($file)
-    {
-        $query = $this->db->get_where('recruitment___hasiltes', array('hasil_pengerjaan' => $file));
-        return $query->row_array();
-    }
-
     public function tampilhasiltes()
     {
         // return $this->db->get('data_karyawan')->result_array();

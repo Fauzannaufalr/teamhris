@@ -53,35 +53,4 @@ class Lowonganpekerjaan extends CI_Controller
         // Redirect kembali ke halaman profil
         redirect('Lowonganpekerjaan');
     }
-    public function tambah()
-    {
-
-        $data['title'] = "Pelamar";
-        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Hris_model->ambilUser();
-
-        $this->form_validation->set_rules('posisi', 'Posisi Pekerjaan', 'required',);
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
-            'required' => 'Email harus diisi !',
-            'valid_email' => 'Yang Anda Masukan Bukan Email !'
-        ]);
-        $this->form_validation->set_rules('cv', 'File CV', 'required', [
-            'required' => 'Upload CV !'
-        ]);
-
-
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('Lowonganpekerjaan', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $this->Pekerjaan_model->tambahPekerjaan();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
-            redirect('tampilan');
-        }
-    }
 }

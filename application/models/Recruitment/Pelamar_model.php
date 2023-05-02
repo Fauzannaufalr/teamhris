@@ -21,11 +21,11 @@ class Pelamar_model extends CI_Model
         return ($this->db->affected_rows() > 0) ? true : false;
     }
 
-    public function download($file)
-    {
-        $query = $this->db->get_where('recruitment___pelamar', array('file_cv' => $file));
-        return $query->row_array();
-    }
+    // public function download($file)
+    // {
+    //     $query = $this->db->get_where('recruitment___pelamar', array('file_cv' => $file));
+    //     return $query->row_array();
+    // }
     public function statuspelamar($id)
     {
         $data = [

@@ -1,6 +1,6 @@
 <?php
 
-class Uploadtes_model extends CI_Model
+class Uploadtespelamar_model extends CI_Model
 {
     public function ambilUser()
     {

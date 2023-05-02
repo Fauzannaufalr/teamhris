@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!--<title>Registration Form in HTML CSS</title>-->
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css" />
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url() ?>plugins/toastr/toastr.min.css" />
     <!---Custom CSS File--->
     <link rel="stylesheet" href="<?= base_url() ?>dist/css/styleupload.css" type="text/css" />
     <title>Upload Hasil Tes</title>
@@ -16,7 +20,7 @@
 
     <section class="container">
         <header>Upload Hasil Tes</header>
-        <form action="<?= base_url('Uploadtes/upload_hasiltes') ?>" method="POST" enctype="multipart/form-data" class="form">
+        <form action="<?= base_url('Uploadtespelamar/upload_hasiltes') ?>" method="POST" enctype="multipart/form-data" class="form">
             <div class="input-box">
                 <label>Nama</label>
                 <input type="text" placeholder="Masukan Nama Anda" name="nama" required />
@@ -43,6 +47,44 @@
         </form>
 
     </section>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="<?= base_url() ?>plugins/toastr/toastr.min.js"></script>
+
+
+    <script>
+        $(function() {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+            <?php if ($this->session->flashdata('message')) : ?>
+                const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+                Toast.fire({
+                    icon: 'success',
+                    title: flashData
+                })
+            <?php endif; ?>
+            <?php if ($this->session->flashdata('error')) : ?>
+                const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+                Toast.fire({
+                    icon: 'error',
+                    title: flashData
+                })
+            <?php endif; ?>
+            <?php if (validation_errors()) : ?>
+                const flashData = <?= json_encode(validation_errors()) ?>;
+                Toast.fire({
+                    icon: 'error',
+                    title: flashData
+                })
+            <?php endif; ?>
+        });
+    </script>
+
 </body>
 
 </html>

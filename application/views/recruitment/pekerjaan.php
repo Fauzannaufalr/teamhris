@@ -114,7 +114,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/Pekerjaan/ubah_pekerjaan') ?>" method="POST">
+                <form action="<?= base_url('recruitment/Pekerjaan/ubah_pekerjaan') ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="id_pekerjaan" value="<?= $it['id_pekerjaan']; ?>">
                         <div class="form-group">

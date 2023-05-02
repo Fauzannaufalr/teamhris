@@ -20,35 +20,6 @@ class Pekerjaan_model extends CI_Model
         return  $this->db->get()->result_array();
     }
 
-    public function tambahPekerjaan()
-    {
-
-        $data = [
-            'id_posisi' => htmlspecialchars($this->input->post('posisi')),
-            'deskripsi_pekerjaan' => htmlspecialchars($this->input->post('deskripsi_pekerjaan')),
-            'kualifikasi' => htmlspecialchars($this->input->post('kualifikasi')),
-            'tanggal_berakhir' => htmlspecialchars($this->input->post('tanggal_berakhir')),
-            'foto' => 'default.jpg'
-
-        ];
-
-        $this->db->insert('recruitment___pekerjaan', $data);
-    }
-
-    public function ubahPekerjaan()
-    {
-        $data = [
-            'id_posisi' => htmlspecialchars($this->input->post('posisi')),
-            'deskripsi_pekerjaan' => htmlspecialchars($this->input->post('deskripsi_pekerjaan')),
-            'kualifikasi' => htmlspecialchars($this->input->post('kualifikasi')),
-            'tanggal_berakhir' => htmlspecialchars($this->input->post('tanggal_berakhir')),
-            'foto' => 'default.jpg'
-        ];
-
-        $this->db->where('id_pekerjaan', $this->input->post('id_pekerjaan'));
-        $this->db->update('recruitment___pekerjaan', $data);
-    }
-
     public function hapus($id_pekerjaan)
     {
         $this->db->where('id_pekerjaan', $id_pekerjaan);
