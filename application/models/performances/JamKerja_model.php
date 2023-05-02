@@ -43,6 +43,7 @@ class JamKerja_model extends CI_Model
 
     public function tambah()
     {
+        $done_kerja = $this->input->post('done_kerja');
         $total_kerja = $this->input->post('total_kerja');
         $complate_date = $this->input->post('complate_date');
         $due_date = $this->input->post('due_date');
@@ -63,6 +64,7 @@ class JamKerja_model extends CI_Model
             'due_date' => $due_date,
             "complate_date" => $complate_date,
             "keterangan" => $keterangan,
+
         ];
         $this->db->insert('performances___inputjamkerja', $data);
     }

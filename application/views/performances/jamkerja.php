@@ -130,7 +130,7 @@
                                     <?= $jam['keterangan']; ?>
                                 </td>
                                 <td>
-                                    <? $selisih_hari ?>
+
                                 </td>
 
                                 <th>

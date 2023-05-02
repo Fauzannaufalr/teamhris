@@ -9,8 +9,8 @@ class PenilaianKinerja_model extends CI_Model
             performances___penilaian_kinerja.nik,
             performances___penilaian_kinerja.nilai,
             performances___penilaian_kinerja.tanggal,
-            performances___penilaian_kinerja.total_kerja,
             performances___penilaian_kinerja.done_kerja,
+            performances___penilaian_kinerja.total_kerja,
             performances___penilaian_kinerja.kategorisasi,
             (SELECT 
                 data_posisi.nama_posisi 

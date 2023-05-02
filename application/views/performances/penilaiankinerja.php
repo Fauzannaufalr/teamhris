@@ -128,7 +128,7 @@
                             <tr style=" text-align: center;">
                                 <td>
                                     <?= $no++; ?>
-                                </th>
+                                    </th>
                                 <td>
                                     <?= $pk['nik'], "<br>" .
                                         $pk['nama_karyawan']; ?>
@@ -136,9 +136,9 @@
 
                                 <td>
                                     <?= $pk['total_kerja']; ?>
-                                </td>
                                 <td>
                                     <?= $pk['done_kerja']; ?>
+                                </td>
                                 </td>
 
                                 <td>
@@ -243,6 +243,7 @@
                         <label for="done_kerja">Done Kerja</label>
                         <input type="text" class="form-control" id="done_kerja" name="done_kerja">
                     </div>
+
 
                     <!-- modal footer  -->
                     <div class="modal-footer">
