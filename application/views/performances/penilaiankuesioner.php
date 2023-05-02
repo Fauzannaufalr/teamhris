@@ -109,9 +109,9 @@
                         <?php $no = 1 ?>
                         <?php foreach ($penilaiankuesioner as $pr): ?>
                             <tr style=" text-align: center;">
-                                <th>
+                                <td>
                                     <?= $no++; ?>
-                                </th>
+                                </td>
 
                                 <td>
                                     <?= $pr['nik_penilai'], "<br>" .

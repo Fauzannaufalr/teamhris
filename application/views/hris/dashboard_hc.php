@@ -352,9 +352,9 @@
                             continue;
                         $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
                         <tr style="text-align: center;">
-                            <th>
+                            <td>
                                 <?= $no++; ?>
-                            </th>
+                            </td>
                             <td>
                                 <?= $ak['tanggal'] ?>
                             </td>

@@ -118,9 +118,9 @@
                         <?php foreach ($akumulasi as $ak):
                             $nilaiakumulasi = ($ak['nilai_kinerja'] + $ak['nilai_kuesioner']) / 2; ?>
                             <tr style="text-align: center;">
-                                <th>
+                                <td>
                                     <?= $no++; ?>
-                                </th>
+                                </td>
 
                                 <td>
                                     <?= $ak['nik'], "<br>" .

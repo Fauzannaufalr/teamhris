@@ -48,7 +48,7 @@
 
                     }
                     ?>
-                    <button type="submit" class="btn btn-outline-success ml-auto"><i class="fas fa-eye"> Tampilkan
+                    <button type="submit" class="btn btn-outline-success ml-3"><i class="fas fa-eye"> Tampilkan
                             Data
                         </i>
                     </button>
@@ -96,49 +96,59 @@
                             <th>Due Date</th>
                             <th>Complete Date</th>
                             <th>Keterangan</th>
+                            <th>Done Kerja</th>
                             <th>Aksi</th>
                         </tr>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1 ?>
-                        <?php
+                        <?php foreach ($jamkerja as $jam):
+                            // $selisih_hari = ($jam['complate_date'] - $jam['due_date']); ?>
 
-                        foreach ($jamkerja as $jam):
-                            ?>
 
                             <tr style=" text-align: center;">
-                                <th>
+                                <td>
                                     <?= $no++; ?>
-                                </th>
+                                </td>
                                 <td>
                                     <?= $jam['nik'], "<br>" .
                                         $jam['nama_karyawan']; ?>
                                 </td>
 
-                                <th>
+                                <td>
                                     <?= $jam['total_kerja']; ?>
-                                </th>
-                                <th>
+                                </td>
+                                <td>
                                     <?= $jam['due_date']; ?>
-                                </th>
+                                </td>
+
+                                <td>
+                                    <?= $jam['complate_date']; ?>
+                                </td>
+                                <td>
+                                    <?= $jam['keterangan']; ?>
+                                </td>
+                                <td>
+                                    <? $selisih_hari ?>
+                                </td>
 
                                 <th>
-                                    <?= $jam['complate_date']; ?>
-                                </th>
-                                <th>
-                                    <?= $keterangan ?>
-                                </th>
-                                <th>
                                     <button class="badge" style="background-color: gold; color: black;" data-toggle="modal"
-                                        data-target="#ubahJamKerja"><i class="fas fa-edit"></i> Edit</button>
+                                        data-target="#ubahJamKerja<?= $jam['id_jamkerja']; ?>"><i class="fas fa-edit"></i>
+                                        Edit</button>
                                     <button class="badge" style="background-color: #cc0000; color: antiquewhite"
-                                        data-toggle="modal" data-target="#modal-sm"><i class="fas fa-trash-alt"></i>
+                                        data-toggle="modal" data-target="#modal-sm<?= $jam['id_jamkerja']; ?>"><i
+                                            class="fas fa-trash-alt"></i>
                                         Hapus</button>
                                 </th>
                             <?php endforeach; ?>
                     </tbody>
                 </table>
+                <a class="badge" href=<?= base_url("performances/PenilaianKinerja") ?> type="button"
+                    style="background-color: #d4d4d4" ;><i class="fas fa-reply"></i>
+                    Kembali
+                </a>
             <?php } else { ?>
                 <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
                     Data masih kosong, silahkan pilih bulan dan tahun terlebih dahulu!</span>
@@ -160,7 +170,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/InputJamKerja/tambahjamkerja') ?>" method="POST">
+            <form action="<?= base_url('performances/JamKerja/tambah') ?>" method="POST">
                 <div class="modal-body">
                     <div class=" form-group">
 
@@ -190,6 +200,7 @@
                         <input type="date" class="form-control" id="complate_date" name="complate_date">
                     </div>
 
+
                     <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -212,7 +223,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/PenilaianKinerja/import_jamkerja') ?>" method="POST"
+            <form action="<?= base_url('performances/JamKerja/jamkerja') ?>" method="POST"
                 enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
@@ -238,7 +249,7 @@
 
 
 
-<!-- Modal cetak penlilaian kinerja -->
+<!-- Modal informasi Data -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -260,12 +271,116 @@
 </div>
 
 
+<!-- Modal edit data -->
+<?php foreach ($jamkerja as $jam): ?>
+    <div class="modal fade" id="ubahJamKerja<?= $jam['id_jamkerja']; ?>" tabindex="-1" aria-labelledby="ubahJamKerjaLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ubahJamKerjaLabel">Ubah Data Karyawan</h5><br>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="<?= base_url('performances/JamKerja/ubah') ?>" method="POST">
+                    <div class="modal-body">
+                        <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
+                        </h6>
+                        <input type="hidden" name="id_penilaian_kinerja" value="<?= $jam['id_jamkerja']; ?>">
+                        <div class=" form-group">
+                            <label>NIK & Nama Karyawan</label>
+                            <select class="form-control" name="nik_nama" id="nik_nama" placeholder="-- Pilih Karyawan --">
+                                <?php foreach ($datakaryawan as $dk): ?>
+                                    <?php if ($dk['nik'] == $jam['nik']): ?>
+                                        <option value="<?= $dk['nik']; ?>" selected><?= $dk['nama_karyawan'] ?></option>
+                                    <?php else: ?>
+                                        <option value="<?= $jam['nik']; ?>"><?= $dk['nama_karyawan'] ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Posisi</label>
+                            <?php foreach ($datakaryawan as $dk): ?>
+                                <?php if ($dk['nik'] == $jam['nik']): ?>
+                                    <?php foreach ($dataposisi as $dp): ?>
+                                        <?php if ($dp['id_posisi'] == $dk['id_posisi']): ?>
+                                            <input type="text" readonly id="id_posisi" class="form-control"
+                                                value="<?= $dp['nama_posisi']; ?>" />
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <!-- <input type="text" readonly id="id_posisi" class="form-control" /> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_kerja">Total Kerja</label>
+                            <input type="text" class="form-control" id="total_kerja" name="total_kerja"
+                                value="<?= $jam['total_kerja']; ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="done_kerja">Due Date</label>
+                            <input type="date" class="form-control" id="due_date" name="due_date"
+                                value="<?= $jam['due_date']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="complate_date">Complate Date</label>
+                            <input type="date" class="form-control" id="complate_date" name="complate_date"
+                                value="<?= $jam['complate_date']; ?>">
+                        </div>
+                        <!-- modal footer  -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn"
+                                style="background-color: #8b0000; color:#ffffff;">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+
+<!-- Modal Hapus -->
+<?php foreach ($jamkerja as $jam): ?>
+    <div class="modal fade" id="modal-sm<?= $jam['id_jamkerja']; ?>" tabindek="-1" role+dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Data</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah anda yakin untuk menghapus data ?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
+                    <a href="<?= base_url() ?>performances/JamKerja/hapus/<?= $jam['id_jamkerja'] ?>" type="submit"
+                        class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+</div>
+</div>
+
 <script>
     const nik_nama = document.getElementById("nik_nama");
     const id_posisi = document.getElementById("id_posisi");
     nik_nama.onchange = function (e) {
         const nik = e.target.value;
-        fetch(`/teamhris/performances/input_jamkerja/ajax_category?nik=${nik}`, {
+        fetch(`/teamhris/performances/jamkerja/ajax_category?nik=${nik}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
