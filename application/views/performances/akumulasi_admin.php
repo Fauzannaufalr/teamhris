@@ -11,7 +11,7 @@
                     <label for="bulan" class="col-form-label">Bulan: </label>
                     <div class="col-md-2">
                         <select class="form-control select2" name="bulan">
-                            <option value="">-- Pilih Bulan--</option>
+                            <option value="">-- Pilih Bulan --</option>
                             <option value="01">Januari</option>
                             <option value="02">Februari</option>
                             <option value="03">Maret</option>
@@ -29,7 +29,7 @@
                     <label for="tahun" class="col-form-label">Tahun: </label>
                     <div class="col-md-2 ">
                         <select class="form-control" name="tahun">
-                            <option value="">--Pilih Tahun--</option>
+                            <option value="">-- Pilih Tahun --</option>
                             <?php $tahun = date('Y');
                             for ($i = 2020; $i < $tahun + 3; $i++) { ?>
                                 <option value="<?php echo $i ?>"><?php echo $i ?></option>

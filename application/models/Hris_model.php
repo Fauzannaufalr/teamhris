@@ -87,7 +87,7 @@ class Hris_model extends CI_Model
         (
             SELECT SUM(pk2.total_nilai) / 4
             FROM performances___penilaian_kuesioner pk2 
-            WHERE pk2.nik_menilai = dk.nik  AND pk.tanggal = '$bulantahun' GROUP BY pk.tanggal 
+            WHERE pk2.nik_menilai = dk.nik  AND pk2.tanggal = '$bulantahun' 
         ) AS total_nilai_kuesioner,
         (
             SELECT SUM(pkerja.nilai) 

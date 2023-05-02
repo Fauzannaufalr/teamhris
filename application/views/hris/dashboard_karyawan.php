@@ -39,7 +39,7 @@
                     <label for="bulan" class="col-form-label">Bulan: </label>
                     <div class="col-md-2">
                         <select class="form-control select2" name="bulan">
-                            <option value="">-- Pilih Bulan--</option>
+                            <option value="">-- Pilih Bulan --</option>
                             <option value="01">Januari</option>
                             <option value="02">Februari</option>
                             <option value="03">Maret</option>
@@ -57,7 +57,7 @@
                     <label for="tahun" class="col-form-label">Tahun: </label>
                     <div class="col-md-2">
                         <select class="form-control" name="tahun">
-                            <option value="">--Pilih Tahun--</option>
+                            <option value="">--Pilih Tahun --</option>
                             <?php $tahun = date('Y');
                             for ($i = 2020; $i < $tahun + 3; $i++) { ?>
                                 <option value="<?php echo $i ?>"><?php echo $i ?></option>
@@ -89,158 +89,158 @@
                 </div>
         </form>
     </div>
+</div>
+<div class="alert alert" style="background-color: #8b0000; color: white;">
+    Menampilkan Penilaian Karyawan Bulan:<span class="font-weight-bold">
+        <?php echo $bulan ?>
+    </span> Tahun:<span class="font-weight-bold">
+        <?php echo $tahun ?>
+</div>
+<div class="card">
+    <div class="card-body">
 
-    <div class="alert alert" style="background-color: #8b0000; color: white;">
-        Menampilkan Penilaian Karyawan Bulan:<span class="font-weight-bold">
-            <?php echo $bulan ?>
-        </span> Tahun:<span class="font-weight-bold">
-            <?php echo $tahun ?>
-    </div>
-    <div class="card">
-        <div class="card-body">
-
-            <!-- validation crud -->
-            <?php if (validation_errors()): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <div class="row">
-                <div class="col-lg-4">
-                    <?= $this->session->flashdata('message'); ?>
-                </div>
+        <!-- validation crud -->
+        <?php if (validation_errors()): ?>
+            <div class="alert alert-danger" role="alert">
+                <?= validation_errors(); ?>
             </div>
-
-
-
-            <table id="example1" class="table table-bordered table-striped">
-                <thead style="text-align: center;  background-color:#8b0000; color: white;">
-                    <tr>
-                        <th>No</th>
-                        <th>Bulan/Tahun</th>
-                        <th>Karyawan</th>
-                        <th>Nilai</th>
-                        <th>Kategorisasi</th>
-                    </tr>
-                </thead>
-                <?php
-                $jml_data = COUNT($akumulasi);
-                $arr_char = [];
-                if ($jml_data > 0) { ?>
-                    <tbody>
-                        <?php $no = 1 ?>
-                        <?php
-                        $nik = $this->session->userdata("nik");
-                        $level = $this->session->userdata("level");
-
-                        foreach ($akumulasi as $ak):
-                            if ($nik !== $ak['nik'] && $level !== "hc") {
-                                continue;
-                            }
-                            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
-                            <tr style="text-align: center;">
-                                <th>
-                                    <?= $no++; ?>
-                                </th>
-                                <td>
-                                    <?= $ak['tanggal'] ?>
-                                    <?php
-                                    $arr_tgl = explode('/', $ak['tanggal']);
-                                    if ($arr_tgl[0] == '01') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '02') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '03') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '04') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '05') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '06') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '07') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '08') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '09') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '10') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '11') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-                                    if ($arr_tgl[0] == '12') {
-                                        array_push($arr_char, $nilaiakumulasi);
-                                    } else {
-                                        array_push($arr_char, 0);
-                                    }
-
-                                    ?>
-                                </td>
-
-                                <td>
-                                    <?= $ak['nik'], "<br>" .
-                                        $ak['nama_karyawan']; ?>
-                                </td>
-                                <td>
-                                    <?= number_format((float) $nilaiakumulasi, 2, '.', '') ?>
-                                </td>
-                                <td style="text-align: center;">
-                                    <?php
-                                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
-                                        echo "Sangat Baik";
-                                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
-                                        echo "Baik";
-                                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
-                                        echo "Cukup";
-                                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
-                                        echo "Kurang";
-                                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
-                                        echo "Sangat Kurang";
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                <?php } ?>
-            </table>
+        <?php endif; ?>
+        <div class="row">
+            <div class="col-lg-4">
+                <?= $this->session->flashdata('message'); ?>
+            </div>
         </div>
+
+
+
+        <table id="example1" class="table table-bordered table-striped">
+            <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                <tr>
+                    <th>No</th>
+                    <th>Bulan/Tahun</th>
+                    <th>Karyawan</th>
+                    <th>Nilai</th>
+                    <th>Kategorisasi</th>
+                </tr>
+            </thead>
+            <?php
+            $jml_data = COUNT($akumulasi);
+            $arr_char = [];
+            if ($jml_data > 0) { ?>
+                <tbody>
+                    <?php $no = 1 ?>
+                    <?php
+                    $nik = $this->session->userdata("nik");
+                    $level = $this->session->userdata("level");
+
+                    foreach ($akumulasi as $ak):
+                        if ($nik !== $ak['nik'] && $level !== "hc") {
+                            continue;
+                        }
+                        $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                        <tr style="text-align: center;">
+                            <th>
+                                <?= $no++; ?>
+                            </th>
+                            <td>
+                                <?= $ak['tanggal'] ?>
+                                <?php
+                                $arr_tgl = explode('/', $ak['tanggal']);
+                                if ($arr_tgl[0] == '01') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '02') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '03') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '04') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '05') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '06') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '07') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '08') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '09') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '10') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '11') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+                                if ($arr_tgl[0] == '12') {
+                                    array_push($arr_char, $nilaiakumulasi);
+                                } else {
+                                    array_push($arr_char, 0);
+                                }
+
+                                ?>
+                            </td>
+
+                            <td>
+                                <?= $ak['nik'], "<br>" .
+                                    $ak['nama_karyawan']; ?>
+                            </td>
+                            <td>
+                                <?= number_format((float) $nilaiakumulasi, 2, '.', '') ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <?php
+                                if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                                    echo "Sangat Baik";
+                                } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                                    echo "Baik";
+                                } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                                    echo "Cukup";
+                                } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                                    echo "Kurang";
+                                } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                                    echo "Sangat Kurang";
+                                }
+                                ?>
+
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            <?php } ?>
+        </table>
     </div>
-    <!-- /.card-body -->
+</div>
+<!-- /.card-body -->
 </div>
 
 <!-- Modal cetak akumulasi keseluruhan -->

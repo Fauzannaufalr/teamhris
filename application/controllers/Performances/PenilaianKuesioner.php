@@ -31,7 +31,8 @@ class PenilaianKuesioner extends CI_Controller
             $bulantahun = $bulan . "/" . $tahun;
         }
 
-        $data['penilaiankuesioner'] = $this->db->query("SELECT 
+        $data['penilaiankuesioner'] = $this->db->query(
+            "SELECT 
         pk.id_penilaian_kuesioner,
         pk.nik_penilai,
         pk.nik_menilai,
@@ -44,7 +45,9 @@ class PenilaianKuesioner extends CI_Controller
         FROM performances___penilaian_kuesioner pk
         INNER JOIN data_karyawan dk_a ON pk.nik_penilai = dk_a.nik 
         INNER JOIN data_karyawan dk_b ON pk.nik_menilai = dk_b.nik
-        WHERE pk.tanggal='$bulantahun'")->result_array();
+        WHERE pk.tanggal='$bulantahun' 
+        ORDER BY pk.nik_penilai"
+        )->result_array();
 
 
 

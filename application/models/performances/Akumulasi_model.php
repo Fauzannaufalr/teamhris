@@ -28,7 +28,7 @@ class Akumulasi_model extends CI_Model
             WHERE 
                 pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
         ) AS nilai_kuesioner,
-        (
+        (   
             SELECT 
                 pkerja.nilai
             FROM 
