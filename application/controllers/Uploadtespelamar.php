@@ -8,13 +8,13 @@ class Uploadtespelamar extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Recruitment/uploadtespelamar_model');
+        $this->load->model('recruitment/Uploadtespelamar_model');
         $this->load->model('DataPosisi_model');
     }
     public function index()
     {
         $data['title'] = 'Upload Hasil Tes';
-        $data['hasiltes'] = $this->uploadtespelamar_model->getAllhasiltes();
+        $data['hasiltes'] = $this->Uploadtespelamar_model->getAllhasiltes();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $this->load->view('Uploadtespelamar', $data);
     }

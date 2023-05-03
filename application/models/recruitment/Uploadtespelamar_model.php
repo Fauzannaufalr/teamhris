@@ -13,14 +13,6 @@ class Uploadtespelamar_model extends CI_Model
         $this->db->from('recruitment___hasiltes');
         return  $this->db->get()->result_array();
     }
-
-    public function hapus($id_pelamar)
-    {
-        $this->db->where('id_pelamar', $id_pelamar);
-        $this->db->delete('recruitmen___hasiltes');
-        return ($this->db->affected_rows() > 0) ? true : false;
-    }
-
     public function download($file)
     {
         $query = $this->db->get_where('recruitment___pelamar', array('file_cv' => $file));
