@@ -29,9 +29,9 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                             <td><?= $ds['email']; ?></td>
-                            <td><a href="<?php echo base_url('recruitment/Pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
+                            <td><a href="<?php echo base_url('Recruitment/Pelamar/download_file/' . $ds['file_cv']); ?>"><span class="glyphicon glyphicon-download-alt">Download CV</a></td>
                             <td><?= $ds['telepon']  ?></td>
-                            <td><a href="<?php echo base_url('recruitment/Pelamar/download_hasil/' . $ds['hasil_interview']); ?>"><span class="glyphicon glyphicon-download-alt">Hasil Interview</a></td>
+                            <td><a href="<?php echo base_url('Recruitment/Pelamar/download_hasil/' . $ds['hasil_interview']); ?>"><span class="glyphicon glyphicon-download-alt">Hasil Interview</a></td>
                             <td><?= $ds['status']; ?></td>
                             <td>
                                 <?php if ($ds['status'] == 'pelamar') : ?>
@@ -99,7 +99,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/Pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('Recruitment/Pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <input type="hidden" name="id_pekerjaan" value="<?= $ds['id_pekerjaan']; ?>">
@@ -143,7 +143,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/Pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('Recruitment/Pelamar/interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <div class="form-group">
@@ -186,7 +186,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/Pelamar/soal/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('Recruitment/Pelamar/soal/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <input type="hidden" name="id_pekerjaan" value="<?= $ds['id_pekerjaan']; ?>">
@@ -240,7 +240,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/Pelamar/nilai/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('Recruitment/Pelamar/nilai/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <input type="hidden" name="id" id="email" value="<?= $ds['id_pelamar']; ?>">
@@ -352,7 +352,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/Pelamar/tambah_hasil_interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('Recruitment/Pelamar/tambah_hasil_interview/' . $ds['id_pelamar']) ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="email" id="email" value="<?= $ds['email']; ?>">
                         <input type="hidden" name="id" id="email" value="<?= $ds['id_pelamar']; ?>">
