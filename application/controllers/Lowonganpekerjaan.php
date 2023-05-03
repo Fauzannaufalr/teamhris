@@ -8,12 +8,12 @@ class Lowonganpekerjaan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('recruitment/Pekerjaan_model');
+        $this->load->model('Recruitment/pekerjaan_model');
     }
     public function index()
     {
         $data['title'] = 'Lowonganpekerjaan';
-        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
+        $data['pekerjaan'] = $this->pekerjaan_model->tampilPekerjaan();
         $this->load->view('Lowonganpekerjaan', $data);
     }
 
