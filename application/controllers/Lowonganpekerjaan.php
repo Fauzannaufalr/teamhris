@@ -13,7 +13,7 @@ class Lowonganpekerjaan extends CI_Controller
     public function index()
     {
         $data['title'] = 'Lowonganpekerjaan';
-        $data['pekerjaan'] = $this->Pekerjaan_model->tampilPekerjaan();
+        $data['pekerjaan'] = $this->pekerjaan_model->tampilPekerjaan();
         $this->load->view('Lowonganpekerjaan', $data);
     }
 

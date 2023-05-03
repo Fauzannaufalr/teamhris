@@ -65,7 +65,7 @@ class Pekerjaan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('recruitment/pekerjaan');
+        redirect('Recruitment/Pekerjaan');
     }
 
 
