@@ -57,6 +57,6 @@ class Berinilai extends CI_Controller
         $this->db->where('id_hasiltes', $id);
         $this->db->update('recruitment___hasiltes', $data);
         $this->session->set_flashdata('message', 'Berhasil dinilai.');
-        redirect('recruitment/berinilai');
+        redirect('Recruitment/berinilai');
     }
 }
