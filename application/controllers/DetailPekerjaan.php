@@ -8,7 +8,7 @@ class Detailpekerjaan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('recruitment/Pekerjaan_model');
+        $this->load->model('Recruitment/pekerjaan_model');
         $this->load->model('DataPosisi_model', 'posisi');
     }
     public function index($id)
@@ -36,7 +36,7 @@ class Detailpekerjaan extends CI_Controller
             }
         }
         $data['array_kualifikasi'] = $array_kualifikasi;
-        $this->load->view('Detailpekerjaan', $data);
+        $this->load->view('detailpekerjaan', $data);
     }
 
     public function upload_cv()
@@ -74,6 +74,6 @@ class Detailpekerjaan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('Detailpekerjaan/index/' . $id);
+        redirect('detailpekerjaan/index/' . $id);
     }
 }

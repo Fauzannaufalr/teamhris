@@ -6,7 +6,7 @@ class Pelamar extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('recruitment/Pelamar_model');
+        $this->load->model('Recruitment/Pelamar_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
         $this->load->helper('url', 'download');
@@ -29,7 +29,7 @@ class Pelamar extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('recruitment/Pelamar', $data);
+        $this->load->view('recruitment/pelamar', $data);
         $this->load->view('templates/footer');
     }
 
@@ -44,7 +44,7 @@ class Pelamar extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/Pelamar');
+        redirect('recruitment/pelamar');
     }
 
 
@@ -77,7 +77,7 @@ class Pelamar extends CI_Controller
             'dataposisi' => $this->DataPosisi_model->getAllDataPosisi(),
 
         ];
-        $card = $this->load->view('Email_card', $data, TRUE);
+        $card = $this->load->view('email_card', $data, TRUE);
 
         $this->email->subject('Interview Talent Hunt');
         $this->email->message($card);
@@ -122,7 +122,7 @@ class Pelamar extends CI_Controller
                 'email' => $this->input->post('email')
 
             ];
-            $card = $this->load->view('Email_soal', $data, TRUE);
+            $card = $this->load->view('email_soal', $data, TRUE);
 
             $this->email->subject('Soal Tes Recruitment');
             $this->email->message($card);
@@ -133,12 +133,12 @@ class Pelamar extends CI_Controller
             if (!$this->email->send()) {
                 $this->Pelamar_model->statushasilinterview($id);
                 $this->session->set_flashdata('message', 'Soal berhasil dikirim');
-                redirect('recruitment/Pelamar');
+                redirect('recruitment/pelamar');
             } else {
             }
         } else {
             $this->session->set_flashdata('message', 'Soal harus di input');
-            redirect('recruitment/Pelamar');
+            redirect('recruitment/pelamar');
         }
     }
 
@@ -207,7 +207,7 @@ class Pelamar extends CI_Controller
             $this->email->to($email);
             $status = $data['status'];
             if ($status == 'diterima') {
-                $card = $this->load->view('Email_nilai', $data, TRUE);
+                $card = $this->load->view('email_nilai', $data, TRUE);
                 $data_update = array(
                     'status' => 'diterima',
 
@@ -215,7 +215,7 @@ class Pelamar extends CI_Controller
                 $where = array('id_pelamar' => $id);
                 $this->Pelamar_model->update_data($where, $data_update);
             } else {
-                $card = $this->load->view('Email_nilaitolak', $data, TRUE);
+                $card = $this->load->view('email_nilaitolak', $data, TRUE);
                 $data_update = array(
                     'status' => 'ditolak',
 
@@ -232,12 +232,12 @@ class Pelamar extends CI_Controller
                 if (delete_files($file_data['file_path'])) {
                     $this->Pelamar_model->statussoal($id);
                     $this->session->set_flashdata('message', 'penilaian & surat penerimaan/penolakan berhasil dikirim dikirim');
-                    redirect('recruitment/Pelamar');
+                    redirect('recruitment/pelamar');
                 }
             }
         } else {
             $this->session->set_flashdata('message', 'penilaian belum lengkap');
-            redirect('recruitment/Pelamar');
+            redirect('recruitment/pelamar');
         }
     }
 
@@ -271,7 +271,7 @@ class Pelamar extends CI_Controller
             $this->_kirimEmail();
             $this->Pelamar_model->statuspelamar($id);
             $this->session->set_flashdata('message', 'Jadwal interview berhasil dikirim ');
-            redirect('recruitment/Pelamar');
+            redirect('recruitment/pelamar');
         }
     }
     public function soal($id)
@@ -296,7 +296,7 @@ class Pelamar extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('recruitment/Pelamar', $data);
+            $this->load->view('recruitment/pelamar', $data);
             $this->load->view('templates/footer');
         } else {
             $email = $this->input->post('email');
@@ -313,7 +313,7 @@ class Pelamar extends CI_Controller
                 $this->_kirimSoal($token, $id);
 
                 $this->session->set_flashdata('message', 'Soal berhasil dikirim');
-                redirect('recruitment/Pelamar');
+                redirect('recruitment/pelamar');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> email tidak ditemukan!</div>');
                 redirect('recruitment/pelamar');
@@ -341,7 +341,7 @@ class Pelamar extends CI_Controller
         $this->_kirimnilai($id, $email, $data);
 
         $this->session->set_flashdata('message', 'Surat penerimaan/penolakan berhasil dikirim');
-        redirect('recruitment/Pelamar');
+        redirect('recruitment/pelamar');
     }
 
     public function download_file($filename)
@@ -437,7 +437,7 @@ class Pelamar extends CI_Controller
                 'hasil_interview' => $this->input->post('status' . $id),
 
             ];
-            $card = $this->load->view('Hasil_interview', $data, TRUE);
+            $card = $this->load->view('hasil_interview', $data, TRUE);
             $this->email->subject('Hasil Interview');
             $this->email->message($card);
 
@@ -446,14 +446,14 @@ class Pelamar extends CI_Controller
             if ($this->email->send()) {
                 if (delete_files($file_data['file_path'])) {
                     $this->session->set_flashdata('message', 'Hasil interview berhasil upload');
-                    redirect('recruitment/Pelamar');
+                    redirect('recruitment/pelamar');
                 }
             } else {
                 "";
             }
         } else {
             $this->session->set_flashdata('message', 'Hasil interview belum di upload');
-            redirect('recruitment/Pelamar');
+            redirect('recruitment/pelamar');
         }
     }
 
@@ -499,7 +499,7 @@ class Pelamar extends CI_Controller
                 $this->session->set_flashdata('message', 'Hasil interview tidak lulus berhasil dikirim');
             }
 
-            redirect('recruitment/Pelamar');
+            redirect('recruitment/pelamar');
         }
     }
 }

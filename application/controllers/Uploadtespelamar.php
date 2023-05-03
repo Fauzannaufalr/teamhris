@@ -16,7 +16,7 @@ class Uploadtespelamar extends CI_Controller
         $data['title'] = 'Upload Hasil Tes';
         $data['hasiltes'] = $this->Uploadtespelamar_model->getAllhasiltes();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $this->load->view('Uploadtespelamar', $data);
+        $this->load->view('uploadtespelamar', $data);
     }
 
     public function upload_hasiltes()
@@ -53,6 +53,6 @@ class Uploadtespelamar extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('Uploadtespelamar');
+        redirect('uploadtespelamar');
     }
 }

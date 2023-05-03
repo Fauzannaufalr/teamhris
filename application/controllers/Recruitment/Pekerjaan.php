@@ -6,7 +6,7 @@ class Pekerjaan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('recruitment/Pekerjaan_model');
+        $this->load->model('Recruitment/Pekerjaan_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
 
@@ -26,7 +26,7 @@ class Pekerjaan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('recruitment/Pekerjaan', $data);
+        $this->load->view('recruitment/pekerjaan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -65,7 +65,7 @@ class Pekerjaan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('recruitment/Pekerjaan');
+        redirect('recruitment/pekerjaan');
     }
 
 
@@ -102,7 +102,6 @@ class Pekerjaan extends CI_Controller
         $data_pekerjaan['deskripsi_pekerjaan'] = htmlspecialchars($this->input->post('deskripsi_pekerjaan'));
         $data_pekerjaan['kualifikasi'] = htmlspecialchars($this->input->post('kualifikasi'));
         $data_pekerjaan['tanggal_berakhir'] = htmlspecialchars($this->input->post('tanggal_berakhir'));
-
         // Simpan data pekerjaan yang sudah diupdate ke database
         $this->db->where('id_pekerjaan', $id_pekerjaan);
         $this->db->update('recruitment___pekerjaan', $data_pekerjaan);
@@ -111,7 +110,7 @@ class Pekerjaan extends CI_Controller
         $this->session->set_flashdata('message', 'Data Berhasil Diubah.');
 
         // Redirect kembali ke halaman profil
-        redirect('recruitment/Pekerjaan');
+        redirect('recruitment/pekerjaan');
     }
 
     public function hapus($id_pekerjaan)
@@ -121,6 +120,6 @@ class Pekerjaan extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/Pekerjaan');
+        redirect('recruitment/pekerjaan');
     }
 }
