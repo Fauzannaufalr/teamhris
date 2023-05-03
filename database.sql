@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 05:17 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Waktu pembuatan: 03 Bulan Mei 2023 pada 07.43
+-- Versi server: 10.4.24-MariaDB
+-- Versi PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_akun`
+-- Struktur dari tabel `data_akun`
 --
 
 CREATE TABLE `data_akun` (
@@ -36,7 +36,7 @@ CREATE TABLE `data_akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `data_akun`
+-- Dumping data untuk tabel `data_akun`
 --
 
 INSERT INTO `data_akun` (`id`, `username`, `password`, `level`, `nama`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `data_akun` (`id`, `username`, `password`, `level`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_karyawan`
+-- Struktur dari tabel `data_karyawan`
 --
 
 CREATE TABLE `data_karyawan` (
@@ -67,7 +67,7 @@ CREATE TABLE `data_karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `data_karyawan`
+-- Dumping data untuk tabel `data_karyawan`
 --
 
 INSERT INTO `data_karyawan` (`id_karyawan`, `nik`, `nama_karyawan`, `id_posisi`, `id_kelas`, `email`, `telepon`, `alamat`, `status`, `gajipokok`, `foto`, `type`, `nik_leader`, `password`, `level`) VALUES
@@ -83,7 +83,7 @@ INSERT INTO `data_karyawan` (`id_karyawan`, `nik`, `nama_karyawan`, `id_posisi`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_keseluruhan`
+-- Struktur dari tabel `data_keseluruhan`
 --
 
 CREATE TABLE `data_keseluruhan` (
@@ -95,7 +95,7 @@ CREATE TABLE `data_keseluruhan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `data_keseluruhan`
+-- Dumping data untuk tabel `data_keseluruhan`
 --
 
 INSERT INTO `data_keseluruhan` (`id_keseluruhan`, `nama`, `kategori`, `ulasan`, `file`) VALUES
@@ -108,7 +108,7 @@ INSERT INTO `data_keseluruhan` (`id_keseluruhan`, `nama`, `kategori`, `ulasan`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_mitra`
+-- Struktur dari tabel `data_mitra`
 --
 
 CREATE TABLE `data_mitra` (
@@ -128,7 +128,7 @@ CREATE TABLE `data_mitra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `data_mitra`
+-- Dumping data untuk tabel `data_mitra`
 --
 
 INSERT INTO `data_mitra` (`id`, `nama_perusahaan`, `nama_karyawan`, `keahlian`, `tools`, `email`, `telepon`, `alamat`, `rate_total`, `dokumen_kerjasama`, `status`, `tanggal_masuk`, `tanggal_keluar`) VALUES
@@ -138,7 +138,7 @@ INSERT INTO `data_mitra` (`id`, `nama_perusahaan`, `nama_karyawan`, `keahlian`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_pelamar`
+-- Struktur dari tabel `data_pelamar`
 --
 
 CREATE TABLE `data_pelamar` (
@@ -154,7 +154,7 @@ CREATE TABLE `data_pelamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `data_pelamar`
+-- Dumping data untuk tabel `data_pelamar`
 --
 
 INSERT INTO `data_pelamar` (`id_pelamar`, `nama_pekerjaan`, `nama_lengkap`, `pendidikan`, `cv`, `alamat`, `telepon`, `email`, `submit_tanggal`) VALUES
@@ -163,7 +163,7 @@ INSERT INTO `data_pelamar` (`id_pelamar`, `nama_pekerjaan`, `nama_lengkap`, `pen
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_posisi`
+-- Struktur dari tabel `data_posisi`
 --
 
 CREATE TABLE `data_posisi` (
@@ -173,7 +173,7 @@ CREATE TABLE `data_posisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `data_posisi`
+-- Dumping data untuk tabel `data_posisi`
 --
 
 INSERT INTO `data_posisi` (`id_posisi`, `nama_posisi`, `kode`) VALUES
@@ -186,7 +186,7 @@ INSERT INTO `data_posisi` (`id_posisi`, `nama_posisi`, `kode`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelola`
+-- Struktur dari tabel `kelola`
 --
 
 CREATE TABLE `kelola` (
@@ -198,7 +198,7 @@ CREATE TABLE `kelola` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kelola`
+-- Dumping data untuk tabel `kelola`
 --
 
 INSERT INTO `kelola` (`id`, `nama_pekerjaan`, `kualifikasi`, `tanggal_berakhir`, `img`) VALUES
@@ -207,7 +207,7 @@ INSERT INTO `kelola` (`id`, `nama_pekerjaan`, `kualifikasi`, `tanggal_berakhir`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payroll___bpjs`
+-- Struktur dari tabel `payroll___bpjs`
 --
 
 CREATE TABLE `payroll___bpjs` (
@@ -219,7 +219,7 @@ CREATE TABLE `payroll___bpjs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `payroll___bpjs`
+-- Dumping data untuk tabel `payroll___bpjs`
 --
 
 INSERT INTO `payroll___bpjs` (`id`, `id_datakaryawan`, `id_databpjs`, `jumlah`, `total`) VALUES
@@ -234,7 +234,7 @@ INSERT INTO `payroll___bpjs` (`id`, `id_datakaryawan`, `id_databpjs`, `jumlah`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payroll___databpjs`
+-- Struktur dari tabel `payroll___databpjs`
 --
 
 CREATE TABLE `payroll___databpjs` (
@@ -244,7 +244,7 @@ CREATE TABLE `payroll___databpjs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `payroll___databpjs`
+-- Dumping data untuk tabel `payroll___databpjs`
 --
 
 INSERT INTO `payroll___databpjs` (`id`, `kelas`, `nilai`) VALUES
@@ -255,7 +255,7 @@ INSERT INTO `payroll___databpjs` (`id`, `kelas`, `nilai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payroll___datapajak`
+-- Struktur dari tabel `payroll___datapajak`
 --
 
 CREATE TABLE `payroll___datapajak` (
@@ -266,7 +266,7 @@ CREATE TABLE `payroll___datapajak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `payroll___datapajak`
+-- Dumping data untuk tabel `payroll___datapajak`
 --
 
 INSERT INTO `payroll___datapajak` (`id`, `golongan`, `kode`, `tarif`) VALUES
@@ -286,7 +286,7 @@ INSERT INTO `payroll___datapajak` (`id`, `golongan`, `kode`, `tarif`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payroll___pajak`
+-- Struktur dari tabel `payroll___pajak`
 --
 
 CREATE TABLE `payroll___pajak` (
@@ -296,7 +296,7 @@ CREATE TABLE `payroll___pajak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `payroll___pajak`
+-- Dumping data untuk tabel `payroll___pajak`
 --
 
 INSERT INTO `payroll___pajak` (`id`, `id_datakaryawan`, `id_datapajak`) VALUES
@@ -312,7 +312,7 @@ INSERT INTO `payroll___pajak` (`id`, `id_datakaryawan`, `id_datapajak`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payroll___pengajuangaji`
+-- Struktur dari tabel `payroll___pengajuangaji`
 --
 
 CREATE TABLE `payroll___pengajuangaji` (
@@ -334,7 +334,7 @@ CREATE TABLE `payroll___pengajuangaji` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `payroll___pengajuangaji`
+-- Dumping data untuk tabel `payroll___pengajuangaji`
 --
 
 INSERT INTO `payroll___pengajuangaji` (`id`, `bulan_tahun`, `id_datakaryawan`, `nama_posisi`, `type`, `gajipokok`, `pajak`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`, `total`, `status`) VALUES
@@ -358,7 +358,7 @@ INSERT INTO `payroll___pengajuangaji` (`id`, `bulan_tahun`, `id_datakaryawan`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payroll___pengajuanratemitra`
+-- Struktur dari tabel `payroll___pengajuanratemitra`
 --
 
 CREATE TABLE `payroll___pengajuanratemitra` (
@@ -370,7 +370,7 @@ CREATE TABLE `payroll___pengajuanratemitra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `payroll___pengajuanratemitra`
+-- Dumping data untuk tabel `payroll___pengajuanratemitra`
 --
 
 INSERT INTO `payroll___pengajuanratemitra` (`id`, `bulan_tahun`, `id_datamitra`, `rate_total`, `status`) VALUES
@@ -382,7 +382,7 @@ INSERT INTO `payroll___pengajuanratemitra` (`id`, `bulan_tahun`, `id_datamitra`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payroll___perhitungan`
+-- Struktur dari tabel `payroll___perhitungan`
 --
 
 CREATE TABLE `payroll___perhitungan` (
@@ -397,7 +397,7 @@ CREATE TABLE `payroll___perhitungan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `payroll___perhitungan`
+-- Dumping data untuk tabel `payroll___perhitungan`
 --
 
 INSERT INTO `payroll___perhitungan` (`id`, `id_datakaryawan`, `t_kinerja`, `t_fungsional`, `t_jabatan`, `t_bpjs`, `potongan`, `bonus`) VALUES
@@ -414,7 +414,7 @@ INSERT INTO `payroll___perhitungan` (`id`, `id_datakaryawan`, `t_kinerja`, `t_fu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `performances___detail_penilaian_kuesioner`
+-- Struktur dari tabel `performances___detail_penilaian_kuesioner`
 --
 
 CREATE TABLE `performances___detail_penilaian_kuesioner` (
@@ -428,7 +428,7 @@ CREATE TABLE `performances___detail_penilaian_kuesioner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `performances___detail_penilaian_kuesioner`
+-- Dumping data untuk tabel `performances___detail_penilaian_kuesioner`
 --
 
 INSERT INTO `performances___detail_penilaian_kuesioner` (`id_detail_penilaian`, `id_kuesioner`, `id_penilaian_kuesioner`, `nik_penilai`, `nik_menilai`, `tanggal`, `nilai`) VALUES
@@ -726,7 +726,24 @@ INSERT INTO `performances___detail_penilaian_kuesioner` (`id_detail_penilaian`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `performances___penilaian_kinerja`
+-- Struktur dari tabel `performances___inputjamkerja`
+--
+
+CREATE TABLE `performances___inputjamkerja` (
+  `id_jamkerja` int(11) NOT NULL,
+  `nik` varchar(100) NOT NULL,
+  `total_kerja` varchar(500) NOT NULL,
+  `tanggal` varchar(100) NOT NULL,
+  `due_date` date NOT NULL,
+  `complete_date` date NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
+  `done_kerja` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `performances___penilaian_kinerja`
 --
 
 CREATE TABLE `performances___penilaian_kinerja` (
@@ -740,7 +757,7 @@ CREATE TABLE `performances___penilaian_kinerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `performances___penilaian_kinerja`
+-- Dumping data untuk tabel `performances___penilaian_kinerja`
 --
 
 INSERT INTO `performances___penilaian_kinerja` (`id_penilaian_kinerja`, `nik`, `tanggal`, `total_kerja`, `done_kerja`, `nilai`, `kategorisasi`) VALUES
@@ -751,7 +768,7 @@ INSERT INTO `performances___penilaian_kinerja` (`id_penilaian_kinerja`, `nik`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `performances___penilaian_kuesioner`
+-- Struktur dari tabel `performances___penilaian_kuesioner`
 --
 
 CREATE TABLE `performances___penilaian_kuesioner` (
@@ -761,11 +778,11 @@ CREATE TABLE `performances___penilaian_kuesioner` (
   `tanggal` varchar(100) NOT NULL,
   `total_nilai` int(11) NOT NULL,
   `total_soal` int(11) DEFAULT 0,
-  `saran` varchar(250) NOT NULL
+  `saran` varchar(750) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `performances___penilaian_kuesioner`
+-- Dumping data untuk tabel `performances___penilaian_kuesioner`
 --
 
 INSERT INTO `performances___penilaian_kuesioner` (`id_penilaian_kuesioner`, `nik_penilai`, `nik_menilai`, `tanggal`, `total_nilai`, `total_soal`, `saran`) VALUES
@@ -789,7 +806,7 @@ INSERT INTO `performances___penilaian_kuesioner` (`id_penilaian_kuesioner`, `nik
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recruitment___hasiltes`
+-- Struktur dari tabel `recruitment___hasiltes`
 --
 
 CREATE TABLE `recruitment___hasiltes` (
@@ -806,7 +823,7 @@ CREATE TABLE `recruitment___hasiltes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recruitment___pekerjaan`
+-- Struktur dari tabel `recruitment___pekerjaan`
 --
 
 CREATE TABLE `recruitment___pekerjaan` (
@@ -819,7 +836,7 @@ CREATE TABLE `recruitment___pekerjaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `recruitment___pekerjaan`
+-- Dumping data untuk tabel `recruitment___pekerjaan`
 --
 
 INSERT INTO `recruitment___pekerjaan` (`id_pekerjaan`, `id_posisi`, `kualifikasi`, `tanggal_berakhir`, `foto`, `deskripsi_pekerjaan`) VALUES
@@ -828,7 +845,7 @@ INSERT INTO `recruitment___pekerjaan` (`id_pekerjaan`, `id_posisi`, `kualifikasi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recruitment___pelamar`
+-- Struktur dari tabel `recruitment___pelamar`
 --
 
 CREATE TABLE `recruitment___pelamar` (
@@ -849,7 +866,7 @@ CREATE TABLE `recruitment___pelamar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `soal_kuesioner`
+-- Struktur dari tabel `soal_kuesioner`
 --
 
 CREATE TABLE `soal_kuesioner` (
@@ -858,7 +875,7 @@ CREATE TABLE `soal_kuesioner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `soal_kuesioner`
+-- Dumping data untuk tabel `soal_kuesioner`
 --
 
 INSERT INTO `soal_kuesioner` (`id_kuesioner`, `kuesioner`) VALUES
@@ -886,7 +903,7 @@ INSERT INTO `soal_kuesioner` (`id_kuesioner`, `kuesioner`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_jawaban`
+-- Struktur dari tabel `tb_jawaban`
 --
 
 CREATE TABLE `tb_jawaban` (
@@ -898,7 +915,7 @@ CREATE TABLE `tb_jawaban` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_jawaban`
+-- Dumping data untuk tabel `tb_jawaban`
 --
 
 INSERT INTO `tb_jawaban` (`id_jawaban`, `id_peserta`, `id_soal_ujian`, `jawaban`, `skor`) VALUES
@@ -939,7 +956,7 @@ INSERT INTO `tb_jawaban` (`id_jawaban`, `id_peserta`, `id_soal_ujian`, `jawaban`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_jenis_ujian`
+-- Struktur dari tabel `tb_jenis_ujian`
 --
 
 CREATE TABLE `tb_jenis_ujian` (
@@ -948,7 +965,7 @@ CREATE TABLE `tb_jenis_ujian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_jenis_ujian`
+-- Dumping data untuk tabel `tb_jenis_ujian`
 --
 
 INSERT INTO `tb_jenis_ujian` (`id_jenis_ujian`, `jenis_ujian`) VALUES
@@ -958,7 +975,7 @@ INSERT INTO `tb_jenis_ujian` (`id_jenis_ujian`, `jenis_ujian`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_kelas`
+-- Struktur dari tabel `tb_kelas`
 --
 
 CREATE TABLE `tb_kelas` (
@@ -967,7 +984,7 @@ CREATE TABLE `tb_kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tb_kelas`
+-- Dumping data untuk tabel `tb_kelas`
 --
 
 INSERT INTO `tb_kelas` (`id_kelas`, `nama_kelas`) VALUES
@@ -977,7 +994,7 @@ INSERT INTO `tb_kelas` (`id_kelas`, `nama_kelas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_peserta`
+-- Struktur dari tabel `tb_peserta`
 --
 
 CREATE TABLE `tb_peserta` (
@@ -1000,7 +1017,7 @@ CREATE TABLE `tb_peserta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_peserta`
+-- Dumping data untuk tabel `tb_peserta`
 --
 
 INSERT INTO `tb_peserta` (`id_peserta`, `id_posisi`, `id_karyawan`, `id_jenis_ujian`, `tanggal_ujian`, `jam_ujian`, `deadline`, `durasi_ujian`, `timer_ujian`, `status_ujian`, `status_ujian_ujian`, `benar`, `salah`, `nilai`, `soal_file`, `jawaban_file`) VALUES
@@ -1011,7 +1028,7 @@ INSERT INTO `tb_peserta` (`id_peserta`, `id_posisi`, `id_karyawan`, `id_jenis_uj
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_soal`
+-- Struktur dari tabel `tb_soal`
 --
 
 CREATE TABLE `tb_soal` (
@@ -1027,7 +1044,7 @@ CREATE TABLE `tb_soal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_soal`
+-- Dumping data untuk tabel `tb_soal`
 --
 
 INSERT INTO `tb_soal` (`id_soal_ujian`, `id_posisi`, `pertanyaan`, `a`, `b`, `c`, `d`, `e`, `kunci_jawaban`) VALUES
@@ -1045,7 +1062,7 @@ INSERT INTO `tb_soal` (`id_soal_ujian`, `id_posisi`, `pertanyaan`, `a`, `b`, `c`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__dosen`
+-- Struktur dari tabel `training__dosen`
 --
 
 CREATE TABLE `training__dosen` (
@@ -1057,7 +1074,7 @@ CREATE TABLE `training__dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `training__dosen`
+-- Dumping data untuk tabel `training__dosen`
 --
 
 INSERT INTO `training__dosen` (`id_dosen`, `nip`, `nama_dosen`, `email`, `matkul_id`) VALUES
@@ -1065,7 +1082,7 @@ INSERT INTO `training__dosen` (`id_dosen`, `nip`, `nama_dosen`, `email`, `matkul
 (3, '01234567', 'Tobirama Sensei', 'tobirama@gmail.com', 5);
 
 --
--- Triggers `training__dosen`
+-- Trigger `training__dosen`
 --
 DELIMITER $$
 CREATE TRIGGER `edit_user_dosen` BEFORE UPDATE ON `training__dosen` FOR EACH ROW UPDATE `users` SET `email` = NEW.email, `username` = NEW.nip WHERE `users`.`username` = OLD.nip
@@ -1079,7 +1096,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__h_ujian`
+-- Struktur dari tabel `training__h_ujian`
 --
 
 CREATE TABLE `training__h_ujian` (
@@ -1097,7 +1114,7 @@ CREATE TABLE `training__h_ujian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `training__h_ujian`
+-- Dumping data untuk tabel `training__h_ujian`
 --
 
 INSERT INTO `training__h_ujian` (`id`, `ujian_id`, `mahasiswa_id`, `list_soal`, `list_jawaban`, `jml_benar`, `nilai`, `nilai_bobot`, `tgl_mulai`, `tgl_selesai`, `status`) VALUES
@@ -1108,7 +1125,7 @@ INSERT INTO `training__h_ujian` (`id`, `ujian_id`, `mahasiswa_id`, `list_soal`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__jurusan`
+-- Struktur dari tabel `training__jurusan`
 --
 
 CREATE TABLE `training__jurusan` (
@@ -1117,7 +1134,7 @@ CREATE TABLE `training__jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `training__jurusan`
+-- Dumping data untuk tabel `training__jurusan`
 --
 
 INSERT INTO `training__jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
@@ -1127,7 +1144,7 @@ INSERT INTO `training__jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__jurusan_matkul`
+-- Struktur dari tabel `training__jurusan_matkul`
 --
 
 CREATE TABLE `training__jurusan_matkul` (
@@ -1137,7 +1154,7 @@ CREATE TABLE `training__jurusan_matkul` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `training__jurusan_matkul`
+-- Dumping data untuk tabel `training__jurusan_matkul`
 --
 
 INSERT INTO `training__jurusan_matkul` (`id`, `matkul_id`, `jurusan_id`) VALUES
@@ -1149,7 +1166,7 @@ INSERT INTO `training__jurusan_matkul` (`id`, `matkul_id`, `jurusan_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__kelas`
+-- Struktur dari tabel `training__kelas`
 --
 
 CREATE TABLE `training__kelas` (
@@ -1159,7 +1176,7 @@ CREATE TABLE `training__kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `training__kelas`
+-- Dumping data untuk tabel `training__kelas`
 --
 
 INSERT INTO `training__kelas` (`id_kelas`, `nama_kelas`, `jurusan_id`) VALUES
@@ -1172,7 +1189,7 @@ INSERT INTO `training__kelas` (`id_kelas`, `nama_kelas`, `jurusan_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__matkul`
+-- Struktur dari tabel `training__matkul`
 --
 
 CREATE TABLE `training__matkul` (
@@ -1181,7 +1198,7 @@ CREATE TABLE `training__matkul` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `training__matkul`
+-- Dumping data untuk tabel `training__matkul`
 --
 
 INSERT INTO `training__matkul` (`id_matkul`, `nama_matkul`) VALUES
@@ -1193,7 +1210,7 @@ INSERT INTO `training__matkul` (`id_matkul`, `nama_matkul`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__m_ujian`
+-- Struktur dari tabel `training__m_ujian`
 --
 
 CREATE TABLE `training__m_ujian` (
@@ -1210,7 +1227,7 @@ CREATE TABLE `training__m_ujian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `training__m_ujian`
+-- Dumping data untuk tabel `training__m_ujian`
 --
 
 INSERT INTO `training__m_ujian` (`id_ujian`, `dosen_id`, `matkul_id`, `nama_ujian`, `jumlah_soal`, `waktu`, `jenis`, `tgl_mulai`, `terlambat`, `token`) VALUES
@@ -1221,7 +1238,7 @@ INSERT INTO `training__m_ujian` (`id_ujian`, `dosen_id`, `matkul_id`, `nama_ujia
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training__tb_soal`
+-- Struktur dari tabel `training__tb_soal`
 --
 
 CREATE TABLE `training__tb_soal` (
@@ -1248,7 +1265,7 @@ CREATE TABLE `training__tb_soal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `training__tb_soal`
+-- Dumping data untuk tabel `training__tb_soal`
 --
 
 INSERT INTO `training__tb_soal` (`id_soal`, `dosen_id`, `matkul_id`, `bobot`, `file`, `tipe_file`, `soal`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi_d`, `opsi_e`, `file_a`, `file_b`, `file_c`, `file_d`, `file_e`, `jawaban`, `created_on`, `updated_on`) VALUES
@@ -1261,7 +1278,7 @@ INSERT INTO `training__tb_soal` (`id_soal`, `dosen_id`, `matkul_id`, `bobot`, `f
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_token`
+-- Struktur dari tabel `user_token`
 --
 
 CREATE TABLE `user_token` (
@@ -1272,7 +1289,7 @@ CREATE TABLE `user_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user_token`
+-- Dumping data untuk tabel `user_token`
 --
 
 INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
@@ -1284,13 +1301,13 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 --
 
 --
--- Indexes for table `data_akun`
+-- Indeks untuk tabel `data_akun`
 --
 ALTER TABLE `data_akun`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `data_karyawan`
+-- Indeks untuk tabel `data_karyawan`
 --
 ALTER TABLE `data_karyawan`
   ADD PRIMARY KEY (`id_karyawan`),
@@ -1298,80 +1315,80 @@ ALTER TABLE `data_karyawan`
   ADD KEY `id_posisi` (`id_posisi`);
 
 --
--- Indexes for table `data_keseluruhan`
+-- Indeks untuk tabel `data_keseluruhan`
 --
 ALTER TABLE `data_keseluruhan`
   ADD PRIMARY KEY (`id_keseluruhan`);
 
 --
--- Indexes for table `data_mitra`
+-- Indeks untuk tabel `data_mitra`
 --
 ALTER TABLE `data_mitra`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `data_pelamar`
+-- Indeks untuk tabel `data_pelamar`
 --
 ALTER TABLE `data_pelamar`
   ADD PRIMARY KEY (`id_pelamar`);
 
 --
--- Indexes for table `data_posisi`
+-- Indeks untuk tabel `data_posisi`
 --
 ALTER TABLE `data_posisi`
   ADD PRIMARY KEY (`id_posisi`);
 
 --
--- Indexes for table `kelola`
+-- Indeks untuk tabel `kelola`
 --
 ALTER TABLE `kelola`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payroll___bpjs`
+-- Indeks untuk tabel `payroll___bpjs`
 --
 ALTER TABLE `payroll___bpjs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payroll___databpjs`
+-- Indeks untuk tabel `payroll___databpjs`
 --
 ALTER TABLE `payroll___databpjs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payroll___datapajak`
+-- Indeks untuk tabel `payroll___datapajak`
 --
 ALTER TABLE `payroll___datapajak`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payroll___pajak`
+-- Indeks untuk tabel `payroll___pajak`
 --
 ALTER TABLE `payroll___pajak`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_datakaryawan` (`id_datakaryawan`);
 
 --
--- Indexes for table `payroll___pengajuangaji`
+-- Indeks untuk tabel `payroll___pengajuangaji`
 --
 ALTER TABLE `payroll___pengajuangaji`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payroll___pengajuanratemitra`
+-- Indeks untuk tabel `payroll___pengajuanratemitra`
 --
 ALTER TABLE `payroll___pengajuanratemitra`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payroll___perhitungan`
+-- Indeks untuk tabel `payroll___perhitungan`
 --
 ALTER TABLE `payroll___perhitungan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `performances___detail_penilaian_kuesioner`
+-- Indeks untuk tabel `performances___detail_penilaian_kuesioner`
 --
 ALTER TABLE `performances___detail_penilaian_kuesioner`
   ADD PRIMARY KEY (`id_detail_penilaian`),
@@ -1379,14 +1396,21 @@ ALTER TABLE `performances___detail_penilaian_kuesioner`
   ADD KEY `id_kuesioer` (`id_kuesioner`);
 
 --
--- Indexes for table `performances___penilaian_kinerja`
+-- Indeks untuk tabel `performances___inputjamkerja`
+--
+ALTER TABLE `performances___inputjamkerja`
+  ADD PRIMARY KEY (`id_jamkerja`),
+  ADD UNIQUE KEY `nik` (`nik`);
+
+--
+-- Indeks untuk tabel `performances___penilaian_kinerja`
 --
 ALTER TABLE `performances___penilaian_kinerja`
   ADD PRIMARY KEY (`id_penilaian_kinerja`),
   ADD KEY `nik` (`nik`);
 
 --
--- Indexes for table `performances___penilaian_kuesioner`
+-- Indeks untuk tabel `performances___penilaian_kuesioner`
 --
 ALTER TABLE `performances___penilaian_kuesioner`
   ADD PRIMARY KEY (`id_penilaian_kuesioner`),
@@ -1394,31 +1418,31 @@ ALTER TABLE `performances___penilaian_kuesioner`
   ADD KEY `menilai` (`nik_menilai`);
 
 --
--- Indexes for table `recruitment___hasiltes`
+-- Indeks untuk tabel `recruitment___hasiltes`
 --
 ALTER TABLE `recruitment___hasiltes`
   ADD PRIMARY KEY (`id_hasiltes`);
 
 --
--- Indexes for table `recruitment___pekerjaan`
+-- Indeks untuk tabel `recruitment___pekerjaan`
 --
 ALTER TABLE `recruitment___pekerjaan`
   ADD PRIMARY KEY (`id_pekerjaan`);
 
 --
--- Indexes for table `recruitment___pelamar`
+-- Indeks untuk tabel `recruitment___pelamar`
 --
 ALTER TABLE `recruitment___pelamar`
   ADD PRIMARY KEY (`id_pelamar`);
 
 --
--- Indexes for table `soal_kuesioner`
+-- Indeks untuk tabel `soal_kuesioner`
 --
 ALTER TABLE `soal_kuesioner`
   ADD PRIMARY KEY (`id_kuesioner`);
 
 --
--- Indexes for table `tb_jawaban`
+-- Indeks untuk tabel `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   ADD PRIMARY KEY (`id_jawaban`),
@@ -1426,19 +1450,19 @@ ALTER TABLE `tb_jawaban`
   ADD KEY `id_peserta` (`id_peserta`);
 
 --
--- Indexes for table `tb_jenis_ujian`
+-- Indeks untuk tabel `tb_jenis_ujian`
 --
 ALTER TABLE `tb_jenis_ujian`
   ADD PRIMARY KEY (`id_jenis_ujian`);
 
 --
--- Indexes for table `tb_kelas`
+-- Indeks untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
   ADD PRIMARY KEY (`id_kelas`);
 
 --
--- Indexes for table `tb_peserta`
+-- Indeks untuk tabel `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
   ADD PRIMARY KEY (`id_peserta`),
@@ -1447,14 +1471,14 @@ ALTER TABLE `tb_peserta`
   ADD KEY `id_jenis_ujian` (`id_jenis_ujian`);
 
 --
--- Indexes for table `tb_soal`
+-- Indeks untuk tabel `tb_soal`
 --
 ALTER TABLE `tb_soal`
   ADD PRIMARY KEY (`id_soal_ujian`),
   ADD KEY `id_matakuliah` (`id_posisi`);
 
 --
--- Indexes for table `training__dosen`
+-- Indeks untuk tabel `training__dosen`
 --
 ALTER TABLE `training__dosen`
   ADD PRIMARY KEY (`id_dosen`),
@@ -1463,7 +1487,7 @@ ALTER TABLE `training__dosen`
   ADD KEY `matkul_id` (`matkul_id`);
 
 --
--- Indexes for table `training__h_ujian`
+-- Indeks untuk tabel `training__h_ujian`
 --
 ALTER TABLE `training__h_ujian`
   ADD PRIMARY KEY (`id`),
@@ -1471,13 +1495,13 @@ ALTER TABLE `training__h_ujian`
   ADD KEY `mahasiswa_id` (`mahasiswa_id`);
 
 --
--- Indexes for table `training__jurusan`
+-- Indeks untuk tabel `training__jurusan`
 --
 ALTER TABLE `training__jurusan`
   ADD PRIMARY KEY (`id_jurusan`);
 
 --
--- Indexes for table `training__jurusan_matkul`
+-- Indeks untuk tabel `training__jurusan_matkul`
 --
 ALTER TABLE `training__jurusan_matkul`
   ADD PRIMARY KEY (`id`),
@@ -1485,20 +1509,20 @@ ALTER TABLE `training__jurusan_matkul`
   ADD KEY `matkul_id` (`matkul_id`);
 
 --
--- Indexes for table `training__kelas`
+-- Indeks untuk tabel `training__kelas`
 --
 ALTER TABLE `training__kelas`
   ADD PRIMARY KEY (`id_kelas`),
   ADD KEY `jurusan_id` (`jurusan_id`);
 
 --
--- Indexes for table `training__matkul`
+-- Indeks untuk tabel `training__matkul`
 --
 ALTER TABLE `training__matkul`
   ADD PRIMARY KEY (`id_matkul`);
 
 --
--- Indexes for table `training__m_ujian`
+-- Indeks untuk tabel `training__m_ujian`
 --
 ALTER TABLE `training__m_ujian`
   ADD PRIMARY KEY (`id_ujian`),
@@ -1506,7 +1530,7 @@ ALTER TABLE `training__m_ujian`
   ADD KEY `dosen_id` (`dosen_id`);
 
 --
--- Indexes for table `training__tb_soal`
+-- Indeks untuk tabel `training__tb_soal`
 --
 ALTER TABLE `training__tb_soal`
   ADD PRIMARY KEY (`id_soal`),
@@ -1514,250 +1538,256 @@ ALTER TABLE `training__tb_soal`
   ADD KEY `dosen_id` (`dosen_id`);
 
 --
--- Indexes for table `user_token`
+-- Indeks untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `data_akun`
+-- AUTO_INCREMENT untuk tabel `data_akun`
 --
 ALTER TABLE `data_akun`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `data_karyawan`
+-- AUTO_INCREMENT untuk tabel `data_karyawan`
 --
 ALTER TABLE `data_karyawan`
   MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
--- AUTO_INCREMENT for table `data_keseluruhan`
+-- AUTO_INCREMENT untuk tabel `data_keseluruhan`
 --
 ALTER TABLE `data_keseluruhan`
   MODIFY `id_keseluruhan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `data_mitra`
+-- AUTO_INCREMENT untuk tabel `data_mitra`
 --
 ALTER TABLE `data_mitra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `data_pelamar`
+-- AUTO_INCREMENT untuk tabel `data_pelamar`
 --
 ALTER TABLE `data_pelamar`
   MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `data_posisi`
+-- AUTO_INCREMENT untuk tabel `data_posisi`
 --
 ALTER TABLE `data_posisi`
   MODIFY `id_posisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `kelola`
+-- AUTO_INCREMENT untuk tabel `kelola`
 --
 ALTER TABLE `kelola`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `payroll___bpjs`
+-- AUTO_INCREMENT untuk tabel `payroll___bpjs`
 --
 ALTER TABLE `payroll___bpjs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `payroll___databpjs`
+-- AUTO_INCREMENT untuk tabel `payroll___databpjs`
 --
 ALTER TABLE `payroll___databpjs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `payroll___datapajak`
+-- AUTO_INCREMENT untuk tabel `payroll___datapajak`
 --
 ALTER TABLE `payroll___datapajak`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `payroll___pajak`
+-- AUTO_INCREMENT untuk tabel `payroll___pajak`
 --
 ALTER TABLE `payroll___pajak`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `payroll___pengajuangaji`
+-- AUTO_INCREMENT untuk tabel `payroll___pengajuangaji`
 --
 ALTER TABLE `payroll___pengajuangaji`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1018;
 
 --
--- AUTO_INCREMENT for table `payroll___pengajuanratemitra`
+-- AUTO_INCREMENT untuk tabel `payroll___pengajuanratemitra`
 --
 ALTER TABLE `payroll___pengajuanratemitra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `payroll___perhitungan`
+-- AUTO_INCREMENT untuk tabel `payroll___perhitungan`
 --
 ALTER TABLE `payroll___perhitungan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `performances___detail_penilaian_kuesioner`
+-- AUTO_INCREMENT untuk tabel `performances___detail_penilaian_kuesioner`
 --
 ALTER TABLE `performances___detail_penilaian_kuesioner`
   MODIFY `id_detail_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=391;
 
 --
--- AUTO_INCREMENT for table `performances___penilaian_kinerja`
+-- AUTO_INCREMENT untuk tabel `performances___inputjamkerja`
+--
+ALTER TABLE `performances___inputjamkerja`
+  MODIFY `id_jamkerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT untuk tabel `performances___penilaian_kinerja`
 --
 ALTER TABLE `performances___penilaian_kinerja`
   MODIFY `id_penilaian_kinerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `performances___penilaian_kuesioner`
+-- AUTO_INCREMENT untuk tabel `performances___penilaian_kuesioner`
 --
 ALTER TABLE `performances___penilaian_kuesioner`
   MODIFY `id_penilaian_kuesioner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `recruitment___hasiltes`
+-- AUTO_INCREMENT untuk tabel `recruitment___hasiltes`
 --
 ALTER TABLE `recruitment___hasiltes`
   MODIFY `id_hasiltes` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `recruitment___pekerjaan`
+-- AUTO_INCREMENT untuk tabel `recruitment___pekerjaan`
 --
 ALTER TABLE `recruitment___pekerjaan`
   MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `recruitment___pelamar`
+-- AUTO_INCREMENT untuk tabel `recruitment___pelamar`
 --
 ALTER TABLE `recruitment___pelamar`
   MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `soal_kuesioner`
+-- AUTO_INCREMENT untuk tabel `soal_kuesioner`
 --
 ALTER TABLE `soal_kuesioner`
   MODIFY `id_kuesioner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `tb_jawaban`
+-- AUTO_INCREMENT untuk tabel `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   MODIFY `id_jawaban` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
--- AUTO_INCREMENT for table `tb_jenis_ujian`
+-- AUTO_INCREMENT untuk tabel `tb_jenis_ujian`
 --
 ALTER TABLE `tb_jenis_ujian`
   MODIFY `id_jenis_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `tb_kelas`
+-- AUTO_INCREMENT untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
   MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tb_peserta`
+-- AUTO_INCREMENT untuk tabel `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
   MODIFY `id_peserta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT for table `tb_soal`
+-- AUTO_INCREMENT untuk tabel `tb_soal`
 --
 ALTER TABLE `tb_soal`
   MODIFY `id_soal_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT for table `training__dosen`
+-- AUTO_INCREMENT untuk tabel `training__dosen`
 --
 ALTER TABLE `training__dosen`
   MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `training__h_ujian`
+-- AUTO_INCREMENT untuk tabel `training__h_ujian`
 --
 ALTER TABLE `training__h_ujian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `training__jurusan`
+-- AUTO_INCREMENT untuk tabel `training__jurusan`
 --
 ALTER TABLE `training__jurusan`
   MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `training__jurusan_matkul`
+-- AUTO_INCREMENT untuk tabel `training__jurusan_matkul`
 --
 ALTER TABLE `training__jurusan_matkul`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `training__kelas`
+-- AUTO_INCREMENT untuk tabel `training__kelas`
 --
 ALTER TABLE `training__kelas`
   MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `training__matkul`
+-- AUTO_INCREMENT untuk tabel `training__matkul`
 --
 ALTER TABLE `training__matkul`
   MODIFY `id_matkul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `training__m_ujian`
+-- AUTO_INCREMENT untuk tabel `training__m_ujian`
 --
 ALTER TABLE `training__m_ujian`
   MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `training__tb_soal`
+-- AUTO_INCREMENT untuk tabel `training__tb_soal`
 --
 ALTER TABLE `training__tb_soal`
   MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `user_token`
+-- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `data_karyawan`
+-- Ketidakleluasaan untuk tabel `data_karyawan`
 --
 ALTER TABLE `data_karyawan`
   ADD CONSTRAINT `id_posisi_fk` FOREIGN KEY (`id_posisi`) REFERENCES `data_posisi` (`id_posisi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `performances___detail_penilaian_kuesioner`
+-- Ketidakleluasaan untuk tabel `performances___detail_penilaian_kuesioner`
 --
 ALTER TABLE `performances___detail_penilaian_kuesioner`
   ADD CONSTRAINT `performances___detail_penilaian_kuesioner_ibfk_1` FOREIGN KEY (`id_penilaian_kuesioner`) REFERENCES `performances___penilaian_kuesioner` (`id_penilaian_kuesioner`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `performances___detail_penilaian_kuesioner_ibfk_2` FOREIGN KEY (`id_kuesioner`) REFERENCES `soal_kuesioner` (`id_kuesioner`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `performances___penilaian_kinerja`
+-- Ketidakleluasaan untuk tabel `performances___penilaian_kinerja`
 --
 ALTER TABLE `performances___penilaian_kinerja`
   ADD CONSTRAINT `performances___penilaian_kinerja_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `data_karyawan` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `performances___penilaian_kuesioner`
+-- Ketidakleluasaan untuk tabel `performances___penilaian_kuesioner`
 --
 ALTER TABLE `performances___penilaian_kuesioner`
   ADD CONSTRAINT `performances___penilaian_kuesioner_ibfk_1` FOREIGN KEY (`nik_penilai`) REFERENCES `data_karyawan` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE,

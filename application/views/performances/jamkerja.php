@@ -92,11 +92,9 @@
                         <tr>
                             <th>No</th>
                             <th>NIK & Nama Karyawan</th>
-                            <th>Total Kerja</th>
                             <th>Due Date</th>
                             <th>Complete Date</th>
                             <th>Keterangan</th>
-                            <th>Done Kerja</th>
                             <th>Aksi</th>
                         </tr>
                         </tr>
@@ -117,9 +115,6 @@
                                 </td>
 
                                 <td>
-                                    <?= $jam['total_kerja']; ?>
-                                </td>
-                                <td>
                                     <?= $jam['due_date']; ?>
                                 </td>
 
@@ -129,9 +124,7 @@
                                 <td>
                                     <?= $jam['keterangan']; ?>
                                 </td>
-                                <td>
 
-                                </td>
 
                                 <th>
                                     <button class="badge" style="background-color: gold; color: black;" data-toggle="modal"
@@ -223,7 +216,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/JamKerja/jamkerja') ?>" method="POST"
+            <form action="<?= base_url('performances/jamkerja') ?>" method="POST"
                 enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
