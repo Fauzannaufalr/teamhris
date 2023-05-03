@@ -6,7 +6,7 @@ class Berinilai extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('recruitment/Hasiltes_model');
+        $this->load->model('Recruitment/Hasiltes_model');
         $this->load->model('DataPosisi_model');
         $this->load->model('Hris_model');
         $this->load->helper(array('url', 'download'));
@@ -20,7 +20,7 @@ class Berinilai extends CI_Controller
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->load->view('recruitment/Berinilai', $data);
+        $this->load->view('recruitment/berinilai', $data);
     }
     public function hapus($id_hasiltes)
     {
@@ -29,7 +29,7 @@ class Berinilai extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/Berinilai');
+        redirect('recruitment/berinilai');
     }
 
     public function download_file($filename)

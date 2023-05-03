@@ -78,7 +78,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>recruitment/hasiltes/hapus/<?= $ko['id_hasiltes'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>Recruitment/hasiltes/hapus/<?= $ko['id_hasiltes'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
