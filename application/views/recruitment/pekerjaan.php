@@ -7,7 +7,7 @@
                 Tambah Pekerjaan
             </button>
             <table id="example1" class="table table-bordered table-striped">
-                <thead>
+                <thead style="background-color: #8b0000; color: #ffffff;">
                     <tr>
                         <th>No</th>
                         <th>Posisi</th>
