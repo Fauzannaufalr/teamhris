@@ -10,7 +10,7 @@ class JamKerja_model extends CI_Model
             performances___inputjamkerja.tanggal,
             performances___inputjamkerja.total_kerja,
             performances___inputjamkerja.due_date,
-            performances___inputjamkerja.complate_date,
+            performances___inputjamkerja.complete_date,
             performances___inputjamkerja.keterangan,
             (SELECT 
                 data_posisi.nama_posisi 
@@ -22,30 +22,26 @@ class JamKerja_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function get_due_date($id)
+
+    public function import_data($data)
     {
-        return $this->db->get_where('performances___inputjamkerja', array('id_jamkerja' => $id))->row()->due_date;
+        $query = $this->db->get('
+        performances___inputjamkerja');
+        if ($query->num_rows() > 0) {
+            // Jika data sudah ada, maka lakukan update data
+            $this->db->where('nik', $data['nik']);
+            $this->db->update('performances___inputjamkerja', $data);
+        } else {
+            // Jika data belum ada, maka lakukan insert data
+            $this->db->insert('performances___inputjamkerja', $data);
+        }
     }
-
-    public function get_complete_date($id)
-    {
-        return $this->db->get_where('performances___inputjamkerja', array('id_jamkerja' => $id))->row()->complate_date;
-    }
-
-    public function selisih_tanggal($due_date, $complate_date)
-    {
-        $selisih_hari = (strtotime($complate_date) - strtotime($due_date)) / (60 * 60 * 24);
-        return $selisih_hari;
-    }
-
-
-
 
     public function tambah()
     {
         $done_kerja = $this->input->post('done_kerja');
         $total_kerja = $this->input->post('total_kerja');
-        $complate_date = $this->input->post('complate_date');
+        $complate_date = $this->input->post('complete_date');
         $due_date = $this->input->post('due_date');
 
         if (!$complate_date || !$due_date) { // jika salah satu tanggal tidak diisi

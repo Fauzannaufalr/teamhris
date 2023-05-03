@@ -1,4 +1,8 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class JamKerja extends CI_Controller
 {
@@ -49,17 +53,6 @@ class JamKerja extends CI_Controller
         $this->load->view('performances/jamkerja', $data);
         $this->load->view('templates/footer');
     }
-    public function selisih_date($id)
-    {
-        $id = 1; // id data yang ingin dihitung selisih tanggalnya
-        $this->load->model('JamKerja_model');
-        $due_date = $this->JamKerja_model->get_due_date($id);
-        $complate_date = $this->JamKerja_model->get_complete_date($id);
-        $selisih_hari = $this->JamKerja_model->selisih_tanggal($due_date, $complate_date);
-
-        $data['selisih_hari'] = $selisih_hari;
-        $this->load->view('performances___inputjamkerja', $data);
-    }
 
 
     public function save_jam_kerja()
@@ -76,21 +69,123 @@ class JamKerja extends CI_Controller
         redirect('performances/JamKerja');
     }
 
-    private function nik_sudah_digunakan_by_month($nik)
+    function import()
     {
-        $currentDate = date("m/Y");
-        $query = $this->db->query("SELECT pk.nik FROM performances___inputjamkerja pk WHERE 
-        pk.nik = '$nik' AND pk.tanggal = '$currentDate' ")->result_array();
-        if (count($query) > 0) {
-            return true;
-        }
-        return false;
-    }
+        $data['title'] = "Jam Kerja";
+        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+        $data['jamkerja'] = $this->JamKerja_model->Tampiljamkerja();
+        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+        $data['user'] = $this->Hris_model->ambilUser();
 
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/jamkerja', $data);
+        $this->load->view('templates/footer');
+
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['upload_path'] = './dist/import';
+        $config['file_name'] = 'doc' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('import')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
+
+            $reader->open('./dist/import/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numRow = 1;
+                foreach ($sheet->getRowIterator() as $row) {
+                    if ($numRow > 1) {
+                        $data = array(
+                            'nik' => htmlspecialchars($row->getCellAtIndex(1)),
+                            'due_date' => htmlspecialchars($row->getCellAtIndex(2)),
+                            'complate_date' => htmlspecialchars($row->getCellAtIndex(3)),
+                            'keterangan' => $row->getCellAtIndex(4),
+                        );
+                    }
+                    $numRow++;
+                }
+            }
+
+            $reader->close();
+            unlink('./dist/import/' . $file['file_name']);
+            $this->session->set_flashdata('message', ' Data berhasil diimport!');
+            redirect('performances/JamKerja');
+        }
+    }
+    // private function nik_sudah_digunakan_by_month($nik)
+    // {
+    //     $currentDate = date("m/Y");
+    //     $query = $this->db->query("SELECT pk.nik FROM performances___inputjamkerja pk WHERE 
+    //     pk.nik = '$nik' AND pk.tanggal = '$currentDate' ")->result_array();
+    //     if (count($query) > 0) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
+    // function import()
+    // {
+    //     $data['title'] = "Penilaian Kinerja";
+    //     $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
+    //     $data['jamkerja'] = $this->JamKerja_model->Tampiljamkerja();
+    //     $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
+    //     $data['user'] = $this->Hris_model->ambilUser();
+
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/navbar', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('performances/jamkerja', $data);
+    //     $this->load->view('templates/footer');
+
+    //     $config['allowed_types'] = 'xlsx|xls';
+    //     $config['upload_path'] = './dist/import';
+    //     $config['file_name'] = 'doc' . time();
+
+    //     $this->load->library('upload', $config);
+
+    //     if ($this->upload->do_upload('import')) {
+    //         $file = $this->upload->data();
+    //         $reader = ReaderEntityFactory::createXLSXReader();
+    //         $reader->open('./dist/import/' . $file['file_name']);
+    //         $worksheet = $reader->getSheetIterator()->current();
+    //         $highestRow = $worksheet->getHighestRow();
+
+    //         for ($row = 2; $row <= $highestRow; $row++) {
+    //             $nik = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+    //             $due_date = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+    //             $complate_date = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+    //             $keterangan = "";
+
+    //             if (!empty($complate_date) && !empty($due_date)) {
+    //                 if ($complate_date <= $due_date) {
+    //                     $keterangan = "Tepat Waktu";
+    //                 } else {
+    //                     $keterangan = "Terlambat";
+    //                 }
+    //             } else {
+    //                 $keterangan = "Tidak Diisi";
+    //             }
+
+    //             $data[] = array(
+    //                 'nik' => $nik,
+    //                 'due_date' => $due_date,
+    //                 'complate_date' => $complate_date,
+    //                 'keterangan' => $keterangan
+    //             );
+    //         }
+
+    //         $reader->close();
+    //         unlink('./dist/import/' . $file['file_name']);
+    //         $this->JamKerja_model->insert_data($data);
+    //         $this->session->set_flashdata('message', ' Data berhasil diimport!');
+    //         redirect('performances/JamKerja');
+    //     }
+    // }
 
     public function tambah()
     {
-        $nik = $this->input->post("nik_nama");
         $data['title'] = "Jam Kerja";
         $data['jamkerja'] = $this->JamKerja_model->Tampiljamkerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
@@ -105,7 +200,7 @@ class JamKerja extends CI_Controller
         ]);
 
 
-        $nik_digunakan = $this->nik_sudah_digunakan_by_month($nik);
+        // $nik_digunakan = $this->nik_sudah_digunakan_by_month($nik);
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -114,12 +209,6 @@ class JamKerja extends CI_Controller
             $this->load->view('performances/jamkerja', $data);
             $this->load->view('templates/footer');
         } else {
-            if ($nik_digunakan) {
-                $this->session->set_flashdata('error', 'NIK telah digunakan');
-                redirect('performances/JamKerja');
-                return;
-            }
-
             $this->JamKerja_model->tambah();
 
             $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
@@ -169,6 +258,7 @@ class JamKerja extends CI_Controller
         }
         redirect('performances/JamKerja');
     }
+
 
 
     public function ajax_category()
