@@ -98,7 +98,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             if ($nik_digunakan) {
                 $this->session->set_flashdata('error', 'NIK telah digunakan');
-                redirect('performances/PenilaianKinerja');
+                redirect('Performances/PenilaianKinerja');
                 return;
             }
 
@@ -138,7 +138,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->PenilaianKinerja_model->ubahPenilaianKinerja();
             $this->session->set_flashdata('message', 'Data berhasil diUbah!');
-            redirect('performances/PenilaianKinerja');
+            redirect('Performances/PenilaianKinerja');
         }
     }
 
@@ -150,7 +150,7 @@ class PenilaianKinerja extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('performances/PenilaianKinerja');
+        redirect('Performances/PenilaianKinerja');
     }
 
 

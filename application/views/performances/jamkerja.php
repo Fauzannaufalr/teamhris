@@ -138,7 +138,7 @@
                             <?php endforeach; ?>
                     </tbody>
                 </table>
-                <a class="badge" href=<?= base_url("performances/PenilaianKinerja") ?> type="button"
+                <a class="badge" href=<?= base_url("Performances/PenilaianKinerja") ?> type="button"
                     style="background-color: #d4d4d4" ;><i class="fas fa-reply"></i>
                     Kembali
                 </a>
@@ -163,7 +163,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/JamKerja/tambah') ?>" method="POST">
+            <form action="<?= base_url('Performances/JamKerja/tambah') ?>" method="POST">
                 <div class="modal-body">
                     <div class=" form-group">
 
@@ -216,8 +216,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/jamkerja') ?>" method="POST"
-                enctype="multipart/form-data">
+            <form action="<?= base_url('Performances/jamkerja') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="custom-file">
@@ -277,7 +276,7 @@
                     </button>
                 </div>
 
-                <form action="<?= base_url('performances/JamKerja/ubah') ?>" method="POST">
+                <form action="<?= base_url('Performances/JamKerja/ubah') ?>" method="POST">
                     <div class="modal-body">
                         <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
                         </h6>
@@ -356,7 +355,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>performances/JamKerja/hapus/<?= $jam['id_jamkerja'] ?>" type="submit"
+                    <a href="<?= base_url() ?>Performances/JamKerja/hapus/<?= $jam['id_jamkerja'] ?>" type="submit"
                         class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
                 </div>
             </div>

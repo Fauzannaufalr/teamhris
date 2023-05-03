@@ -16,7 +16,7 @@
       <?php endif; ?>
 
 
-      <form method="POST" action="<?= base_url('performances/MenilaiDiriSendiri/simpan') ?>">
+      <form method="POST" action="<?= base_url('Performances/MenilaiDiriSendiri/simpan') ?>">
         <div class="form-group form-group col-md-4">
           <label>Menilai</label>
           <input required type="hidden" readonly value="<?= $user['id_karyawan']; ?>" id="id_karyawan"
