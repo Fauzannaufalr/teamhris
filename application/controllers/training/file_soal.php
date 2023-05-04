@@ -9,7 +9,7 @@ class File_soal extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('training/Filesoal_model');
+        $this->load->model('training/filesoal_model');
         $this->load->model('Hris_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
@@ -23,7 +23,7 @@ class File_soal extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Soal";
-        $data['datapes'] = $this->Filesoal_model->getAllFilesoal();
+        $data['datapes'] = $this->filesoal_model->getAllfilesoal();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
@@ -80,7 +80,7 @@ class File_soal extends CI_Controller
     public function ubah()
     {
         $data['title'] = "Data Soal";
-        $data['filesoal'] = $this->Filesoal_model->getAllFilesoal();
+        $data['filesoal'] = $this->filesoal_model->getAllfilesoal();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();

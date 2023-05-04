@@ -1,6 +1,6 @@
 <?php
 
-class Filesoal_model extends CI_Model
+class filesoal_model extends CI_Model
 {
     public function getAllFilesoal()
     {

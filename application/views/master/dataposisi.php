@@ -23,7 +23,8 @@
                             <td><?= $dp['nama_posisi']; ?></td>
                             <td><?= $dp['kode']; ?></td>
                             <td>
-                                <button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahPosisi<?= $dp['id_posisi']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="badge" style="background-color: gold; color: black;" data-toggle="modal" data-target="#ubahPosisi<?= $dp['id_posisi']; ?>"><i class="fas fa-edit"></i>
+                                    Edit</button>
                                 <button class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $dp['id_posisi']; ?>"><i class="fas fa-trash-alt"></i> Hapus</button>
                             </td>
                         </tr>
@@ -58,7 +59,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-danger">Simpan</button>
+                    <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                 </div>
             </form>
         </div>
@@ -92,7 +93,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                        <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                     </div>
                 </form>
             </div>

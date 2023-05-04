@@ -1,5 +1,5 @@
 <?php
-class Soal extends CI_Controller
+class soal extends CI_Controller
 {
     public function __construct()
     {
@@ -7,7 +7,7 @@ class Soal extends CI_Controller
         $this->load->model('training/Soal_model');
         $this->load->model('Hris_model');
         $this->load->model('DataPosisi_model');
-        $this->load->model('training/M_data');
+        $this->load->model('training/m_data');
     }
 
     public function index()

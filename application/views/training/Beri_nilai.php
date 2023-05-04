@@ -98,7 +98,7 @@
                     <div class="box-footer">
                         <a href="<?= base_url('training/Beri_nilai') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
                             Kembali</a>
-                        <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
+                        <button type="submit" class="btn btn-primary btn-flat" style="background-color: #8b0000; color: #ffffff;"><span class="fa fa-save"></span>
                             Simpan</button>
                     </div>
                 </div>
@@ -178,8 +178,8 @@
                     <p>Apakah anda yakin untuk menghapus data ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>training/Berinilai/hapus/<?= $ds['id_nilai'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="<?= base_url() ?>training/Berinilai/hapus/<?= $ds['id_nilai'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
