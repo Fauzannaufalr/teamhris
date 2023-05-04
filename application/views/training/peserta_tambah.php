@@ -137,7 +137,8 @@
                     <a href="<?= base_url('training/Peserta') ?>" class="btn btn-default btn-flat"><span
                             class="fa fa-arrow-left"></span>
                         Kembali</a>
-                    <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
+                    <button type="submit" class="btn btn-primary btn-flat"
+                        style="background-color: #8b0000; color: #ffffff;"><span class="fa fa-save"></span>
                         Simpan</button>
                 </div>
                 <!-- /.box-footer -->

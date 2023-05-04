@@ -96,6 +96,7 @@
                                     title="Kembali ke halaman sebelumnya"><span class="fa fa-arrow-left"></span>
                                     Kembali</button>
                                 <button type="submit" class="btn btn-primary btn-flat"
+                                    style="background-color: #8b0000; color: #ffffff;"
                                     title="Tambah Data Soal Ujian"><span class="fa fa-save"></span> Simpan</button>
                             </div>
                         </div>

@@ -26,7 +26,8 @@
                         <div class="col-sm-10">
                             <a href="<?= base_url('training/Jenis_ujian') ?>" class="btn btn-default btn-flat"><span
                                     class="fa fa-arrow-left"></span> Batal</a>
-                            <button type="submit" class="btn btn-primary btn-flat" title="Simpan Data"><span
+                            <button type="submit" class="btn btn-primary btn-flat"
+                                style="background-color: #8b0000; color: #ffffff;" title="Simpan Data"><span
                                     class="fa fa-save"></span> Simpan</button>
                         </div>
                     </div>

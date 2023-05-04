@@ -29,7 +29,7 @@ class Berinilai extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/berinilai');
+        redirect('Recruitment/berinilai');
     }
 
     public function download_file($filename)
