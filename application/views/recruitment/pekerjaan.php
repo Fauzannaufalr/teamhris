@@ -94,7 +94,7 @@
                     <!-- modal footer  -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                        <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -114,7 +114,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('recruitment/Pekerjaan/ubah_pekerjaan') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('Recruitment/Pekerjaan/ubah_pekerjaan') ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" name="id_pekerjaan" value="<?= $it['id_pekerjaan']; ?>">
                         <div class="form-group">
@@ -149,7 +149,7 @@
                         <!-- modal footer  -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-danger">Simpan</button>
+                            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -176,7 +176,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>recruitment/pekerjaan/hapus/<?= $it['id_pekerjaan'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>Recruitment/pekerjaan/hapus/<?= $it['id_pekerjaan'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

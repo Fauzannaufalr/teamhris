@@ -42,7 +42,7 @@
                                 <?php elseif ($ds['status'] == 'lulus') : ?>
                                     <button class="badge" style="background-color: 	#353a57; color: antiquewhite" data-toggle="modal" data-target="#soalModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-paper-plane"></i> Kirim Soal</button>
                                 <?php elseif ($ds['status'] == 'Proses Pengerjaan Soal') : ?>
-                                    <button class="badge" style="background-color: 	#2F4F4F; color: antiquewhite" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-pen"></i> Beri Nilai</button>
+                                    <button class="badge" style="background-color: 	#135e96; color: #ffffff" data-toggle="modal" data-target="#nilaiModal<?= $ds['id_pelamar']; ?>"><i class="fas fa-pen"></i> Beri Nilai</button>
                                 <?php endif; ?>
                                 <button type="button" class="badge" style="background-color: #cc0000; color: antiquewhite" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pelamar'] ?>"><i class="fas fa-trash-alt"></i>hapus</button>
                             </td>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>recruitment/pelamar/hapus/<?= $ds['id_pelamar'] ?>" type="submit" class="btn" style="background-color: #cc0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>Recruitment/pelamar/hapus/<?= $ds['id_pelamar'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -122,7 +122,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
+                        <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Kirim</button>
 
                     </div>
                 </form>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
+                        <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Kirim</button>
 
                     </div>
                 </form>
@@ -331,7 +331,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
+                            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Kirim</button>
 
                         </div>
                     </div>
@@ -366,7 +366,7 @@
                         <div id="form<?= $ds['id_pelamar']; ?>"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn" style="background-color: #cc0000; color: white;">Kirim</button>
+                            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Kirim</button>
                         </div>
                     </div>
                 </form>

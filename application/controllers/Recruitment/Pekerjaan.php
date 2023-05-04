@@ -110,7 +110,7 @@ class Pekerjaan extends CI_Controller
         $this->session->set_flashdata('message', 'Data Berhasil Diubah.');
 
         // Redirect kembali ke halaman profil
-        redirect('recruitment/pekerjaan');
+        redirect('Recruitment/pekerjaan');
     }
 
     public function hapus($id_pekerjaan)
@@ -120,6 +120,6 @@ class Pekerjaan extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/pekerjaan');
+        redirect('Recruitment/pekerjaan');
     }
 }

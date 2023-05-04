@@ -79,7 +79,7 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                        <a href="<?= base_url() ?>recruitment/hasiltes/hapus/<?= $nm['id_hasiltes'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                        <a href="<?= base_url() ?>recruitment/hasiltes/hapus/<?= $nm['id_hasiltes'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -109,7 +109,7 @@
                             <!-- modal footer  -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                                <button type="submit" class="btn btn-danger">Simpan</button>
+                                <button type="submit" class="btn btn-danger" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                             </div>
                         </div>
                     </form>

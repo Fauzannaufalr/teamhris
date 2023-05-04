@@ -43,7 +43,7 @@ class Hasiltes extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
-        redirect('recruitment/hasiltes');
+        redirect('Recruitment/hasiltes');
     }
 
     public function download_file($filename)
@@ -69,6 +69,6 @@ class Hasiltes extends CI_Controller
         $this->db->where('id_hasiltes', $id);
         $this->db->update('recruitment___hasiltes', $data);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> siap dinilai</div>');
-        redirect('recruitment/hasiltes');
+        redirect('Recruitment/hasiltes');
     }
 }

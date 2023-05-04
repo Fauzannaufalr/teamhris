@@ -8,7 +8,7 @@ class Detailpekerjaan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Recruitment/pekerjaan_model');
+        $this->load->model('Recruitment/Pekerjaan_model');
         $this->load->model('DataPosisi_model', 'posisi');
     }
     public function index($id)
@@ -74,6 +74,6 @@ class Detailpekerjaan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('detailpekerjaan/index/' . $id);
+        redirect('Detailpekerjaan/index/' . $id);
     }
 }
