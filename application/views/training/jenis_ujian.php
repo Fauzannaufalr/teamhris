@@ -11,7 +11,7 @@
                 </center>
                 <p>
                 <h3 class="box-title"></h3>
-                <a href="<?= base_url('training/Peserta') ?>" class="btn btn-default btn-flat"><span
+                <a href="<?= base_url('training/peserta') ?>" class="btn btn-default btn-flat"><span
                         class="fa fa-arrow-left"></span> Kembali</a>
                 <?php echo '<button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#modal-data" onclick="$(\'#modal-data-body\').load(\'' . base_url('training/jenis_ujian/create') . '\')"><span class="fa fa-plus"></span> Jenis Ujian</button>' ?>
             </div>
@@ -43,9 +43,9 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a
-                                                href="<?= base_url('training/Jenis_ujian/edit/') . $m->id_jenis_ujian; ?>">Edit
+                                                href="<?= base_url('training/jenis_ujian/edit/') . $m->id_jenis_ujian; ?>">Edit
                                                 Data</a></li>
-                                        <li><a href="<?= base_url('training/Jenis_ujian/hapus/') . $m->id_jenis_ujian; ?>"
+                                        <li><a href="<?= base_url('training/jenis_ujian/hapus/') . $m->id_jenis_ujian; ?>"
                                                 onclick="return confirm('Apakah yakin data peserta ini di hapus?')">Hapus
                                                 Data</a></li>
                                     </ul>

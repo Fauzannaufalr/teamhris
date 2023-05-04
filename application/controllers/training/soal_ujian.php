@@ -82,7 +82,7 @@ class soal_ujian extends CI_Controller
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('training/soal_ujian', $data);
 		$this->load->view('templates/footer');
-		redirect(base_url('training/Soal_ujian'));
+		redirect(base_url('training/soal_ujian'));
 	}
 
 	public function hapus($id)
@@ -99,7 +99,7 @@ class soal_ujian extends CI_Controller
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('training/soal_ujian', $data);
 		$this->load->view('templates/footer');
-		redirect('training/Soal_ujian');
+		redirect('training/soal_ujian');
 	}
 	function import()
 	{

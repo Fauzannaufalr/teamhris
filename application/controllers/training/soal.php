@@ -58,6 +58,6 @@ class soal extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('training/soal', $data);
         $this->load->view('templates/footer');
-        redirect('training/Soal_ujian');
+        redirect('training/soal_ujian');
     }
 }

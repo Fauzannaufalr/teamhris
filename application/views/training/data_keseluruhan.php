@@ -110,7 +110,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= base_url() ?>training/Datakeseluruhan/hapus/<?= $dk['id_keseluruhan'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
+                    <a href="<?= base_url() ?>training/datakeselurahan/hapus/<?= $dk['id_keseluruhan'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

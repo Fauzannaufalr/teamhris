@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Bulan Mei 2023 pada 07.43
+-- Waktu pembuatan: 04 Bulan Mei 2023 pada 08.00
 -- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.1.6
+-- Versi PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -138,6 +138,27 @@ INSERT INTO `data_mitra` (`id`, `nama_perusahaan`, `nama_karyawan`, `keahlian`, 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `data_nilai`
+--
+
+CREATE TABLE `data_nilai` (
+  `id_nilai` int(11) NOT NULL,
+  `id_karyawan` int(11) NOT NULL,
+  `kalkulasi_nilai` varchar(11) NOT NULL,
+  `sertifikat` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `data_nilai`
+--
+
+INSERT INTO `data_nilai` (`id_nilai`, `id_karyawan`, `kalkulasi_nilai`, `sertifikat`) VALUES
+(3, 32, '44', 'Soal_Kuis11'),
+(4, 38, '99', 'Soal_Kuis11');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `data_pelamar`
 --
 
@@ -159,6 +180,35 @@ CREATE TABLE `data_pelamar` (
 
 INSERT INTO `data_pelamar` (`id_pelamar`, `nama_pekerjaan`, `nama_lengkap`, `pendidikan`, `cv`, `alamat`, `telepon`, `email`, `submit_tanggal`) VALUES
 (1, 'frontend', 'fredy', 'd3', 'cv.pdf', 'lembang', 877171959, 'fredygunawan@gmail.com', '01-09-2002');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_pes`
+--
+
+CREATE TABLE `data_pes` (
+  `id_pes` int(12) NOT NULL,
+  `id_karyawan` int(12) NOT NULL,
+  `id_jenis_ujian` int(30) NOT NULL,
+  `tanggal_ujian` date NOT NULL,
+  `durasi_ujian` varchar(50) NOT NULL,
+  `timer_ujian` varchar(50) NOT NULL,
+  `status_ujian` varchar(50) NOT NULL,
+  `status_ujian_ujian` varchar(50) NOT NULL,
+  `file_soal` varchar(50) NOT NULL,
+  `file_jawaban` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `data_pes`
+--
+
+INSERT INTO `data_pes` (`id_pes`, `id_karyawan`, `id_jenis_ujian`, `tanggal_ujian`, `durasi_ujian`, `timer_ujian`, `status_ujian`, `status_ujian_ujian`, `file_soal`, `file_jawaban`) VALUES
+(2, 25, 8, '2023-05-03', '15', '', '', '', 'Kartu_Ujian_Selvina8.pdf', 'Soal_Kuis11.pdf'),
+(4, 26, 8, '2023-05-04', '60', '', '', '', 'Soal_Kuis18.pdf', 'Soal_Kuis11.pdf'),
+(5, 25, 8, '2023-05-03', '15', '', '', '', 'Kartu_Ujian_Selvina8.pdf', 'Soal_Kuis11.pdf'),
+(6, 25, 8, '2023-05-03', '15', '', '', '', 'Kartu_Ujian_Selvina8.pdf', 'Kartu_Ujian_Selvina9.pdf');
 
 -- --------------------------------------------------------
 
@@ -329,7 +379,7 @@ CREATE TABLE `payroll___pengajuangaji` (
   `t_bpjs` decimal(10,0) DEFAULT 0,
   `potongan` decimal(20,0) DEFAULT 0,
   `bonus` decimal(20,0) DEFAULT 0,
-  `total` decimal(10,0) NOT NULL,
+  `total` decimal(10,0) NOT NULL DEFAULT 0,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1327,10 +1377,22 @@ ALTER TABLE `data_mitra`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `data_nilai`
+--
+ALTER TABLE `data_nilai`
+  ADD PRIMARY KEY (`id_nilai`);
+
+--
 -- Indeks untuk tabel `data_pelamar`
 --
 ALTER TABLE `data_pelamar`
   ADD PRIMARY KEY (`id_pelamar`);
+
+--
+-- Indeks untuk tabel `data_pes`
+--
+ALTER TABLE `data_pes`
+  ADD PRIMARY KEY (`id_pes`);
 
 --
 -- Indeks untuk tabel `data_posisi`
@@ -1572,10 +1634,22 @@ ALTER TABLE `data_mitra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT untuk tabel `data_nilai`
+--
+ALTER TABLE `data_nilai`
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `data_pelamar`
 --
 ALTER TABLE `data_pelamar`
   MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_pes`
+--
+ALTER TABLE `data_pes`
+  MODIFY `id_pes` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_posisi`

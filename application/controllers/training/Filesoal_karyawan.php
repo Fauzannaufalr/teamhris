@@ -144,7 +144,7 @@ class Filesoal_karyawan extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('training/file_soal');
+        redirect('training/Filesoal_karyawan');
     }
 
 
