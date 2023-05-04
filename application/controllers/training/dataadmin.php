@@ -33,9 +33,9 @@ class dataadmin extends CI_Controller
     public function download_file($filename)
     {
         // Menentukan path file yang akan didownload
-        $file_path = './dist/record/' . $filename;
+        $file_path = './dist/uplod/' . $filename;
         if (!file_exists($file_path)) {
-            redirect('training/dataadmin');
+            redirect('training/Dataadmin');
         };
         header('Content-Type: application/octet-stream');
         header('Content-Length: ' . filesize($file_path));

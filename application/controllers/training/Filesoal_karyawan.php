@@ -4,12 +4,12 @@ require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
 
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
-class File_soal extends CI_Controller
+class Filesoal_karyawan extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('training/Filesoal_model');
+        $this->load->model('training/filesoal_karyawan_model');
         $this->load->model('Hris_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
@@ -23,18 +23,16 @@ class File_soal extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Soal";
-        $data['datapes'] = $this->Filesoal_model->getAllFilesoal();
+        $data['datapes'] = $this->filesoal_karyawan_model->getAllfilesoalkaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['jenis_ujian'] = $this->m_data->get_data('tb_jenis_ujian')->result_array();
 
-        // printr($data['datapes']);
-
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('training/file_soal', $data);
+        $this->load->view('training/file_soal_karyawan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -80,7 +78,7 @@ class File_soal extends CI_Controller
     public function ubah()
     {
         $data['title'] = "Data Soal";
-        $data['filesoal'] = $this->Filesoal_model->getAllFilesoal();
+        $data['filesoal'] = $this->filesoal_model->getAllfilesoal();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
@@ -109,7 +107,7 @@ class File_soal extends CI_Controller
         } else {
             // $data = $this->upload_berkas();
             // $dokumen = $data['file_name'];
-            $this->Filesoal_model->UbahFilesoal();
+            $this->filesoal_model->Ubahfilesoal();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
             redirect('training/File_soal');
         }
@@ -119,7 +117,7 @@ class File_soal extends CI_Controller
         // Menentukan path file yang akan didownload
         $file_path = './dist/cv/' . $filename;
         if (!file_exists($file_path)) {
-            redirect('training/File_soal');
+            redirect('training/Filesoal_karyawan');
         };
         header('Content-Type: application/octet-stream');
         header('Content-Length: ' . filesize($file_path));
@@ -141,12 +139,12 @@ class File_soal extends CI_Controller
     }
     public function hapus($id_pes)
     {
-        if ($this->Filesoal_model->hapus($id_pes)) {
+        if ($this->filesoal_model->hapus($id_pes)) {
             $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('training/File_soal');
+        redirect('training/file_soal');
     }
 
 
@@ -188,7 +186,7 @@ class File_soal extends CI_Controller
         redirect('training/file_soal');
     }
 
-    public function uploadubah()
+    public function uploadubah($id)
     {
         // Load library untuk upload file
         $this->load->library('upload');
@@ -201,15 +199,11 @@ class File_soal extends CI_Controller
         $this->upload->initialize($config);
 
         // Lakukan upload file
-        if ($this->upload->do_upload('dokumen_soal')) {
+        if ($this->upload->do_upload('dokumen_jawaban')) {
             // Jika upload berhasil, simpan nama file ke database
             $filename = $this->upload->data('file_name');
             $data = [
-                'file_soal' => $filename,
-                'id_karyawan' => $this->input->post('nama_karyawan'),
-                'tanggal_ujian' => $this->input->post('tanggal_ujian'),
-                'id_jenis_ujian' => $this->input->post('jenis_ujian'),
-                'durasi_ujian' => $this->input->post('durasi_ujian'),
+                'file_jawaban' => $filename
             ];
             $this->db->where('id_pes', $this->input->post('id_pes'));
 
@@ -222,6 +216,6 @@ class File_soal extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('training/file_soal');
+        redirect('training/Filesoal_karyawan');
     }
 }

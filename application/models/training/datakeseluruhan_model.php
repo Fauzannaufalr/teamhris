@@ -22,7 +22,7 @@ class datakeseluruhan_model extends CI_Model
         $this->db->insert('data_keseluruhan', $data);
     }
 
-    public function ubahDataKaryawan()
+    public function ubahDatakeseluruhan()
     {
         $data = [
             'nama' => htmlspecialchars($this->input->post('nama')),

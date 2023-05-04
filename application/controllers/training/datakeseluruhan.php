@@ -108,7 +108,7 @@ class datakeseluruhan extends CI_Controller
     }
     public function upload_berkas()
     {
-        $config['upload_path'] = './dist/record';
+        $config['upload_path'] = './dist/uplod';
         $config['max_size'] = '4024';
         $config['allowed_types'] = 'doc|docx|pdf';
         $this->load->library('upload', $config);

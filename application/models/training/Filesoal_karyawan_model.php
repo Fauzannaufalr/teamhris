@@ -1,8 +1,8 @@
 <?php
 
-class Filesoal_model extends CI_Model
+class Filesoal_karyawan_model extends CI_Model
 {
-    public function getAllFilesoal()
+    public function getAllfilesoalkaryawan()
     {
 
         $this->db->select('*');
@@ -13,7 +13,7 @@ class Filesoal_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function tambahFilesoal()
+    public function tambahfilesoal()
     {
         $data = [
             'id_karyawan' => htmlspecialchars($this->input->post('nama karyawan')),
@@ -27,7 +27,7 @@ class Filesoal_model extends CI_Model
         $this->db->insert('data_pes', $data);
     }
 
-    public function ubahDatasoal($data)
+    public function ubahDatasoal()
     {
         $data = [
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),

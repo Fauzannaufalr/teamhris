@@ -4,12 +4,12 @@ require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
 
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
-class File_soal extends CI_Controller
+class Berinilai extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('training/Filesoal_model');
+        $this->load->model('training/Berinilai_model');
         $this->load->model('Hris_model');
         $this->load->model('DataKaryawan_model');
         $this->load->model('DataPosisi_model');
@@ -23,68 +23,26 @@ class File_soal extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Soal";
-        $data['datapes'] = $this->Filesoal_model->getAllFilesoal();
+        $data['datanilai'] = $this->Berinilai_model->getAllBerinilai();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['jenis_ujian'] = $this->m_data->get_data('tb_jenis_ujian')->result_array();
-
         // printr($data['datapes']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('training/file_soal', $data);
+        $this->load->view('training/Beri_nilai', $data);
         $this->load->view('templates/footer');
     }
-
-    // public function tambah()
-    // {
-
-    //     $data['title'] = "Data Soal";
-    //     $data['filesoal'] = $this->filesoal_model->getAllfilesoal();
-    //     $data['user'] = $this->Hris_model->ambilUser();
-    //     $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-    //     $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-    //     $data['jenis_ujian'] = $this->m_data->get_data('tb_jenis_ujian')->result_array();
-
-    //     $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
-    //         'required' => 'Posisi harus diisi !'
-    //     ]);
-    //     $this->form_validation->set_rules('tanggal_ujian', 'Tanggal', 'required', [
-    //         'required' => 'Tanggal harus diisi !'
-    //     ]);
-
-    //     $this->form_validation->set_rules('jenis_ujian', 'jenis ujian', 'required', [
-    //         'required' => 'jenis ujian harus diisi !'
-    //     ]);
-    //     $this->form_validation->set_rules('durasi_ujian', 'Durasi ujian', 'required', [
-    //         'required' => 'Tanggal harus diisi !'
-    //     ]);
-
-    //     if ($this->form_validation->run() == FALSE) {
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('templates/navbar', $data);
-    //         $this->load->view('templates/sidebar', $data);
-    //         $this->load->view('training/file_soal', $data);
-    //         $this->load->view('templates/footer');
-    //     } else {
-    //         // $data = $this->upload_berkas();
-    //         // $dokumen = $data['file_name'];
-    //         $this->Filesoal_model->tambahfilesoal();
-    //         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
-    //         redirect('training/File_soal');
-    //     }
-    // }
 
     public function ubah()
     {
         $data['title'] = "Data Soal";
-        $data['filesoal'] = $this->Filesoal_model->getAllFilesoal();
+        $data['datanilai'] = $this->Berinilai_model->getAllBerinilai();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['jenis_ujian'] = $this->m_data->get_data('tb_jenis_ujian')->result_array();
 
         $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
             'required' => 'Posisi harus diisi !'
@@ -104,14 +62,14 @@ class File_soal extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('training/file_soal', $data);
+            $this->load->view('training/Beri_nilai', $data);
             $this->load->view('templates/footer');
         } else {
             // $data = $this->upload_berkas();
             // $dokumen = $data['file_name'];
-            $this->Filesoal_model->UbahFilesoal();
+            $this->Berinilai_model->UbahBerinilai();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
-            redirect('training/File_soal');
+            redirect('training/Berinilai');
         }
     }
     public function download_hasil($filename)
@@ -119,7 +77,7 @@ class File_soal extends CI_Controller
         // Menentukan path file yang akan didownload
         $file_path = './dist/cv/' . $filename;
         if (!file_exists($file_path)) {
-            redirect('training/File_soal');
+            redirect('training/Berinilai');
         };
         header('Content-Type: application/octet-stream');
         header('Content-Length: ' . filesize($file_path));
@@ -139,14 +97,14 @@ class File_soal extends CI_Controller
             return $this->upload->display_errors();
         }
     }
-    public function hapus($id_pes)
+    public function hapus($id_nilai)
     {
-        if ($this->Filesoal_model->hapus($id_pes)) {
+        if ($this->Berinilai_model->hapus($id_nilai)) {
             $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('training/File_soal');
+        redirect('training/Berinilai');
     }
 
 
@@ -165,18 +123,16 @@ class File_soal extends CI_Controller
         $this->upload->initialize($config);
 
         // Lakukan upload file
-        if ($this->upload->do_upload('dokumen_soal')) {
+        if ($this->upload->do_upload('Sertifikat')) {
             // Jika upload berhasil, simpan nama file ke database
             $filename = $this->upload->data('file_name');
             $data = [
-                'file_soal' => $filename,
+                'sertifikat' => $filename,
                 'id_karyawan' => $this->input->post('nama_karyawan'),
-                'tanggal_ujian' => $this->input->post('tanggal_ujian'),
-                'id_jenis_ujian' => $this->input->post('jenis_ujian'),
-                'durasi_ujian' => $this->input->post('durasi_ujian'),
+                'kalkulasi_nilai' => $this->input->post('kalkulasi_nilai'),
             ];
 
-            $this->db->insert('data_pes', $data);
+            $this->db->insert('data_nilai', $data);
             // Tampilkan pesan berhasil
             $this->session->set_flashdata('message', 'Data Berhasil Dikirim.');
         } else {
@@ -185,7 +141,7 @@ class File_soal extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('training/file_soal');
+        redirect('training/Berinilai');
     }
 
     public function uploadubah()
@@ -201,19 +157,17 @@ class File_soal extends CI_Controller
         $this->upload->initialize($config);
 
         // Lakukan upload file
-        if ($this->upload->do_upload('dokumen_soal')) {
+        if ($this->upload->do_upload('Sertifikat')) {
             // Jika upload berhasil, simpan nama file ke database
             $filename = $this->upload->data('file_name');
             $data = [
-                'file_soal' => $filename,
+                'sertifikat' => $filename,
                 'id_karyawan' => $this->input->post('nama_karyawan'),
-                'tanggal_ujian' => $this->input->post('tanggal_ujian'),
-                'id_jenis_ujian' => $this->input->post('jenis_ujian'),
-                'durasi_ujian' => $this->input->post('durasi_ujian'),
+                'kalkulasi_nilai' => $this->input->post('kalkulasi_nilai'),
             ];
-            $this->db->where('id_pes', $this->input->post('id_pes'));
+            $this->db->where('id_nilai', $this->input->post('id_nilai'));
 
-            $this->db->update('data_pes', $data);
+            $this->db->update('data_nilai', $data);
             // Tampilkan pesan berhasil
             $this->session->set_flashdata('message', 'Data Berhasil Dikirim.');
         } else {
@@ -222,6 +176,6 @@ class File_soal extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('training/file_soal');
+        redirect('training/Berinilai');
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-class dataadmin_model extends CI_Model
+class Dataadmin_model extends CI_Model
 {
-    public function getAlldataadmin()
+    public function getAllDataadmin()
     {
         // return $this->db->get('data_karyawan')->result_array();
         $this->db->select('*');

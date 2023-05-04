@@ -17,28 +17,22 @@
                     <?= $this->session->flashdata('message'); ?>
                 </div>
             </div>
-            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#tambahdatasoal"><i class="fas fa-plus"></i>
-                Tambah Data
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#tambahdatanilai"><i class="fas fa-plus"></i>
+                Beri Nilai
             </button>
-            <a href="<?php echo base_url('training/Berinilai'); ?>"><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#tambahdatasoal"><i class="fas fa-plus"></i>
-                    Beri Nilai
-                </button></a>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Nama Karyawan & Posisi</th>
-                        <th>Tanggal Ujian</th>
-                        <th>Jenis Ujian</th>
-                        <th>Durasi Ujian</th>
-                        <th>Soal</th>
-                        <th>Jawaban</th>
+                        <th>Kalkulasi Nilai</th>
+                        <th>Sertifikat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($datapes as $ds) : ?>
+                    <?php foreach ($datanilai as $ds) : ?>
                         <tr>
                             <th><?= $no++; ?></th>
                             <?php foreach ($dataposisi as $dp) : ?>
@@ -46,15 +40,12 @@
                                     <td><?= $ds['nama_karyawan']; ?> & <?= $dp['nama_posisi']; ?></td>
                                 <?php endif; ?>
                             <?php endforeach; ?>
-                            <td><?= $ds['tanggal_ujian']; ?></td>
-                            <td><?= $ds['jenis_ujian']; ?></td>
-                            <td><?= $ds['durasi_ujian']; ?></td>
-                            <td><?= $ds['file_soal']; ?></td>
-                            <td><a href="<?php echo base_url('training/File_soal/download_hasil/' . $ds['file_jawaban']); ?>"><span class="glyphicon glyphicon-download-alt">Download Dokumen</a></td>
+                            <td><?= $ds['kalkulasi_nilai']; ?></td>
+                            <td><?= $ds['sertifikat']; ?></td>
                             <td>
-                                <button type="button" class="badge" style="color: black; background-color: gold;" data-toggle="modal" data-target="#ubahdatasoal<?= $ds['id_pes']; ?>"><i class="fas fa-edit"></i>
+                                <button type="button" class="badge" style="color: black; background-color: gold;" data-toggle="modal" data-target="#ubahdatanilai<?= $ds['id_nilai']; ?>"><i class="fas fa-edit"></i>
                                     Edit</button>
-                                <button type="button" class="bagde" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $ds['id_pes']; ?>"><i class="fas fa-trasha"></i>hapus</button>
+                                <button type="button" class="bagde" style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal" data-target="#modal-sm<?= $ds['id_nilai']; ?>"><i class="fas fa-trasha"></i>hapus</button>
                             </td>
                         </tr>
                         </tr>
@@ -67,16 +58,16 @@
 </div>
 
 <!-- modal untuk tambah data -->
-<div class="modal fade" id="tambahdatasoal" tabindex="-1" aria-labelledby="tambahdatasoalLabel" aria-hidden="true">
+<div class="modal fade" id="tambahdatanilai" tabindex="-1" aria-labelledby="tambahdatanilaiLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahdatakeseluruhanLabel">Tambah Data soal</h5>
+                <h5 class="modal-title" id="tambahdatanilaiLabel">Tambah Data soal</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('training/File_soal/uploadtambah') ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?= base_url('training/Berinilai/uploadtambah') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_karyawan_nama_posisi">Nama Karyawan & Posisi</label>
@@ -93,41 +84,19 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Tanggal Ujian</label>
+                        <label class="col-sm-2 control-label">Kalkulasi</label>
                         <div class="col-sm-10">
                             <div class="input-group date">
-                                <input type="date" class="form-control pull-right" id="date" name="tanggal_ujian" placeholder="2019-12-30" autocomplete="off" required="">
+                                <input type="text" class="form-control pull-right" id="kalkulasi" name="kalkulasi_nilai" placeholder="Beri nilai" autocomplete="off" required="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Jenis Ujian</label>
-                        <div class="form-group">
-                            <select class="form-control" name="jenis_ujian">
-                                <option value="">-- Pilih jenis ujian --</option>
-                                <?php foreach ($jenis_ujian as $a) : ?>
-                                    <option value="<?= $a['id_jenis_ujian']; ?>"><?= $a['jenis_ujian']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                        <label for="dokumen">Sertifikat</label>
+                        <input type="file" class="form-control" id="sertifikat" name="Sertifikat" placeholder="Masukan Dokumen">
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Durasi Ujian</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="durasi_ujian" placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dokumen">Soal</label>
-                        <input type="file" class="form-control" id="dokumen_soal" name="dokumen_soal" placeholder="Masukan Dokumen">
-                    </div>
-                    <!-- <div class="form-group">
-                        <label for="dokumen">Jawaban</label>
-                        <input type="file" class="form-control" name="dokumen jawaban" placeholder="Masukan Dokumen">
-                    </div> -->
                     <div class="box-footer">
-                        <a href="<?= base_url('training/file_soal') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
+                        <a href="<?= base_url('training/Beri_nilai') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
                             Kembali</a>
                         <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
                             Simpan</button>
@@ -140,19 +109,19 @@
 <!-- Akhir tambah Modal -->
 
 <!-- modal untuk edit data -->
-<?php foreach ($datapes as $ds) : ?>
-    <div class="modal fade" id="ubahdatasoal<?= $ds['id_pes']; ?>" tabindex="-1" aria-labelledby="ubahdatasoalLabel" aria-hidden="true">
+<?php foreach ($datanilai as $ds) : ?>
+    <div class="modal fade" id="ubahdatanilai<?= $ds['id_nilai']; ?>" tabindex="-1" aria-labelledby="ubahdatanilaiLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data soal</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data Nilai</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('training/file_soal/uploadubah/') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('training/Berinilai/uploadubah/') ?>" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <input type="text" name="id_pes" value="<?= $ds['id_pes']; ?>" hidden>
+                        <input type="text" name="id_nilai" value="<?= $ds['id_nilai']; ?>" hidden>
                         <div class="form-group">
                             <label for="nama_karyawan_nama_posisi">Nama Karyawan & Posisi</label>
                             <select name="nama_karyawan" id="nama_karyawan_nama_posisi" class="form-control">
@@ -168,41 +137,19 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Tanggal Ujian</label>
+                            <label class="col-sm-2 control-label">Kalkulasi</label>
                             <div class="col-sm-10">
                                 <div class="input-group date">
-                                    <input type="date" class="form-control pull-right" id="date" name="tanggal_ujian" value="<?= $ds['tanggal_ujian']; ?>" placeholder="2019-12-30" autocomplete="off" required="">
+                                    <input type="text" class="form-control pull-right" id="kalkulasi" name="kalkulasi_nilai" value="<?= $ds['kalkulasi_nilai']; ?>" placeholder="2019-12-30" autocomplete="off" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Jenis Ujian</label>
-                            <div class="form-group">
-                                <select class="form-control" name="jenis_ujian">
-                                    <option value="">-- Pilih jenis ujian --</option>
-                                    <?php foreach ($jenis_ujian as $a) : ?>
-                                        <option value="<?= $a['id_jenis_ujian']; ?>"><?= $a['jenis_ujian']; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+                            <label for="dokumen">Sertifikat</label>
+                            <input type="file" class="form-control" id="sertifikat" name="Sertifikat" value="<?= $ds['sertifikat']; ?>" placeholder="Masukan Dokumen">
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Durasi Ujian</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="durasi_ujian" value="<?= $ds['durasi_ujian']; ?>" placeholder="Masukan Waktu Lama Ujian dalam Menit" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dokumen">Soal</label>
-                            <input type="file" class="form-control" id="dokumen_soal" name="dokumen_soal" value="<?= $ds['file_soal']; ?>" placeholder="Masukan Dokumen">
-                        </div>
-                        <!-- <div class="form-group">
-                        <label for="dokumen">Jawaban</label>
-                        <input type="file" class="form-control" name="dokumen jawaban" placeholder="Masukan Dokumen">
-                    </div> -->
                         <div class="box-footer">
-                            <a href="<?= base_url('training/file_soal') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
+                            <a href="<?= base_url('training/Beri_nilai') ?>" class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
                                 Kembali</a>
                             <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
                                 Simpan</button>
@@ -216,8 +163,8 @@
 
 
 <!-- Modal Hapus -->
-<?php foreach ($datapes as $ds) : ?>
-    <div class="modal fade" id="modal-sm<?= $ds['id_pes']; ?>" tabindek="-1" role+dialog">
+<?php foreach ($datanilai as $ds) : ?>
+    <div class="modal fade" id="modal-sm<?= $ds['id_nilai']; ?>" tabindek="-1" role+dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -232,7 +179,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>training/File_soal/hapus/<?= $ds['id_pes'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
+                    <a href="<?= base_url() ?>training/Berinilai/hapus/<?= $ds['id_nilai'] ?>" type="submit" class="btn" style="background-color: #ff0000; color: white;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
