@@ -18,6 +18,7 @@ class DataPajak extends CI_Controller
     {
         $data['title'] = "Data Pajak";
         $data['datapajak'] = $this->DataPajak->tampilDataPajak();
+        $data['golongan'] = ['Tidak Kawin (TK)', 'Kawin (K)', 'Kawin + Istri (KI)'];
         $data['user'] = $this->Hris->ambilUser();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);

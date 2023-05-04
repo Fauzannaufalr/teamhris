@@ -54,9 +54,9 @@
                         <label for="golongan">Golongan</label>
                         <select name="golongan" id="golongan" class="form-control">
                             <option value="">-- Pilih Golongan --</option>
-                            <option>Tidak Kawin (TK)</option>
-                            <option>Kawin (K)</option>
-                            <option>Kawin + Istri (KI)</option>
+                            <?php foreach ($golongan as $g) : ?>
+                                <option value="<?= $g ?>"><?= $g; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                        <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -95,9 +95,13 @@
                             <label for="golongan">Golongan</label>
                             <select name="golongan" id="golongan" class="form-control">
                                 <option value="">-- Pilih Golongan --</option>
-                                <option>Tidak Kawin (TK)</option>
-                                <option>Kawin (K)</option>
-                                <option>Kawin + Istri (KI)</option>
+                                <?php foreach ($golongan as $g) : ?>
+                                    <?php if ($g == $dp['golongan']) : ?>
+                                        <option value="<?= $g; ?>" selected><?= $g; ?></option>
+                                    <?php else : ?>
+                                        <option value="<?= $g; ?>"><?= $g; ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">

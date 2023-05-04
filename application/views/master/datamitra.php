@@ -7,7 +7,7 @@
                 Tambah Mitra
             </button>
             <table id="data" class="table table-bordered table-striped">
-                <thead>
+                <thead style="background-color: #8b0000; color: #ffffff;">
                     <tr>
                         <th>No</th>
                         <th>Nama Perusahaan</th>
