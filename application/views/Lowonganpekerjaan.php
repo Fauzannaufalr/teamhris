@@ -41,7 +41,7 @@
                     <img src="<?= base_url('dist/img/lowongan/') . $pk['foto']; ?>" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <a href="<?= base_url() ?>detailpekerjaan/index/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4; margin-right: 1rem;font-family: Arial, Helvetica, sans-serif; " ; class="btn btn-sm">Info Lengkap</a>
+                            <a href="<?= base_url() ?>DetailPekerjaan/index/<?= $pk['id_pekerjaan'] ?>" type="button" style="background-color: #d4d4d4; margin-right: 1rem;font-family: Arial, Helvetica, sans-serif; " ; class="btn btn-sm">Info Lengkap</a>
                             <a type="button" style="background-color: #d63638; font-family: Arial, Helvetica, sans-serif;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#uploadcv<?= $pk['id_pekerjaan'] ?>">Upload CV</a>
                         </div>
                     </div>

@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-class Detailpekerjaan extends CI_Controller
+class DetailPekerjaan extends CI_Controller
 {
     public function __construct()
     {
@@ -74,6 +74,6 @@ class Detailpekerjaan extends CI_Controller
         }
 
         // Redirect kembali ke halaman profil
-        redirect('Detailpekerjaan/index/' . $id);
+        redirect('DetailPekerjaan/index/' . $id);
     }
 }
