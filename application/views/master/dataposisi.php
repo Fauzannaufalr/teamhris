@@ -117,8 +117,8 @@
                     <p>Apakah anda yakin untuk menghapus data ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #fbff39;">Tidak</button>
-                    <a href="<?= base_url() ?>master/DataPosisi/hapus/<?= $dp['id_posisi'] ?>" type="submit" class="btn btn-primary">Ya</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <a href="<?= base_url() ?>master/DataPosisi/hapus/<?= $dp['id_posisi'] ?>" type="submit" class="btn btn-primary" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->
