@@ -59,7 +59,7 @@ header("Expires: 0")
         <?php foreach ($cetak_gaji as $g) : ?>
             <tr>
                 <td class="text-center"><?= $no++ ?></td>
-                <td class="text-center"><?= $g['nik']; ?></td>
+                <td class="text-center"><?= "'" . $g['nik'] . "'" ?></td>
                 <td class="text-center"><?= $g['nama_karyawan']; ?></td>
                 <td class="text-center"><?= $g['nama_posisi']; ?></td>
                 <td class="text-center" style="padding: 5px;">Rp <?= number_format($g['gajipokok'], 0, ',', '.'); ?></td>
@@ -99,25 +99,25 @@ header("Expires: 0")
 </table>
 <br>
 <table width="100%" class="table3">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td width="200px" style="text-align: center;">
-                <p>Bandung, <?= date("d M Y") ?> <br> PT Sahaware Teknologi Indonesia</p>
-                <br>
-                <br>
-                <p>_____________________</p>
-                <p>Finance</p>
-            </td>
-        </tr>
-    </table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td width="200px" style="text-align: center;">
+            <p>Bandung, <?= date("d M Y") ?> <br> PT Sahaware Teknologi Indonesia</p>
+            <br>
+            <br>
+            <p>_____________________</p>
+            <p>Finance</p>
+        </td>
+    </tr>
+</table>

@@ -55,7 +55,7 @@ class PengajuanGaji_model extends CI_Model
             $lapisan2Max = 250000000;
             $lapisan3Max = 500000000;
             $lapisan4Max = 5000000000;
-            echo $penghasilanKenaPajak . 'tanda' . '<br>';
+            // echo $penghasilanKenaPajak . 'tanda' . '<br>';
             if ($penghasilanKenaPajak >= $lapisan1Max) {
                 $totalpph21 = $pph21 + ((5 / 100) * $lapisan1Max);
             }
