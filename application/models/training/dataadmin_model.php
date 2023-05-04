@@ -1,6 +1,6 @@
 <?php
 
-class Dataadmin_model extends CI_Model
+class dataadmin_model extends CI_Model
 {
     public function getAllDataadmin()
     {

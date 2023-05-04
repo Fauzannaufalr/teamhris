@@ -98,6 +98,6 @@ class Ruang_ujian extends CI_Controller
 		$this->load->view('templates/sidebar', $data);
 		$this->m_data->UpdateNilai2($where, $data, 'tb_peserta');
 		$this->load->view('templates/footer');
-		redirect('training/Jadwal_ujian');
+		redirect('training/jadwal_ujian');
 	}
 }

@@ -95,7 +95,8 @@
                             <button type="button" class="btn btn-default btn-flat" onclick="return history.go(-1)"
                                 title="Kembali ke halaman sebelumnya"><span class="fa fa-arrow-left"></span>
                                 Kembali</button>
-                            <button type="submit" class="btn btn-primary btn-flat" title="Update peserta"><span
+                            <button type="submit" class="btn btn-primary btn-flat"
+                                style="background-color: #8b0000; color: #ffffff;" title="Update peserta"><span
                                     class="fa fa-save"></span> Simpan</button>
                         </div>
                     </div>
