@@ -39,7 +39,7 @@ class PengajuanGaji extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);
-        $this->load->view('payroll/PengajuanGaji', $data);
+        $this->load->view('payroll/pengajuangaji', $data);
         $this->load->view('templates/footer');
 
         $this->session->set_flashdata('message', 'Data berhasil digenerate');
