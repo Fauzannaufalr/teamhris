@@ -4,7 +4,7 @@ require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
 
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
-
+use \App\Libraries\HelperFactory;
 
 class JamKerja extends CI_Controller
 {
@@ -58,66 +58,7 @@ class JamKerja extends CI_Controller
 
 
 
-    public function import()
-    {
-        $data['title'] = "Jam Kerja";
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        $data['jamkerja'] = $this->JamKerja_model->Tampiljamkerja();
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('performances/jamkerja', $data);
-        $this->load->view('templates/footer');
-
-        $config['allowed_types'] = 'xlsx|xls';
-        $config['upload_path'] = './dist/import';
-        $config['file_name'] = 'doc' . time();
-
-        $this->load->library('upload', $config);
-
-        if ($this->upload->do_upload('import')) {
-            $file = $this->upload->data();
-
-            $reader = ReaderEntityFactory::createReaderFromFile('./dist/import/' . $file['file_name']);
-            $reader->open('./dist/import/' . $file['file_name']);
-
-            foreach ($reader->getSheetIterator() as $sheet) {
-                $numRow = 1;
-                foreach ($sheet->getRowIterator() as $row) {
-                    if ($numRow > 1) {
-                        if (!empty($row->getCellAtIndex(1)->getValue())) {
-                            $due_date = $row->getCellAtIndex(3)->getValue();
-                            if (!empty($due_date)) {
-                                $due_date = date('Y-m-d', strtotime("1899-12-30 + " . intval($due_date) . " days"));
-                            }
-
-                            $complete_date = $row->getCellAtIndex(4)->getValue();
-                            if (!empty($complete_date)) {
-                                $complete_date = date('Y-m-d', strtotime("1899-12-30 + " . intval($complete_date) . " days"));
-                            }
-
-                            $data = array(
-                                'nik' => htmlspecialchars($row->getCellAtIndex(1)->getValue()),
-                                'tanggal' => htmlspecialchars($row->getCellAtIndex(2)->getValue()),
-                                'due_date' => $due_date,
-                                'complete_date' => $complete_date,
-                                'keterangan' => $row->getCellAtIndex(5)->getValue(),
-                            );
-                        }
-                    }
-                    $numRow++;
-                }
-            }
-
-            $reader->close();
-            unlink('./dist/import/' . $file['file_name']);
-            $this->session->set_flashdata('message', ' Data berhasil diimport!');
-            redirect('performances/JamKerja');
-        }
-    }
 
 
 
@@ -159,7 +100,9 @@ class JamKerja extends CI_Controller
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
 
-
+        $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
+            'required' => 'NIK harus diisi !',
+        ]);
         $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
             'required' => 'Total Kerja harus diisi !'
         ]);

@@ -51,36 +51,36 @@ class JamKerja_model extends CI_Model
         $this->db->insert('performances___inputjamkerja', $data);
     }
 
-    public function ubah()
-    {
-        $total_kerja = $this->input->post('total_kerja');
-        $complete_date = $this->input->post('complete_date');
-        $due_date = $this->input->post('due_date');
+    // public function ubah()
+    // {
+    //     $total_kerja = $this->input->post('total_kerja');
+    //     $complete_date = $this->input->post('complete_date');
+    //     $due_date = $this->input->post('due_date');
 
-        if (!$complete_date || !$due_date) { // if either date is not filled
-            $keterangan = "Tidak diisi";
-        } else if ($complete_date && $due_date) { // if both dates are filled
-            $tanggal = $complete_date - $due_date;
+    //     if (!$complete_date || !$due_date) { // if either date is not filled
+    //         $keterangan = "Tidak diisi";
+    //     } else if ($complete_date && $due_date) { // if both dates are filled
+    //         $tanggal = $complete_date - $due_date;
 
-            if ($tanggal <= 0) {
-                $keterangan = "Tepat Waktu";
-            } else {
-                $keterangan = "Terlambat";
-            }
-        }
+    //         if ($tanggal <= 0) {
+    //             $keterangan = "Tepat Waktu";
+    //         } else {
+    //             $keterangan = "Terlambat";
+    //         }
+    //     }
 
-        echo "Keterangan: " . $keterangan;
-        $data = [
-            "nik" => $this->input->post("nik_nama"),
-            'tanggal' => date("m/Y"),
-            'total_kerja' => $total_kerja,
-            'due_date' => $due_date,
-            "complete_date" => $complete_date,
-            "keterangan" => $keterangan,
-        ];
-        $this->db->where('id_jamkerja', $this->input->post('id_jamkerja'));
-        $this->db->update('performances___inputjamkerja', $data);
-    }
+    //     echo "Keterangan: " . $keterangan;
+    //     $data = [
+    //         "nik" => $this->input->post("nik_nama"),
+    //         'tanggal' => date("m/Y"),
+    //         'total_kerja' => $total_kerja,
+    //         'due_date' => $due_date,
+    //         "complete_date" => $complete_date,
+    //         "keterangan" => $keterangan,
+    //     ];
+    //     $this->db->where('id_jamkerja', $this->input->post('id_jamkerja'));
+    //     $this->db->update('performances___inputjamkerja', $data);
+    // }
     public function hapus($id_jamkerja)
     {
         $this->db->where('id_jamkerja', $id_jamkerja);

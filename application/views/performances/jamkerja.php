@@ -181,10 +181,6 @@
                         <input type="text" readonly id="id_posisi" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="total_kerja">Total Kerja</label>
-                        <input type="text" class="form-control" id="total_kerja" name="total_kerja">
-                    </div>
-                    <div class="form-group">
                         <label for="due_date">Due Date</label>
                         <input type="date" class="form-control" id="due_date" name="due_date">
                     </div>
