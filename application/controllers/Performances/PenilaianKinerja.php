@@ -33,14 +33,31 @@ class PenilaianKinerja extends CI_Controller
             $tahun = date('Y');
             $bulantahun = $bulan . "/" . $tahun;
         }
-        // printr($bulantahun);
 
-        $data['penilaiankinerja'] = $this->db->query("SELECT performances___penilaian_kinerja.*,
-        data_karyawan.nama_karyawan, data_karyawan.id_posisi
-        FROM performances___penilaian_kinerja
-        INNER JOIN data_karyawan ON performances___penilaian_kinerja.nik=data_karyawan.nik
-        WHERE performances___penilaian_kinerja.tanggal='$bulantahun'
-        ORDER BY data_karyawan.nama_karyawan ASC")->result_array();
+        // printr($bulantahun);
+        $data['jamkerja'] = $this->db->query("
+        SELECT 
+            jk.id_jamkerja,
+            jk.nik,
+            MAX(dk.nama_karyawan) AS nama_karyawan,
+            jk.tanggal,
+            jk.keterangan,
+            (
+                SELECT COUNT(jk2.nik)
+                FROM performances___inputjamkerja jk2 
+                WHERE jk2.nik = jk.nik AND jk2.tanggal = '$bulantahun'
+                GROUP BY jk2.tanggal, jk2.nik
+            ) AS total_kinerja,
+            (
+                SELECT COUNT(jamker.keterangan) 
+                FROM performances___inputjamkerja jamker  
+                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik
+            ) AS waktu
+        FROM performances___inputjamkerja jk
+        JOIN data_karyawan dk ON jk.nik = dk.nik
+        GROUP BY jk.nik
+    ")->result_array();
+
 
 
 
@@ -105,7 +122,7 @@ class PenilaianKinerja extends CI_Controller
             $this->PenilaianKinerja_model->tambahPenilaianKinerja();
 
             $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
-            redirect('performances/PenilaianKinerja');
+            redirect('Performances/PenilaianKinerja');
         }
     }
     public function ubah()
@@ -204,9 +221,9 @@ class PenilaianKinerja extends CI_Controller
     //     $this->load->view('performances/penilaiankinerja', $data);
     //     $this->load->view('templates/footer');
 
-    //     $config['allowed_types'] = 'xlsx|xls';
-    //     $config['upload_path'] = './dist/import';
-    //     $config['file_name'] = 'doc' . time();
+    // $config['allowed_types'] = 'xlsx|xls';
+    // $config['upload_path'] = './dist/import';
+    // $config['file_name'] = 'doc' . time();
 
     //     $this->load->library('upload', $config);
 

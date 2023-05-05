@@ -23,30 +23,16 @@ class JamKerja_model extends CI_Model
     }
 
 
-    public function import_data($data)
-    {
-        $query = $this->db->get('
-        performances___inputjamkerja');
-        if ($query->num_rows() > 0) {
-            // Jika data sudah ada, maka lakukan update data
-            $this->db->where('nik', $data['nik']);
-            $this->db->update('performances___inputjamkerja', $data);
-        } else {
-            // Jika data belum ada, maka lakukan insert data
-            $this->db->insert('performances___inputjamkerja', $data);
-        }
-    }
-
     public function tambah()
     {
         $done_kerja = $this->input->post('done_kerja');
         $total_kerja = $this->input->post('total_kerja');
-        $complate_date = $this->input->post('complete_date');
+        $complete_date = $this->input->post('complete_date');
         $due_date = $this->input->post('due_date');
 
-        if (!$complate_date || !$due_date) { // jika salah satu tanggal tidak diisi
+        if (!$complete_date || !$due_date) { // jika salah satu tanggal tidak diisi
             $keterangan = "Tidak Diisi";
-        } else if ($complate_date <= $due_date) { // jika tanggal selesai kurang dari atau sama dengan tanggal jatuh tempo
+        } else if ($complete_date <= $due_date) { // jika tanggal selesai kurang dari atau sama dengan tanggal jatuh tempo
             $keterangan = "Tepat Waktu";
         } else { // jika tanggal selesai lebih besar dari tanggal jatuh tempo
             $keterangan = "Terlambat";
@@ -58,7 +44,7 @@ class JamKerja_model extends CI_Model
             'tanggal' => date("m/Y"),
             'total_kerja' => $total_kerja,
             'due_date' => $due_date,
-            "complate_date" => $complate_date,
+            "complete_date" => $complete_date,
             "keterangan" => $keterangan,
 
         ];
@@ -68,13 +54,13 @@ class JamKerja_model extends CI_Model
     public function ubah()
     {
         $total_kerja = $this->input->post('total_kerja');
-        $complate_date = $this->input->post('complate_date');
+        $complete_date = $this->input->post('complete_date');
         $due_date = $this->input->post('due_date');
 
-        if (!$complate_date || !$due_date) { // if either date is not filled
+        if (!$complete_date || !$due_date) { // if either date is not filled
             $keterangan = "Tidak diisi";
-        } else if ($complate_date && $due_date) { // if both dates are filled
-            $tanggal = $complate_date - $due_date;
+        } else if ($complete_date && $due_date) { // if both dates are filled
+            $tanggal = $complete_date - $due_date;
 
             if ($tanggal <= 0) {
                 $keterangan = "Tepat Waktu";
@@ -89,7 +75,7 @@ class JamKerja_model extends CI_Model
             'tanggal' => date("m/Y"),
             'total_kerja' => $total_kerja,
             'due_date' => $due_date,
-            "complate_date" => $complate_date,
+            "complete_date" => $complete_date,
             "keterangan" => $keterangan,
         ];
         $this->db->insert('performances___inputjamkerja', $data);
@@ -99,6 +85,12 @@ class JamKerja_model extends CI_Model
         $this->db->where('id_jamkerja', $id_jamkerja);
         $this->db->delete('performances___inputjamkerja');
         return ($this->db->affected_rows() > 0) ? true : false;
+    }
+
+    public function import_data($data)
+    {
+        $this->db->insert('performances_inputjamkerja', $data);
+        return $this->db->affected_rows();
     }
 
 

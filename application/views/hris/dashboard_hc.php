@@ -350,7 +350,8 @@
                     foreach ($akumulasi as $ak):
                         if ($nik === $ak['nik'] && $level !== "hc")
                             continue;
-                        $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                        $nilaiakumulasi = (($ak['total_nilai_kinerja'] + $ak['total_nilai_kuesioner'])) / 2;
+                        ?>
                         <tr style="text-align: center;">
                             <td>
                                 <?= $no++; ?>

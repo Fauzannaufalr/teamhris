@@ -35,9 +35,14 @@ class Akumulasi extends CI_Controller
 
         $data['akumulasi'] = $this->db->query("
         SELECT 
+        jk.id_jamkerja,
+        jk.nik,
+        MAX(dk.nama_karyawan) AS nama_karyawan,
+        jk.tanggal,
+        jk.keterangan,
             dk.nik,
             dk.nama_karyawan,
-            pkerja.tanggal, 
+            jamker.tanggal, 
             (
                 SELECT 
                     CASE 
@@ -50,18 +55,21 @@ class Akumulasi extends CI_Controller
                     pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
             ) AS nilai_kuesioner,
             (
-                SELECT 
-                    pkerja.nilai
-                FROM 
-                    performances___penilaian_kinerja pkerja
-                WHERE 
-                    pkerja.nik = dk.nik AND pkerja.tanggal LIKE '%$bulantahun'
-            ) AS nilai_kinerja
+                SELECT COUNT(jk.nik)
+                FROM performances___inputjamkerja jk
+                WHERE jk2.nik = jk.nik AND jk.tanggal = '$bulantahun'
+                GROUP BY jk.tanggal, jk.nik
+            ) AS total_kinerja,
+            (
+                SELECT COUNT(jamker.keterangan) 
+                FROM performances___inputjamkerja jamker  
+                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jamker.nik
+            ) AS waktu
         FROM 
             data_karyawan dk
-            INNER JOIN performances___penilaian_kinerja pkerja ON pkerja.nik = dk.nik
+            INNER JOIN performances___inputjamkerja jamker ON jamker.nik = dk.nik
         WHERE 
-            pkerja.tanggal LIKE '%$bulantahun'
+            jamker.tanggal LIKE '%$bulantahun'
     ")->result_array();
 
 

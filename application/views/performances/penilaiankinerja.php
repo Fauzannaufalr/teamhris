@@ -53,7 +53,7 @@
                             Data
                         </i>
                     </button>
-                    <?php if (count($penilaiankinerja) > 0) { ?>
+                    <?php if (count($jamkerja) > 0) { ?>
                         <a class="btn btn-outline-success  ml-2"
                             href="<?= base_url('Performances/PenilaianKinerja/cetakkinerja?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
                                 class="fas fa-print"></i> Cetak PDF</a>
@@ -87,7 +87,7 @@
                         data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
                         Tambah Penilaian
                     </button>
-                    <a class="btn btn-outline-success" href="<?= base_url('Performances/JamKerja') ?>" ;><i
+                    <a class="btn btn-outline-success" href="<?= base_url('performances/JamKerja') ?>" ;><i
                             class="fas fa-plus"></i>
                         Input Jam Kerja
                     </a> <br>
@@ -96,7 +96,7 @@
             <!-- perulangan -->
             <?php
 
-            $jml_data = count($penilaiankinerja);
+            $jml_data = count($jamkerja);
             if ($jml_data > 0) { ?>
                 <!-- jml data > 0 artinya jika nilai lebih dari nol maka data atau nilainya itu ada -->
 
@@ -115,8 +115,8 @@
                     <tbody>
                         <?php $no = 1 ?>
                         <?php
-
-                        foreach ($penilaiankinerja as $pk):
+                        foreach ($jamkerja as $jk):
+                            $nilai = ($jk['waktu'] / $jk['total_kinerja']) * 100;
 
                             ?>
 
@@ -125,31 +125,43 @@
                                     <?= $no++; ?>
                                     </th>
                                 <td>
-                                    <?= $pk['nik'], "<br>" .
-                                        $pk['nama_karyawan']; ?>
+                                    <?= $jk['nik'], "<br>" .
+                                        $jk['nama_karyawan']; ?>
                                 </td>
 
                                 <td>
-                                    <?= $pk['total_kerja']; ?>
+                                    <?= $jk['total_kinerja']; ?>
                                 <td>
-                                    <?= $pk['done_kerja']; ?>
-                                </td>
+                                    <?= $jk['waktu']; ?>
                                 </td>
 
                                 <td>
-                                    <?= number_format((float) $pk['nilai'], 2, '.', ''); ?>
+                                    <?= number_format((float) $nilai, 2, '.', ''); ?>
                                 </td>
-                                <td>
-                                    <?= $pk['kategorisasi']; ?>
+                                <td style="text-align: center;">
+                                    <?php
+                                    if ($nilai >= 80 && $nilai <= 100) {
+                                        echo "Sangat Baik";
+                                    } else if ($nilai >= 60 && $nilai <= 79) {
+                                        echo "Baik";
+                                    } else if ($nilai >= 40 && $nilai <= 59) {
+                                        echo "Cukup";
+                                    } else if ($nilai >= 20 && $nilai <= 39) {
+                                        echo "Kurang";
+                                    } else if ($nilai >= 0 && $nilai <= 19) {
+                                        echo "Sangat Kurang";
+                                    }
+                                    ?>
+
                                 </td>
 
                                 <td>
 
                                     <button class="badge" style="background-color: gold; color: black;" data-toggle="modal"
-                                        data-target="#ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>"><i
+                                        data-target="#ubahPenilaianKinerja<?= $jk['id_jamkerja']; ?>"><i
                                             class="fas fa-edit"></i> Edit</button>
                                     <button class="badge" style="background-color: #cc0000; color: antiquewhite"
-                                        data-toggle="modal" data-target="#modal-sm<?= $pk['id_penilaian_kinerja']; ?>"><i
+                                        data-toggle="modal" data-target="#modal-sm<?= $jk['id_jamkerja']; ?>"><i
                                             class="fas fa-trash-alt"></i> Hapus</button>
 
                                 </td>
@@ -217,13 +229,13 @@
 <!-- Akhir tambah Modal -->
 
 <!-- Modal edit data -->
-<?php foreach ($penilaiankinerja as $pk): ?>
-    <div class="modal fade" id="ubahPenilaianKinerja<?= $pk['id_penilaian_kinerja']; ?>" tabindex="-1"
-        aria-labelledby="ubahPenilaianKinerjaLabel" aria-hidden="true">
+<?php foreach ($jamkerja as $jk): ?>
+    <div class="modal fade" id="ubahJamKerja<?= $jk['id_jamkerja']; ?>" tabindex="-1" aria-labelledby="ubahJamKerjaLabel" ar
+        ia-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ubahPenilaianKinerjaLabel">Ubah Data Karyawan</h5><br>
+                    <h5 class="modal-title" id="ubahJamKerjaLabel">Ubah Data Karyawan</h5><br>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -233,15 +245,15 @@
                     <div class="modal-body">
                         <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
                         </h6>
-                        <input type="hidden" name="id_penilaian_kinerja" value="<?= $pk['id_penilaian_kinerja']; ?>">
+                        <input type="hidden" name="id_jamkerja" value="<?= $jk['id_jamkerja']; ?>">
                         <div class=" form-group">
                             <label>NIK & Nama Karyawan</label>
                             <select class="form-control" name="nik_nama" id="nik_nama" placeholder="-- Pilih Karyawan --">
                                 <?php foreach ($datakaryawan as $dk): ?>
-                                    <?php if ($dk['nik'] == $pk['nik']): ?>
+                                    <?php if ($dk['nik'] == $jk['nik']): ?>
                                         <option value="<?= $dk['nik']; ?>" selected><?= $dk['nama_karyawan'] ?></option>
                                     <?php else: ?>
-                                        <option value="<?= $pk['nik']; ?>"><?= $dk['nama_karyawan'] ?></option>
+                                        <option value="<?= $jk['nik']; ?>"><?= $dk['nama_karyawan'] ?></option>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
@@ -250,7 +262,7 @@
                         <div class="form-group">
                             <label>Posisi</label>
                             <?php foreach ($datakaryawan as $dk): ?>
-                                <?php if ($dk['nik'] == $pk['nik']): ?>
+                                <?php if ($dk['nik'] == $jk['nik']): ?>
                                     <?php foreach ($dataposisi as $dp): ?>
                                         <?php if ($dp['id_posisi'] == $dk['id_posisi']): ?>
                                             <input type="text" readonly id="id_posisi" class="form-control"
@@ -265,13 +277,13 @@
                         <div class="form-group">
                             <label for="total_kerja">Total Kerja</label>
                             <input type="text" class="form-control" id="total_kerja" name="total_kerja"
-                                value="<?= $pk['total_kerja']; ?>">
+                                value="<?= $jk['total_kerja']; ?>">
                         </div>
 
                         <div class="form-group">
                             <label for="done_kerja">Done Kerja</label>
                             <input type="text" class="form-control" id="done_kerja" name="done_kerja"
-                                value="<?= $pk['done_kerja']; ?>">
+                                value="<?= $jk['done_kerja']; ?>">
                         </div>
 
                         <!-- modal footer  -->
@@ -289,8 +301,8 @@
 
 
 <!-- Modal Hapus -->
-<?php foreach ($penilaiankinerja as $pk): ?>
-    <div class="modal fade" id="modal-sm<?= $pk['id_penilaian_kinerja']; ?>" tabindek="-1" role+dialog">
+<?php foreach ($jamkerja as $jk): ?>
+    <div class="modal fade" id="modal-sm<?= $jk['id_jamkerja']; ?>" tabindek="-1" role+dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -304,8 +316,8 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>Performances/PenilaianKinerja/hapus/<?= $pk['id_penilaian_kinerja'] ?>"
-                        type="submit" class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
+                    <a href="<?= base_url() ?>Performances/PenilaianKinerja/hapus/<?= $jk['id_jamkerja'] ?>" type="submit"
+                        class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
                 </div>
             </div>
             <!-- /.modal-content -->

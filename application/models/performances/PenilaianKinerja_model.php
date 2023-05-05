@@ -4,22 +4,18 @@ class PenilaianKinerja_model extends CI_Model
 {
     public function tampilPenilaianKinerja()
     { //model ini akan di tampilkan pada penilaian kinerja
-        $this->db->select('data_karyawan.*, 
-            performances___penilaian_kinerja.id_penilaian_kinerja,
-            performances___penilaian_kinerja.nik,
-            performances___penilaian_kinerja.nilai,
-            performances___penilaian_kinerja.tanggal,
-            performances___penilaian_kinerja.done_kerja,
-            performances___penilaian_kinerja.total_kerja,
-            performances___penilaian_kinerja.kategorisasi,
-            (SELECT 
-                data_posisi.nama_posisi 
-                    FROM data_posisi
-                        WHERE data_posisi.id_posisi = data_karyawan.id_posisi) AS nama_posisi
-        ');
-        $this->db->from('performances___penilaian_kinerja');
-        $this->db->join('data_karyawan', 'data_karyawan.nik = performances___penilaian_kinerja.nik');
-        return $this->db->get()->result_array();
+        $query = $this->db->query("SELECT 
+        jk.id_jamkerja,
+        jk.nik,
+        dk.nama_karyawan AS nama_karyawan,
+        jk.tanggal,
+        jk.due_date,
+        jk.complete_date,
+        jk.keterangan
+        FROM performances___penilaian_kuesioner pk
+        INNER JOIN data_karyawan dk ON jk.nik = dk_a.nik 
+        ");
+        return $query->result_array();
     }
 
     public function tambahPenilaianKinerja()
@@ -99,15 +95,14 @@ class PenilaianKinerja_model extends CI_Model
     {
         // Mengecek apakah data dengan nik tersebut sudah ada atau belum
         $this->db->where('nik', $data['nik']);
-        $query = $this->db->get('
-        performances___penilaian_kinerja');
+        $query = $this->db->get('performances___inputjamkerja');
         if ($query->num_rows() > 0) {
             // Jika data sudah ada, maka lakukan update data
             $this->db->where('nik', $data['nik']);
-            $this->db->update('performances___penilaian_kinerja', $data);
+            $this->db->update('performances___inputjamkerja', $data);
         } else {
             // Jika data belum ada, maka lakukan insert data
-            $this->db->insert('performances___penilaian_kinerja', $data);
+            $this->db->insert('performances___inputjamkerja', $data);
         }
     }
 

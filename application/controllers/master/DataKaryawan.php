@@ -223,7 +223,8 @@ class DataKaryawan extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'File import harus diisi');
             redirect('master/DataKaryawan');
-        };
+        }
+        ;
     }
 
 }

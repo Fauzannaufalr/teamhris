@@ -137,7 +137,8 @@
                         if ($nik !== $ak['nik'] && $level !== "hc") {
                             continue;
                         }
-                        $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2; ?>
+                        $nilai = (($ak['waktu'] / $ak['total_kinerja']) * 100 + $ak['nilai_kuesioner']) / 2;
+                        $nilaijamkerja = ($ak['waktu'] / $ak['total_kinerja']) * 100; ?>
                         <tr style="text-align: center;">
                             <td>
                                 <?= $no++; ?>

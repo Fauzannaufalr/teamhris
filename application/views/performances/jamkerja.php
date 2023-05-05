@@ -119,7 +119,7 @@
                                 </td>
 
                                 <td>
-                                    <?= $jam['complate_date']; ?>
+                                    <?= $jam['complete_date']; ?>
                                 </td>
                                 <td>
                                     <?= $jam['keterangan']; ?>
@@ -163,7 +163,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('Performances/JamKerja/tambah') ?>" method="POST">
+            <form action="<?= base_url('performances/JamKerja/tambah') ?>" method="POST">
                 <div class="modal-body">
                     <div class=" form-group">
 
@@ -189,8 +189,8 @@
                         <input type="date" class="form-control" id="due_date" name="due_date">
                     </div>
                     <div class="form-group">
-                        <label for="complate_date">Complate Date</label>
-                        <input type="date" class="form-control" id="complate_date" name="complate_date">
+                        <label for="complete_date">Complate Date</label>
+                        <input type="date" class="form-control" id="complete_date" name="complete_date">
                     </div>
 
 
@@ -216,7 +216,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('Performances/jamkerja') ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?= base_url('performances/JamKerja/import') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="custom-file">
@@ -276,7 +276,7 @@
                     </button>
                 </div>
 
-                <form action="<?= base_url('Performances/JamKerja/ubah') ?>" method="POST">
+                <form action="<?= base_url('performances/JamKerja/ubah') ?>" method="POST">
                     <div class="modal-body">
                         <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
                         </h6>
@@ -321,9 +321,9 @@
                                 value="<?= $jam['due_date']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="complate_date">Complate Date</label>
-                            <input type="date" class="form-control" id="complate_date" name="complate_date"
-                                value="<?= $jam['complate_date']; ?>">
+                            <label for="complete_date">Complate Date</label>
+                            <input type="date" class="form-control" id="complete_date" name="complete_date"
+                                value="<?= $jam['complete_date']; ?>">
                         </div>
                         <!-- modal footer  -->
                         <div class="modal-footer">
@@ -355,7 +355,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>Performances/JamKerja/hapus/<?= $jam['id_jamkerja'] ?>" type="submit"
+                    <a href="<?= base_url() ?>performances/JamKerja/hapus/<?= $jam['id_jamkerja'] ?>" type="submit"
                         class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
                 </div>
             </div>
@@ -372,7 +372,7 @@
     const id_posisi = document.getElementById("id_posisi");
     nik_nama.onchange = function (e) {
         const nik = e.target.value;
-        fetch(`/teamhris/performances/jamkerja/ajax_category?nik=${nik}`, {
+        fetch(`/performances/JamKerja/Ajax_Category?nik=${nik}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
