@@ -58,7 +58,8 @@
             </tr>
         </thead>
         <?php $no = 1; ?>
-        <?php foreach ($cetak_kinerja as $ck): ?>
+        <?php foreach ($cetak_kinerja as $ck):
+            $nilai = ($jk['waktu'] / $jk['total_kinerja']) * 100; ?>
             <tr>
                 <td class="text-center">
                     <?= $no++ ?>
@@ -66,23 +67,34 @@
                 <td class="text-center">
                     <?= $ck['nik'], "<br>" .
                         $ck['nama_karyawan']; ?>
-                </td>
+                </td class="text-center">
 
-                <td class="text-center">
-                    <?= $ck['total_kerja']; ?>
-                </td>
-
-                <td class="text-center">
-                    <?= $ck['done_kerja']; ?>
+                <?= $ck['waktu']; ?>
                 </td>
                 <td class="text-center">
-                    <?= $ck['nilai']; ?>
-                </td>
-                <td class="text-center">
-                    <?= $ck['kategorisasi']; ?>
+                    <?= $ck['total_kinerja']; ?>
+                <td></td>
+                <td>
+                    <?= number_format((float) $nilai, 2, '.', ''); ?>
                 </td>
 
 
+                <td style="text-align: center;">
+                    <?php
+                    if ($nilai >= 80 && $nilai <= 100) {
+                        echo "Sangat Baik";
+                    } else if ($nilai >= 60 && $nilai <= 79) {
+                        echo "Baik";
+                    } else if ($nilai >= 40 && $nilai <= 59) {
+                        echo "Cukup";
+                    } else if ($nilai >= 20 && $nilai <= 39) {
+                        echo "Kurang";
+                    } else if ($nilai >= 0 && $nilai <= 19) {
+                        echo "Sangat Kurang";
+                    }
+                    ?>
+
+                </td>
             </tr>
         <?php endforeach; ?>
     </table>

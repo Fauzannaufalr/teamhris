@@ -157,9 +157,6 @@
 
                                 <td>
 
-                                    <button class="badge" style="background-color: gold; color: black;" data-toggle="modal"
-                                        data-target="#ubahPenilaianKinerja<?= $jk['id_jamkerja']; ?>"><i
-                                            class="fas fa-edit"></i> Edit</button>
                                     <button class="badge" style="background-color: #cc0000; color: antiquewhite"
                                         data-toggle="modal" data-target="#modal-sm<?= $jk['id_jamkerja']; ?>"><i
                                             class="fas fa-trash-alt"></i> Hapus</button>
@@ -227,78 +224,6 @@
     </div>
 </div>
 <!-- Akhir tambah Modal -->
-
-<!-- Modal edit data -->
-<?php foreach ($jamkerja as $jk): ?>
-    <div class="modal fade" id="ubahJamKerja<?= $jk['id_jamkerja']; ?>" tabindex="-1" aria-labelledby="ubahJamKerjaLabel" ar
-        ia-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ubahJamKerjaLabel">Ubah Data Karyawan</h5><br>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form action="<?= base_url('Performances/PenilaianKinerja/ubah') ?>" method="POST">
-                    <div class="modal-body">
-                        <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
-                        </h6>
-                        <input type="hidden" name="id_jamkerja" value="<?= $jk['id_jamkerja']; ?>">
-                        <div class=" form-group">
-                            <label>NIK & Nama Karyawan</label>
-                            <select class="form-control" name="nik_nama" id="nik_nama" placeholder="-- Pilih Karyawan --">
-                                <?php foreach ($datakaryawan as $dk): ?>
-                                    <?php if ($dk['nik'] == $jk['nik']): ?>
-                                        <option value="<?= $dk['nik']; ?>" selected><?= $dk['nama_karyawan'] ?></option>
-                                    <?php else: ?>
-                                        <option value="<?= $jk['nik']; ?>"><?= $dk['nama_karyawan'] ?></option>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Posisi</label>
-                            <?php foreach ($datakaryawan as $dk): ?>
-                                <?php if ($dk['nik'] == $jk['nik']): ?>
-                                    <?php foreach ($dataposisi as $dp): ?>
-                                        <?php if ($dp['id_posisi'] == $dk['id_posisi']): ?>
-                                            <input type="text" readonly id="id_posisi" class="form-control"
-                                                value="<?= $dp['nama_posisi']; ?>" />
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            <!-- <input type="text" readonly id="id_posisi" class="form-control" /> -->
-                        </div>
-
-                        <div class="form-group">
-                            <label for="total_kerja">Total Kerja</label>
-                            <input type="text" class="form-control" id="total_kerja" name="total_kerja"
-                                value="<?= $jk['total_kerja']; ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="done_kerja">Done Kerja</label>
-                            <input type="text" class="form-control" id="done_kerja" name="done_kerja"
-                                value="<?= $jk['done_kerja']; ?>">
-                        </div>
-
-                        <!-- modal footer  -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn"
-                                style="background-color: #8b0000; color:#ffffff;">Simpan</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
-
 
 <!-- Modal Hapus -->
 <?php foreach ($jamkerja as $jk): ?>

@@ -47,6 +47,34 @@ class PenilaianKinerja_model extends CI_Model
         ];
         $this->db->insert('performances___penilaian_kinerja', $data);
     }
+    public function tambah()
+    {
+        $done_kerja = $this->input->post('done_kerja');
+        $total_kerja = $this->input->post('total_kerja');
+        $complete_date = $this->input->post('complete_date');
+        $due_date = $this->input->post('due_date');
+
+        if (!$complete_date || !$due_date) { // jika salah satu tanggal tidak diisi
+            $keterangan = "Tidak Diisi";
+        } else if ($complete_date <= $due_date) { // jika tanggal selesai kurang dari atau sama dengan tanggal jatuh tempo
+            $keterangan = "Tepat Waktu";
+        } else { // jika tanggal selesai lebih besar dari tanggal jatuh tempo
+            $keterangan = "Terlambat";
+        }
+
+        echo "Keterangan: " . $keterangan;
+        $data = [
+            "nik" => $this->input->post("nik_nama"),
+            'tanggal' => date("m/Y"),
+            'total_kerja' => $total_kerja,
+            'due_date' => $due_date,
+            "complete_date" => $complete_date,
+            "keterangan" => $keterangan,
+
+        ];
+        $this->db->insert('performances___inputjamkerja', $data);
+    }
+
     public function ubahPenilaianKinerja()
     {
         $total_kerja = $this->input->post('total_kerja');

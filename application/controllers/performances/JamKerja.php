@@ -159,9 +159,7 @@ class JamKerja extends CI_Controller
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
-            'required' => 'NIK harus diisi !',
-        ]);
+
         $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
             'required' => 'Total Kerja harus diisi !'
         ]);

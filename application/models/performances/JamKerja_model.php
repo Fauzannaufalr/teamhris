@@ -78,7 +78,8 @@ class JamKerja_model extends CI_Model
             "complete_date" => $complete_date,
             "keterangan" => $keterangan,
         ];
-        $this->db->insert('performances___inputjamkerja', $data);
+        $this->db->where('id_jamkerja', $this->input->post('id_jamkerja'));
+        $this->db->update('performances___inputjamkerja', $data);
     }
     public function hapus($id_jamkerja)
     {

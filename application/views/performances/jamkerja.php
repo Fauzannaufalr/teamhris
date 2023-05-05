@@ -2,7 +2,7 @@
 
     <div class="card">
         <div class="card-header" style="color: white; background-color: #8b0000;">
-            <h4> Filter Data Penilaian Kinerja</h4>
+            <h4> Filter Data Jam Kerja</h4>
         </div>
 
         <form class="form-horizontal">
@@ -60,7 +60,7 @@
     </div>
 
     <div class="alert alert" style="background-color: #8b0000; color: white;">
-        Menampilkan penilaian kinerja Bulan:<span class="fofnt-weight-bold">
+        Menampilkan Jam Kerja Bulan:<span class="fofnt-weight-bold">
             <?php echo $bulan ?>
         </span> Tahun:<span class="fofnt-weight-bold">
             <?php echo $tahun ?>

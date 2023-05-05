@@ -125,50 +125,6 @@ class PenilaianKinerja extends CI_Controller
             redirect('Performances/PenilaianKinerja');
         }
     }
-    public function ubah()
-    {
-
-        $data['title'] = "Penilaian Kinerja";
-        $data['penilaiankinerja'] = $this->PenilaianKinerja_model->tampilPenilaianKinerja();
-        $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-        $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-        $data['user'] = $this->Hris_model->ambilUser();
-
-        $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
-            'required' => 'Total Kerja harus diisi !'
-        ]);
-
-        $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
-            'required' => 'Total Kerja harus diisi !'
-        ]);
-        $this->form_validation->set_rules('done_kerja', 'Done Kerja', 'required', [
-            'required' => 'Done Kerja harus diisi !'
-        ]);
-
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('performances/penilaiankinerja', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $this->PenilaianKinerja_model->ubahPenilaianKinerja();
-            $this->session->set_flashdata('message', 'Data berhasil diUbah!');
-            redirect('Performances/PenilaianKinerja');
-        }
-    }
-
-
-    public function hapus($id)
-    {
-        if ($this->PenilaianKinerja_model->hapus($id)) {
-            $this->session->set_flashdata('message', 'Data berhasil dihapus!');
-        } else {
-            $this->session->set_flashdata('error', 'Data gagal dihapus');
-        }
-        redirect('Performances/PenilaianKinerja');
-    }
 
 
     public function cetakKinerja()
@@ -221,9 +177,9 @@ class PenilaianKinerja extends CI_Controller
     //     $this->load->view('performances/penilaiankinerja', $data);
     //     $this->load->view('templates/footer');
 
-    // $config['allowed_types'] = 'xlsx|xls';
-    // $config['upload_path'] = './dist/import';
-    // $config['file_name'] = 'doc' . time();
+    //     $config['allowed_types'] = 'xlsx|xls';
+    //     $config['upload_path'] = './dist/import';
+    //     $config['file_name'] = 'doc' . time();
 
     //     $this->load->library('upload', $config);
 
