@@ -212,7 +212,7 @@ class Pelamar extends CI_Controller
                 );
                 $where = array('id_pelamar' => $id);
                 $this->Pelamar_model->update_data($where, $data_update);
-            } else {
+            } elseif ($status == 'ditolak') {
                 $card = $this->load->view('email_nilaitolak', $data, TRUE);
                 $data_update = array(
                     'status' => 'ditolak',
@@ -228,7 +228,7 @@ class Pelamar extends CI_Controller
 
             if ($this->email->send()) {
                 if (delete_files($file_data['file_path'])) {
-                    $this->Pelamar_model->statussoal($id);
+                    // $this->Pelamar_model->statussoal($id);
                     $this->session->set_flashdata('message', 'penilaian & surat penerimaan/penolakan berhasil dikirim dikirim');
                     redirect('Recruitment/pelamar');
                 }
