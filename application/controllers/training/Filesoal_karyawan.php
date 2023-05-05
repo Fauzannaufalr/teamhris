@@ -23,7 +23,7 @@ class Filesoal_karyawan extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Soal";
-        $data['datapes'] = $this->Filesoal_karyawan_model->getAllFilesoalkaryawan();
+        $data['datapes'] = $this->Filesoal_karyawan_model->getAllsoal();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();

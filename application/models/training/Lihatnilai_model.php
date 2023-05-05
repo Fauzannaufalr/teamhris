@@ -11,7 +11,16 @@ class Lihatnilai_model extends CI_Model
         $this->db->join('data_karyawan', 'data_karyawan.id_karyawan = data_nilai.id_karyawan');
         return $this->db->get()->result_array();
     }
+    public function getAllnilai()
+    {
 
+        $this->db->select('*');
+        $this->db->from('data_nilai');
+        // return $this->db->get('data_karyawan')->result_array();
+        $this->db->join('data_karyawan', 'data_karyawan.id_karyawan = data_nilai.id_karyawan');
+        $this->db->where('data_nilai.id_karyawan', $this->session->userdata('id_karyawan'));
+        return $this->db->get()->result_array();
+    }
     public function tambahLihatnilai()
     {
         $data = [

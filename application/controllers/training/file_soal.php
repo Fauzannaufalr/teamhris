@@ -23,7 +23,7 @@ class File_soal extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Soal";
-        $data['datapes'] = $this->filesoal_model->getAllfilesoal();
+        $data['datapes'] = $this->filesoal_model->getAllFilesoal();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();

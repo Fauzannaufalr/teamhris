@@ -12,7 +12,17 @@ class Filesoal_karyawan_model extends CI_Model
         $this->db->join('tb_jenis_ujian', 'tb_jenis_ujian.id_jenis_ujian = data_pes.id_jenis_ujian');
         return $this->db->get()->result_array();
     }
+    public function getAllsoal()
+    {
 
+        $this->db->select('*');
+        $this->db->from('data_pes');
+        // return $this->db->get('data_karyawan')->result_array();
+        $this->db->join('data_karyawan', 'data_karyawan.id_karyawan = data_pes.id_karyawan');
+        $this->db->join('tb_jenis_ujian', 'tb_jenis_ujian.id_jenis_ujian = data_pes.id_jenis_ujian');
+        $this->db->where('data_pes.id_karyawan', $this->session->userdata('id_karyawan'));
+        return $this->db->get()->result_array();
+    }
     public function tambahfilesoal()
     {
         $data = [

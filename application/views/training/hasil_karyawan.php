@@ -11,7 +11,7 @@
             </div>
             <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead>
+                    <thead style="background-color:  #8b0000; color: white;">
                         <tr>
                             <th width="1%">No</th>
                             <th> Posisi</th>
@@ -26,39 +26,39 @@
                         <?php
                         $no = 1;
                         foreach ($hasil as $d) { ?>
-                        <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><?php echo $d->nama_posisi; ?></td>
-                            <td><?php echo date('d-m-y', strtotime($d->tanggal_ujian)); ?></td>
-                            <td><?php echo date('H:i:s', strtotime($d->jam_ujian)); ?></td>
-                            <td>
-                                <?php
+                            <tr>
+                                <td><?php echo $no++; ?></td>
+                                <td><?php echo $d->nama_posisi; ?></td>
+                                <td><?php echo date('d-m-y', strtotime($d->tanggal_ujian)); ?></td>
+                                <td><?php echo date('H:i:s', strtotime($d->jam_ujian)); ?></td>
+                                <td>
+                                    <?php
                                     if ($d->benar == '') {
                                         echo "<span class='btn btn-xs btn-warning'>Belum Ujian</span>";
                                     } else {
                                         echo $d->benar;
                                     }
                                     ?>
-                            </td>
-                            <td>
-                                <?php
+                                </td>
+                                <td>
+                                    <?php
                                     if ($d->salah == '') {
                                         echo "<span class='btn btn-xs btn-warning'>Belum Ujian</span>";
                                     } else {
                                         echo $d->salah;
                                     }
                                     ?>
-                            </td>
-                            <td>
-                                <?php
+                                </td>
+                                <td>
+                                    <?php
                                     if ($d->nilai == '') {
                                         echo "<span class='btn btn-xs btn-warning'>Belum Ujian</span>";
                                     } else {
                                         echo $d->nilai;
                                     }
                                     ?>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>

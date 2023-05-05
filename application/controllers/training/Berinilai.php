@@ -75,7 +75,7 @@ class Berinilai extends CI_Controller
     public function download_hasil($filename)
     {
         // Menentukan path file yang akan didownload
-        $file_path = './dist/cv/' . $filename;
+        $file_path = './dist/record/' . $filename;
         if (!file_exists($file_path)) {
             redirect('training/Berinilai');
         };
@@ -116,7 +116,7 @@ class Berinilai extends CI_Controller
         $this->load->library('upload');
 
         // Konfigurasi upload file
-        $config['upload_path'] = './dist/cv';
+        $config['upload_path'] = './dist/record/';
         $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size'] = 2048; // dalam kilobita
 
@@ -150,7 +150,7 @@ class Berinilai extends CI_Controller
         $this->load->library('upload');
 
         // Konfigurasi upload file
-        $config['upload_path'] = './dist/cv';
+        $config['upload_path'] = './dist/record/';
         $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size'] = 2048; // dalam kilobita
 

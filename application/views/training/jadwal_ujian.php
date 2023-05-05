@@ -14,7 +14,7 @@
             <div class="box-body" style="overflow-x: scroll;">
 
                 <table id="example1" class="table table-bordered table-striped">
-                    <thead>
+                    <thead style="background-color:  #8b0000; color: white;">
                         <tr>
                             <th width="1%">No</th>
                             <th>Kode </th>
@@ -31,18 +31,18 @@
                         <?php
                         $no = 1;
                         foreach ($peserta as $d) { ?>
-                        <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><?php echo $d->kode; ?></td>
-                            <td><?php echo $d->nama_posisi; ?></td>
-                            <td><?php echo date('d-m-Y', strtotime($d->tanggal_ujian)); ?> |
-                                <?php echo date('H:i:s', strtotime($d->jam_ujian)); ?></td>
-                            <td><?php echo $d->durasi_ujian; ?> Menit</td>
+                            <tr>
+                                <td><?php echo $no++; ?></td>
+                                <td><?php echo $d->kode; ?></td>
+                                <td><?php echo $d->nama_posisi; ?></td>
+                                <td><?php echo date('d-m-Y', strtotime($d->tanggal_ujian)); ?> |
+                                    <?php echo date('H:i:s', strtotime($d->jam_ujian)); ?></td>
+                                <td><?php echo $d->durasi_ujian; ?> Menit</td>
 
-                            <td><?php echo $d->jenis_ujian; ?></td>
-                            <td>
+                                <td><?php echo $d->jenis_ujian; ?></td>
+                                <td>
 
-                                <?php if ($d->status_ujian == 0) {
+                                    <?php if ($d->status_ujian == 0) {
                                         echo "<span> Belum Mulai Ujian </span>";
                                     } else if ($d->status_ujian == 2) {
                                         echo "<span> Sudah Mengikuti Ujian </span>";
@@ -59,9 +59,9 @@
                                     }
                                     ?>
 
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -73,40 +73,40 @@
 <!-- ./row -->
 
 <script type="text/javascript">
-$('.alert-message').alert().delay(3000).slideUp('slow');
+    $('.alert-message').alert().delay(3000).slideUp('slow');
 </script>
 
 <script>
-window.setTimeout("waktu()", 1000);
+    window.setTimeout("waktu()", 1000);
 
-function showTime() {
-    var a_p = "";
-    var today = new Date();
-    var curr_hour = today.getHours();
-    var curr_minute = today.getMinutes();
-    var curr_second = today.getSeconds();
-    if (curr_hour < 12) {
-        a_p = "AM";
-    } else {
-        a_p = "PM";
+    function showTime() {
+        var a_p = "";
+        var today = new Date();
+        var curr_hour = today.getHours();
+        var curr_minute = today.getMinutes();
+        var curr_second = today.getSeconds();
+        if (curr_hour < 12) {
+            a_p = "AM";
+        } else {
+            a_p = "PM";
+        }
+        if (curr_hour == 0) {
+            curr_hour = 12;
+        }
+        if (curr_hour > 12) {
+            curr_hour = curr_hour - 12;
+        }
+        curr_hour = checkTime(curr_hour);
+        curr_minute = checkTime(curr_minute);
+        curr_second = checkTime(curr_second);
+        document.getElementById('time').innerHTML = curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
     }
-    if (curr_hour == 0) {
-        curr_hour = 12;
-    }
-    if (curr_hour > 12) {
-        curr_hour = curr_hour - 12;
-    }
-    curr_hour = checkTime(curr_hour);
-    curr_minute = checkTime(curr_minute);
-    curr_second = checkTime(curr_second);
-    document.getElementById('time').innerHTML = curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
-}
 
-function checkTime(i) {
-    if (i < 10) {
-        i = "0" + i;
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
     }
-    return i;
-}
-setInterval(showTime, 500);
+    setInterval(showTime, 500);
 </script>

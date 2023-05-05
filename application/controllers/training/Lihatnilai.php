@@ -23,7 +23,7 @@ class Lihatnilai extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Soal";
-        $data['datanilai'] = $this->Lihatnilai_model->getAllLihatnilai();
+        $data['datanilai'] = $this->Lihatnilai_model->getAllnilai();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
@@ -75,7 +75,7 @@ class Lihatnilai extends CI_Controller
     public function download_hasil($filename)
     {
         // Menentukan path file yang akan didownload
-        $file_path = './dist/cv/' . $filename;
+        $file_path = './dist/record/' . $filename;
         if (!file_exists($file_path)) {
             redirect('training/Lihatnilai');
         };

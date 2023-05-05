@@ -18,7 +18,7 @@
                 </div>
             </div>
             <table id="example1" class="table table-bordered table-striped">
-                <thead>
+                <thead style="background-color:  #8b0000; color: white;">
                     <tr>
                         <th>No</th>
                         <th>Nama Karyawan & Posisi</th>
@@ -39,7 +39,10 @@
                         <td><?= $ds['kalkulasi_nilai']; ?></td>
                         <td><a
                                 href="<?php echo base_url('training/Lihatnilai/download_hasil/' . $ds['sertifikat']); ?>"><span
-                                    class="glyphicon glyphicon-download-alt">Download Dokumen</a></td>
+                                    class="glyphicon glyphicon-download-alt">
+                                    link</a>
+                        </td>
+
                     </tr>
                     </tr>
                     <?php endforeach; ?>
