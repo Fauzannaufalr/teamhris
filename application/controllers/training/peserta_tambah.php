@@ -17,7 +17,7 @@ class peserta_tambah extends CI_Controller
         $data['user'] = $this->Hris_model->ambilUser();
         if (isset($_GET['kelas'])) {
             $id = $this->input->get('kelas');
-            $data['karyawan'] = $this->db->query('SELECT * from Data_karyawan join tb_kelas where data_karyawan.id_kelas=tb_kelas.id_kelas and tb_kelas.id_kelas="' . $id . '"')->result();
+            $data['karyawan'] = $this->db->query('SELECT * from data_karyawan join tb_kelas where data_karyawan.id_kelas=tb_kelas.id_kelas and tb_kelas.id_kelas="' . $id . '"')->result();
 
             $data['kelas'] = $this->m_data->get_data('tb_kelas')->result();
             $data['posisi'] = $this->m_data->get_data('data_posisi')->result();
