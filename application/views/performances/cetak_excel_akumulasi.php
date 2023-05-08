@@ -50,37 +50,40 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
     <tbody>
         <?php $no = 1; ?>
         <?php foreach ($cetak_akumulasi_admin as $ck):
-            $akumulasi = ($ck['nilai_kinerja'] + $ck['nilai_kuesioner']) / 2;
+            $nilai_kinerja = ($ck['waktu'] / $ck['total_kinerja']) * 100;
+            $nilai = ($nilai_kinerja + $ck['total_nilai_kuesioner']) / 2;
             ?>
             <tr>
                 <td style="text-align: center;">
-                    <?= $no++ ?>
+                    <?= $no++; ?>
                 </td>
 
                 <td style="text-align: center;">
                     <?= "'" . $ck['nik'] . "' <br> " . $ck['nama_karyawan']; ?>
                 </td>
+
                 <td style="text-align: center;">
-                    <?= $ck['nilai_kinerja'] ?>
+                    <?= number_format((float) $nilai_kinerja, 2, '.', ''); ?>
                 </td>
                 <td style="text-align: center;">
-                    <?= number_format((float) $ck['nilai_kuesioner'], 2, '.', ''); ?>
+                    <?= number_format((float) $ck['total_nilai_kuesioner'], 2, '.', ''); ?>
                 </td>
+
                 <td style="text-align: center;">
-                    <?= $akumulasi ?>
+                    <?= number_format((float) $nilai, 2, '.', ''); ?>
+
                 </td>
                 <td style="text-align: center;">
                     <?php
-
-                    if ($akumulasi >= 80 && $akumulasi <= 100) {
+                    if ($nilai >= 80 && $nilai <= 100) {
                         echo "Sangat Baik";
-                    } else if ($akumulasi >= 60 && $akumulasi <= 79) {
+                    } else if ($nilai >= 60 && $nilai <= 79) {
                         echo "Baik";
-                    } else if ($akumulasi >= 40 && $akumulasi <= 59) {
+                    } else if ($nilai >= 40 && $nilai <= 59) {
                         echo "Cukup";
-                    } else if ($akumulasi >= 20 && $akumulasi <= 39) {
+                    } else if ($nilai >= 20 && $nilai <= 39) {
                         echo "Kurang";
-                    } else if ($akumulasi >= 0 && $akumulasi <= 19) {
+                    } else if ($nilai >= 0 && $nilai <= 19) {
                         echo "Sangat Kurang";
                     }
                     ?>

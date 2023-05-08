@@ -116,8 +116,10 @@
                     <tbody>
                         <?php $no = 1 ?>
                         <?php foreach ($akumulasi as $ak):
-                            $nilai = (($ak['waktu'] / $ak['total_kinerja']) * 100 + $ak['nilai_kuesioner']) / 2;
-                            $nilaijamkerja = ($ak['waktu'] / $ak['total_kinerja']) * 100;
+                            $nilai_kinerja = ($ak['waktu'] / $ak['total_kinerja']) * 100;
+                            $nilai = ($nilai_kinerja + $ak['total_nilai_kuesioner']) / 2;
+                            // $nilai = ($jk['waktu'] / $jk['total_kinerja']) * 100;
+
                             ?>
                             <tr style="text-align: center;">
                                 <td>
@@ -128,11 +130,12 @@
                                     <?= $ak['nik'], "<br>" .
                                         $ak['nama_karyawan']; ?>
                                 </td>
+                    
                                 <td>
-                                    <?= number_format((float) $nilaijamkerja, 2, '.', ''); ?>
+                                    <?= number_format((float) $nilai_kinerja, 2, '.', ''); ?>
                                 </td>
                                 <td>
-                                    <?= number_format((float) $ak['nilai_kuesioner'], 2, '.', ''); ?>
+                                    <?= number_format((float) $ak['total_nilai_kuesioner'], 2, '.', ''); ?>
                                 </td>
 
                                 <td>
@@ -149,7 +152,7 @@
                                         echo "Cukup";
                                     } else if ($nilai >= 20 && $nilai <= 39) {
                                         echo "Kurang";
-                                    } else if ($nilai >= 0 && $nilaiakumulasi <= 19) {
+                                    } else if ($nilai >= 0 && $nilai <= 19) {
                                         echo "Sangat Kurang";
                                     }
                                     ?>

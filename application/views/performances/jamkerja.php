@@ -163,7 +163,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/JamKerja/tambah') ?>" method="POST">
+            <form action="<?= base_url('performances/JamKerja/tambahproses') ?>" method="POST">
                 <div class="modal-body">
                     <div class=" form-group">
 
@@ -180,12 +180,13 @@
                         <label>Posisi</label>
                         <input type="text" readonly id="id_posisi" class="form-control" />
                     </div>
+
                     <div class="form-group">
                         <label for="due_date">Due Date</label>
                         <input type="date" class="form-control" id="due_date" name="due_date">
                     </div>
                     <div class="form-group">
-                        <label for="complete_date">Complate Date</label>
+                        <label for="complete_date">Complete Date</label>
                         <input type="date" class="form-control" id="complete_date" name="complete_date">
                     </div>
 
@@ -212,7 +213,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('performances/JamKerja/import') ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?= base_url('performances/JamKerja/import_excel') ?>" method="POST"
+                enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="custom-file">
@@ -272,7 +274,7 @@
                     </button>
                 </div>
 
-                <form action="<?= base_url('performances/JamKerja/ubah') ?>" method="POST">
+                <form action="<?= base_url('performances/JamKerja/ubahproses') ?>" method="POST">
                     <div class="modal-body">
                         <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
                         </h6>
@@ -306,18 +308,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="total_kerja">Total Kerja</label>
-                            <input type="text" class="form-control" id="total_kerja" name="total_kerja"
-                                value="<?= $jam['total_kerja']; ?>">
-                        </div>
-
-                        <div class="form-group">
                             <label for="done_kerja">Due Date</label>
                             <input type="date" class="form-control" id="due_date" name="due_date"
                                 value="<?= $jam['due_date']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="complete_date">Complate Date</label>
+                            <label for="complete_date">Complete Date</label>
                             <input type="date" class="form-control" id="complete_date" name="complete_date"
                                 value="<?= $jam['complete_date']; ?>">
                         </div>

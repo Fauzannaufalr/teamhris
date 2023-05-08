@@ -4,7 +4,6 @@ require_once APPPATH . 'third_party/Spout/Autoloader/autoload.php';
 
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
-use \App\Libraries\HelperFactory;
 
 class JamKerja extends CI_Controller
 {
@@ -35,7 +34,7 @@ class JamKerja extends CI_Controller
             $tahun = date('Y');
             $bulantahun = $bulan . "/" . $tahun;
         }
-        // printr($bulantahun);
+
 
         $data['jamkerja'] = $this->db->query("SELECT performances___inputjamkerja.*,
         data_karyawan.nama_karyawan, data_karyawan.id_posisi
@@ -56,10 +55,69 @@ class JamKerja extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function import_excel()
+    {
+        if (isset($_FILES["import"]["name"])) {
+            // print_r($_FILES["import"]);
+            // die('data masuk');
+            $path = $_FILES["import"]["tmp_name"];
+            $reader = ReaderEntityFactory::createXLSXReader();
+            $reader->open($path);
+            $count = 0;
+            foreach ($reader->getSheetIterator() as $sheet) {
+                foreach ($sheet->getRowIterator() as $row) {
+                    $count++;
+                    if ($count == 1) {
+                        continue;
+                    }
+                    $nik = $row->getCellAtIndex(0)->getValue();
+                    $due_date = $row->getCellAtIndex(1)->getValue();
+                    // var_dump($due_date);
+
+                    $textduedate = serialize($due_date);
+                    $textduedate = str_replace('O:8:"DateTime":3:', '', $textduedate);
+                    $textduedate = str_replace('{s:4:"date";s:26:', '', $textduedate);
+                    $textduedate = str_replace(';s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}', '', $textduedate);
+                    $textduedate = str_replace('"', '', $textduedate);
+                    $textduedate = str_replace('00:00:00.000000', '', $textduedate);
 
 
 
+                    $complete_date = $row->getCellAtIndex(2)->getValue();
+                    $textcompletedate = serialize($complete_date);
+                    $textcompletedate = str_replace('O:8:"DateTime":3:', '', $textcompletedate);
+                    $textcompletedate = str_replace('{s:4:"date";s:26:', '', $textcompletedate);
+                    $textcompletedate = str_replace(';s:13:"timezone_type";i:3;s:8:"timezone";s:13:"Europe/Berlin";}', '', $textcompletedate);
+                    $textcompletedate = str_replace('"', '', $textcompletedate);
+                    $textcompletedate = str_replace('00:00:00.000000', '', $textcompletedate);
 
+                    $keterangan = '';
+                    if (!$complete_date || !$due_date) {
+                        $keterangan = "Tidak Diisi";
+                    } else if ($complete_date <= $due_date) {
+                        $keterangan = "Tepat Waktu";
+                    } else {
+                        $keterangan = "Terlambat";
+                    }
+                    $data = [
+                        "nik" => $nik,
+                        'tanggal' => date("m/Y"),
+                        'due_date' => $textduedate,
+                        "complete_date" => $textcompletedate,
+                        "keterangan" => $keterangan,
+                    ];
+                    // print_r($data);
+                    $this->db->insert('performances___inputjamkerja', $data);
+                }
+            }
+            $this->session->set_flashdata('message', ' Data Berhasil di import!');
+            redirect('performances/JamKerja');
+        } else {
+
+            $this->session->set_flashdata('message', ' Data gagal import!');
+            redirect('performances/JamKerja');
+        }
+    }
 
 
     public function tambah()
@@ -70,27 +128,24 @@ class JamKerja extends CI_Controller
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
 
+        // exit(1);
+        // printr($_POST);
 
-        $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
-            'required' => 'Total Kerja harus diisi !'
-        ]);
-
-
-        // $nik_digunakan = $this->nik_sudah_digunakan_by_month($nik);
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('performances/jamkerja', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $this->JamKerja_model->tambah();
-
-            $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
-            redirect('performances/JamKerja');
-        }
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/jamkerja', $data);
+        $this->load->view('templates/footer');
     }
+
+    public function tambahproses()
+    {
+        $this->JamKerja_model->tambah(); // ngambil data dari model
+        $this->session->set_flashdata('message', ' Data berhasil ditambahkan!');
+        redirect('performances/JamKerja');
+
+    }
+
     public function ubah()
     {
 
@@ -103,23 +158,23 @@ class JamKerja extends CI_Controller
         $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
             'required' => 'NIK harus diisi !',
         ]);
-        $this->form_validation->set_rules('total_kerja', 'Total Kerja', 'required', [
-            'required' => 'Total Kerja harus diisi !'
-        ]);
 
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('performances/jamkerja', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $this->JamKerja_model->ubah();
-            $this->session->set_flashdata('message', 'Data berhasil diUbah!');
-            redirect('performances/JamKerja');
-        }
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('performances/jamkerja', $data);
+        $this->load->view('templates/footer');
     }
+
+    public function ubahproses()
+    {
+        $this->JamKerja_model->ubah(); // ngambil data dari model
+        $this->session->set_flashdata('message', ' Data berhasil diUbah!');
+        redirect('performances/JamKerja');
+
+    }
+
     public function hapus($id)
     {
         if ($this->JamKerja_model->hapus($id)) {

@@ -17,7 +17,7 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
     $bulantahun = $bulan . $tahun;
 }
 ?>
-<h3>Laporan Penilaian Karyawan Per Bulan</h3>
+<h3>Laporan Akumulasi Penilaian Karyawan</h3>
 <table>
     <tr>
         <td>Bulan</td>
@@ -36,52 +36,46 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
 </table>
 <br>
 <table border="1" width="100%">
-
     <thead>
         <tr>
             <th class="text-center">No</th>
             <th class="text-center">NIK & Nama Karyawan</th>
             <th class="text-center">Nilai</th>
             <th class="text-center">Kategorisasi</th>
+
         </tr>
     </thead>
     <tbody>
         <?php $no = 1; ?>
-        <?php
-        $nik = $this->session->userdata("nik");
-        $level = $this->session->userdata("level");
-
-
-        foreach ($cetak_dashboard_excel as $ndk):
-            if ($nik !== $ndk['nik'] && $level !== "hc") {
-                continue;
-            }
-            $nilaiakumulasi = (($ndk['total_nilai_kuesioner']) + ($ndk['total_nilai_kinerja'])) / 2; ?>
-
+        <?php foreach ($cetak_dashboard_excel as $ndk):
+            $nilai_kinerja = ($ndk['waktu'] / $ndk['total_kinerja']) * 100;
+            $nilai = ($nilai_kinerja + $ndk['total_nilai_kuesioner']) / 2;
+            ?>
             <tr>
                 <td style="text-align: center;">
-                    <?= $no++ ?>
+                    <?= $no++; ?>
                 </td>
 
                 <td style="text-align: center;">
                     <?= "'" . $ndk['nik'] . "' <br> " . $ndk['nama_karyawan']; ?>
                 </td>
 
+
                 <td style="text-align: center;">
-                    <?= $nilaiakumulasi ?>
+                    <?= number_format((float) $nilai, 2, '.', ''); ?>
+
                 </td>
                 <td style="text-align: center;">
                     <?php
-
-                    if ($nilaiakumulasi >= 80 && $nilaiakumulasi <= 100) {
+                    if ($nilai >= 80 && $nilai <= 100) {
                         echo "Sangat Baik";
-                    } else if ($nilaiakumulasi >= 60 && $nilaiakumulasi <= 79) {
+                    } else if ($nilai >= 60 && $nilai <= 79) {
                         echo "Baik";
-                    } else if ($nilaiakumulasi >= 40 && $nilaiakumulasi <= 59) {
+                    } else if ($nilai >= 40 && $nilai <= 59) {
                         echo "Cukup";
-                    } else if ($nilaiakumulasi >= 20 && $nilaiakumulasi <= 39) {
+                    } else if ($nilai >= 20 && $nilai <= 39) {
                         echo "Kurang";
-                    } else if ($nilaiakumulasi >= 0 && $nilaiakumulasi <= 19) {
+                    } else if ($nilai >= 0 && $nilai <= 19) {
                         echo "Sangat Kurang";
                     }
                     ?>
@@ -90,6 +84,6 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
 
             </tr>
         <?php endforeach; ?>
-    </tbody>
 
+    </tbody>
 </table>

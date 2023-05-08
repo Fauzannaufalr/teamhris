@@ -40,8 +40,8 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
         <tr>
             <th class="text-center">No</th>
             <th class="text-center">NIK & Nama Karyawan</th>
-            <th class="text-center">Total Kerja</th>
             <th class="text-center">Done Kerja</th>
+            <th class="text-center">Total Kerja</th>
             <th class="text-center">Nilai</th>
             <th class="text-center">Kategorisasi</th>
 
@@ -49,7 +49,8 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
     </thead>
     <tbody>
         <?php $no = 1; ?>
-        <?php foreach ($cetak_kinerja as $ck): ?>
+        <?php foreach ($cetak_kinerja as $ck):
+            $nilai = ($ck['waktu'] / $ck['total_kinerja']) * 100; ?>
             <tr>
                 <td style="text-align: center;">
                     <?= $no++ ?>
@@ -59,19 +60,34 @@ if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) &&
                     <?= "'" . $ck['nik'] . "' <br> " . $ck['nama_karyawan']; ?>
 
                 </td>
-
                 <td style="text-align: center;">
-                    <?= $ck['total_kerja']; ?>
+                    <?= $ck['waktu']; ?>
                 </td>
 
                 <td style="text-align: center;">
-                    <?= $ck['done_kerja']; ?>
+                    <?= $ck['total_kinerja']; ?>
                 </td>
-                <td style="text-align: center;">
-                    <?= $ck['nilai']; ?>
+
+                <td class="text-center">
+                    <?= number_format((float) $nilai, 2, '.', ''); ?>
                 </td>
+
+
                 <td style="text-align: center;">
-                    <?= $ck['kategorisasi']; ?>
+                    <?php
+                    if ($nilai >= 80 && $nilai <= 100) {
+                        echo "Sangat Baik";
+                    } else if ($nilai >= 60 && $nilai <= 79) {
+                        echo "Baik";
+                    } else if ($nilai >= 40 && $nilai <= 59) {
+                        echo "Cukup";
+                    } else if ($nilai >= 20 && $nilai <= 39) {
+                        echo "Kurang";
+                    } else if ($nilai >= 0 && $nilai <= 19) {
+                        echo "Sangat Kurang";
+                    }
+                    ?>
+
                 </td>
 
 

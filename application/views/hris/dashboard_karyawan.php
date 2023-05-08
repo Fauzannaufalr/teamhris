@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
@@ -13,22 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header" style="background-color: #8b0000;">
-                    <h3 class="card-title" style="color: white;">Laporan Penilaian</h3>
-                </div>
-                <div class="card-body">
-                    <h5>Bulan
-                    </h5>
-                    <div class="col-lg-12">
-                        <canvas id="nilai"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
     <div class="card">
         <div class="card-header" style="color: white; background-color: #8b0000;">
             <h4> Filter Data Penilaian Karyawan</h4>
@@ -57,7 +41,7 @@
                     <label for="tahun" class="col-form-label">Tahun: </label>
                     <div class="col-md-2">
                         <select class="form-control" name="tahun">
-                            <option value="">--Pilih Tahun --</option>
+                            <option value="">-- Pilih Tahun --</option>
                             <?php $tahun = date('Y');
                             for ($i = 2020; $i < $tahun + 3; $i++) { ?>
                                 <option value="<?php echo $i ?>"><?php echo $i ?></option>
@@ -65,6 +49,15 @@
                         </select>
                     </div>
                     <?php
+                    if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+                        $bulan = $_GET['bulan'];
+                        $tahun = $_GET['tahun'];
+                        $bulantahun = $bulan . "/" . $tahun;
+                    } else {
+                        $bulan = date('m');
+                        $tahun = date('Y');
+                        $bulantahun = $bulan . "/" . $tahun;
+                    }
 
                     ?>
                     <button type="submit" class="btn btn-outline-success ml-auto"><i class="fas fa-eye"> Tampilkan
@@ -96,37 +89,28 @@
     </span> Tahun:<span class="font-weight-bold">
         <?php echo $tahun ?>
 </div>
+
+
 <div class="card">
     <div class="card-body">
 
-        <!-- validation crud -->
-        <?php if (validation_errors()): ?>
-            <div class="alert alert-danger" role="alert">
-                <?= validation_errors(); ?>
-            </div>
-        <?php endif; ?>
-        <div class="row">
-            <div class="col-lg-4">
-                <?= $this->session->flashdata('message'); ?>
-            </div>
-        </div>
+        <?php
+
+        $jml_data = COUNT($akumulasi);
+        if ($jml_data > 0) { ?>
 
 
 
-        <table id="example1" class="table table-bordered table-striped">
-            <thead style="text-align: center;  background-color:#8b0000; color: white;">
-                <tr>
-                    <th>No</th>
-                    <th>Bulan/Tahun</th>
-                    <th>Karyawan</th>
-                    <th>Nilai</th>
-                    <th>Kategorisasi</th>
-                </tr>
-            </thead>
-            <?php
-            $jml_data = COUNT($akumulasi);
-            $arr_char = [];
-            if ($jml_data > 0) { ?>
+            <table id="example1" class="table table-bordered table-striped">
+                <thead style="text-align: center;  background-color:#8b0000; color: white;">
+                    <tr>
+                        <th>No</th>
+                        <th>Bulan/Tahun</th>
+                        <th>Karyawan</th>
+                        <th>Nilai</th>
+                        <th>Kategorisasi</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <?php $no = 1 ?>
                     <?php
@@ -134,87 +118,23 @@
                     $level = $this->session->userdata("level");
 
                     foreach ($akumulasi as $ak):
-                        if ($nik !== $ak['nik'] && $level !== "hc") {
+                        if ($nik !== $ak['nik'] && $level !== "hc")
                             continue;
-                        }
-                        $nilai = (($ak['waktu'] / $ak['total_kinerja']) * 100 + $ak['nilai_kuesioner']) / 2;
-                        $nilaijamkerja = ($ak['waktu'] / $ak['total_kinerja']) * 100; ?>
+                        $nilai_kinerja = ($ak['waktu'] / $ak['total_kinerja']) * 100;
+                        $nilaiakumulasi = ($nilai_kinerja + $ak['total_nilai_kuesioner']) / 2;
+                        ?>
                         <tr style="text-align: center;">
                             <td>
                                 <?= $no++; ?>
                             </td>
                             <td>
                                 <?= $ak['tanggal'] ?>
-                                <?php
-                                $arr_tgl = explode('/', $ak['tanggal']);
-                                if ($arr_tgl[0] == '01') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '02') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '03') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '04') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '05') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '06') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '07') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '08') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '09') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '10') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '11') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-                                if ($arr_tgl[0] == '12') {
-                                    array_push($arr_char, $nilaiakumulasi);
-                                } else {
-                                    array_push($arr_char, 0);
-                                }
-
-                                ?>
                             </td>
-
                             <td>
                                 <?= $ak['nik'], "<br>" .
                                     $ak['nama_karyawan']; ?>
                             </td>
+
                             <td>
                                 <?= number_format((float) $nilaiakumulasi, 2, '.', '') ?>
                             </td>
@@ -237,8 +157,12 @@
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-            <?php } ?>
-        </table>
+            </table>
+        <?php } else { ?>
+            <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
+                Data masih kosong, silahkan memilih bulan dan tahun!</span>
+        <?php } ?>
+
     </div>
 </div>
 <!-- /.card-body -->
@@ -255,7 +179,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Data Penilaian masih kosong.
+                Data penilaian masih kosong.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" style="background-color: #8b0000; color: white;"
@@ -265,7 +189,7 @@
     </div>
 </div>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const karyawan = document.getElementById('karyawan');
@@ -290,52 +214,12 @@
             ],
             hoverOffset: 4
         }]
+
     };
 
     new Chart(karyawan, {
         type: 'pie',
         data: d_karyawan
     });
-    const test = document.getElementById('nilai');
-    const a = <?= $nilai ?>
-    <?php
-    $text = '';
-    for ($i = 0; $i < count($arr_char); $i++) {
-        $text .= $arr_char[$i] . ',';
-    }
-    ?>
-    // data nilai kalo bisa berskan data bulan, / nilai bentuk array, nilainya berdsaarkan bulan kalo bisa
-    new Chart(test, {
-        type: 'bar',
-        data: {
-            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-            datasets: [{
-                label: 'Nilai',
-                data: [<?= $text; ?>],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-
-<script>
-
 
 </script>

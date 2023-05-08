@@ -328,9 +328,6 @@
 
         $jml_data = COUNT($akumulasi);
         if ($jml_data > 0) { ?>
-
-
-
             <table id="example1" class="table table-bordered table-striped">
                 <thead style="text-align: center;  background-color:#8b0000; color: white;">
                     <tr>
@@ -348,9 +345,10 @@
                     $level = $this->session->userdata("level");
 
                     foreach ($akumulasi as $ak):
-                        if ($nik === $ak['nik'] && $level !== "hc")
+                        if ($nik === $ak['nik'] && $level !== "ceo")
                             continue;
-                        $nilaiakumulasi = (($ak['total_nilai_kinerja'] + $ak['total_nilai_kuesioner'])) / 2;
+                        $nilai_kinerja = ($ak['waktu'] / $ak['total_kinerja']) * 100;
+                        $nilaiakumulasi = ($nilai_kinerja + $ak['total_nilai_kuesioner']) / 2;
                         ?>
                         <tr style="text-align: center;">
                             <td>

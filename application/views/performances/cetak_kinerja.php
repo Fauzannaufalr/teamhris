@@ -50,8 +50,8 @@
             <tr>
                 <th class="text-center">No</th>
                 <th class="text-center">NIK & Nama Karyawan</th>
-                <th class="text-center">Total Kerja</th>
                 <th class="text-center">Done Kerja</th>
+                <th class="text-center">Total Kerja</th>
                 <th class="text-center">Nilai</th>
                 <th class="text-center">Kategorisasi</th>
 
@@ -59,7 +59,7 @@
         </thead>
         <?php $no = 1; ?>
         <?php foreach ($cetak_kinerja as $ck):
-            $nilai = ($jk['waktu'] / $jk['total_kinerja']) * 100; ?>
+            $nilai = ($ck['waktu'] / $ck['total_kinerja']) * 100; ?>
             <tr>
                 <td class="text-center">
                     <?= $no++ ?>
@@ -67,14 +67,13 @@
                 <td class="text-center">
                     <?= $ck['nik'], "<br>" .
                         $ck['nama_karyawan']; ?>
-                </td class="text-center">
-
-                <?= $ck['waktu']; ?>
+                </td>
+                <td class="text-center">
+                    <?= $ck['waktu']; ?>
                 </td>
                 <td class="text-center">
                     <?= $ck['total_kinerja']; ?>
-                <td></td>
-                <td>
+                <td class="text-center">
                     <?= number_format((float) $nilai, 2, '.', ''); ?>
                 </td>
 

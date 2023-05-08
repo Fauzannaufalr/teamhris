@@ -8,7 +8,6 @@ class PenilaianKinerja_model extends CI_Model
             performances___inputjamkerja.id_jamkerja,
             performances___inputjamkerja.nik,
             performances___inputjamkerja.tanggal,
-            performances___inputjamkerja.total_kerja,
             performances___inputjamkerja.due_date,
             performances___inputjamkerja.complete_date,
             performances___inputjamkerja.keterangan,
@@ -23,60 +22,8 @@ class PenilaianKinerja_model extends CI_Model
     }
 
 
-    public function tambah()
-    {
-        $total_kerja = $this->input->post('total_kerja');
-        $complete_date = $this->input->post('complete_date');
-        $due_date = $this->input->post('due_date');
 
-        if (!$complete_date || !$due_date) { // jika salah satu tanggal tidak diisi
-            $keterangan = "Tidak Diisi";
-        } else if ($complete_date <= $due_date) { // jika tanggal selesai kurang dari atau sama dengan tanggal jatuh tempo
-            $keterangan = "Tepat Waktu";
-        } else { // jika tanggal selesai lebih besar dari tanggal jatuh tempo
-            $keterangan = "Terlambat";
-        }
 
-        echo "Keterangan: " . $keterangan;
-        $data = [
-            "nik" => $this->input->post("nik_nama"),
-            'tanggal' => date("m/Y"),
-            'total_kerja' => $total_kerja,
-
-        ];
-        $this->db->insert('performances___inputjamkerja', $data);
-    }
-
-    public function ubah()
-    {
-        $total_kerja = $this->input->post('total_kerja');
-        $complete_date = $this->input->post('complete_date');
-        $due_date = $this->input->post('due_date');
-
-        if (!$complete_date || !$due_date) { // if either date is not filled
-            $keterangan = "Tidak diisi";
-        } else if ($complete_date && $due_date) { // if both dates are filled
-            $tanggal = $complete_date - $due_date;
-
-            if ($tanggal <= 0) {
-                $keterangan = "Tepat Waktu";
-            } else {
-                $keterangan = "Terlambat";
-            }
-        }
-
-        echo "Keterangan: " . $keterangan;
-        $data = [
-            "nik" => $this->input->post("nik_nama"),
-            'tanggal' => date("m/Y"),
-            'total_kerja' => $total_kerja,
-            'due_date' => $due_date,
-            "complete_date" => $complete_date,
-            "keterangan" => $keterangan,
-        ];
-        $this->db->insert('performances___inputjamkerja', $data);
-
-    }
     public function hapus($id_jamkerja)
     {
         $this->db->where('id_jamkerja', $id_jamkerja);
@@ -90,4 +37,32 @@ class PenilaianKinerja_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function cetakKinerja($bulantahun)
+    {
+        $query = $this->db->query("
+         SELECT 
+            jk.id_jamkerja,
+            jk.nik,
+            MAX(dk.nama_karyawan) AS nama_karyawan,
+            jk.tanggal,
+            jk.keterangan,
+            (
+                SELECT COUNT(jk2.nik)
+                FROM performances___inputjamkerja jk2 
+                WHERE jk2.nik = jk.nik AND jk2.tanggal = '$bulantahun'
+                GROUP BY jk2.tanggal, jk2.nik
+            ) AS total_kinerja,
+            (
+                SELECT COUNT(jamker.keterangan) 
+                FROM performances___inputjamkerja jamker  
+                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik
+            ) AS waktu
+        FROM performances___inputjamkerja jk
+        JOIN data_karyawan dk ON jk.nik = dk.nik
+         WHERE jk.tanggal LIKE '%$bulantahun%'
+        GROUP BY jk.nik
+    ");
+        return $query->result_array();
+
+    }
 }

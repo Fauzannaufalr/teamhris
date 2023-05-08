@@ -30,18 +30,19 @@ class Hris extends CI_Controller
         $data['barispelamar'] = $this->db->get('recruitment___pelamar')->num_rows();
 
 
-        $data['bulan'] = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
-        $data['tahun'] = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
-        $bulantahun = $data['bulan'] . "/" . $data['tahun'];
-        $data['akumulasi'] = $this->Hris_model->laporan($bulantahun);
-        $nilaiakumulasi = 0;
-        foreach ($data['akumulasi'] as $ak) {
-            $nilaiakumulasi = (($ak['total_nilai_kuesioner']) + ($ak['total_nilai_kinerja'])) / 2;
+        if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
+            $bulan = $_GET['bulan'];
+            $tahun = $_GET['tahun'];
+            $bulantahun = $bulan . "/" . $tahun;
+        } else {
+            $bulan = date('m');
+            $tahun = date('Y');
+            $bulantahun = $bulan . "/" . $tahun;
         }
-        $data['nilai'] = $nilaiakumulasi;
-        // printr($data['akumulasi']);
 
-        // printr($data);
+        $data['akumulasi'] = $this->Hris_model->laporan($bulantahun);
+
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('templates/sidebar', $data);

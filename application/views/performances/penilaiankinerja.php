@@ -83,10 +83,6 @@
         <div class="card-body">
             <div class="form-group row">
                 <div class="col-mb-auto">
-                    <button type="button" class="btn btn-outline-success" data-toggle="modal"
-                        data-target="#tambahPenilaianKinerja"><i class="fas fa-plus"></i>
-                        Tambah Penilaian
-                    </button>
                     <a class="btn btn-outline-success" href="<?= base_url('performances/JamKerja') ?>" ;><i
                             class="fas fa-plus"></i>
                         Input Jam Kerja
@@ -105,8 +101,8 @@
                         <tr>
                             <th>No</th>
                             <th>NIK & Nama Karyawan</th>
-                            <th>Total Kerja</th>
                             <th>Done Kerja</th>
+                            <th>Total Kerja</th>
                             <th>Nilai</th>
                             <th>Kategorisasi</th>
                             <th>Aksi</th>
@@ -116,10 +112,11 @@
                         <?php $no = 1 ?>
                         <?php
                         foreach ($jamkerja as $jk):
-                            $nilai = ($jk['waktu'] / $jk['total_kinerja']) * 100;
-
+                            $nilai = 0;
+                            if ($jk['total_kinerja'] != 0) {
+                                $nilai = ($jk['waktu'] / $jk['total_kinerja']) * 100;
+                            }
                             ?>
-
                             <tr style=" text-align: center;">
                                 <td>
                                     <?= $no++; ?>
@@ -128,12 +125,12 @@
                                     <?= $jk['nik'], "<br>" .
                                         $jk['nama_karyawan']; ?>
                                 </td>
-
-                                <td>
-                                    <?= $jk['total_kinerja']; ?>
                                 <td>
                                     <?= $jk['waktu']; ?>
                                 </td>
+                                <td>
+                                    <?= $jk['total_kinerja']; ?>
+
 
                                 <td>
                                     <?= number_format((float) $nilai, 2, '.', ''); ?>
@@ -160,7 +157,6 @@
                                     <button class="badge" style="background-color: #cc0000; color: antiquewhite"
                                         data-toggle="modal" data-target="#modal-sm<?= $jk['id_jamkerja']; ?>"><i
                                             class="fas fa-trash-alt"></i> Hapus</button>
-
                                 </td>
                             <?php endforeach; ?>
                     </tbody>
@@ -173,57 +169,6 @@
     </div>
     <!-- /.card-body -->
 </div>
-
-<!-- modal untuk tambah data -->
-<div class="modal fade" id="tambahPenilaianKinerja" tabindex="-1" aria-labelledby="tambahPenilaianKinerjaLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambahPenilaianKinerjaLabel">Tambah Penilaian</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('Performances/PenilaianKinerja/tambah') ?>" method="POST">
-                <div class="modal-body">
-                    <div class=" form-group">
-
-                        <label>NIK & Nama Karyawan</label>
-                        <select class="form-control" name="nik_nama" id="nik_nama">
-                            <option>-- Pilih Karyawan --</option>
-                            <?php foreach ($datakaryawan as $dk): ?>
-                                <option value="<?= $dk['nik']; ?>"><?= $dk['nik']; ?> - <?= $dk['nama_karyawan']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Posisi</label>
-                        <input type="text" readonly id="id_posisi" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="total_kerja">Total Kerja</label>
-                        <input type="text" class="form-control" id="total_kerja" name="total_kerja">
-                    </div>
-                    <div class="form-group">
-                        <label for="done_kerja">Done Kerja</label>
-                        <input type="text" class="form-control" id="done_kerja" name="done_kerja">
-                    </div>
-
-
-                    <!-- modal footer  -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn"
-                            style="background-color: #8b0000; color:#ffffff;">Simpan</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Akhir tambah Modal -->
 
 <!-- Modal Hapus -->
 <?php foreach ($jamkerja as $jk): ?>

@@ -32,17 +32,12 @@ class Akumulasi extends CI_Controller
             $tahun = date('Y');
             $bulantahun = $bulan . "/" . $tahun;
         }
-
         $data['akumulasi'] = $this->db->query("
         SELECT 
-        jk.id_jamkerja,
-        jk.nik,
-        MAX(dk.nama_karyawan) AS nama_karyawan,
-        jk.tanggal,
-        jk.keterangan,
+            jk.id_jamkerja,
             dk.nik,
             dk.nama_karyawan,
-            jamker.tanggal, 
+            jk.tanggal,
             (
                 SELECT 
                     CASE 
@@ -52,25 +47,35 @@ class Akumulasi extends CI_Controller
                 FROM 
                     performances___penilaian_kuesioner pk 
                 WHERE 
-                    pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun'
-            ) AS nilai_kuesioner,
+                    pk.nik_menilai = dk.nik AND pk.tanggal LIKE '%$bulantahun%'
+            ) AS total_nilai_kuesioner,
             (
-                SELECT COUNT(jk.nik)
-                FROM performances___inputjamkerja jk
-                WHERE jk2.nik = jk.nik AND jk.tanggal = '$bulantahun'
-                GROUP BY jk.tanggal, jk.nik
+                SELECT COUNT(jk2.nik)
+                FROM performances___inputjamkerja jk2 
+                WHERE jk2.nik = jk.nik AND jk2.tanggal = '$bulantahun'
+                GROUP BY jk2.tanggal, jk2.nik
             ) AS total_kinerja,
+
             (
                 SELECT COUNT(jamker.keterangan) 
                 FROM performances___inputjamkerja jamker  
-                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jamker.nik
+                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik
             ) AS waktu
         FROM 
-            data_karyawan dk
-            INNER JOIN performances___inputjamkerja jamker ON jamker.nik = dk.nik
+            data_karyawan dk 
+            INNER JOIN performances___inputjamkerja jk ON jk.nik = dk.nik
         WHERE 
-            jamker.tanggal LIKE '%$bulantahun'
+            jk.tanggal LIKE '%$bulantahun%'
+        GROUP BY 
+            jk.tanggal, dk.nik
     ")->result_array();
+    // printr($data);
+    //     FROM 
+    //         data_karyawan dk
+    //         INNER JOIN performances___inputjamkerja jamker ON jamker.nik = dk.nik
+    //     WHERE 
+    //         jamker.tanggal LIKE '%$bulantahun'
+    // ")->result_array();
 
 
         // printr($data);
