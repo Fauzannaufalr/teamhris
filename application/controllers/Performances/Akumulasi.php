@@ -59,7 +59,7 @@ class Akumulasi extends CI_Controller
             (
                 SELECT COUNT(jamker.keterangan) 
                 FROM performances___inputjamkerja jamker  
-                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik
+                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik AND jamker.tanggal = '$bulantahun'
             ) AS waktu
         FROM 
             data_karyawan dk 
@@ -69,13 +69,13 @@ class Akumulasi extends CI_Controller
         GROUP BY 
             jk.tanggal, dk.nik
     ")->result_array();
-    // printr($data);
-    //     FROM 
-    //         data_karyawan dk
-    //         INNER JOIN performances___inputjamkerja jamker ON jamker.nik = dk.nik
-    //     WHERE 
-    //         jamker.tanggal LIKE '%$bulantahun'
-    // ")->result_array();
+        // printr($data);
+        //     FROM 
+        //         data_karyawan dk
+        //         INNER JOIN performances___inputjamkerja jamker ON jamker.nik = dk.nik
+        //     WHERE 
+        //         jamker.tanggal LIKE '%$bulantahun'
+        // ")->result_array();
 
 
         // printr($data);

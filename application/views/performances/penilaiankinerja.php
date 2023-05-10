@@ -105,7 +105,6 @@
                             <th>Total Kerja</th>
                             <th>Nilai</th>
                             <th>Kategorisasi</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -152,12 +151,6 @@
 
                                 </td>
 
-                                <td>
-
-                                    <button class="badge" style="background-color: #cc0000; color: antiquewhite"
-                                        data-toggle="modal" data-target="#modal-sm<?= $jk['id_jamkerja']; ?>"><i
-                                            class="fas fa-trash-alt"></i> Hapus</button>
-                                </td>
                             <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -170,33 +163,7 @@
     <!-- /.card-body -->
 </div>
 
-<!-- Modal Hapus -->
-<?php foreach ($jamkerja as $jk): ?>
-    <div class="modal fade" id="modal-sm<?= $jk['id_jamkerja']; ?>" tabindek="-1" role+dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Hapus Data</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah anda yakin untuk menghapus data ?</p>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
-                    <a href="<?= base_url() ?>Performances/PenilaianKinerja/hapus/<?= $jk['id_jamkerja'] ?>" type="submit"
-                        class="btn" style="background-color: #8b0000; color:#ffffff;">Ya</a>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-<?php endforeach; ?>
-</div>
-</div>
+
 
 <!-- Modal cetak penlilaian kinerja -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

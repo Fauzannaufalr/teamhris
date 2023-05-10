@@ -43,6 +43,7 @@ class JamKerja extends CI_Controller
         WHERE performances___inputjamkerja.tanggal='$bulantahun'
         ORDER BY data_karyawan.nama_karyawan ASC")->result_array();
 
+
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
@@ -148,16 +149,12 @@ class JamKerja extends CI_Controller
 
     public function ubah()
     {
-
         $data['title'] = "Jam Kerja";
         $data['jamkerja'] = $this->JamKerja_model->Tampiljamkerja();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['user'] = $this->Hris_model->ambilUser();
 
-        $this->form_validation->set_rules('nik_nama', 'NIK', 'required', [
-            'required' => 'NIK harus diisi !',
-        ]);
 
 
         $this->load->view('templates/header', $data);
@@ -165,12 +162,9 @@ class JamKerja extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('performances/jamkerja', $data);
         $this->load->view('templates/footer');
-    }
 
-    public function ubahproses()
-    {
-        $this->JamKerja_model->ubah(); // ngambil data dari model
-        $this->session->set_flashdata('message', ' Data berhasil diUbah!');
+        $this->JamKerja_model->ubahJamKerja();
+        $this->session->set_flashdata('message', 'Data berhasil diubah!');
         redirect('performances/JamKerja');
 
     }

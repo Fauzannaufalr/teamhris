@@ -274,11 +274,11 @@
                     </button>
                 </div>
 
-                <form action="<?= base_url('performances/JamKerja/ubahproses') ?>" method="POST">
+                <form action="<?= base_url('performances/JamKerja/ubah') ?>" method="POST">
                     <div class="modal-body">
                         <h6 style="color: black;"><i>WAJIB MEMILIH NIK & NAMA KARYAWAN KEMBALI, SEBELUM MERUBAH NILAI!!</i>
                         </h6>
-                        <input type="hidden" name="id_penilaian_kinerja" value="<?= $jam['id_jamkerja']; ?>">
+                        <input type="hidden" name="id_jamkerja" value="<?= $jam['id_jamkerja']; ?>">
                         <div class=" form-group">
                             <label>NIK & Nama Karyawan</label>
                             <select class="form-control" name="nik_nama" id="nik_nama" placeholder="-- Pilih Karyawan --">
@@ -286,7 +286,7 @@
                                     <?php if ($dk['nik'] == $jam['nik']): ?>
                                         <option value="<?= $dk['nik']; ?>" selected><?= $dk['nama_karyawan'] ?></option>
                                     <?php else: ?>
-                                        <option value="<?= $jam['nik']; ?>"><?= $dk['nama_karyawan'] ?></option>
+                                        <option value="<?= $dk['nik']; ?>"><?= $dk['nama_karyawan'] ?></option>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
@@ -308,7 +308,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="done_kerja">Due Date</label>
+                            <label for="due_date">Due Date</label>
                             <input type="date" class="form-control" id="due_date" name="due_date"
                                 value="<?= $jam['due_date']; ?>">
                         </div>

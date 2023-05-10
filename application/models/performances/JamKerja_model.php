@@ -28,7 +28,7 @@ class JamKerja_model extends CI_Model
 
     public function tambah()
     {
-        $total_kerja = $this->input->post('total_kerja');
+
         $complete_date = $this->input->post('complete_date');
         $due_date = $this->input->post('due_date');
 
@@ -52,33 +52,26 @@ class JamKerja_model extends CI_Model
     }
 
 
-    public function ubah()
+    public function ubahJamKerja()
     {
-        $complete_date = strtotime($this->input->post('complete_date')); // ubah ke timestamp
-        $due_date = strtotime($this->input->post('due_date')); // ubah ke timestamp
-        $keterangan = "";
+        $complete_date = $this->input->post('complete_date');
+        $due_date = $this->input->post('due_date');
 
-        if (!$complete_date || !$due_date) { // if either date is not filled
-            $keterangan = "Tidak diisi";
-        } else if ($complete_date && $due_date) { // if both dates are filled
-            $tanggal = $complete_date - $due_date;
-
-            if ($tanggal <= 0) {
-                $keterangan = "Tepat Waktu";
-            } else {
-                $keterangan = "Terlambat";
-            }
+        if (empty($complete_date) || empty($due_date)) { // jika salah satu tanggal tidak diisi
+            $keterangan = "Tidak Diisi";
+        } else if ($complete_date <= $due_date) { // jika tanggal selesai kurang dari atau sama dengan tanggal jatuh tempo
+            $keterangan = "Tepat Waktu";
+        } else { // jika tanggal selesai lebih besar dari tanggal jatuh tempo
+            $keterangan = "Terlambat";
         }
 
         echo "Keterangan: " . $keterangan;
         $data = [
             "nik" => $this->input->post("nik_nama"),
             'tanggal' => date("m/Y"),
-            'due_date' => date("Y-m-d", $due_date),
-            // ubah ke format date
-            "complete_date" => date("Y-m-d", $complete_date),
-            // ubah ke format date
-            "keterangan" => $keterangan,
+            'due_date' => $due_date,
+            'complete_date' => $complete_date,
+            'keterangan' => $keterangan
         ];
         $this->db->where('id_jamkerja', $this->input->post('id_jamkerja'));
         $this->db->update('performances___inputjamkerja', $data);

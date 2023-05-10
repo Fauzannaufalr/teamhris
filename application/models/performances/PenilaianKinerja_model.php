@@ -22,15 +22,6 @@ class PenilaianKinerja_model extends CI_Model
     }
 
 
-
-
-    public function hapus($id_jamkerja)
-    {
-        $this->db->where('id_jamkerja', $id_jamkerja);
-        $this->db->delete('performances___inputjamkerja');
-        return ($this->db->affected_rows() > 0) ? true : false;
-    }
-
     public function import_data($data)
     {
         $this->db->insert('performances_inputjamkerja', $data);

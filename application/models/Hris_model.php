@@ -56,7 +56,7 @@ class Hris_model extends CI_Model
 
     public function cetakNilaiDashboard($bulantahun)
     {
-        $query = $this->db->query(" SELECT 
+        $query = $this->db->query("  SELECT 
         jk.id_jamkerja,
         dk.nik,
         dk.nama_karyawan,
@@ -82,7 +82,7 @@ class Hris_model extends CI_Model
         (
             SELECT COUNT(jamker.keterangan) 
             FROM performances___inputjamkerja jamker  
-            WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik
+            WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik AND jamker.tanggal = '$bulantahun'
         ) AS waktu
     FROM 
         data_karyawan dk 
@@ -125,7 +125,7 @@ class Hris_model extends CI_Model
         (
             SELECT COUNT(jamker.keterangan) 
             FROM performances___inputjamkerja jamker  
-            WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik
+            WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik AND jamker.tanggal = '$bulantahun'
         ) AS waktu
     FROM 
         data_karyawan dk 
