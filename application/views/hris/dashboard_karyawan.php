@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card">
                 <div class="card-header" style="background-color: #8b0000;">
                     <h3 class="card-title" style="color: white;">Aspek Penilaian</h3>
                 </div>
                 <div class="card-body">
-                    <div class="col-lg-7">
+                    <div class="col-mx-auto">
                         <canvas id="karyawan"></canvas>
                     </div>
                 </div>
