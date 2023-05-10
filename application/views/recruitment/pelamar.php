@@ -381,14 +381,14 @@
         if (status == 'Lulus') {
             form.innerHTML = `
       <div class="form-group">
-        <label for="hasil_interview">Upload file penerimaan:</label>
+        <label for="hasil_interview">Upload Lulus Interview:</label>
         <input type="file" name="hasil_interview" class="form-control">
       </div>
     `;
         } else if (status == 'Tidak Lulus') {
             form.innerHTML = `
       <div class="form-group">
-        <label for="hasil_interview">Alasan penolakan:</label>
+        <label for="hasil_interview">Upload Tidak Lulus Interview:</label>
         <input type="file" name="hasil_interview" class="form-control">
       </div>
     `;
