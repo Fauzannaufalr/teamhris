@@ -345,7 +345,7 @@
                     $level = $this->session->userdata("level");
 
                     foreach ($akumulasi as $ak):
-                        if ($nik === $ak['nik'] && $level !== "ceo")
+                        if ($nik === $ak['nik'] && $level !== "hc" && $level !== "ceo")
                             continue;
                         $nilai_kinerja = ($ak['waktu'] / $ak['total_kinerja']) * 100;
                         $nilaiakumulasi = ($nilai_kinerja + $ak['total_nilai_kuesioner']) / 2;
