@@ -362,7 +362,7 @@ class Pelamar extends CI_Controller
         // Menentukan path file yang akan didownload
         $file_path = './dist/uploads/' . $filename;
         if (!file_exists($file_path)) {
-            redirect('recruitment/Pelamar');
+            redirect('Recruitment/pelamar');
         };
         header('Content-Type: application/octet-stream');
         header('Content-Length: ' . filesize($file_path));
@@ -464,7 +464,6 @@ class Pelamar extends CI_Controller
         $config['upload_path'] = './dist/uploads';
         $config['allowed_types'] = 'pdf';
         $config['max_size'] = 2048;
-        $config['encrypt_name'] = TRUE;
         $id = $this->input->post('id');
         $status = $this->input->post('status' . $id);
         $this->load->library('upload', $config);
