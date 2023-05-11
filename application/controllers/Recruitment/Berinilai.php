@@ -37,7 +37,7 @@ class Berinilai extends CI_Controller
         // Menentukan path file yang akan didownload
         $file_path = './dist/uploads/' . $filename;
         if (!file_exists($file_path)) {
-            redirect('Recruitment/hasiltes');
+            redirect('Recruitment/berinilai');
         };
         header('Content-Type: application/octet-stream');
         header('Content-Length: ' . filesize($file_path));

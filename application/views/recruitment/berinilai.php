@@ -49,7 +49,7 @@
                             <?php endforeach; ?>
                             <td><?= $nm['nama']; ?></td>
                             <td><?= $nm['hasil_link']  ?></td>
-                            <td><a href="<?php echo base_url('Recruitment/Pelamar/download_file/' . $nm['hasil_file']); ?>"><span class="glyphicon glyphicon-download-alt">download hasil</a></td>
+                            <td><a href="<?php echo base_url('Recruitment/Berinilai/download_file/' . $nm['hasil_file']); ?>"><span class="glyphicon glyphicon-download-alt">download hasil</a></td>
                             <td><?= $nm['status']; ?></td>
                             <td>
                                 <button class="badge badge-success" data-toggle="modal" data-target="#modal-nilai<?= $nm['id_hasiltes']; ?>"><i class="fas fa-paper-plane"></i> Nilai</button>
