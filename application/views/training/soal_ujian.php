@@ -45,16 +45,15 @@
                 <div class="box-header">
                     <h3 class="box-title"></h3>
 
-                    <a href="<?= base_url('training/soal') ?>"><button type="button"
-                            class="btn btn-outline-primary btn-flat" data-toggle="modal"
-                            data-target="#modal-default"><span class="fa fa-plus"></span>
+                    <a href="<?= base_url('training/soal') ?>"><button type="button" class="btn btn-outline-success"
+                            data-toggle="modal" data-target="#modal-default"><span class="fa fa-plus"></span>
                             Tambah</button></a>
 
                     <a href="<?php echo base_url('master/DataPosisi'); ?>"><button type="button"
-                            class="btn btn-outline-primary btn-flat" data-toggle="modal" data-target="#"><i
+                            class="btn btn-outline-success" data-toggle="modal" data-target="#"><i
                                 class="fas fa-plus"></i>Data
                             Posisi</button></a>
-                    <button type="button" class="btn btn-outline-primary btn-flat" data-toggle="modal"
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#importdatasoal"><i class="fas fa-plus"></i>
                         Import Data
                     </button>
@@ -137,12 +136,12 @@
                             </td>
                             <td><b><?php echo $d->kunci_jawaban; ?></b></td>
                             <td>
-                                <a class="badge" style="color: black; background-color: gold;"
-                                    href="<?= base_url() ?>training/soal_ujian/edit/<?= $d->id_soal_ujian ?>"
-                                    class="fas fa-edit"> Edit</a>
+                                <a class="badge" style="color: black; background-color: gold"
+                                    href="<?= base_url() ?>training/soal_ujian/edit/<?= $d->id_soal_ujian ?>"><i
+                                        class="fas fa-edit"></i> Edit</a>
                                 <a class="badge" style="color: antiquewhite; background-color:  #cc0000;"
-                                    href="<?= base_url() ?>training/soal_ujian/hapus/<?= $d->id_soal_ujian ?>"
-                                    class="fas fa-trash-alt">Hapus</a>
+                                    href="<?= base_url() ?>training/soal_ujian/hapus/<?= $d->id_soal_ujian ?>"><i
+                                        class="fas fa-trash-alt"></i>Hapus</a>
 
                             </td>
                         </tr>

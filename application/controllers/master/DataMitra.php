@@ -33,6 +33,7 @@ class DataMitra extends CI_Controller
     {
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
+        $data['keahlian'] = $this->DataMitra_model->getAllKeahlian();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
@@ -76,6 +77,7 @@ class DataMitra extends CI_Controller
     {
         $data['title'] = "Data Mitra";
         $data['datamitra'] = $this->DataMitra_model->getAllDataMitra();
+        $data['keahlian'] = $this->DataMitra_model->getAllKeahlian();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
         $data['user'] = $this->Hris_model->ambilUser();
 
@@ -106,7 +108,7 @@ class DataMitra extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('master/datamitra', $data);
+            $this->load->view('master/DataMitra', $data);
             $this->load->view('templates/footer');
         } else {
             $this->DataMitra_model->ubahDataMitra();

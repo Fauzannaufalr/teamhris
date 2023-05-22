@@ -61,9 +61,9 @@
                                 data-toggle="modal" data-target="#ubahdatasoal<?= $ds['id_pes']; ?>"><i
                                     class="fas fa-edit"></i>
                                 Edit</button>
-                            <button type="button" class="bagde"
-                                style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal"
-                                data-target="#modal-sm<?= $ds['id_pes']; ?>"><i class="fas fa-trasha"></i>hapus</button>
+                            <button type="button" class="badge" style="color: antiquewhite; background-color:  #cc0000;"
+                                data-toggle="modal" data-target="#modal-sm<?= $ds['id_pes'] ?>"><i
+                                    class="fas fa-trash-alt"></i> Hapus</button>
                         </td>
                     </tr>
                     </tr>

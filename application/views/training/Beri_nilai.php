@@ -48,10 +48,9 @@
                                 data-toggle="modal" data-target="#ubahdatanilai<?= $ds['id_nilai']; ?>"><i
                                     class="fas fa-edit"></i>
                                 Edit</button>
-                            <button type="button" class="bagde"
-                                style="font-size: 12px; color: white; background-color:  #ff0000;" data-toggle="modal"
-                                data-target="#modal-sm<?= $ds['id_nilai']; ?>"><i
-                                    class="fas fa-trasha"></i>hapus</button>
+                            <button type="button" class="badge" style="color: antiquewhite; background-color:  #cc0000;"
+                                data-toggle="modal" data-target="#modal-sm<?= $ds['id_nilai'] ?>"><i
+                                    class="fas fa-trash-alt"></i> Hapus</button>
                         </td>
                     </tr>
                     </tr>
@@ -68,7 +67,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahdatanilaiLabel">Tambah Data soal</h5>
+                <h5 class="modal-title" id="tambahdatanilaiLabel">Beri Nilai</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

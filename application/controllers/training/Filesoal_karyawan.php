@@ -35,46 +35,6 @@ class Filesoal_karyawan extends CI_Controller
         $this->load->view('training/file_soal_karyawan', $data);
         $this->load->view('templates/footer');
     }
-
-    // public function tambah()
-    // {
-
-    //     $data['title'] = "Data Soal";
-    //     $data['filesoal'] = $this->filesoal_model->getAllfilesoal();
-    //     $data['user'] = $this->Hris_model->ambilUser();
-    //     $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
-    //     $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
-    //     $data['jenis_ujian'] = $this->m_data->get_data('tb_jenis_ujian')->result_array();
-
-    //     $this->form_validation->set_rules('posisi', 'Posisi', 'required', [
-    //         'required' => 'Posisi harus diisi !'
-    //     ]);
-    //     $this->form_validation->set_rules('tanggal_ujian', 'Tanggal', 'required', [
-    //         'required' => 'Tanggal harus diisi !'
-    //     ]);
-
-    //     $this->form_validation->set_rules('jenis_ujian', 'jenis ujian', 'required', [
-    //         'required' => 'jenis ujian harus diisi !'
-    //     ]);
-    //     $this->form_validation->set_rules('durasi_ujian', 'Durasi ujian', 'required', [
-    //         'required' => 'Tanggal harus diisi !'
-    //     ]);
-
-    //     if ($this->form_validation->run() == FALSE) {
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('templates/navbar', $data);
-    //         $this->load->view('templates/sidebar', $data);
-    //         $this->load->view('training/file_soal', $data);
-    //         $this->load->view('templates/footer');
-    //     } else {
-    //         // $data = $this->upload_berkas();
-    //         // $dokumen = $data['file_name'];
-    //         $this->Filesoal_model->tambahfilesoal();
-    //         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil ditambahkan!</div>');
-    //         redirect('training/File_soal');
-    //     }
-    // }
-
     public function ubah()
     {
         $data['title'] = "Data Soal";

@@ -125,6 +125,6 @@ class datakeseluruhan extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');
         }
-        redirect('training/Datakeseluruhan');
+        redirect('training/datakeseluruhan');
     }
 }

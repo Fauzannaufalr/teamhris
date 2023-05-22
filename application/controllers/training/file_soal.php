@@ -23,7 +23,7 @@ class File_soal extends CI_Controller
     public function index()
     {
         $data['title'] = "Data Soal";
-        $data['datapes'] = $this->filesoal_model->getAllFilesoal();
+        $data['datapes'] = $this->filesoal_model->getAllfilesoal();
         $data['user'] = $this->Hris_model->ambilUser();
         $data['datakaryawan'] = $this->DataKaryawan_model->getAllDataKaryawan();
         $data['dataposisi'] = $this->DataPosisi_model->getAllDataPosisi();
@@ -141,7 +141,7 @@ class File_soal extends CI_Controller
     }
     public function hapus($id_pes)
     {
-        if ($this->Filesoal_model->hapus($id_pes)) {
+        if ($this->filesoal_model->hapus($id_pes)) {
             $this->session->set_flashdata('message', 'Data berhasil dihapus!');
         } else {
             $this->session->set_flashdata('error', 'Data gagal dihapus');

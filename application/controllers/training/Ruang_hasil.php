@@ -19,7 +19,7 @@ class Ruang_hasil extends CI_Controller
 		$data['title'] = ' ';
 		$data['user'] = $this->Hris_model->ambilUser();
 		$id_karyawan = $_SESSION['id_karyawan'];
-		$data['hasil'] = $this->m_data->get_peserta($id_karyawan);
+		$data['hasil_karyawan'] = $this->m_data->get_peserta($id_karyawan);
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);

@@ -136,7 +136,7 @@
                         <input type="file" class="form-control" name="dokumen jawaban" placeholder="Masukan Dokumen">
                     </div>
                     <div class="box-footer">
-                        <a href="<?= base_url('training/file_soal') ?>" class="btn btn-default btn-flat"><span
+                        <a href="<?= base_url('training/file_soal_karyawan') ?>" class="btn btn-default btn-flat"><span
                                 class="fa fa-arrow-left"></span>
                             Kembali</a>
                         <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
@@ -173,8 +173,8 @@
                                 placeholder="Masukan Dokumen">
                         </div>
                         <div class="box-footer">
-                            <a href="<?= base_url('training/file_soal') ?>" class="btn btn-default btn-flat"><span
-                                    class="fa fa-arrow-left"></span>
+                            <a href="<?= base_url('training/Filesoal_karyawan') ?>"
+                                class="btn btn-default btn-flat"><span class="fa fa-arrow-left"></span>
                                 Kembali</a>
                             <button type="submit" class="btn btn-primary btn-flat"><span class="fa fa-save"></span>
                                 Simpan</button>
