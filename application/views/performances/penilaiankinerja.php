@@ -85,7 +85,7 @@
                 <div class="col-mb-auto">
                     <a class="btn btn-outline-success" href="<?= base_url('performances/JamKerja') ?>" ;><i
                             class="fas fa-plus"></i>
-                        Input Jam Kerja
+                        Input Penilaian
                     </a> <br>
                 </div>
             </div>
