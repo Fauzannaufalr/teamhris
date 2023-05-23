@@ -25,7 +25,7 @@ class Berinilai extends CI_Controller
     public function hapus($id_hasiltes)
     {
         if ($this->Hasiltes_model->hapus($id_hasiltes)) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Data berhasil dihapus!</div>');
+            $this->session->set_flashdata('message', 'Data Berhasil DiHapus.');
         } else {
             $this->session->set_flashdata('message', 'Data gagal dihapus');
         }
