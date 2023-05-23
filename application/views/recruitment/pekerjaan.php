@@ -175,7 +175,7 @@
                     <p>Apakah anda yakin untuk menghapus data ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn" data-dismiss="modal" style="background-color: #d4d4d4;">Tidak</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
                     <a href="<?= base_url() ?>Recruitment/pekerjaan/hapus/<?= $it['id_pekerjaan'] ?>" type="submit" class="btn" style="background-color: #8b0000; color: #ffffff;">Ya</a>
                 </div>
             </div>
