@@ -60,8 +60,8 @@ class PengajuanGaji extends CI_Controller
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'hris0545@gmail.com',
-            'smtp_pass' => 'fpbtaezyykpwvlfd',
+            'smtp_user' => 'belajarcoding78@gmail.com',
+            'smtp_pass' => 'yivnmnsocwasssvv',
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
@@ -71,7 +71,7 @@ class PengajuanGaji extends CI_Controller
         $this->load->library('email', $config);
         $this->email->initialize($config);
 
-        $this->email->from('hris0545@gmail.com', 'PT. Sahaware Teknologi Indonesia');
+        $this->email->from('belajarcoding78@gmail.com', 'PT. Sahaware Teknologi Indonesia');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Slip Gaji');
