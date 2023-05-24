@@ -61,7 +61,7 @@
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <a href="<?= base_url('recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i
+                <a href="<?= base_url('R ecruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
