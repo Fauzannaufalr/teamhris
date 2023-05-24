@@ -160,7 +160,7 @@
             </table>
         <?php } else { ?>
             <span class="badge badge-danger"><i class="fas fa-info-circle"></i>
-                Data masih kosong, silahkan memilih bulan dan tahun!</span>
+                Data masih kosong,silahkan memilih bulan dan tahun!</span>
         <?php } ?>
 
     </div>

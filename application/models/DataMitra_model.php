@@ -40,6 +40,9 @@ class DataMitra_model extends CI_Model
 
     public function ubahDataMitra()
     {
+        $rate = $this->input->post('rate_total');
+        $data_replace = str_replace('Rp ', '', $rate);
+        $data_replace = str_replace('.', '', $data_replace);
         $data = [
             'nama_perusahaan' => $this->input->post('perusahaan'),
             'nama_karyawan' => $this->input->post('nama'),
@@ -48,16 +51,14 @@ class DataMitra_model extends CI_Model
             'email' => $this->input->post('email'),
             'telepon' => $this->input->post('telepon'),
             'alamat' => $this->input->post('alamat'),
-            'rate_total' => $this->input->post('rate_total'),
+            'rate_total' => $data_replace,
             'dokumen_kerjasama' => $this->input->post('dokumen_kerjasama'),
             'tanggal_masuk' => $this->input->post('tanggal_masuk'),
             'tanggal_keluar' => $this->input->post('tanggal_keluar'),
             'status' => $this->input->post('status')
         ];
-        $data_replace = str_replace('Rp ', '', $data);
-        $data_replace = str_replace('.', '', $data_replace);
         $this->db->where('id', $this->input->post('id'));
-        $this->db->update('data_mitra', $data_replace);
+        $this->db->update('data_mitra', $data);
     }
 
     public function hapus($id)

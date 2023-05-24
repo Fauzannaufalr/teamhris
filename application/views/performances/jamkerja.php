@@ -72,7 +72,7 @@
                 <div class="col-mb-auto">
                     <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#tambahJamKerja"><i class="fas fa-plus"></i>
-                        Input Jam kerja
+                        Tambah Penilaian
                     </button>
                     <button type="button" class="btn btn-outline-success" data-toggle="modal"
                         data-target="#importJamKerja"><i class="fas fa-plus"></i>
