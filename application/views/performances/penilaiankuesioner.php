@@ -118,7 +118,7 @@
                                         $pr['nama_karyawan_penilai']; ?>
                                 </td>
                                 <td>
-                                    <?= $pr['nik_penilai'], "<br>" .
+                                    <?= $pr['nik_menilai'], "<br>" .
                                         $pr['nama_karyawan_menilai']; ?>
                                 </td>
 
