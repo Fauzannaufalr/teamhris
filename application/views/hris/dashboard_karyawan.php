@@ -86,7 +86,7 @@
 <div class="alert alert" style="background-color: #8b0000; color: white;">
     Menampilkan Penilaian Karyawan Bulan:<span class="font-weight-bold">
         <?php echo $bulan ?>
-    </span> Tahun:<span class="font-weight-bold">
+    </span>Tahun:<span class="font-weight-bold">
         <?php echo $tahun ?>
 </div>
 
