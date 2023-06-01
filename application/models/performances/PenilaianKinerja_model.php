@@ -31,27 +31,27 @@ class PenilaianKinerja_model extends CI_Model
     public function cetakKinerja($bulantahun)
     {
         $query = $this->db->query("
-         SELECT 
-            jk.id_jamkerja,
-            jk.nik,
-            MAX(dk.nama_karyawan) AS nama_karyawan,
-            jk.tanggal,
-            jk.keterangan,
-            (
-                SELECT COUNT(jk2.nik)
-                FROM performances___inputjamkerja jk2 
-                WHERE jk2.nik = jk.nik AND jk2.tanggal = '$bulantahun'
-                GROUP BY jk2.tanggal, jk2.nik
-            ) AS total_kinerja,
-            (
-                SELECT COUNT(jamker.keterangan) 
-                FROM performances___inputjamkerja jamker  
-                WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik
-            ) AS waktu
-        FROM performances___inputjamkerja jk
-        JOIN data_karyawan dk ON jk.nik = dk.nik
-         WHERE jk.tanggal LIKE '%$bulantahun%'
-        GROUP BY jk.nik
+        SELECT 
+        jk.id_jamkerja,
+        jk.nik,
+        MAX(dk.nama_karyawan) AS nama_karyawan,
+        jk.tanggal,
+        jk.keterangan,
+        (
+            SELECT COUNT(jk2.nik)
+            FROM performances___inputjamkerja jk2 
+            WHERE jk2.nik = jk.nik AND jk2.tanggal = '$bulantahun'
+            GROUP BY jk2.tanggal, jk2.nik
+        ) AS total_kinerja,
+        (
+            SELECT COUNT(jamker.keterangan) 
+            FROM performances___inputjamkerja jamker  
+            WHERE jamker.keterangan = 'Tepat Waktu' AND jamker.nik = jk.nik AND jamker.tanggal = '$bulantahun'
+        ) AS waktu
+    FROM performances___inputjamkerja jk
+    JOIN data_karyawan dk ON jk.nik = dk.nik
+    WHERE jk.tanggal = '$bulantahun'
+    GROUP BY jk.nik
     ");
         return $query->result_array();
 
