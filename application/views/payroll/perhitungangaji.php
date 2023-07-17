@@ -4,7 +4,7 @@
         <div class="card-body">
 
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal" data-target="#tambahPerhitungan"><i class="fas fa-plus"></i>
-                Tambah Perhitungan Gaji
+                Tambah Data Perhitungan Gaji
             </button>
             <table id="data" class="table table-bordered table-striped">
                 <thead style="background-color: #8b0000; color: #ffffff;">

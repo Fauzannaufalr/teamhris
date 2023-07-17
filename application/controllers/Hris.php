@@ -187,7 +187,7 @@ class Hris extends CI_Controller
                 redirect('Hris/ubahPassword');
             } else {
                 if ($password_lama == $password_baru) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Password baru tidak boleh dengan password lama!</div>');
+                    $this->session->set_flashdata('message', '<div class="alert" style="background-color:#8b0000; color:white;" role="alert"> Password baru tidak boleh sama dengan password lama!</div>');
                     redirect('Hris/ubahPassword');
                 } else {
                     // jika password sudah ok

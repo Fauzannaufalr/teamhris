@@ -12,8 +12,7 @@
                 <div class="icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <a href="<?= base_url('master/DataKaryawan'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/DataKaryawan'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -28,8 +27,7 @@
                 <div class="icon">
                     <i class="fas fa-briefcase"></i>
                 </div>
-                <a href="<?= base_url('master/DataPosisi'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/DataPosisi'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -45,8 +43,7 @@
                 <div class="icon">
                     <i class="fas fa-user-lock"></i>
                 </div>
-                <a href="<?= base_url('master/DataMitra'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('master/DataMitra'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -61,8 +58,7 @@
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <a href="<?= base_url('Recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('Recruitment/pelamar'); ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- /.card-body -->
@@ -135,7 +131,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_type" name="tahun_type">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -181,7 +177,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_status" name="tahun_status">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -226,7 +222,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select class="form-control select2" id="tahun_mitra" name="tahun_mitra">
-                                        <?php for ($i = date('Y'); $i >= 2020; $i--): ?>
+                                        <?php for ($i = date('Y'); $i >= 2020; $i--) : ?>
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php endfor; ?>
                                     </select>
@@ -296,17 +292,11 @@
                     </button>
 
                     <?php if (count($akumulasi) > 0) { ?>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakPdf?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak PDF</a>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakExcelHC?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak Excel</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakPdf?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakExcelHC?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
 
                 </div>
@@ -344,12 +334,12 @@
                     $nik = $this->session->userdata("nik");
                     $level = $this->session->userdata("level");
 
-                    foreach ($akumulasi as $ak):
+                    foreach ($akumulasi as $ak) :
                         if ($nik === $ak['nik'] && $level !== "hc" && $level !== "ceo")
                             continue;
                         $nilai_kinerja = ($ak['waktu'] / $ak['total_kinerja']) * 100;
                         $nilaiakumulasi = ($nilai_kinerja + $ak['total_nilai_kuesioner']) / 2;
-                        ?>
+                    ?>
                         <tr style="text-align: center;">
                             <td>
                                 <?= $no++; ?>
@@ -409,8 +399,7 @@
                 Data penilaian masih kosong.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background-color: #8b0000; color: white;"
-                    data-dismiss="modal">Close</button>
+                <button type="button" class="btn" style="background-color: #8b0000; color: white;" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -452,7 +441,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
+                    label: function(tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -497,7 +486,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
+                    label: function(tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -543,7 +532,7 @@
             },
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
+                    label: function(tooltipItem, data) {
                         var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                         if (parseInt(totalData) >= 1000) {
                             return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -571,7 +560,7 @@
 
 <script type="text/javascript">
     // START TYPE
-    $('#bulan_type,#tahun_type').change(function () {
+    $('#bulan_type,#tahun_type').change(function() {
         bulanType = document.getElementById('bulan_type').value;
         tahunType = document.getElementById('tahun_type').value;
         $.ajax({
@@ -582,7 +571,7 @@
                 bulanType,
                 tahunType
             },
-            success: function (result) {
+            success: function(result) {
 
                 const e2 = result[0]['Office'];
                 const f2 = result[0]['Project'];
@@ -617,7 +606,7 @@
                         },
                         tooltips: {
                             callbacks: {
-                                label: function (tooltipItem, data) {
+                                label: function(tooltipItem, data) {
                                     var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                                     if (parseInt(totalData) >= 1000) {
                                         return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -635,7 +624,7 @@
     // END TYPE
 
     // START TYPE
-    $('#bulan_status,#tahun_status').change(function () {
+    $('#bulan_status,#tahun_status').change(function() {
         bulanStatus = document.getElementById('bulan_status').value;
         tahunStatus = document.getElementById('tahun_status').value;
         $.ajax({
@@ -646,7 +635,7 @@
                 bulanStatus,
                 tahunStatus
             },
-            success: function (result) {
+            success: function(result) {
 
                 const a2 = result[0]['Sudah'];
                 const b2 = result[0]['Belum'];
@@ -681,7 +670,7 @@
                         },
                         tooltips: {
                             callbacks: {
-                                label: function (tooltipItem, data) {
+                                label: function(tooltipItem, data) {
                                     var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                                     if (parseInt(totalData) >= 1000) {
                                         return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -699,7 +688,7 @@
     // END TYPE
 
     // START TYPE
-    $('#bulan_mitra,#tahun_mitra').change(function () {
+    $('#bulan_mitra,#tahun_mitra').change(function() {
         bulanMitra = document.getElementById('bulan_mitra').value;
         tahunMitra = document.getElementById('tahun_mitra').value;
         $.ajax({
@@ -710,7 +699,7 @@
                 bulanMitra,
                 tahunMitra
             },
-            success: function (result) {
+            success: function(result) {
 
                 const c2 = result[0]['Sudah'];
                 const d2 = result[0]['Belum'];
@@ -745,7 +734,7 @@
                         },
                         tooltips: {
                             callbacks: {
-                                label: function (tooltipItem, data) {
+                                label: function(tooltipItem, data) {
                                     var totalData = data['datasets'][0]['data'][tooltipItem['index']];
                                     if (parseInt(totalData) >= 1000) {
                                         return data['labels'][tooltipItem['index']] + ': Rp ' + totalData.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -761,4 +750,36 @@
         });
     });
     // END TYPE
+</script>
+
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
 </script>
