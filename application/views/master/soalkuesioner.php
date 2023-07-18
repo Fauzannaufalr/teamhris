@@ -5,7 +5,7 @@
         <div class="card-body">
             <button type="button" class="btn btn-outline-success mb-2" data-toggle="modal"
                 data-target="#exampleModal"><i class="fas fa-plus"></i>
-                Tambah Soal
+                Tambah Soal Kuesioner
             </button>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>

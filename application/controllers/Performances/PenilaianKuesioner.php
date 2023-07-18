@@ -20,7 +20,7 @@ class PenilaianKuesioner extends CI_Controller
     public function index()
     {
         // printr($_SESSION);
-        $data['title'] = "Penilaian kuesioner";
+        $data['title'] = "Penilaian Kuesioner";
         if ((isset($_GET['bulan']) && $_GET['bulan'] != '') && (isset($_GET['tahun']) && $_GET['tahun'] != '')) {
             $bulan = $_GET['bulan'];
             $tahun = $_GET['tahun'];

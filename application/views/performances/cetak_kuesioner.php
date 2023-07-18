@@ -52,7 +52,7 @@
                 <th>No</th>
                 <th>NIK & Nama Penilai</th>
                 <th>NIK & Nama Menilai</th>
-                <th>Tanggal</th>
+                <th>Bulan Penilaian</th>
                 <th>Total Nilai</th>
             </tr>
         </thead>
