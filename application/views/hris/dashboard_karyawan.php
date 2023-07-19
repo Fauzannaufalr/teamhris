@@ -66,17 +66,11 @@
                     </button>
 
                     <?php if (count($akumulasi) > 0) { ?>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakPdfKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak PDF</a>
-                        <a class="btn btn-outline-success ml-2"
-                            href="<?= base_url('Hris/cetakExcelKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i
-                                class="fas fa-print"></i> Cetak Excel</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakPdfKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak PDF</a>
+                        <a class="btn btn-outline-success ml-2" href="<?= base_url('Hris/cetakExcelKaryawan?bulan=' . $bulan), '&tahun=' . $tahun ?>"><i class="fas fa-print"></i> Cetak Excel</a>
                     <?php } else { ?>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
-                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal"
-                            data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak PDF</button>
+                        <button type="button" class="btn btn-outline-success ml-2" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> Cetak Excel</button>
                     <?php } ?>
 
                 </div>
@@ -117,12 +111,12 @@
                     $nik = $this->session->userdata("nik");
                     $level = $this->session->userdata("level");
 
-                    foreach ($akumulasi as $ak):
+                    foreach ($akumulasi as $ak) :
                         if ($nik !== $ak['nik'] && $level !== "hc")
                             continue;
                         $nilai_kinerja = ($ak['waktu'] / $ak['total_kinerja']) * 100;
                         $nilaiakumulasi = ($nilai_kinerja + $ak['total_nilai_kuesioner']) / 2;
-                        ?>
+                    ?>
                         <tr style="text-align: center;">
                             <td>
                                 <?= $no++; ?>
@@ -182,8 +176,7 @@
                 Data penilaian masih kosong.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background-color: #8b0000; color: white;"
-                    data-dismiss="modal">Close</button>
+                <button type="button" class="btn" style="background-color: #8b0000; color: white;" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -221,5 +214,36 @@
         type: 'pie',
         data: d_karyawan
     });
+</script>
 
+<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        });
+        <?php if ($this->session->flashdata('message')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('message')) ?>;
+            Toast.fire({
+                icon: 'success',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error')) : ?>
+            const flashData = <?= json_encode($this->session->flashdata('error')) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+        <?php if (validation_errors()) : ?>
+            const flashData = <?= json_encode(validation_errors()) ?>;
+            Toast.fire({
+                icon: 'error',
+                title: flashData
+            })
+        <?php endif; ?>
+    });
 </script>

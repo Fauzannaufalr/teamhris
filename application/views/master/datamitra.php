@@ -246,7 +246,7 @@
                         </div>
                         <div class="form-group">
                             <label for="rate_total">Rate total</label>
-                            <input type="text" class="form-control" id="rate_total<?= $dm['rate_total']; ?>" name="rate_total" value="Rp <?= number_format($dm['rate_total'], 0, ',', '.'); ?>">
+                            <input type="text" class="form-control" id="rate_total<?= $dm['id']; ?>" name="rate_total" value="Rp <?= number_format($dm['rate_total'], 0, ',', '.'); ?>">
                         </div>
                         <div class="form-group">
                             <label for="dokumen_kerjasama">Dokumen Kerjasama</label>
@@ -278,9 +278,9 @@
     </div>
 
     <script>
-        var rate_total<?= $dm['rate_total']; ?> = document.getElementById('rate_total<?= $dm['rate_total']; ?>');
-        rate_total<?= $dm['rate_total']; ?>.addEventListener('keyup', function(e) {
-            rate_total<?= $dm['rate_total']; ?>.value = formatRupiah(this.value, 'Rp ');
+        var rate_total<?= $dm['id']; ?> = document.getElementById('rate_total<?= $dm['id']; ?>');
+        rate_total<?= $dm['id']; ?>.addEventListener('keyup', function(e) {
+            rate_total<?= $dm['id']; ?>.value = formatRupiah(this.value, 'Rp ');
         });
     </script>
     <script>
