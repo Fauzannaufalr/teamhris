@@ -26,6 +26,9 @@ class DataKaryawan_model extends CI_Model
     public function tambahDataKaryawan()
     {
         $email = $this->input->post('email');
+        $gajipokok = htmlspecialchars($this->input->post('gajipokok'));
+        $data_replace = str_replace('Rp ', '', $gajipokok);
+        $data_replace = str_replace('.', '', $data_replace);
         $data = [
             'nik' => htmlspecialchars($this->input->post('nik')),
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
@@ -33,7 +36,7 @@ class DataKaryawan_model extends CI_Model
             'id_kelas' => htmlspecialchars($this->input->post('id_kelas')),
             'email' => htmlspecialchars($email),
             'status' => 'Aktif',
-            'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
+            'gajipokok' => $data_replace,
             'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
             'level' => htmlspecialchars($this->input->post('level')),
             'alamat' => htmlspecialchars($this->input->post('alamat')),
@@ -49,6 +52,9 @@ class DataKaryawan_model extends CI_Model
     public function ubahDataKaryawan()
     {
         $email = $this->input->post('email');
+        $gajipokok = htmlspecialchars($this->input->post('gajipokok'));
+        $data_replace = str_replace('Rp ', '', $gajipokok);
+        $data_replace = str_replace('.', '', $data_replace);
         $data = [
             'nik' => htmlspecialchars($this->input->post('nik')),
             'nama_karyawan' => htmlspecialchars($this->input->post('nama')),
@@ -56,7 +62,7 @@ class DataKaryawan_model extends CI_Model
             'id_kelas' => htmlspecialchars($this->input->post('id_kelas')),
             'email' => htmlspecialchars($email),
             'status' => htmlspecialchars($this->input->post('status')),
-            'gajipokok' => htmlspecialchars($this->input->post('gajipokok')),
+            'gajipokok' => $gajipokok,
             'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
             'level' => htmlspecialchars($this->input->post('level')),
             'alamat' => htmlspecialchars($this->input->post('alamat')),
