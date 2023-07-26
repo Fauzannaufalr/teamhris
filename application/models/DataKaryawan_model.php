@@ -62,7 +62,7 @@ class DataKaryawan_model extends CI_Model
             'id_kelas' => htmlspecialchars($this->input->post('id_kelas')),
             'email' => htmlspecialchars($email),
             'status' => htmlspecialchars($this->input->post('status')),
-            'gajipokok' => $gajipokok,
+            'gajipokok' => $data_replace,
             'nik_leader' => htmlspecialchars($this->input->post('nikleader')),
             'level' => htmlspecialchars($this->input->post('level')),
             'alamat' => htmlspecialchars($this->input->post('alamat')),

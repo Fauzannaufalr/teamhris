@@ -64,9 +64,6 @@ class DataKaryawan extends CI_Controller
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
         ]);
-        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'numeric', [
-            'numeric' => 'Gaji Pokok harus diisi dengan angka !'
-        ]);
         $this->form_validation->set_rules('password', 'Password', 'required', [
             'required' => 'Password harus diisi !'
         ]);
@@ -118,9 +115,6 @@ class DataKaryawan extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email', [
             'required' => 'Email harus diisi !',
             'valid_email' => 'Yang Anda Masukan Bukan Email !'
-        ]);
-        $this->form_validation->set_rules('gajipokok', 'Gaji pokok', 'numeric', [
-            'numeric' => 'Gaji Pokok harus diisi dengan angka !'
         ]);
         $this->form_validation->set_rules('level', 'Level', 'required', [
             'required' => 'Level harus diisi !'
@@ -223,8 +217,6 @@ class DataKaryawan extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'File import harus diisi');
             redirect('master/DataKaryawan');
-        }
-        ;
+        };
     }
-
 }
