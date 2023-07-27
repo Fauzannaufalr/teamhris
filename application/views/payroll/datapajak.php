@@ -110,7 +110,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tarif">Tarif</label>
-                            <input type="text" class="form-control" id="tarif" name="tarif" value="<?= $dp['tarif']; ?>">
+                            <input type="text" class="form-control" id="tarif<?= $dp['id']; ?>" name="tarif" value="Rp <?= number_format($dp['tarif'], 0, ',', '.'); ?>">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -121,6 +121,12 @@
             </div>
         </div>
     </div>
+    <script>
+        var tarif<?= $dp['id']; ?> = document.getElementById('tarif<?= $dp['id']; ?>');
+        tarif<?= $dp['id']; ?>.addEventListener('keyup', function(e) {
+            tarif<?= $dp['id']; ?>.value = formatRupiah(this.value, 'Rp ');
+        });
+    </script>
 <?php endforeach; ?>
 
 <!-- Modal hapus -->
@@ -178,4 +184,25 @@
             })
         <?php endif; ?>
     });
+
+    var tarif = document.getElementById('tarif');
+    tarif.addEventListener('keyup', function(e) {
+        tarif.value = formatRupiah(this.value, 'Rp ');
+    });
+
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp ' + rupiah : '');
+    }
 </script>

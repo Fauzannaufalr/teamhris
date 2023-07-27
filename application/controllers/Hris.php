@@ -169,7 +169,8 @@ class Hris extends CI_Controller
             'min_length' => 'Password terlalu pendek!'
         ]);
         $this->form_validation->set_rules('password_baru2', 'Konfirmasi Password', 'required|trim|matches[password_baru1]', [
-            'required' => 'Password lama harus diisi'
+            'required' => 'Password lama harus diisi',
+            'matches' => 'Password tidak cocok!'
         ]);
 
         if ($this->form_validation->run() == false) {
@@ -183,7 +184,7 @@ class Hris extends CI_Controller
             $password_baru = $this->input->post('password_baru1');
 
             if (!password_verify($password_lama, $data['user']['password'])) {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password lama salah!</div>');
+                $this->session->set_flashdata('message', '<div class="alert" style="background-color:#8b0000; color:white;" role="alert">Password lama salah!</div>');
                 redirect('Hris/ubahPassword');
             } else {
                 if ($password_lama == $password_baru) {

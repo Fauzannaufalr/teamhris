@@ -153,7 +153,7 @@ class DataMitra_model extends CI_Model
                 "telepon" => $record->telepon,
                 "alamat" => $record->alamat,
                 "rate" => 'Rp ' . number_format($record->rate_total, 0, ', ', '.'),
-                "dokumen" => '<a href="' . $record->dokumen_kerjasama . '">Link Dokumen</a>',
+                "dokumen" => '<a href="' . $record->dokumen_kerjasama . '" target="_blank">Link Dokumen</a>',
                 "tgl_masuk" => $record->tanggal_masuk,
                 "tgl_keluar" => $record->tanggal_keluar,
                 "status" => $record->status,
