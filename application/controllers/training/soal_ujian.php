@@ -120,12 +120,12 @@ class soal_ujian extends CI_Controller
 				foreach ($sheet->getRowIterator() as $row) {
 					foreach ($data['DataPosisi'] as $dp) {
 						if ($dp['nama_posisi'] == $row->getCellAtIndex(0)) {
-							$posisi = $dp['id_posisi'];
+							$ds = $dp['id_posisi'];
 						}
 					}
 					if ($numRow > 1) {
 						$data = array(
-							'id_posisi' => htmlspecialchars($posisi),
+							'id_posisi' => htmlspecialchars($ds),
 							'pertanyaan' => htmlspecialchars($row->getCellAtIndex(1)),
 							'a' => htmlspecialchars($row->getCellAtIndex(2)),
 							'b' => htmlspecialchars($row->getCellAtIndex(3)),
