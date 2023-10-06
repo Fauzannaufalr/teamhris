@@ -187,7 +187,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer');
         } else {
             $this->Auth_model->ubahPassword();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" style="text-align: center;> Reset password berhasil!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" style="text-align: center;"> Reset password berhasil!</div>');
             redirect('auth');
         }
     }
